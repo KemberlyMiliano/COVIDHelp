@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 namespace COVIDHelp.Views.NeededViews
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RequestHealthPage : ContentView
+    public partial class RequestHealthPage : ContentPage
     {
         public RequestHealthPage()
         {

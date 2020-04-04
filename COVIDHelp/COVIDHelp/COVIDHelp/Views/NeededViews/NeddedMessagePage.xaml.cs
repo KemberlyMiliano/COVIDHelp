@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace COVIDHelp.Views
+namespace COVIDHelp.Views.NeededViews
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SelectedSignUp : ContentView
+    public partial class NeddedMessagePage : ContentPage
     {
-        public SelectedSignUp()
+        public NeddedMessagePage()
         {
             InitializeComponent();
         }

@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace COVIDHelp.Views.HelpersViews
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CommitmentsPage : ContentPage
+    public partial class HelpersMessagePage : ContentPage
     {
-        public CommitmentsPage()
+        public HelpersMessagePage()
         {
             InitializeComponent();
         }

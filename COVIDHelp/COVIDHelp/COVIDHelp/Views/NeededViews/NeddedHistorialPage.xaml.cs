@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace COVIDHelp.Views.NeededViews
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HistorialPage : ContentView
+    public partial class NeddedHistorialPage : ContentPage
     {
-        public HistorialPage()
+        public NeddedHistorialPage()
         {
             InitializeComponent();
         }

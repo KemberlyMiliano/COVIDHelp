@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace COVIDHelp.Views.HelpersViews
+namespace COVIDHelp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CommitmentsPage : ContentPage
+    public partial class ProfilePage : ContentPage
     {
-        public CommitmentsPage()
+        public ProfilePage()
         {
             InitializeComponent();
         }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace COVIDHelp.ViewModels.NeededViewModels
 {
-    class HistorialPageViewModel
+    class NeededHomePageViewModel
     {
     }
 }

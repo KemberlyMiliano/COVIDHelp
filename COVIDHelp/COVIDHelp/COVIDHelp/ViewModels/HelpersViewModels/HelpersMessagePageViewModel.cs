@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace COVIDHelp.ViewModels.NeededViewModels
+namespace COVIDHelp.ViewModels.HelpersViewModels
 {
-    class NeededHomePage
+    class HelpersMessagePageViewModel
     {
     }
 }
