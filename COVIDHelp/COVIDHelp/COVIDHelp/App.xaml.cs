@@ -20,6 +20,7 @@ namespace COVIDHelp
         protected override void OnInitialized()
         {
             InitializeComponent();
+            NavigationService.NavigateAsync(new Uri($"/MapsPage",UriKind.Absolute));
         }
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
@@ -36,7 +37,9 @@ namespace COVIDHelp
 
             containerRegistry.RegisterForNavigation<CommitmentsPage, CommitmentsPageViewModel>();
             containerRegistry.RegisterForNavigation <HelpersHomePage, HelpersHomePageViewModel>();
-            containerRegistry.RegisterForNavigation<HelpersMessagePage, HelpersMessagePageViewModel>();
+            containerRegistry.RegisterForNavigation<HelpersMessagePage, HelpersMessagePageViewModel>(); 
+            containerRegistry.RegisterForNavigation<MapsPage, MapsPageViewModel>();
+            containerRegistry.RegisterForNavigation<SelectNeededPage>();
 
 
 
