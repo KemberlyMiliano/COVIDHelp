@@ -21,7 +21,7 @@ namespace COVIDHelp.ViewModels.NeededViewModels
         }
         async Task NavigateToNeed()
         {
-            await navigationService.NavigateAsync(new Uri($"/NeededHomePage",UriKind.Relative));
+            await navigationService.NavigateAsync(new Uri($"/SelectNeededPage",UriKind.Relative));
         }
     }
 }
