@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace COVIDHelp.Services
 {
-    interface IApiCovitServices
+    public interface IApiCovitServices
     {
         [Post("/api/Users")]
         Task PostUser([Body]User user);

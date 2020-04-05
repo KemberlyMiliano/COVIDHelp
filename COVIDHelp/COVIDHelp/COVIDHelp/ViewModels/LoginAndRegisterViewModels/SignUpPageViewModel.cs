@@ -1,9 +1,11 @@
 ﻿using COVIDHelp.Models;
+using COVIDHelp.Services;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -16,13 +18,45 @@ namespace COVIDHelp.ViewModels
         public DelegateCommand ButtonConfirmCommand { get; set; }
         public DelegateCommand ButtonEyeClickedCommand { get; set; }
         public ImageSource ImageModel { get; set; }
+        public bool IsVisibleList { get; set; } = false;
+        private GooglePlaceAutoCompletePrediction selectGooglePlace;
+
+        public GooglePlaceAutoCompletePrediction SelectGooglePlace
+        {
+            get { return selectGooglePlace; }
+            set { 
+                selectGooglePlace = value;
+                if (selectGooglePlace!=null)
+                {
+                    PickupAddress = selectGooglePlace.Description;
+                }
+            }
+        }
+
+        public ObservableCollection<GooglePlaceAutoCompletePrediction> Places { get; set; }
+        string _pickupAddress;
+        public DelegateCommand<string>GetPlacesCommand { get; set; }
+        public string PickupAddress
+        {
+            get
+            {
+                return _pickupAddress;
+            }
+            set
+            {
+                _pickupAddress = value;
+                if (!string.IsNullOrEmpty(_pickupAddress))
+                {
+                    GetPlacesCommand.Execute(_pickupAddress);
+                }
+            }
+        }
         public bool IsVisible { get; set; }
         public SignUpPageViewModel(INavigationService navigationService, IPageDialogService dialogService) : base(navigationService, dialogService)
         {
             UserR = new User();
             IsVisible = true;
             ImageModel = "eyeW.png";
-
             ButtonConfirmCommand = new DelegateCommand(async () => {
                     if (String.IsNullOrEmpty(UserR.Nombres) && String.IsNullOrEmpty(UserR.Correo) && String.IsNullOrEmpty(UserR.Password) && String.IsNullOrEmpty(UserR.RepeatPassword))
                     { await dialogService.DisplayAlertAsync("ALERT!", "THERE ARE EMPTY FIELDS", "Ok"); }
@@ -43,6 +77,7 @@ namespace COVIDHelp.ViewModels
             });
 
         }
+    
         async Task NavigateToSelectedSignUp()
         {
             await navigationService.NavigateAsync(new Uri($"/SelectedSignUpPage", UriKind.Relative));

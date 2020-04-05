@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace COVIDHelp.Views.NeededViews
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NeededHomePage : ContentPage
+    public partial class HomePage : ContentPage
     {
-        public NeededHomePage()
+        public HomePage()
         {
             InitializeComponent();
         }
