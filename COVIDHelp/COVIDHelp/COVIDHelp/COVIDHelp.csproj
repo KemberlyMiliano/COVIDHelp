@@ -18,10 +18,7 @@
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.530" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.2" />
-<<<<<<< HEAD
-=======
     <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="3.3.0" />
->>>>>>> 50ffd107d5b73159ca69f92d3e3da8e0b47d0786
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.3.7" />
   </ItemGroup>
 
