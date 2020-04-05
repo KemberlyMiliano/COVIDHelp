@@ -24,6 +24,7 @@ namespace COVIDHelp.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            global::Xamarin.Forms.Forms.SetFlags("CarouselView_Experimental");
             global::Xamarin.Forms.Forms.Init();
             Xamarin.FormsGoogleMaps.Init("AIzaSyBvYUEfTGHvXCXaPeMRqwIZHxt3e8EjpAk");
             LoadApplication(new App(new iOSInitializer()));
