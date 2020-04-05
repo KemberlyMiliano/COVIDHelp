@@ -2,6 +2,7 @@
 using COVIDHelp.ViewModels;
 using COVIDHelp.Views;
 using COVIDHelp.Views.HelpersViews;
+using COVIDHelp.Views.LoginAndRegisterView;
 using COVIDHelp.Views.NeededViews;
 using Prism;
 using Prism.Ioc;
@@ -28,6 +29,7 @@ namespace COVIDHelp
             containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>();
             containerRegistry.RegisterForNavigation<MapsPage, MapsPageViewModel>();
             containerRegistry.RegisterForNavigation<HelpersMainPage>();
+            containerRegistry.RegisterForNavigation<LocationPermitionPage>();
             containerRegistry.RegisterForNavigation<HelpPage>();
 
         }

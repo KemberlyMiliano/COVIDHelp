@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             BackgroundColor="#014666"
+             x:Class="COVIDHelp.Views.LoginAndRegisterView.LocationPermitionPage">
+    <ContentPage.Content>
+
+        <Grid Padding="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Image Source="gps.png" Grid.Row="0"
+                VerticalOptions="StartAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Label Text="If you want to be able to find help near you, allow CovidHelp to access your location while using the application." 
+                   Grid.Row="1" FontSize="18"
+                   VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand"
+                   TextColor="White"/>
+            <Button Text="TURN ON" BorderColor="White" BorderWidth="2" CornerRadius="10" Grid.Row="2"  TextColor="White" BackgroundColor="Transparent" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand"/>
+        </Grid>
+        
+    </ContentPage.Content>
+</ContentPage>
