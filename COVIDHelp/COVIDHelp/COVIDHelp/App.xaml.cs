@@ -1,7 +1,5 @@
 ﻿using COVIDHelp.Services;
 using COVIDHelp.ViewModels;
-using COVIDHelp.ViewModels.HelpersViewModels;
-using COVIDHelp.ViewModels.NeededViewModels;
 using COVIDHelp.Views;
 using COVIDHelp.Views.HelpersViews;
 using COVIDHelp.Views.NeededViews;
@@ -20,7 +18,7 @@ namespace COVIDHelp
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync(new Uri("/NeededTabbedPage", UriKind.Relative));
+            NavigationService.NavigateAsync(new Uri("/SignUpPage", UriKind.Relative));
 
         }
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -28,15 +26,9 @@ namespace COVIDHelp
             containerRegistry.RegisterForNavigation<SignUpPage, SignUpPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
             containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>();
-            containerRegistry.RegisterForNavigation<SelectedSignUpPage, SelectedSignUpPageViewModel>();
-
-            containerRegistry.RegisterForNavigation<NeededHomePage, NeededHomePageViewModel>();
- 
-            containerRegistry.RegisterForNavigation<CommitmentsPage, CommitmentsPageViewModel>();
             containerRegistry.RegisterForNavigation<MapsPage, MapsPageViewModel>();
-            containerRegistry.RegisterForNavigation<SelectNeededPage>();
             containerRegistry.RegisterForNavigation<HelpersMainPage>();
-            containerRegistry.RegisterForNavigation<HelpPage, HelpersHomePageViewModel>();
+            containerRegistry.RegisterForNavigation<HelpPage>();
 
         }
     }

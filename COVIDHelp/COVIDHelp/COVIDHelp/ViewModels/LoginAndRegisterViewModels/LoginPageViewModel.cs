@@ -21,7 +21,18 @@ namespace COVIDHelp.ViewModels
 
         public LoginPageViewModel(INavigationService navigationService, IPageDialogService dialogService) : base(navigationService, dialogService)
         {
-            UserR = new User();
+            UserR = new User() { 
+            Nombres="Rafael",
+            Apellidos="Fernandez",
+            Cedula ="1235486",
+            Sexo = "Masculino",
+            SelfBiography = "Comiendo habichuela con dulce",
+            Correo = "castillo@gmail.com",
+            Password = "123456",
+            Latitude = "18.5167",
+            Longitude = "18.5167"
+
+            };
             IsVisible = true;
             ImageModel = "eyeW.png";
 

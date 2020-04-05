@@ -13,11 +13,6 @@
             android:TabbedPage.BarSelectedItemColor ="White"
             BarBackgroundColor="#00344D">
     <TabbedPage.Children>
-        <NavigationPage IconImageSource="home">
-            <x:Arguments>
-                <helper:HelpersHomePage/>
-            </x:Arguments>
-        </NavigationPage>
         <NavigationPage IconImageSource="commitments">
             <x:Arguments>
                 <helper:CommitmentsPage/>

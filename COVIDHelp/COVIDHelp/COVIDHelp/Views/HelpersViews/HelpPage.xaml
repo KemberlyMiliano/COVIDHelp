@@ -26,8 +26,7 @@
             </maps:Map>
             <CarouselView Grid.Row="1" 
                           ItemsSource="{Binding Necesities}"
-                          PeekAreaInsets="80"
-                          NumberOfSideItems="1">
+                          PeekAreaInsets="80">
                 <CarouselView.ItemsLayout>
                     <LinearItemsLayout Orientation="Horizontal" ItemSpacing="20"/>
                 </CarouselView.ItemsLayout>
