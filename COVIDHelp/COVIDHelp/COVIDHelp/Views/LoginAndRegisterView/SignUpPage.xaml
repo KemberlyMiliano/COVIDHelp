@@ -3,13 +3,71 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              mc:Ignorable="d"
+             BackgroundColor="#00cbcc"
              x:Class="COVIDHelp.Views.SignUpPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+
+                <pancakeview:PancakeView BackgroundColor="White" CornerRadius="0,0,40,40"  Grid.Row="0" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="4">
+                    <Image Source="PP.png" Grid.Row="4"  Grid.ColumnSpan="4" HorizontalOptions="Center" VerticalOptions="End" TranslationY="50" HeightRequest="150" />
+                </pancakeview:PancakeView>
+                <Label Text="SIGN UP" TextColor="White" FontSize="18" Grid.Row="1" Grid.ColumnSpan="4" HorizontalOptions="Center" VerticalOptions="Start" />
+                <StackLayout Padding="20" Grid.Row="4" Grid.RowSpan="13" Grid.ColumnSpan="4">
+                    <Entry Placeholder="Name" Grid.Row="5" Grid.ColumnSpan="4" PlaceholderColor="White" TextColor="White"/>
+
+                    <Entry Placeholder=" Last Name" Grid.Row="6" Grid.ColumnSpan="4"  PlaceholderColor="White" TextColor="White" />
+
+                    <DatePicker x:Name="DateOrbirth"  Grid.Row="7" Grid.ColumnSpan="4"  TextColor="White"  />
+
+                    <Picker x:Name="Gender" Title="Gender" Grid.Row="8" Grid.ColumnSpan="2" TitleColor="White"  />
+
+                    <Entry Placeholder="Email Address" Grid.Row="9" Grid.ColumnSpan="4"  PlaceholderColor="White" TextColor="White" />
+
+                    <Entry Placeholder=" IdOrPassport" Grid.Row="10" Grid.ColumnSpan="4"  PlaceholderColor="White" TextColor="White" />
+
+                    <Entry Placeholder="Phone" Grid.Row="11" Grid.ColumnSpan="4"  PlaceholderColor="White" TextColor="White" />
+
+                    <Entry Placeholder="Direccion" Grid.Row="12" Grid.ColumnSpan="4"  PlaceholderColor="White" TextColor="White"/>
+
+                    <Entry Placeholder="Confirm Password" IsPassword="True" Grid.Row="14" Grid.ColumnSpan="4"  PlaceholderColor="White" TextColor="White" />
+
+                    <Entry Placeholder="Password" IsPassword="True" Grid.Row="13" Grid.ColumnSpan="4"  PlaceholderColor="White" TextColor="White"/>
+
+                </StackLayout>
+              
+                <Button Text="Confirm" Grid.Row="15" Grid.Column="0" Grid.ColumnSpan="4" HorizontalOptions="Center" CornerRadius="20" BackgroundColor="White"/>
+
+            </Grid>
+        </ScrollView>
+
+
     </ContentPage.Content>
 </ContentPage>

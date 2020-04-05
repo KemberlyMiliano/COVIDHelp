@@ -3,13 +3,65 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              mc:Ignorable="d"
              x:Class="COVIDHelp.Views.LoginPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+    <Grid>
+        <Grid.RowDefinitions >
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+
+        </Grid.ColumnDefinitions>
+
+        <pancakeview:PancakeView BackgroundColor="#00cbcc" CornerRadius="0,0,60,60"  Grid.Row="0" Grid.RowSpan="8" Grid.Column="0" Grid.ColumnSpan="4">
+            <Grid Padding="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Login" TextColor="White" FontSize="35" FontAttributes="Bold" Grid.Row="1" Grid.ColumnSpan="2"/>
+                <Label Text="Email" TextColor="White" FontSize="20" Grid.Row="2" Grid.ColumnSpan="2"/>
+                <Entry Placeholder="" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" TextColor="White" PlaceholderColor="White" />
+                <Label Text="Password"  TextColor="White" FontSize="20" Grid.Row="3" Grid.ColumnSpan="2"/>
+                <Entry Placeholder="" IsPassword="True" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" TextColor="White" PlaceholderColor="White" />
+                <Label Text="Forgot Password?" TextColor="White" FontSize="18" Grid.Row="4" HorizontalOptions="EndAndExpand" Grid.ColumnSpan="4"/>
+            </Grid>
+        </pancakeview:PancakeView>
+
+        <Button Text="SIGNUP" BorderColor="#18ffff" TranslationY="25" Grid.Row="7"  BackgroundColor="White" CornerRadius="30" Grid.Column="1"  HorizontalOptions="Center"/>
+
+        <Button Text="LOGIN" Grid.Row="7" TranslationY="25" BorderColor="#18ffff" TextColor="White" Grid.Column="2" BackgroundColor="Black" CornerRadius="30" HorizontalOptions="Center"/>
+
+        <Label Text="or login with" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="4" HorizontalOptions="Center" VerticalOptions="End"/>
+
+        <Image Source="google2.png" Grid.Row="9" VerticalOptions="End" Grid.Column="0" Grid.ColumnSpan="4" HorizontalOptions="Center" HeightRequest="75" WidthRequest="50"/>
+
+
+
+    </Grid>
 </ContentPage>
