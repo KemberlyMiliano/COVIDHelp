@@ -41,7 +41,7 @@ namespace COVIDHelp
             containerRegistry.RegisterForNavigation<MapsPage, MapsPageViewModel>();
             containerRegistry.RegisterForNavigation<SelectNeededPage>();
             containerRegistry.RegisterForNavigation<HelpersMainPage>();
-            containerRegistry.RegisterForNavigation<HelpPage>();
+            containerRegistry.RegisterForNavigation<HelpPage, HelpersHomePageViewModel>();
 
         }
     }
