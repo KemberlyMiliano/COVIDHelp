@@ -4,7 +4,12 @@ using System.Text;
 
 namespace COVIDHelp.Services
 {
-    class ConfigApi
+    public static class ConfigApi
     {
+        public const string ApiKey = "";
+        public const string UrlApi = "";
+        public const string ApiKeyGoogle = "";
+        public const string UrlApiGoogle = "https://maps.googleapis.com/maps/";
+
     }
 }
