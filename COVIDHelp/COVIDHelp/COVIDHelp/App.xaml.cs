@@ -20,7 +20,11 @@ namespace COVIDHelp
         protected override void OnInitialized()
         {
             InitializeComponent();
+<<<<<<< HEAD
             NavigationService.NavigateAsync(new Uri($"/SignUpPage", UriKind.Absolute));
+=======
+            NavigationService.NavigateAsync(new Uri($"/NeededTabbedPage",UriKind.Absolute));
+>>>>>>> 50ffd107d5b73159ca69f92d3e3da8e0b47d0786
         }
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
@@ -34,10 +38,13 @@ namespace COVIDHelp
             containerRegistry.RegisterForNavigation<NeededHomePage, NeededHomePageViewModel>();
             containerRegistry.RegisterForNavigation<RequestHealthPage, RequestHealthViewModel>();
             containerRegistry.RegisterForNavigation<NeddedMessagePage, NeededMessagePageViewModel>();
+            containerRegistry.RegisterForNavigation<NeededTabbedPage>();
 
-            containerRegistry.RegisterForNavigation<CommitmentsPage, CommitmentsPageViewModel>();
+            containerRegistry.RegisterForNavigation<CommitmentsPage, CommitmentsPageViewModel>(); 
             containerRegistry.RegisterForNavigation <HelpersHomePage, HelpersHomePageViewModel>();
-            containerRegistry.RegisterForNavigation<HelpersMessagePage, HelpersMessagePageViewModel>();
+            containerRegistry.RegisterForNavigation<HelpersMessagePage, HelpersMessagePageViewModel>(); 
+            containerRegistry.RegisterForNavigation<MapsPage, MapsPageViewModel>();
+            containerRegistry.RegisterForNavigation<SelectNeededPage>();
 
 
 
