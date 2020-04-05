@@ -8,8 +8,6 @@ using Prism;
 using Prism.Ioc;
 using Prism.Unity;
 using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace COVIDHelp
 {
@@ -21,7 +19,7 @@ namespace COVIDHelp
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync(new Uri($"/SignUpPage", UriKind.Absolute));
+            NavigationService.NavigateAsync(new Uri($"/LoginPage", UriKind.Absolute));
 
         }
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

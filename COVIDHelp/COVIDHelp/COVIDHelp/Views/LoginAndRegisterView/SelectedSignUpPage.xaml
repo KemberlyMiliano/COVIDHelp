@@ -4,12 +4,23 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             BackgroundColor="#014666"
+             NavigationPage.HasNavigationBar="True"
              x:Class="COVIDHelp.Views.SelectedSignUpPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+
+        <Grid Padding="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Text="¿Que quieres?" TextColor="White" FontSize="22" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Button BackgroundColor="White" Text="Necesito ayuda" TextColor="Black" Grid.Row="0" Grid.ColumnSpan="1" VerticalOptions="End" CornerRadius="20" TranslationY="-50" Command="{Binding ButtonRegisterHelpersCommand}" />
+            <Button BackgroundColor="White" Grid.Row="1" Text="Ser Voluntario" TextColor="Black" Grid.ColumnSpan="1" VerticalOptions="Start" CornerRadius="20" Command="{Binding ButtonRegisterNeddedCommand}" />
+        </Grid>
+     
     </ContentPage.Content>
 </ContentPage>

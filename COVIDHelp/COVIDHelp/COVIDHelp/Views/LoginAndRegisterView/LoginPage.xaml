@@ -29,7 +29,7 @@
 
         </Grid.ColumnDefinitions>
 
-        <pancakeview:PancakeView BackgroundColor="#00cbcc" CornerRadius="0,0,60,60"  Grid.Row="0" Grid.RowSpan="8" Grid.Column="0" Grid.ColumnSpan="4">
+        <pancakeview:PancakeView BackgroundColor="#014666" CornerRadius="0,0,60,60"  Grid.Row="0" Grid.RowSpan="8" Grid.Column="0" Grid.ColumnSpan="4">
             <Grid Padding="30">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -44,24 +44,94 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Label Text="Login" TextColor="White" FontSize="35" FontAttributes="Bold" Grid.Row="1" Grid.ColumnSpan="2"/>
-                <Label Text="Email" TextColor="White" FontSize="20" Grid.Row="2" Grid.ColumnSpan="2"/>
-                <Entry Placeholder="" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" TextColor="White" PlaceholderColor="White" />
-                <Label Text="Password"  TextColor="White" FontSize="20" Grid.Row="3" Grid.ColumnSpan="2"/>
-                <Entry Placeholder="" IsPassword="True" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" TextColor="White" PlaceholderColor="White" />
-                <Label Text="Forgot Password?" TextColor="White" FontSize="18" Grid.Row="4" HorizontalOptions="EndAndExpand" Grid.ColumnSpan="4"/>
+                <Label Text="Login"
+                       TextColor="White" 
+                       FontSize="35" 
+                       FontAttributes="Bold"
+                       Grid.Row="1"
+                       Grid.ColumnSpan="2"/>
+                <Label Text="Email"
+                       TextColor="White"
+                       FontSize="20"
+                       Grid.Row="2"
+                       Grid.ColumnSpan="2"/>
+                <Entry Placeholder=""
+                       Text="{Binding UserR.Nombres}"
+                       Grid.Row="2"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="4"
+                       TextColor="White"
+                       PlaceholderColor="White" />
+                <Image Source="{Binding ImageModel}"
+                       Grid.Row="0"
+                       Grid.ColumnSpan="4"
+                       HorizontalOptions="End" 
+                       HeightRequest="30"
+                       TranslationY="260">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ButtonEyeClickedCommand}"
+                                          NumberOfTapsRequired="1"/>
+
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Password"
+                       TextColor="White"
+                       FontSize="20" 
+                       Grid.Row="3"
+                       Grid.ColumnSpan="2"/>
+                <Entry Placeholder=""
+                       Text="{Binding UserR.Password}"
+                       IsPassword="{Binding IsVisible}"
+                       Grid.Row="3"
+                       Grid.Column="0" 
+                       Grid.ColumnSpan="4" 
+                       TextColor="White"
+                       PlaceholderColor="White" />
+                <Label Text="Forgot Password?"
+                       TextColor="White" 
+                       FontSize="18" 
+                       Grid.Row="4" 
+                       HorizontalOptions="EndAndExpand"
+                       Grid.ColumnSpan="4"/>
             </Grid>
         </pancakeview:PancakeView>
 
-        <Button Text="SIGNUP" BorderColor="#18ffff" TranslationY="25" Grid.Row="7"  BackgroundColor="White" CornerRadius="30" Grid.Column="1"  HorizontalOptions="Center"/>
+        <Button Text="SIGNUP"
+                BorderColor="#18ffff"
+                TranslationY="25"
+                Grid.Row="7"
+                BackgroundColor="White"
+                CornerRadius="30"
+                Grid.Column="1"
+                HorizontalOptions="Center" 
+                Command="{Binding ButtonSignUpCommand}"/>
 
-        <Button Text="LOGIN" Grid.Row="7" TranslationY="25" BorderColor="#18ffff" TextColor="White" Grid.Column="2" BackgroundColor="Black" CornerRadius="30" HorizontalOptions="Center"/>
+        <Button Text="LOGIN"
+                Grid.Row="7"
+                TranslationY="25"
+                BorderColor="#18ffff" 
+                TextColor="White" 
+                Grid.Column="2"
+                BackgroundColor="Black"
+                CornerRadius="30"
+                HorizontalOptions="Center"
+                Command="{Binding ButtonLogInCommand}"/>
 
-        <Label Text="or login with" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="4" HorizontalOptions="Center" VerticalOptions="End"/>
+        <Label Text="or login with"
+               Grid.Row="8" 
+               Grid.Column="0"
+               Grid.ColumnSpan="4" 
+               HorizontalOptions="Center"
+               VerticalOptions="End"/>
 
-        <Image Source="google2.png" Grid.Row="9" VerticalOptions="End" Grid.Column="0" Grid.ColumnSpan="4" HorizontalOptions="Center" HeightRequest="75" WidthRequest="50"/>
-
-
-
+        <Image Source="googleLogin.png" 
+               Grid.Row="9"
+               VerticalOptions="End"
+               Grid.Column="0"
+               Grid.ColumnSpan="4"
+               HorizontalOptions="Center" 
+               HeightRequest="75"
+               WidthRequest="50"/>
+        
     </Grid>
 </ContentPage>

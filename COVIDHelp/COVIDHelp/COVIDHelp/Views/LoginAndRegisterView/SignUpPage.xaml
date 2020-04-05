@@ -5,15 +5,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              mc:Ignorable="d"
-             BackgroundColor="#00cbcc"
+             BackgroundColor="#014666" 
              x:Class="COVIDHelp.Views.SignUpPage">
     <ContentPage.Content>
         <ScrollView>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="90"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -36,38 +36,138 @@
                 </Grid.ColumnDefinitions>
 
 
-                <pancakeview:PancakeView BackgroundColor="White" CornerRadius="0,0,40,40"  Grid.Row="0" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="4">
-                    <Image Source="PP.png" Grid.Row="4"  Grid.ColumnSpan="4" HorizontalOptions="Center" VerticalOptions="End" TranslationY="50" HeightRequest="150" />
-                </pancakeview:PancakeView>
-                <Label Text="SIGN UP" TextColor="White" FontSize="18" Grid.Row="1" Grid.ColumnSpan="4" HorizontalOptions="Center" VerticalOptions="Start" />
+                <pancakeview:PancakeView BackgroundColor="White"
+                                         CornerRadius="0,0,40,40"
+                                         Grid.Row="0"
+                                         Grid.RowSpan="4"
+                                         Grid.Column="0"
+                                         Grid.ColumnSpan="4"/>
+
+
+                <Image Source="PP.png"
+                       Grid.Row="2"
+                       Grid.RowSpan="3"
+                       Grid.ColumnSpan="4"
+                       HorizontalOptions="Center"
+                       VerticalOptions="End"
+                       TranslationY="-22"
+                       HeightRequest="150" />
+
+                <Label Text="SIGN UP"
+                       TextColor="Black"
+                       FontSize="18"
+                       Grid.Row="1"
+                       Grid.ColumnSpan="4"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Start" />
+
                 <StackLayout Padding="20" Grid.Row="4" Grid.RowSpan="13" Grid.ColumnSpan="4">
-                    <Entry Placeholder="Name" Grid.Row="5" Grid.ColumnSpan="4" PlaceholderColor="White" TextColor="White"/>
+                    <Entry Placeholder="Name"
+                           Text="{Binding UserR.Nombres}"
+                           Grid.Row="5"
+                           Grid.ColumnSpan="4"
+                           PlaceholderColor="White"
+                           TextColor="White"/>
 
-                    <Entry Placeholder=" Last Name" Grid.Row="6" Grid.ColumnSpan="4"  PlaceholderColor="White" TextColor="White" />
+                    <Entry Placeholder=" Last Name"
+                           Text="{Binding UserR.Apellidos}"
+                           Grid.Row="6"
+                           Grid.ColumnSpan="4"
+                           PlaceholderColor="White"
+                           TextColor="White" />
 
-                    <DatePicker x:Name="DateOrbirth"  Grid.Row="7" Grid.ColumnSpan="4"  TextColor="White"  />
+                    <DatePicker x:Name="DateOrbirth"
+                                Grid.Row="7"
+                                Grid.ColumnSpan="4"
+                                TextColor="White"  />
 
-                    <Picker x:Name="Gender" Title="Gender" Grid.Row="8" Grid.ColumnSpan="2" TitleColor="White"  />
+                    <Picker x:Name="Gender"
+                            Title="Gender"
+                            Grid.Row="8"
+                            Grid.ColumnSpan="2"
+                            TitleColor="White"  />
 
-                    <Entry Placeholder="Email Address" Grid.Row="9" Grid.ColumnSpan="4"  PlaceholderColor="White" TextColor="White" />
+                    <Entry Placeholder="Email Address"
+                           Text="{Binding UserR.Correo}"
+                           Grid.Row="9"
+                           Grid.ColumnSpan="4"
+                           PlaceholderColor="White"
+                           TextColor="White" />
 
-                    <Entry Placeholder=" IdOrPassport" Grid.Row="10" Grid.ColumnSpan="4"  PlaceholderColor="White" TextColor="White" />
+                    <Entry Placeholder=" IdOrPassport"
+                           Text="{Binding UserR.Password}"
+                           Grid.Row="10"
+                           Grid.ColumnSpan="4"
+                           PlaceholderColor="White"
+                           TextColor="White" />
 
-                    <Entry Placeholder="Phone" Grid.Row="11" Grid.ColumnSpan="4"  PlaceholderColor="White" TextColor="White" />
+                    <Entry Placeholder="Phone"
+                           Text="{Binding UserR}"
+                           Grid.Row="11"
+                           Grid.ColumnSpan="4"
+                           PlaceholderColor="White"
+                           TextColor="White" />
 
-                    <Entry Placeholder="Direccion" Grid.Row="12" Grid.ColumnSpan="4"  PlaceholderColor="White" TextColor="White"/>
+                    <Entry Placeholder="Direccion"
+                           Text="{Binding UserR.Direccion}"
+                           Grid.Row="12"
+                           Grid.ColumnSpan="4"
+                           PlaceholderColor="White"
+                           TextColor="White"/>
+                   
+                    <Image Source="{Binding ImageModel}"
+                           Grid.Row="13"
+                           Grid.ColumnSpan="4"
+                           HorizontalOptions="End"
+                           HeightRequest="30" Margin="0,-20"
+                           TranslationY="10">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ButtonEyeClickedCommand}"
+                                          NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
 
-                    <Entry Placeholder="Confirm Password" IsPassword="True" Grid.Row="14" Grid.ColumnSpan="4"  PlaceholderColor="White" TextColor="White" />
-
-                    <Entry Placeholder="Password" IsPassword="True" Grid.Row="13" Grid.ColumnSpan="4"  PlaceholderColor="White" TextColor="White"/>
+                    <Entry Placeholder="Password"
+                           Text="{Binding UserR.Password}"
+                           IsPassword="{Binding IsVisible}"
+                           Grid.Row="13"
+                           Grid.ColumnSpan="2"
+                           PlaceholderColor="White"
+                           TextColor="White"/>
+                    
+                    
+                    <Image Source="{Binding ImageModel}"
+                           Grid.Row="14"
+                           Grid.ColumnSpan="4"
+                           HorizontalOptions="End"
+                           HeightRequest="30"
+                            Margin="0,-20"
+                           >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ButtonEyeClickedCommand}"
+                                          NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Entry Placeholder="Confirm Password"
+                           Text="{Binding UserR.RepeatPassword}"
+                           IsPassword="{Binding IsVisible}"
+                           Grid.Row="14"
+                           Grid.ColumnSpan="2"
+                           PlaceholderColor="White"
+                           TextColor="White" />
 
                 </StackLayout>
-              
-                <Button Text="Confirm" Grid.Row="15" Grid.Column="0" Grid.ColumnSpan="4" HorizontalOptions="Center" CornerRadius="20" BackgroundColor="White"/>
+
+                <Button Text="Confirm"
+                        Grid.Row="15"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="4"
+                        HorizontalOptions="Center"
+                        CornerRadius="20"
+                        BackgroundColor="White"
+                        Command="{Binding ButtonConfirmCommand}"/>
 
             </Grid>
         </ScrollView>
-
-
     </ContentPage.Content>
 </ContentPage>
