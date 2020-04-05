@@ -4,12 +4,50 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="COVIDHelp.Views.ProfilePage">
+             x:Class="COVIDHelp.Views.ProfilePage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <Grid ColumnSpacing="0" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="AUTO" />
+                    <RowDefinition Height="AUTO" />
+                    <RowDefinition Height="AUTO" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="AUTO" />
+                </Grid.RowDefinitions>
+
+                <Image Aspect="AspectFill" Source="profileBackground.jpeg" />
+                <Image Aspect="Fill" Margin="0,-1,0,-1" Source="CurvedMask" VerticalOptions="End" />
+
+                <Image HeightRequest="100" HorizontalOptions="Center" Source="profileImage.png" TranslationY="50" VerticalOptions="End" WidthRequest="100" />
+
+                <StackLayout Grid.Row="1" Padding="0,50,0,00" HorizontalOptions="Center" Margin="0,40,0,0">
+                    <Label Text="Kemberly Miliano"  HorizontalOptions="Center" FontFamily="{StaticResource BoldFont}" FontSize="20" TextColor="#585858"/>
+                    <Label Margin="0,-5" Text="Enfermera" FontFamily="{StaticResource NormalFont}" HorizontalOptions="Center" />
+                    <Button Text="Edit" Margin="7" HeightRequest="40" BackgroundColor="White" BorderWidth="5" BorderColor="#585858" TextColor="#585858" CornerRadius="50" HorizontalOptions="Fill"/>
+                </StackLayout>
+
+                <Grid Grid.Row="2" Margin="0,30" ColumnSpacing="0" RowSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout>
+                        <Label Text="33" HorizontalTextAlignment="Center" FontFamily="{StaticResource NormalFont}"/>
+                        <Label Text="Servicios" HorizontalTextAlignment="Center" FontFamily="{StaticResource BoldFont}"/>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1">
+                        <Label Text="94" HorizontalTextAlignment="Center" FontFamily="{StaticResource NormalFont}"/>
+                        <Label Text="Rating" HorizontalTextAlignment="Center" FontFamily="{StaticResource BoldFont}"/>
+                    </StackLayout>
+                </Grid>
+
+                <Label Margin="20,40,20,0" Grid.Row="3" HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada ultricies arcu nec egestas. Nam porta fermentum aliquam. Nullam tincidunt odio purus." FontFamily="{StaticResource NormalFont}"/>
+            </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

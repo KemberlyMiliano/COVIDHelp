@@ -6,4 +6,18 @@
              mc:Ignorable="d"
              x:Class="COVIDHelp.App"
              xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms">
+    <prism:PrismApplication.Resources>
+
+        <ResourceDictionary>
+            <OnPlatform x:TypeArguments="x:String" x:Key="BoldFont">
+                <On Platform="Android" Value="Raleway-Bold.ttf#Raleway" />
+                <On Platform="iOS" Value="Raleway-Bold" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="NormalFont">
+                <On Platform="Android" Value="Raleway-Regular.ttf#Raleway" />
+                <On Platform="iOS" Value="Raleway-Regular" />
+            </OnPlatform>
+        </ResourceDictionary>
+
+    </prism:PrismApplication.Resources>
 </prism:PrismApplication>
