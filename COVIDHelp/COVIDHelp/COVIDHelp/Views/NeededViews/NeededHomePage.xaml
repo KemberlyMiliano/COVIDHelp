@@ -3,19 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              mc:Ignorable="d"
              x:Class="COVIDHelp.Views.NeededViews.NeededHomePage">
     <ContentPage.Content>
-        <StackLayout>
+        <Grid>
+            <Image Source="ImageGMap.jpeg"
+                   Aspect="AspectFill"
+                   Opacity="0.5"/>
             <pancakeView:PancakeView HasShadow="True"
-                                     BackgroundColor="#18ffff">
+                                     BackgroundColor="#014666"
+                                     HeightRequest="200"
+                                     WidthRequest="200"
+                                     HorizontalOptions="CenterAndExpand"
+                                     VerticalOptions="CenterAndExpand">
                 <pancakeView:PancakeView.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1"/>
                 </pancakeView:PancakeView.GestureRecognizers>
-                <Label Text="Ask for help?"
-                       TextColor="White"/>
+                <Label Text="Necesitas ayuda?"
+                       TextColor="White"
+                       FontSize="20"
+                      VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"/>
             </pancakeView:PancakeView>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

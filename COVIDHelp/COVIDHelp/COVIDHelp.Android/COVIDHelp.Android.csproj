@@ -69,7 +69,7 @@
     <PackageReference Include="Refit">
       <Version>5.1.54</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.FFImageLoading">
+    <PackageReference Include="Xamarin.FFImageLoading.Forms">
       <Version>2.4.11.982</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.530" />
@@ -109,14 +109,15 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\drawable\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\COVIDHelp\COVIDHelp.csproj">
       <Project>{C076E5CF-0FFD-447C-ADD9-D3C7A08234C5}</Project>
       <Name>COVIDHelp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ImageGMap.jpeg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

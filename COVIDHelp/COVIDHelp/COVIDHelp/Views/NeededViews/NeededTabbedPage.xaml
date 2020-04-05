@@ -6,10 +6,10 @@
             mc:Ignorable="d"
              x:Class="COVIDHelp.Views.NeededViews.NeededTabbedPage">
 
-
-    <neededviews:NeededHomePage/>
-    <neededviews:NeddedHistorialPage/>
-    <neededviews:NeddedMessagePage/>
-    <neededviews:NeddedMessagePage/>
-    <views:ProfilePage/>
+    <TabbedPage.Children>
+        <neededviews:NeededHomePage Title="Home"/>
+        <neededviews:NeddedHistorialPage Title="Historial"/>
+        <neededviews:NeddedMessagePage Title="Message"/>
+        <views:ProfilePage Title="Profile"/>
+    </TabbedPage.Children>
 </TabbedPage>
