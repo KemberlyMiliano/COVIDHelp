@@ -4,7 +4,7 @@ using System.Text;
 
 namespace COVIDHelp.ViewModels
 {
-    class ProfilePageViewModel
+    public class ProfilePageViewModel
     {
     }
 }

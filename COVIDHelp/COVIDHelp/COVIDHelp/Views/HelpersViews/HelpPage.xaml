@@ -4,9 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
-             x:Class="COVIDHelp.Views.HelpersViews.HelpersHomePage"
-             NavigationPage.HasNavigationBar="False">
+             x:Class="COVIDHelp.Views.HelpersViews.HelpPage"
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -15,8 +14,7 @@
             </Grid.RowDefinitions>
             <maps:Map x:Name="map"
                       InitialCameraUpdate="40.67,-73.94"
-                  ItemsSource="{Binding FoodsPin, Mode=TwoWay}"
-                      Grid.RowSpan="2">
+                  ItemsSource="{Binding FoodsPin, Mode=TwoWay}">
                 <maps:Map.ItemTemplate>
                     <DataTemplate>
                         <maps:Pin Position="{Binding Position}"
@@ -24,17 +22,9 @@
                     </DataTemplate>
                 </maps:Map.ItemTemplate>
             </maps:Map>
-            <Button Grid.Row="1" 
-                    Text="Ayudar" 
-                    Margin="30,0,30,30" 
-                    BackgroundColor="White" 
-                    BorderColor="#0272A6" 
-                    BorderWidth="5" 
-                    CornerRadius="40" 
-                    TextColor="#0272A6"
-                    FontFamily="{StaticResource BoldFont}"
-                    Padding="20"
-                    Command="{Binding GoToHelpPage}"/>
+            <!--<CarouselView Grid.Row="1">
+                
+            </CarouselView>-->
         </Grid>
     </ContentPage.Content>
 </ContentPage>
