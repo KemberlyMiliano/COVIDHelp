@@ -24,8 +24,15 @@
                 <Image HeightRequest="100" HorizontalOptions="Center" Source="defaultUser" TranslationY="50" VerticalOptions="End" WidthRequest="100" />
 
                 <StackLayout Grid.Row="1" Padding="0,50,0,00" HorizontalOptions="Center" Margin="0,40,0,0">
-                    <Label Text="{Binding User.Nombres}"  HorizontalOptions="Center" FontFamily="{StaticResource BoldFont}" FontSize="20" TextColor="#585858"/>
-                    <Label Margin="0,-5" Text="{Binding Binding.Rol}" FontFamily="{StaticResource NormalFont}" HorizontalOptions="Center" />
+                    <Label Text="{Binding User.Nombres}"  HorizontalOptions="Center" FontFamily="{StaticResource BoldFont}" FontSize="20" TextColor="#585858">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding User.Nombres}"  />
+                                <Span Text="{Binding User.Apellidos, StringFormat=' {0}'}"  />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Margin="0,-5" Text="{Binding Binding User.Rol}" FontFamily="{StaticResource NormalFont}" HorizontalOptions="Center" />
                     <Button Text="Edit" Margin="7" HeightRequest="40" BackgroundColor="White" BorderWidth="5" BorderColor="#585858" TextColor="#585858" CornerRadius="50" HorizontalOptions="Fill"/>
                 </StackLayout>
 

@@ -5,10 +5,56 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
               xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
              x:Class="COVIDHelp.Views.MapsPage">
     <ContentPage.Content>
         <Grid>
-            <maps:Map x:Name="map"/>
+            <maps:Map x:Name="map"
+                      SelectedPin="{Binding SelectPlace,Mode=TwoWay}"
+                      />
+            <pancakeview:PancakeView IsVisible="False"
+                                     HorizontalOptions="CenterAndExpand"
+                                     VerticalOptions="EndAndExpand"
+                                     BackgroundColor="White"
+                                     CornerRadius="20"
+                                     Margin="20"
+                                     Padding="10"
+                                     HasShadow="True"
+                                     >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <ffimageloading:CachedImage Grid.Row="0"
+                                                BackgroundColor="Red"
+                                                 WidthRequest="95"/>
+                    <Label 
+                           Grid.Column="1"
+                          >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Place.Name,StringFormat='{0} '}" FontSize="20"/>
+                                <Span Text="{x:Static system:Environment.NewLine}"/>
+                                <Span Text="{Binding Place.Vicinity,StringFormat='Direccion: {0}'}" FontSize="16"/>
+                                <Span Text="{x:Static system:Environment.NewLine}"/>
+                                <Span Text="{Binding Place.OpeningHours.OpenOrClose,StringFormat='Estado: {0}'}" FontSize="16"/>
+                                <Span Text="{x:Static system:Environment.NewLine}"/>
+                                <Span Text="{Binding Place.UserRatingsTotal, StringFormat='Rating del lugar: {0}'}" FontSize="16"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                </Grid>
+                <pancakeview:PancakeView.Triggers>
+                    <DataTrigger TargetType="pancakeview:PancakeView"
+                                 Binding="{Binding IsVisible}"
+                                 Value="true">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </DataTrigger>
+                </pancakeview:PancakeView.Triggers>
+            </pancakeview:PancakeView>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
