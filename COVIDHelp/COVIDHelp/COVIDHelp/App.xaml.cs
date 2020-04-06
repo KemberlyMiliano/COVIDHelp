@@ -19,12 +19,7 @@ namespace COVIDHelp
         protected override void OnInitialized()
         {
             InitializeComponent();
-
-<<<<<<< HEAD
-            NavigationService.NavigateAsync(new Uri("/LoginPage", UriKind.Absolute));
-=======
-            NavigationService.NavigateAsync(new Uri("/HelpersMainPage", UriKind.Relative));
->>>>>>> f0f766ba39aa5979a1e5928b06a963a79bfa26f7
+            NavigationService.NavigateAsync(new Uri($"{NavigationConstants.LoginPage}", UriKind.Absolute));
 
         }
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -36,13 +31,10 @@ namespace COVIDHelp
             containerRegistry.RegisterForNavigation<HelpersMainPage>();
             containerRegistry.RegisterForNavigation<LocationPermitionPage>();
             containerRegistry.RegisterForNavigation<HelpPage>();
-<<<<<<< HEAD
             containerRegistry.RegisterInstance<IApiCovitServices>(new ApiCovitServices());
             containerRegistry.RegisterInstance<IApiGoogleServices>(new ApiGoogleServices());
-=======
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
             containerRegistry.RegisterForNavigation<CommitmentsPage, CommitmentsPageViewModel>();
->>>>>>> f0f766ba39aa5979a1e5928b06a963a79bfa26f7
 
         }
     }

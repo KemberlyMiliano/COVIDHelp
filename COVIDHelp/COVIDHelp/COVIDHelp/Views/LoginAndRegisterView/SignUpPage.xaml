@@ -72,37 +72,25 @@
                            Grid.ColumnSpan="4"
                            PlaceholderColor="White"
                            TextColor="White" />
-
-<<<<<<< HEAD
-                    <DatePicker x:Name="DateOrbirth"
+                        <DatePicker x:Name="DateOrbirth"
                                 Date="{Binding UserR.FNacimiento}"
                                 Grid.Row="7"
                                 Grid.ColumnSpan="4"
                                 TextColor="White"  />
 
-                    <Label x:Name="Gender"
-                            Grid.Row="8"
-                            Grid.ColumnSpan="2"  />
-=======
-                        <DatePicker x:Name="DateOrbirth"
-                                Grid.Row="3"
-                                Grid.ColumnSpan="4"
-                                TextColor="White"  />
 
                         <Picker x:Name="Gender"
                             Title="Gender"
-                            Grid.Row="4"
-                            Grid.ColumnSpan="2"
+                                Grid.Row="8"
+                            Grid.ColumnSpan="2" 
                             TitleColor="White"  />
->>>>>>> f0f766ba39aa5979a1e5928b06a963a79bfa26f7
-
                         <Entry Placeholder="Email Address"
                            Text="{Binding UserR.Correo}"
                            Grid.Row="5"
                            Grid.ColumnSpan="4"
                            PlaceholderColor="White"
                            TextColor="White" />
-                    
+
 
                         <Entry Placeholder=" IdOrPassport"
                            Text="{Binding UserR.Password}"
@@ -110,19 +98,13 @@
                            Grid.ColumnSpan="4"
                            PlaceholderColor="White"
                            TextColor="White" />
-
-<<<<<<< HEAD
-                    <Entry Placeholder="Phone"
+                        <Entry Placeholder="Phone"
                            Text="{Binding UserR.Telefono}"
-                           Grid.Row="11"
-=======
+                           Grid.Row="11"/>
                         <Entry Placeholder="Phone"
                            Text="{Binding UserR}"
-                           Grid.Row="7"
->>>>>>> f0f766ba39aa5979a1e5928b06a963a79bfa26f7
-                           Grid.ColumnSpan="4"
-                           PlaceholderColor="White"
-                           TextColor="White" />
+                           Grid.Row="7"/>
+
 
                         <Entry Placeholder="Direccion"
                            Text="{Binding UserR.Direccion}"
@@ -172,24 +154,18 @@
                            Grid.ColumnSpan="3"
                            PlaceholderColor="White"
                            TextColor="White" />
-<<<<<<< HEAD
-                    <Entry Placeholder="Email Address"
+                        <Entry Placeholder="Email Address"
                            Text="{Binding UserR.Cedula}"
                            Grid.Row="15"
                            Grid.ColumnSpan="4"
                            PlaceholderColor="White"
                            TextColor="White" />
-=======
                     </Grid>
->>>>>>> f0f766ba39aa5979a1e5928b06a963a79bfa26f7
 
                 </pancakeview:PancakeView>
                 <Button Text="Confirm"
                         Grid.Row="16"
-<<<<<<< HEAD
-=======
                         TranslationY="-25"
->>>>>>> f0f766ba39aa5979a1e5928b06a963a79bfa26f7
                         Grid.Column="0"
                         Grid.ColumnSpan="4"
                         HorizontalOptions="CenterAndExpand"

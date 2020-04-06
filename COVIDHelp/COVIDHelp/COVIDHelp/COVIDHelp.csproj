@@ -48,18 +48,19 @@
     <EmbeddedResource Update="Views\LoginAndRegisterView\SignUpPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\NeededViews\NeededHomePage.xaml">
+    <EmbeddedResource Update="Views\NeededViews\HomePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Helpers\" />
     <Folder Include="Views\TemplateViews\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\NeededViews\NeededHomePage.xaml.cs">
-      <DependentUpon>NeededHomePage.xaml</DependentUpon>
+    <Compile Update="Views\NeededViews\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

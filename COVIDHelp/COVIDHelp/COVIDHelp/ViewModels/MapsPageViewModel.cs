@@ -41,7 +41,8 @@ namespace COVIDHelp.ViewModels
         public void OnNavigatedTo(INavigationParameters parameters)
         {
             var param = parameters[$"{nameof(Place)}"] as Place;
-            LoadPins = new DelegateCommand(async () => await GetPlace(param.Geometry.Location, param.Radius, param.TypePlace));
+            var param2 = parameters[$"{nameof(Locations)}"] as Locations;
+            LoadPins = new DelegateCommand(async () => await GetPlace(param2, param.Radius, param.TypePlace));
             LoadPins.Execute();
 
         }

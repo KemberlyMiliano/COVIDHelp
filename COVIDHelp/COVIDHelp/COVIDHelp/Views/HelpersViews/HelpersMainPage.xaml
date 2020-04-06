@@ -14,7 +14,7 @@
             android:TabbedPage.BarSelectedItemColor ="White"
             BarBackgroundColor="#00344D">
     <TabbedPage.Children>
-        <NavigationPage IconImageSource="home">
+        <NavigationPage IconImageSource="home" Title="Home">
             <x:Arguments>
                 <helper1:HomePage/>
             </x:Arguments>
@@ -24,7 +24,7 @@
                 <helper:CommitmentsPage/>
             </x:Arguments>
         </NavigationPage>
-        <NavigationPage IconImageSource="profile">
+        <NavigationPage IconImageSource="profile" Title="Profile">
             <x:Arguments>
                 <local:ProfilePage/>
             </x:Arguments>

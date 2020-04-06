@@ -41,8 +41,8 @@ namespace COVIDHelp.ViewModels
                     else
                     {
                         var param = new NavigationParameters();
-                        param.Add($"{nameof(User)}", User);
-                        await navigationService.NavigateAsync(new Uri($"{NavigationConstants.NeededTabbedPage}?selectedTab={NavigationConstants.HelpersHomePage}", UriKind.Absolute), param);
+                        param.Add($"{nameof(User)}", user);
+                        await navigationService.NavigateAsync(new Uri($"{NavigationConstants.HelpersMainPage}{NavigationConstants.HomePage}", UriKind.Absolute), param);
                     }
                    
                 }

@@ -64,7 +64,7 @@ namespace COVIDHelp.ViewModels
         {
             var param = new NavigationParameters();
             param.Add($"{nameof(User)}", UserR);
-            await navigationService.NavigateAsync(new Uri($"{NavigationConstants.NeededTabbedPage}{NavigationConstants.NeededHomePage}", UriKind.Relative),param);
+            await navigationService.NavigateAsync(new Uri($"{NavigationConstants.HelpersMainPage}{NavigationConstants.HomePage}", UriKind.Relative),param);
         }
         void PostUser(User user)
         {
