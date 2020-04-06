@@ -15,8 +15,25 @@ namespace COVIDHelp.ViewModels
 {
     public class MapsPageViewModel: BaseViewModel, INavigationAware
     {
-        public ObservableCollection<Place> PlaceNearbys { get; set; }
-        public ObservableCollection<User> NeaderPerson { get; set; }
+        public Place Place { get; set; }
+        private Pin selectPlace;
+
+        public Pin SelectPlace
+        {
+            get { return selectPlace; }
+            set
+            {
+                selectPlace = value;
+                if (selectPlace != null)
+                {
+                    Place = PlaceNearbys.Find(e => e.Vicinity == selectPlace.Address);
+                    IsVisible = true;
+                }
+            }
+        }
+        public bool IsVisible { get; set; } = false;
+        public List<Place> PlaceNearbys { get; set; }
+        public List<User> NeaderPerson { get; set; }
         public DelegateCommand LoadPins { get; set; }
         IApiGoogleServices apiGoogleServices;
         public MapsPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices, IApiGoogleServices apiGoogleServices) : base(navigationService, dialogService, apiCovitServices)
@@ -29,7 +46,7 @@ namespace COVIDHelp.ViewModels
             var places = getresquest.Results;
             if (places != null&&places.Count>0)
             {
-                PlaceNearbys = new ObservableCollection<Place>(places);
+                PlaceNearbys = new List<Place>(places);
             }
         }
         public void OnNavigatedFrom(INavigationParameters parameters)

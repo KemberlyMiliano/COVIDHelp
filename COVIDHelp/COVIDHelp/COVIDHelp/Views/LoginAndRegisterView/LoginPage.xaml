@@ -102,12 +102,27 @@
                        HorizontalOptions="EndAndExpand"
                        Grid.ColumnSpan="4"
                        FontFamily="{StaticResource NormalFont}">
+                    
+                    
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"
                                           NumberOfTapsRequired="1"/>
 
                     </Label.GestureRecognizers>
-                </Label> 
+                </Label>
+                <CheckBox 
+                       Grid.Row="4" 
+                       HorizontalOptions="StartAndExpand"
+                       Grid.ColumnSpan="4"/>
+                <Label Grid.Row="4"
+                       Text="Recordar correo"
+                       FontFamily="{StaticResource NormalFont}"
+                       FontSize="16"
+                       Grid.ColumnSpan="4"
+                       VerticalOptions="CenterAndExpand"
+                       TextColor="White"
+                       Margin="40,0,0,0"
+                       HorizontalOptions="StartAndExpand"/>
             </Grid>
         </pancakeview:PancakeView>
 
@@ -152,7 +167,13 @@
                                           NumberOfTapsRequired="1"/>
 
             </Image.GestureRecognizers>
-        </Image> 
-        
+        </Image>
+        <ActivityIndicator IsVisible="{Binding IsBusy}"
+                           Grid.Row="10"
+                           Color="Red"
+                           Grid.ColumnSpan="4"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="CenterAndExpand"
+                           IsRunning="{Binding IsBusy}"/>
     </Grid>
 </ContentPage>

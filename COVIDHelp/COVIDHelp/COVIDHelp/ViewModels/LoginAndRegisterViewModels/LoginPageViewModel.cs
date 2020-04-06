@@ -21,6 +21,7 @@ namespace COVIDHelp.ViewModels
         public DelegateCommand ForgotPasswordCommand { get; set; }
         public DelegateCommand LoginWithGoogleCommand { get; set; }
         public ImageSource ImageModel { get; set; }
+        public bool IsBusy { get; set; } = false;
         public bool IsVisible { get; set; }
 
         public LoginPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
@@ -32,24 +33,12 @@ namespace COVIDHelp.ViewModels
                 if (string.IsNullOrEmpty(User.Correo) && string.IsNullOrEmpty(User.Password))
                 {
                     await dialogService.DisplayAlertAsync("ALERT!", "THERE ARE EMPTY FIELDS", "Ok");
-
                 }
                 else
                 {
+                    IsBusy = true;
                    await ValidateUser();
-                    var user = await apiCovitServices.ValidateUser(User);
-                    if (user == null)
-                    {
-
-                        await dialogService.DisplayAlertAsync("ALERT!", "Incorrect password/email", "Ok");
-                    }
-                    else
-                    {
-                        user.Cedula.SaveInt("Cedula");
-                        var param = new NavigationParameters();
-                        param.Add($"{nameof(User)}", user);
-                        await navigationService.NavigateAsync(NavigationConstants.HelpersMainPage, param);
-                    }   
+                    IsBusy = false;
                 }
             });
 
@@ -82,11 +71,12 @@ namespace COVIDHelp.ViewModels
                 var user = await apiCovitServices.ValidateUser(User);
                 if (user != null)
                 {
-
+                    User = user;
+                    User.Cedula.SaveInt("Cedula");
                     var param = new NavigationParameters
-                {
+                    {
                     { $"{nameof(User)}", user }
-                };
+                    };
                     await navigationService.NavigateAsync($"{NavigationConstants.HelpersMainPage}", param);
                 }
             }

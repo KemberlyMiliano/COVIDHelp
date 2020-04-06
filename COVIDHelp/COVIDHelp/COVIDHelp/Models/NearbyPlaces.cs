@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Xamarin.Forms.GoogleMaps;
 
@@ -63,6 +64,8 @@ namespace COVIDHelp.Models
 
         [JsonProperty("open_now")]
         public bool OpenNow { get; set; }
+        public string OpenOrClose { get=> OpenNow==true?"Abierto":"Cerrado";}
+
     }
 
     public class Photo

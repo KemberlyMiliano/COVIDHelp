@@ -5,10 +5,44 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
               xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
              x:Class="COVIDHelp.Views.MapsPage">
     <ContentPage.Content>
         <Grid>
-            <maps:Map x:Name="map"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <maps:Map x:Name="map"
+                      SelectedPin="{Binding SelectPlace,Mode=TwoWay}"
+                      />
+            <pancakeview:PancakeView Grid.Row="1"
+                                     IsVisible="False">
+                <StackLayout>
+                    <Label FontSize="18" Padding="20">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Place.Name,StringFormat='Name: {0}'}"/>
+                                <Span Text="{x:Static system:Environment.NewLine}"/>
+                                <Span Text="{Binding Place.Vicinity,StringFormat='Direccion: {0}'}"/>
+                                <Span Text="{x:Static system:Environment.NewLine}"/>
+                                <Span Text="{Binding Place.OpeningHours,StringFormat='Estado: {0}'}"/>
+                                <Span Text="{x:Static system:Environment.NewLine}"/>
+                                <Span Text="{Binding Place.UserRatingsTotal, StringFormat='Rating del lugar: {0}'}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                </StackLayout>
+                <pancakeview:PancakeView.Triggers>
+                    <DataTrigger TargetType="pancakeview:PancakeView"
+                                 Binding="{Binding IsVisible}"
+                                 Value="true">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </DataTrigger>
+                </pancakeview:PancakeView.Triggers>
+            </pancakeview:PancakeView>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
