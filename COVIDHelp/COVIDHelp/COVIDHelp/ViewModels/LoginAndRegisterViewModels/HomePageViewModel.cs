@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using COVIDHelp.Services;
+using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using System;
@@ -15,7 +16,7 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
         public DelegateCommand GoToMedicalAttention { get; set; }
         public DelegateCommand GoToProfile { get; set; }
         public DelegateCommand EmergencyCommand { get; set; }
-        public HomePageViewModel(INavigationService navigationService, IPageDialogService dialogService) : base(navigationService, dialogService)
+        public HomePageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
             GoToVolunteer = new DelegateCommand(async () =>
             {

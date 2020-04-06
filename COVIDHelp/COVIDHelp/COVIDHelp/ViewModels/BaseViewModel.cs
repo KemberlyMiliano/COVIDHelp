@@ -18,7 +18,7 @@ namespace COVIDHelp.ViewModels
             this.navigationService = navigationService;
             this.dialogService = dialogService;
             this.apiCovitServices = apiCovitServices;
-        }    
+        }
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }
