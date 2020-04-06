@@ -7,58 +7,50 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 using System.Threading.Tasks;
+using COVIDHelp.Services;
 
 namespace COVIDHelp.ViewModels
 {
     public class LoginPageViewModel : BaseViewModel
     {
-        public User UserR { get; set; }
-        public DelegateCommand ButtonLogInCommand { get; set; }
+        public User User { get; set; } = new User();
+        public DelegateCommand LogInCommand { get; set; }
         public DelegateCommand ButtonSignUpCommand { get; set; }
         public DelegateCommand ButtonEyeClickedCommand { get; set; }
         public ImageSource ImageModel { get; set; }
         public bool IsVisible { get; set; }
 
-        public LoginPageViewModel(INavigationService navigationService, IPageDialogService dialogService) : base(navigationService, dialogService)
+        public LoginPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
-            UserR = new User() { 
-            Nombres="Rafael",
-            Apellidos="Fernandez",
-            Cedula ="1235486",
-            Sexo = "Masculino",
-            SelfBiography = "Comiendo habichuela con dulce",
-            Correo = "castillo@gmail.com",
-            Password = "123456",
-            Latitude = "18.5167",
-            Longitude = "18.5167"
-
-            };
             IsVisible = true;
             ImageModel = "eyeW.png";
 
-            ButtonLogInCommand = new DelegateCommand(async () => {
-                if (String.IsNullOrEmpty(UserR.Correo) && String.IsNullOrEmpty(UserR.Password))
+            LogInCommand = new DelegateCommand(async () => {
+                if (string.IsNullOrEmpty(User.Correo) && string.IsNullOrEmpty(User.Password))
                 {
                     await dialogService.DisplayAlertAsync("ALERT!", "THERE ARE EMPTY FIELDS", "Ok");
-                  
-                }
-                else if (String.IsNullOrEmpty(UserR.Correo))
-                {
-                    await dialogService.DisplayAlertAsync("ALERT!", "THE FIELD EMAIL ADDRESS IS EMPTY", "Ok");
-                }
-                else if (String.IsNullOrEmpty(UserR.Password))
-                {
-                    await dialogService.DisplayAlertAsync("ALERT!", "THE FIELD PASSWORD IS EMPTY", "Ok");
+
                 }
                 else
                 {
-                   //Aqui va la pagina a donde sera dirigido el usuario registrado.
+                    var user = await apiCovitServices.ValidateUser(User);
+                    if (user == null)
+                    {
+                        await dialogService.DisplayAlertAsync("ALERT!", "Incorrect password/email", "Ok");
+                    }
+                    else
+                    {
+                        var param = new NavigationParameters();
+                        param.Add($"{nameof(User)}", user);
+                        await navigationService.NavigateAsync(new Uri($"{NavigationConstants.HelpersMainPage}{NavigationConstants.HomePage}", UriKind.Absolute), param);
+                    }
+                   
                 }
             });
 
             ButtonSignUpCommand = new DelegateCommand(async () => {
 
-                NavigateToRegister();
+                await NavigateToRegister();
             });
             
             ButtonEyeClickedCommand = new DelegateCommand(() => {

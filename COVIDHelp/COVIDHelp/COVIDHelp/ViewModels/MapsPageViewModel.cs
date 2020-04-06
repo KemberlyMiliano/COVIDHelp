@@ -1,4 +1,5 @@
 ﻿using COVIDHelp.Models;
+using COVIDHelp.Services;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
@@ -12,47 +13,25 @@ using Xamarin.Forms.GoogleMaps;
 
 namespace COVIDHelp.ViewModels
 {
-    public class MapsPageViewModel:BaseViewModel,INavigationAware
+    public class MapsPageViewModel: BaseViewModel, INavigationAware
     {
-        public ObservableCollection<Location> FoodsPin { get; set; }
-        public ObservableCollection<Location> PharmacyPin { get; set; }
-        public ObservableCollection<Location> HelpersPin { get; set; }
-        public ObservableCollection<Location> NeedPersonPin { get; set; }
+        public ObservableCollection<Place> PlaceNearbys { get; set; }
+        public ObservableCollection<User> NeaderPerson { get; set; }
 
         public DelegateCommand LoadPins { get; set; }
-        Geocoder geoCoder = new Geocoder();
-        public MapsPageViewModel(INavigationService navigationService, IPageDialogService dialogService) : base(navigationService, dialogService)
+        IApiGoogleServices apiGoogleServices;
+        public MapsPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices, IApiGoogleServices apiGoogleServices) : base(navigationService, dialogService, apiCovitServices)
         {
+            this.apiGoogleServices = apiGoogleServices;
         }
-        async Task<Position> GetPosition(string direccion)
+        async Task GetPlace(Locations locations,int radius, string type)
         {
-            IEnumerable<Position> approximateLocations = await geoCoder.GetPositionsForAddressAsync(direccion);
-            Position position = approximateLocations.FirstOrDefault();
-            return new Position(position.Latitude, position.Longitude);
-        }
-        void LoadFoodsPins()
-        {
-            FoodsPin = new ObservableCollection<Location>()
+            var getresquest = await apiGoogleServices.GetNearbyPlaces(ConfigApi.ApiKeyGoogle, locations,radius,type);
+            var places = getresquest.Results;
+            if (places != null&&places.Count>0)
             {
-            };
-        }
-        void LoadPharmacyPins()
-        {
-            FoodsPin = new ObservableCollection<Location>()
-            {
-            };
-        }
-        void LoadHelpersPins()
-        {
-            HelpersPin = new ObservableCollection<Location>()
-            {
-            };
-        }
-        void LoadNeedPersonPins()
-        {
-            NeedPersonPin = new ObservableCollection<Location>()
-            {
-            };
+                PlaceNearbys = new ObservableCollection<Place>(places);
+            }
         }
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
@@ -61,44 +40,11 @@ namespace COVIDHelp.ViewModels
 
         public void OnNavigatedTo(INavigationParameters parameters)
         {
-            var param = parameters["GoToMaps"] as string;
-            switch (param)
-            {
-                case "Foods":
-                    {
-                        LoadPins = new DelegateCommand(() => {
-                            LoadFoodsPins();
-                        });
-                        LoadPins.Execute();
-                        break;
-                    }
-                case "Medicines":
-                    {
-                        LoadPins = new DelegateCommand( () => {
-                            LoadPharmacyPins();
-                        });
-                        LoadPins.Execute();
-                        break;
-                    }
-                case "Self":
-                    {
-                        LoadPins = new DelegateCommand( () => {
-                            LoadHelpersPins();
-                        });
-                        LoadPins.Execute();
-                        break;
-                    }
-                case "NeedPerson":
-                    {
-                        LoadPins = new DelegateCommand(() => {
-                            LoadNeedPersonPins();
-                        });
-                        LoadPins.Execute();
-                        break;
-                    }
-                default:
-                    break;
-            }
+            var param = parameters[$"{nameof(Place)}"] as Place;
+            var param2 = parameters[$"{nameof(Locations)}"] as Locations;
+            LoadPins = new DelegateCommand(async () => await GetPlace(param2, param.Radius, param.TypePlace));
+            LoadPins.Execute();
+
         }
     }
 }

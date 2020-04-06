@@ -72,18 +72,18 @@
                            Grid.ColumnSpan="4"
                            PlaceholderColor="White"
                            TextColor="White" />
-
                         <DatePicker x:Name="DateOrbirth"
-                                Grid.Row="3"
+                                Date="{Binding UserR.FNacimiento}"
+                                Grid.Row="7"
                                 Grid.ColumnSpan="4"
                                 TextColor="White"  />
 
+
                         <Picker x:Name="Gender"
                             Title="Gender"
-                            Grid.Row="4"
-                            Grid.ColumnSpan="2"
+                                Grid.Row="8"
+                            Grid.ColumnSpan="2" 
                             TitleColor="White"  />
-
                         <Entry Placeholder="Email Address"
                            Text="{Binding UserR.Correo}"
                            Grid.Row="5"
@@ -91,19 +91,20 @@
                            PlaceholderColor="White"
                            TextColor="White" />
 
+
                         <Entry Placeholder=" IdOrPassport"
                            Text="{Binding UserR.Password}"
                            Grid.Row="6"
                            Grid.ColumnSpan="4"
                            PlaceholderColor="White"
                            TextColor="White" />
-
+                        <Entry Placeholder="Phone"
+                           Text="{Binding UserR.Telefono}"
+                           Grid.Row="11"/>
                         <Entry Placeholder="Phone"
                            Text="{Binding UserR}"
-                           Grid.Row="7"
-                           Grid.ColumnSpan="4"
-                           PlaceholderColor="White"
-                           TextColor="White" />
+                           Grid.Row="7"/>
+
 
                         <Entry Placeholder="Direccion"
                            Text="{Binding UserR.Direccion}"
@@ -151,6 +152,12 @@
                            IsPassword="{Binding IsVisible}"
                            Grid.Row="10"
                            Grid.ColumnSpan="3"
+                           PlaceholderColor="White"
+                           TextColor="White" />
+                        <Entry Placeholder="Email Address"
+                           Text="{Binding UserR.Cedula}"
+                           Grid.Row="15"
+                           Grid.ColumnSpan="4"
                            PlaceholderColor="White"
                            TextColor="White" />
                     </Grid>

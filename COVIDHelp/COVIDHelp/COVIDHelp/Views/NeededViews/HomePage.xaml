@@ -36,7 +36,7 @@
                          Grid.Column="0"
                          Grid.Row="2"
                          Command="{Binding GoToMaps}"
-                         CommandParameter="Foods"
+                         CommandParameter="supermarket"
                          Margin="25,5,5,5"
                          />
             <Label Text="Alimentos"
@@ -50,7 +50,7 @@
                          Grid.Row="2"
                          Source="pill"
                          Command="{Binding GoToMaps}"
-                         CommandParameter="Medicines"
+                         CommandParameter="pharmacy"
                           Margin="8"/>
             <Label Text="Medicina"
                    FontFamily="{StaticResource NormalFont}"
@@ -62,7 +62,6 @@
                          Grid.Column="2"
                          Grid.Row="2"
                          Source="doctor"
-                          Command="{Binding GoToMedicalAttention}"
                          CommandParameter="Helpers"
                           Margin="8,8,25,8"/>
             <Label Text="Atención Médica"

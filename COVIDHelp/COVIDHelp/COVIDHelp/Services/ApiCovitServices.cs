@@ -9,10 +9,24 @@ namespace COVIDHelp.Services
 {
     public class ApiCovitServices : IApiCovitServices
     {
-        public async Task PostUser([Body] User user)
+        public async Task<List<User>> GetUser()
         {
             var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
-            await getRequest.PostUser(user);
+            var users = await getRequest.GetUser();
+            return users;
+        }
+
+        public async Task<User> PostUser([Body] User user)
+        {
+            var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
+            return await getRequest.PostUser(user);
+        }
+
+        public async Task<User> ValidateUser([Body] User user)
+        {
+            var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
+            var users = await getRequest.ValidateUser(user);
+            return users;
         }
     }
 
