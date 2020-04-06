@@ -1,5 +1,6 @@
 ﻿using COVIDHelp.Services;
 using COVIDHelp.ViewModels;
+using COVIDHelp.ViewModels.LoginAndRegisterViewModels;
 using COVIDHelp.Views;
 using COVIDHelp.Views.HelpersViews;
 using COVIDHelp.Views.LoginAndRegisterView;
@@ -19,7 +20,7 @@ namespace COVIDHelp
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync(new Uri("/SignUpPage", UriKind.Relative));
+            NavigationService.NavigateAsync(new Uri("/HelpersMainPage", UriKind.Relative));
 
         }
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -31,6 +32,8 @@ namespace COVIDHelp
             containerRegistry.RegisterForNavigation<HelpersMainPage>();
             containerRegistry.RegisterForNavigation<LocationPermitionPage>();
             containerRegistry.RegisterForNavigation<HelpPage>();
+            containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
+            containerRegistry.RegisterForNavigation<CommitmentsPage, CommitmentsPageViewModel>();
 
         }
     }

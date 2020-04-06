@@ -4,74 +4,108 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="COVIDHelp.Views.NeededViews.HomePage">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style TargetType="ImageButton">
-                <Setter Property="CornerRadius" Value="80"/>
-                <Setter Property="HeightRequest" Value="120"/>
-                <Setter Property="WidthRequest" Value="120"/>
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
+             x:Class="COVIDHelp.Views.NeededViews.HomePage"
+             NavigationPage.HasNavigationBar="False">
+
     <ContentPage.Content>
-        <Grid Padding="20,0,0,0">
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Label Text="What do you want? " 
-                   FontSize="40"
+            <Label Text="Qué necesitas? " 
+                   FontSize="36"
                    TextColor="Black"
+                   Grid.Row="1"
                    VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand"
-                   Grid.ColumnSpan="3"/>
-            <ImageButton BackgroundColor="#00cbcc"
+                   HorizontalOptions="StartAndExpand"
+                   Grid.ColumnSpan="3"
+                   Margin="30,20,10,35"
+                   FontFamily="{StaticResource BoldFont}"/>
+            <ImageButton BackgroundColor="Transparent"
+                         Source="dinner"
                          Grid.Column="0"
-                         Grid.Row="1"
+                         Grid.Row="2"
                          Command="{Binding GoToMaps}"
                          CommandParameter="Foods"
+                         Margin="25,5,5,5"
                          />
-            <Label Text="Food"
+            <Label Text="Alimentos"
                    Grid.Column="0"
+                   FontFamily="{StaticResource NormalFont}"
                      HorizontalOptions="CenterAndExpand"
-                   Grid.Row="2"
+                   Grid.Row="3"
                    />
-            <ImageButton BackgroundColor="#00cbcc"
+            <ImageButton BackgroundColor="Transparent"
                          Grid.Column="1"
-                         Grid.Row="1"
+                         Grid.Row="2"
+                         Source="pill"
                          Command="{Binding GoToMaps}"
-                         CommandParameter="Medicines"/>
-            <Label Text="Medicines"
+                         CommandParameter="Medicines"
+                          Margin="8"/>
+            <Label Text="Medicina"
+                   FontFamily="{StaticResource NormalFont}"
                    HorizontalOptions="CenterAndExpand"
                    Grid.Column="1"
-                   Grid.Row="2"
+                   Grid.Row="3"
                    />
-            <ImageButton BackgroundColor="#00cbcc"
+            <ImageButton BackgroundColor="Transparent"
                          Grid.Column="2"
-                         Grid.Row="1"
-                          Command="{Binding GoToMaps}"
-                         CommandParameter="Helpers"/>
-            <Label Text="self-inflicted"
+                         Grid.Row="2"
+                         Source="doctor"
+                          Command="{Binding GoToMedicalAttention}"
+                         CommandParameter="Helpers"
+                          Margin="8,8,25,8"/>
+            <Label Text="Atención Médica"
                    Grid.Column="2"
-                     HorizontalOptions="CenterAndExpand"    
-                   Grid.Row="2"
+                   FontFamily="{StaticResource NormalFont}"
+                     HorizontalOptions="CenterAndExpand"  
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="3"
+                   Margin="0,0,20,40"
                    />
-            <Button Text="Next" 
-                    Grid.Row="3"
-                    Grid.ColumnSpan="3"
+            <Button Text="Emergencia" 
+                    CornerRadius="10"  
+                    Grid.Row="5" 
+                    Grid.ColumnSpan="3" 
+                    Padding="50" 
+                    Margin="20,0,20,10" 
                     TextColor="White"
-                    CornerRadius="20"
-                    BackgroundColor="#00cbcc"
+                    FontFamily="{StaticResource BoldFont}" 
+                    BackgroundColor="DarkRed"/>
+            <Label Text="Quiero ser voluntario" 
+                    Grid.Row="4"
+                   HorizontalOptions="End"
+                   FontFamily="{StaticResource NormalFont}"
+                   TextDecorations="Underline"
+                    Grid.ColumnSpan="3"
+                    TextColor="#00cbcc"
+                   Margin="0,0,20,160" 
                     VerticalOptions="CenterAndExpand"
-                    />
+                    >
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoToVolunteer}"/>
+                </Label.GestureRecognizers>
+            </Label>
+            
         </Grid>
     </ContentPage.Content>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="ImageButton">
+                <Setter Property="CornerRadius" Value="80"/>
+                <Setter Property="HeightRequest" Value="90"/>
+                <Setter Property="WidthRequest" Value="90"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 </ContentPage>
