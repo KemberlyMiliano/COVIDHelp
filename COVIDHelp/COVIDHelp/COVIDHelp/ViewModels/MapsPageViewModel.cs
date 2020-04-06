@@ -17,14 +17,13 @@ namespace COVIDHelp.ViewModels
     {
         public ObservableCollection<Place> PlaceNearbys { get; set; }
         public ObservableCollection<User> NeaderPerson { get; set; }
-
         public DelegateCommand LoadPins { get; set; }
         IApiGoogleServices apiGoogleServices;
         public MapsPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices, IApiGoogleServices apiGoogleServices) : base(navigationService, dialogService, apiCovitServices)
         {
             this.apiGoogleServices = apiGoogleServices;
         }
-        async Task GetPlace(Locations locations,int radius, string type)
+        async Task GetPlace(string locations,int radius, string type)
         {
             var getresquest = await apiGoogleServices.GetNearbyPlaces(ConfigApi.ApiKeyGoogle, locations,radius,type);
             var places = getresquest.Results;
@@ -35,14 +34,13 @@ namespace COVIDHelp.ViewModels
         }
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
-            
         }
 
         public void OnNavigatedTo(INavigationParameters parameters)
         {
             var param = parameters[$"{nameof(Place)}"] as Place;
-            var param2 = parameters[$"{nameof(Locations)}"] as Locations;
-            LoadPins = new DelegateCommand(async () => await GetPlace(param2, param.Radius, param.TypePlace));
+            var param2 = parameters[$"{nameof(Locations)}"] as string;
+            LoadPins = new DelegateCommand(async () => await GetPlace(param2, 20000, param.TypePlace));
             LoadPins.Execute();
 
         }

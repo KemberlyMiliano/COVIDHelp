@@ -15,7 +15,7 @@ namespace COVIDHelp.Services
         {
             Barrel.ApplicationId = ConfigApi.MonkeyChadeKey;
         }
-        public async Task<NearbyPlaces> GetNearbyPlaces(string api_Key, Locations location, int radius, string type)
+        public async Task<NearbyPlaces> GetNearbyPlaces(string api_Key, string location, int radius, string type)
         {
             if (Connectivity.NetworkAccess != NetworkAccess.Internet&& !Barrel.Current.Exists(key:$"{nameof(GetNearbyPlaces)}"))
             {

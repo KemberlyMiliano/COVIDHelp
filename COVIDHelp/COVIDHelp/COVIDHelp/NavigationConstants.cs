@@ -13,7 +13,8 @@ namespace COVIDHelp
         public const string LoginPage = "/LoginPage";
         public const string ProfilePage = "/ProfilePage";
         public const string SignUpPage = "/SignUpPage";
-        public const string HomePage = "/HomePage";
+        public const string HomePage = "/HomePage"; 
+         public const string LocationPermitionPage = "/LocationPermitionPage"; 
 
 
     }

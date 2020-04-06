@@ -24,8 +24,8 @@
                 <Image HeightRequest="100" HorizontalOptions="Center" Source="profileImage.png" TranslationY="50" VerticalOptions="End" WidthRequest="100" />
 
                 <StackLayout Grid.Row="1" Padding="0,50,0,00" HorizontalOptions="Center" Margin="0,40,0,0">
-                    <Label Text="Kemberly Miliano"  HorizontalOptions="Center" FontFamily="{StaticResource BoldFont}" FontSize="20" TextColor="#585858"/>
-                    <Label Margin="0,-5" Text="Enfermera" FontFamily="{StaticResource NormalFont}" HorizontalOptions="Center" />
+                    <Label Text="{Binding User.Nombres}"  HorizontalOptions="Center" FontFamily="{StaticResource BoldFont}" FontSize="20" TextColor="#585858"/>
+                    <Label Margin="0,-5" Text="{Binding Binding.Rol}" FontFamily="{StaticResource NormalFont}" HorizontalOptions="Center" />
                     <Button Text="Edit" Margin="7" HeightRequest="40" BackgroundColor="White" BorderWidth="5" BorderColor="#585858" TextColor="#585858" CornerRadius="50" HorizontalOptions="Fill"/>
                 </StackLayout>
 
@@ -42,11 +42,15 @@
 
                     <StackLayout Grid.Column="1">
                         <Label Text="94" HorizontalTextAlignment="Center" FontFamily="{StaticResource NormalFont}"/>
-                        <Label Text="Rating" HorizontalTextAlignment="Center" FontFamily="{StaticResource BoldFont}"/>
+                        <Label Text="{Binding User.Rate}" HorizontalTextAlignment="Center" FontFamily="{StaticResource BoldFont}"/>
                     </StackLayout>
                 </Grid>
 
-                <Label Margin="20,40,20,0" Grid.Row="3" HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada ultricies arcu nec egestas. Nam porta fermentum aliquam. Nullam tincidunt odio purus." FontFamily="{StaticResource NormalFont}"/>
+                <Label Margin="20,40,20,0" Grid.Row="3" 
+                       HorizontalOptions="Center" 
+                       HorizontalTextAlignment="Center" 
+                       Text="{Binding User.SelfBiography}"
+                       FontFamily="{StaticResource NormalFont}"/>
             </Grid>
         </ScrollView>
     </ContentPage.Content>

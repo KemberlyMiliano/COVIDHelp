@@ -12,30 +12,16 @@ using Xamarin.Forms;
 
 namespace COVIDHelp.ViewModels
 {
-    public class SignUpPageViewModel : BaseViewModel
+    public class SignUpPageViewModel : BaseViewModel,INavigatedAware
     {
-        public User UserR { get; set; }
+        public User UserR { get; set; } = new User();
         public DelegateCommand ButtonConfirmCommand { get; set; }
         public DelegateCommand ButtonEyeClickedCommand { get; set; }
         public ImageSource ImageModel { get; set; }
-        public bool IsVisibleList { get; set; } = false;
        
         public bool IsVisible { get; set; }
         public SignUpPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
-            UserR = new User()
-            {
-                Nombres = "Rafael",
-                Apellidos = "Fernandez",
-                Cedula = 12345678912,
-                Sexo = "M",
-                SelfBiography = "Comiendo habichuela con dulce",
-                Correo = "castillo@gmail.com",
-                Password = "123456",
-                Latitude = "18.5167",
-                Longitude = "18.5167"
-
-            };
             IsVisible = true;
             ImageModel = "eyeW.png";
             ButtonConfirmCommand = new DelegateCommand(async () => {
@@ -49,6 +35,7 @@ namespace COVIDHelp.ViewModels
                     else if (UserR.Password != UserR.RepeatPassword) { await App.Current.MainPage.DisplayAlert("ALERT!", "THE PASSWORD ARE NOT EQUAL", "OK"); }
                     else
                     {
+                       await NavigateTToPermisson();
                         PostUser(UserR);
                         await NavigateToSelectedSignUp();
                     }
@@ -64,7 +51,11 @@ namespace COVIDHelp.ViewModels
         {
             var param = new NavigationParameters();
             param.Add($"{nameof(User)}", UserR);
-            await navigationService.NavigateAsync(new Uri($"{NavigationConstants.HelpersMainPage}{NavigationConstants.HomePage}", UriKind.Relative),param);
+            await navigationService.NavigateAsync($"{NavigationConstants.HelpersMainPage}",param);
+        }
+        async Task NavigateTToPermisson()
+        {
+            await navigationService.NavigateAsync(new Uri($"{NavigationConstants.LocationPermitionPage}",UriKind.Relative));
         }
         void PostUser(User user)
         {
@@ -74,6 +65,22 @@ namespace COVIDHelp.ViewModels
         {
                 ImageModel = !IsVisible ? "eyeW.png" : "eyeW_off";
                 IsVisible = !IsVisible;
+        }
+
+        public void OnNavigatedFrom(INavigationParameters parameters)
+        {
+           
+        }
+
+        public void OnNavigatedTo(INavigationParameters parameters)
+        {
+            if (parameters.ContainsKey("Location")) 
+            {
+                var param = parameters["Location"] as Locations;
+                UserR.Latitude = $"{param.Lat}";
+                UserR.Longitude = $"{param.Lng}";
+            }
+
         }
     }
    

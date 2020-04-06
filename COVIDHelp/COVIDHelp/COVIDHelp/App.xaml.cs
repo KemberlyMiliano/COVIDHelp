@@ -9,6 +9,7 @@ using Prism;
 using Prism.Ioc;
 using Prism.Unity;
 using System;
+using Xamarin.Forms;
 
 namespace COVIDHelp
 {
@@ -19,11 +20,12 @@ namespace COVIDHelp
         protected override void OnInitialized()
         {
             InitializeComponent();
-            NavigationService.NavigateAsync(new Uri($"{NavigationConstants.LoginPage}", UriKind.Absolute));
+            NavigationService.NavigateAsync(new Uri($"/NavigationPage{NavigationConstants.LoginPage}"));
 
         }
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<SignUpPage, SignUpPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
             containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>();
@@ -35,6 +37,7 @@ namespace COVIDHelp
             containerRegistry.RegisterInstance<IApiGoogleServices>(new ApiGoogleServices());
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
             containerRegistry.RegisterForNavigation<CommitmentsPage, CommitmentsPageViewModel>();
+            containerRegistry.RegisterForNavigation<LocationPermitionPage, LocationPermitionPageViewModel>();
 
         }
     }

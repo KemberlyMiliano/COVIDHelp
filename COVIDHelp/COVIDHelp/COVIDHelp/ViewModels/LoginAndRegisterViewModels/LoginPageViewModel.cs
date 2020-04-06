@@ -33,18 +33,7 @@ namespace COVIDHelp.ViewModels
                 }
                 else
                 {
-                    var user = await apiCovitServices.ValidateUser(User);
-                    if (user == null)
-                    {
-                        await dialogService.DisplayAlertAsync("ALERT!", "Incorrect password/email", "Ok");
-                    }
-                    else
-                    {
-                        var param = new NavigationParameters();
-                        param.Add($"{nameof(User)}", user);
-                        await navigationService.NavigateAsync(new Uri($"{NavigationConstants.HelpersMainPage}{NavigationConstants.HomePage}", UriKind.Absolute), param);
-                    }
-                   
+                   await ValidateUser();
                 }
             });
 
@@ -63,7 +52,22 @@ namespace COVIDHelp.ViewModels
         {
             await navigationService.NavigateAsync(new Uri($"/SignUpPage", UriKind.Relative));
         }
-
+        async Task ValidateUser()
+        {
+            try
+            {
+                var user = await apiCovitServices.ValidateUser(User);
+                var param = new NavigationParameters
+                {
+                    { $"{nameof(User)}", user }
+                };
+                await navigationService.NavigateAsync($"{NavigationConstants.HelpersMainPage}", param);
+            }
+            catch (Exception)
+            {
+                await dialogService.DisplayAlertAsync("incorrecta", "contraseña/correo incorrecta", "ok");
+            }
+        }
         void VisiblePassWord()
         {
                 ImageModel = !IsVisible ? "eyeW.png" : "eyeW_off.png";

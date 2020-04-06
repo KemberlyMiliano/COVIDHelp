@@ -21,12 +21,10 @@ namespace COVIDHelp.ViewModels
             GoToMaps = new DelegateCommand<string>( async(filtrar)=> {
                 
                 Place place = new Place();
-                Locations locations = new Locations();
-                locations.Lat = double.Parse(User.Latitude);
-                locations.Lng = double.Parse(User.Longitude);
                 place.Radius = 20000;
                 place.TypePlace = filtrar;
-                param.Add($"{nameof(locations)}",locations);
+                string jamon = $"{User.Latitude},{User.Longitude}";
+                param.Add($"{nameof(Locations)}", jamon);
                 param.Add($"{nameof(Place)}",place);
                 await navigationService.NavigateAsync(new Uri(NavigationConstants.MapsPage,UriKind.Relative),param);
             });
@@ -44,8 +42,12 @@ namespace COVIDHelp.ViewModels
 
         public void OnNavigatedTo(INavigationParameters parameters)
         {
-            var param = parameters[$"{nameof(User)}"] as User;
-            User = param;
+            if (parameters.ContainsKey($"{nameof(User)}"))
+            {
+                var param = parameters[$"{nameof(User)}"] as User;
+                User = param;
+            }
+
         }
     }
 }

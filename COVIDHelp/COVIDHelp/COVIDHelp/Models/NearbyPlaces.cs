@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms.GoogleMaps;
 
 namespace COVIDHelp.Models
 {
@@ -13,6 +14,8 @@ namespace COVIDHelp.Models
 
         [JsonProperty("lng")]
         public double Lng { get; set; }
+
+        public Position Position { get=>new Position(Lat,Lng); }
     }
 
     public class Northeast
@@ -95,7 +98,14 @@ namespace COVIDHelp.Models
         public Geometry Geometry { get; set; }
 
         [JsonProperty("icon")]
-        public string Icon { get; set; }
+        private string icon;
+
+        public string Icon
+        {
+            get { return icon; }
+            set { icon = value; }
+        }
+
 
         [JsonProperty("id")]
         public string Id { get; set; }

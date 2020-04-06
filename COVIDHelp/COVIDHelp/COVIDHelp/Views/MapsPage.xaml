@@ -9,12 +9,14 @@
     <ContentPage.Content>
         <Grid>
             <maps:Map x:Name="map"
-                      InitialCameraUpdate="40.67,-73.94"
-                  ItemsSource="{Binding FoodsPin, Mode=TwoWay}">    
+                     InitialCameraUpdate="18.4801972,-69.942111"
+                  ItemsSource="{Binding PlaceNearbys, Mode=TwoWay}">    
                 <maps:Map.ItemTemplate>
                     <DataTemplate>
-                        <maps:Pin Position="{Binding Position}"
-                              Label="{Binding Description}" />
+                        <maps:Pin Position="{Binding Geometry.Location.Position}"
+                              Icon="{Binding Icon,Mode=TwoWay}" 
+                               Label="{Binding Name}"
+                                />
                     </DataTemplate>
                 </maps:Map.ItemTemplate>
             </maps:Map>

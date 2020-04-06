@@ -19,7 +19,7 @@
                 <helper1:HomePage/>
             </x:Arguments>
         </NavigationPage>
-        <NavigationPage IconImageSource="commitments">
+        <NavigationPage IconImageSource="commitments" Title="Comit">
             <x:Arguments>
                 <helper:CommitmentsPage/>
             </x:Arguments>
