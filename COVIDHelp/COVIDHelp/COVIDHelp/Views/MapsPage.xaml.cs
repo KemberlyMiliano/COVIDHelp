@@ -9,7 +9,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 using Xamarin.Forms.Xaml;
 using COVIDHelp.Helpers;
-using COVIDHelp.Views.TemplateViews;
 
 namespace COVIDHelp.Views
 {

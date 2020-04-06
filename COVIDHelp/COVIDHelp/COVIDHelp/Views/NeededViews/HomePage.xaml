@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              mc:Ignorable="d"
              BackgroundColor="White"
              x:Class="COVIDHelp.Views.NeededViews.HomePage"
@@ -17,14 +17,19 @@
                    HorizontalOptions="CenterAndExpand"
                    FontFamily="{StaticResource BoldFont}" 
                    Margin="0,0,0,40"/>
-            <Frame BackgroundColor="#01608C" CornerRadius="30" Margin="0,0,0,6">
+            <pancakeview:PancakeView BackgroundColor="#01608C" 
+                                     CornerRadius="30"
+                                     HeightRequest="100"
+                   >
+                <pancakeview:PancakeView.GestureRecognizers>
+                    <TapGestureRecognizer  Command="{Binding GoToMaps}"
+                         CommandParameter="supermarket"/>
+                </pancakeview:PancakeView.GestureRecognizers>
                 <StackLayout Orientation="Horizontal" >
-                    <ImageButton Source="comer.png"
-                         HeightRequest="60"
-                         VerticalOptions="Center" 
-                         Command="{Binding GoToFoodMaps}"
-                         CommandParameter="supermarket" 
-                                 BackgroundColor="Transparent"/>
+                    <Image Source="comer.png"
+                           HeightRequest="60"
+                           HorizontalOptions="CenterAndExpand"
+                           BackgroundColor="Transparent"/>
                     <Label Text="Alimentos"
                    FontFamily="{StaticResource NormalFont}"
                    Grid.Row="1"
@@ -35,15 +40,19 @@
 
 
                 </StackLayout>
-            </Frame>
-            <Frame BackgroundColor="#01608C" CornerRadius="30">
+            </pancakeview:PancakeView>
+            <pancakeview:PancakeView  BackgroundColor="#01608C" 
+                                     CornerRadius="30"
+                                     HeightRequest="100">
+                <pancakeview:PancakeView.GestureRecognizers>
+                    <TapGestureRecognizer   Command="{Binding GoToMaps}"
+                         CommandParameter="pharmacy"/>
+                </pancakeview:PancakeView.GestureRecognizers>
                 <StackLayout Orientation="Horizontal" >
-                    <ImageButton Source="medicina.png"
-                         HeightRequest="60"
-                         VerticalOptions="Center" 
-                         Command="{Binding GoToMedicineMaps}"
-                         CommandParameter="pharmacy" 
-                                 BackgroundColor="Transparent"/>
+                    <Image Source="medicina.png"
+                           HeightRequest="60"
+                           HorizontalOptions="CenterAndExpand"
+                           BackgroundColor="Transparent"/>
                     <Label Text="Medicamentos"
                    FontFamily="{StaticResource NormalFont}"
                    Grid.Row="1"
@@ -54,15 +63,21 @@
 
 
                 </StackLayout>
-            </Frame>
-            <Frame BackgroundColor="#01608C" CornerRadius="30">
+            </pancakeview:PancakeView>
+            <pancakeview:PancakeView BackgroundColor="#01608C" 
+                                     CornerRadius="30"
+                                     HeightRequest="100"
+
+                   >
+                <pancakeview:PancakeView.GestureRecognizers>
+                    <TapGestureRecognizer  Command="{Binding GoToMaps}"
+                         CommandParameter="Helpers"/>
+                </pancakeview:PancakeView.GestureRecognizers>
                 <StackLayout Orientation="Horizontal" >
-                    <ImageButton Source="doctor.png"
-                         HeightRequest="60"
-                         VerticalOptions="Center" 
-                         Command="{Binding GoToMedicalAssintence}"
-                         CommandParameter="Helpers"
-                                 BackgroundColor="Transparent"/>
+                    <Image Source="doctor.png"
+                           HeightRequest="60"
+                           HorizontalOptions="CenterAndExpand"
+                           BackgroundColor="Transparent"/>
                     <Label Text="Asistencia Médica"
                    FontFamily="{StaticResource NormalFont}"
                    Grid.Row="1"
@@ -73,16 +88,18 @@
 
 
                 </StackLayout>
-            </Frame>
+            </pancakeview:PancakeView>
 
-            <Frame BackgroundColor="Red" CornerRadius="30">
+            <pancakeview:PancakeView BackgroundColor="Red" CornerRadius="30" HeightRequest="100">
+                <pancakeview:PancakeView.GestureRecognizers>
+                    <TapGestureRecognizer   Command="{Binding EmergencyCommand}"
+                         CommandParameter="Helpers"/>
+                </pancakeview:PancakeView.GestureRecognizers>
                 <StackLayout Orientation="Horizontal" >
-                    <ImageButton Source="hospital.png"
-                         HeightRequest="60"
-                         VerticalOptions="Center" 
-                         Command="{Binding EmergencyCommand}"
-                         CommandParameter="Helpers"
-                                 BackgroundColor="Transparent"/>
+                    <Image Source="hospital.png"
+                           HeightRequest="60"
+                           HorizontalOptions="CenterAndExpand"
+                           BackgroundColor="Transparent"/>
                     <Label Text="EMERGENCIA"
                    FontFamily="{StaticResource BoldFont}"
                    Grid.Row="1"
@@ -92,7 +109,7 @@
                    VerticalOptions="CenterAndExpand"
                    HorizontalOptions="CenterAndExpand" />
                 </StackLayout>
-            </Frame>
+            </pancakeview:PancakeView>
 
             <Button Text="Quiero ser voluntario!" 
                     FontFamily="{StaticResource NormalFont}"

@@ -28,8 +28,6 @@ namespace COVIDHelp
             containerRegistry.RegisterForNavigation<SignUpPage, SignUpPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
             containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>();
-            containerRegistry.RegisterForNavigation<MedicineMap, MapsPageViewModel>();
-            containerRegistry.RegisterForNavigation<FoodMap, MapsPageViewModel>();
             containerRegistry.RegisterForNavigation<MapsPage, MapsPageViewModel>();
             containerRegistry.RegisterForNavigation<HelpersMainPage>();
             containerRegistry.RegisterForNavigation<HelpPage, HelpPageViewModel>();

@@ -269,9 +269,6 @@
     <AndroidAsset Include="Assets\pharmacy_cross.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\pinubicacion.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidAsset Include="Assets\comestibles.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
