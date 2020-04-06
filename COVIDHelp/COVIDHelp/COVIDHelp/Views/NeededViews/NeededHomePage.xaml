@@ -29,7 +29,7 @@
                    VerticalOptions="CenterAndExpand"
                    HorizontalOptions="StartAndExpand"
                    Grid.ColumnSpan="3"
-                   Margin="30,20,10,35"
+                   Margin="30,60,10,35"
                    FontFamily="{StaticResource BoldFont}"/>
             <ImageButton BackgroundColor="Transparent"
                          Source="dinner"
@@ -81,7 +81,8 @@
                     Margin="20,0,20,10" 
                     TextColor="White"
                     FontFamily="{StaticResource BoldFont}" 
-                    BackgroundColor="DarkRed"/>
+                    BackgroundColor="DarkRed"
+                    Command="{Binding EmergencyCommand}"/>
             <Label Text="Quiero ser voluntario" 
                     Grid.Row="4"
                    HorizontalOptions="End"
@@ -89,14 +90,14 @@
                    TextDecorations="Underline"
                     Grid.ColumnSpan="3"
                     TextColor="#00cbcc"
-                   Margin="0,0,20,160" 
+                   Margin="0,0,20,120" 
                     VerticalOptions="CenterAndExpand"
                     >
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding GoToVolunteer}"/>
                 </Label.GestureRecognizers>
             </Label>
-            
+
         </Grid>
     </ContentPage.Content>
     <ContentPage.Resources>

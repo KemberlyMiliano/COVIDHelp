@@ -4,6 +4,7 @@ using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Essentials;
 
 namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
 {
@@ -13,6 +14,7 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
         public DelegateCommand GoToMaps { get; set; }
         public DelegateCommand GoToMedicalAttention { get; set; }
         public DelegateCommand GoToProfile { get; set; }
+        public DelegateCommand EmergencyCommand { get; set; }
         public HomePageViewModel(INavigationService navigationService, IPageDialogService dialogService) : base(navigationService, dialogService)
         {
             GoToVolunteer = new DelegateCommand(async () =>
@@ -33,6 +35,29 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
             {
                 await navigationService.NavigateAsync(NavigationConstants.ProfilePage);
             });
+
+            EmergencyCommand = new DelegateCommand(async () =>
+            {
+                PlacePhoneCall("911");
+            });
+        }
+        public void PlacePhoneCall(string number)
+        {
+            try
+            {
+                PhoneDialer.Open(number);
+            }
+
+            catch (Exception ex)
+            {
+                ProcessException(ex);
+            }
+        }
+
+        private async void ProcessException(Exception ex)
+        {
+            if (ex != null)
+                await dialogService.DisplayAlertAsync("Error", ex.Message, "OK");
         }
     }
 
