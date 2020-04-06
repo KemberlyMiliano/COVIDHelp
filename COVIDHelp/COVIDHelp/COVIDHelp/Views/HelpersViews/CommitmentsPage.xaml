@@ -20,7 +20,7 @@
                                           Command="{Binding Path=BindingContext.ContactCommand, Source={x:Reference historialPage}}"  
                                           CommandParameter="{Binding .}"/>
                             <MenuItem Text="Detalles" 
-                                          Command="{Binding Path=BindingContext.ContactCommand, Source={x:Reference historialPage}}"
+                                          Command="{Binding Path=BindingContext.DoneCommand, Source={x:Reference historialPage}}"
                                           CommandParameter="{Binding .}"
                                           IsDestructive="True"/>
                         </ViewCell.ContextActions>

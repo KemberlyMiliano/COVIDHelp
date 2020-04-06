@@ -4,12 +4,42 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="COVIDHelp.Views.HelpersViews.MedicalAssistenceRequestPage">
+             x:Class="COVIDHelp.Views.HelpersViews.MedicalAssistenceRequestPage"
+             Title="Requerimiento">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <ScrollView>
+        <StackLayout  Padding="20">
+            <Frame CornerRadius="20">
+                <StackLayout>
+                    <Label Text="Quién te puede ayudar?"
+                   FontFamily="{StaticResource BoldFont}"
+                   FontSize="20"
+                   TextColor="Black"
+                           Margin="0,20,0,20"/>
+                    <StackLayout Orientation="Horizontal">
+                        <ImageButton Source="dinner" HeightRequest="80" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand"/>
+                        <ImageButton Source="dinner" HeightRequest="80" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand"/>
+                        <ImageButton Source="dinner" HeightRequest="80" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand"/>
+
+                    </StackLayout>
+
+                    <Label Text="Cuál es tu situación?"
+                   FontFamily="{StaticResource BoldFont}"
+                   FontSize="20"
+                   TextColor="Black"
+                           Margin="0,20,0,20"/>
+
+                    <Entry Text="Otros" FontFamily="{StaticResource NormalFont}"/>
+                </StackLayout>
+            </Frame>
+            <Button Text="Pedir ayuda"
+                    TextColor="White"  
+                    BackgroundColor="Green" 
+                    CornerRadius="40" 
+                    Margin="0,40,0,0"
+                    FontFamily="{StaticResource BoldFont}"
+                    />
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

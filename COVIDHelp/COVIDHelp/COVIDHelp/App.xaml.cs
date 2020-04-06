@@ -20,7 +20,7 @@ namespace COVIDHelp
         protected override void OnInitialized()
         {
             InitializeComponent();
-            NavigationService.NavigateAsync(new Uri($"{NavigationConstants.LoginPage}", UriKind.Absolute));
+            NavigationService.NavigateAsync(new Uri($"{NavigationConstants.MedicalAssistenceRequestPage}", UriKind.Absolute));
         }
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
