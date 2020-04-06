@@ -15,5 +15,10 @@ namespace COVIDHelp.Services
         Task<User> ValidateUser([Body]User user);
         [Get("/api/Users")]
         Task<List<User>> GetUser();
+         [Get("/api/Users/{cedula}")]
+        Task<User> FindUser(Int64 cedula); 
+        [Get("/api/Users/SendActivationCode")]
+        Task<User> SendCodePhone(Int64 cedula);
     }
 }
+

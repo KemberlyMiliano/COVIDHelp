@@ -132,6 +132,9 @@ namespace COVIDHelp.Models
         public int UserRatingsTotal { get; set; }
         public int Radius { get; set; }
         public string TypePlace { get; set; }
+        
+         [JsonProperty("vicinity")]
+        public string Vicinity { get; set; }
 
     }
 

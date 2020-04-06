@@ -23,7 +23,7 @@ namespace COVIDHelp.ViewModels
         {
             this.apiGoogleServices = apiGoogleServices;
         }
-        async Task GetPlace(string locations,int radius, string type)
+        public async Task GetPlace(string locations,int radius, string type)
         {
             var getresquest = await apiGoogleServices.GetNearbyPlaces(ConfigApi.ApiKeyGoogle, locations,radius,type);
             var places = getresquest.Results;
@@ -38,10 +38,6 @@ namespace COVIDHelp.ViewModels
 
         public void OnNavigatedTo(INavigationParameters parameters)
         {
-            var param = parameters[$"{nameof(Place)}"] as Place;
-            var param2 = parameters[$"{nameof(Locations)}"] as string;
-            LoadPins = new DelegateCommand(async () => await GetPlace(param2, 20000, param.TypePlace));
-            LoadPins.Execute();
 
         }
     }

@@ -8,6 +8,7 @@ using System.Text;
 using Xamarin.Forms;
 using System.Threading.Tasks;
 using COVIDHelp.Services;
+using COVIDHelp.Helpers;
 
 namespace COVIDHelp.ViewModels
 {
@@ -44,10 +45,11 @@ namespace COVIDHelp.ViewModels
                     }
                     else
                     {
+                        user.Cedula.SaveInt("Cedula");
                         var param = new NavigationParameters();
                         param.Add($"{nameof(User)}", user);
                         await navigationService.NavigateAsync(NavigationConstants.HelpersMainPage, param);
-                    }
+                    }   
                 }
             });
 
@@ -78,11 +80,15 @@ namespace COVIDHelp.ViewModels
             try
             {
                 var user = await apiCovitServices.ValidateUser(User);
-                var param = new NavigationParameters
+                if (user != null)
+                {
+
+                    var param = new NavigationParameters
                 {
                     { $"{nameof(User)}", user }
                 };
-                await navigationService.NavigateAsync($"{NavigationConstants.HelpersMainPage}", param);
+                    await navigationService.NavigateAsync($"{NavigationConstants.HelpersMainPage}", param);
+                }
             }
             catch (Exception)
             {

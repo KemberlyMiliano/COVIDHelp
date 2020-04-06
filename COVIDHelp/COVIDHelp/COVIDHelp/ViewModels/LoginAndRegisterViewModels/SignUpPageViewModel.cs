@@ -30,7 +30,7 @@ namespace COVIDHelp.ViewModels
                 selectedGender = value;
                 if (selectedGender != null)
                 {
-                    Gender();
+                    Gender(SelectedGender.Gender);
                 }
             }
         }
@@ -40,6 +40,7 @@ namespace COVIDHelp.ViewModels
         {
             IsVisible = true;
             ImageModel = "eyeW.png";
+            PickerGender();
             ButtonConfirmCommand = new DelegateCommand(async () => {
                     if (String.IsNullOrEmpty(UserR.Nombres) && String.IsNullOrEmpty(UserR.Correo) && String.IsNullOrEmpty(UserR.Password) && String.IsNullOrEmpty(UserR.RepeatPassword))
                     { await dialogService.DisplayAlertAsync("ALERT!", "THERE ARE EMPTY FIELDS", "Ok"); }
@@ -68,12 +69,22 @@ namespace COVIDHelp.ViewModels
         public void PickerGender()
         {
             Genders = new List<TypePicker>() { };
-            Genders.Add(new TypePicker { Gender = "Female" });
-            Genders.Add(new TypePicker { Gender = "Male" });
+            Genders.Add(new TypePicker { Gender = "Masculino" });
+            Genders.Add(new TypePicker { Gender = "Femenino" });
         }
-        public void Gender()
+        public void Gender(string gender )
         {
-            _user.Sexo = SelectedGender.Gender;
+            switch (gender)
+            {
+                case "Female":
+                    UserR.Sexo = gender;
+                    break;
+                case "Femenino":
+                    UserR.Sexo = gender;
+                    break;
+                default:
+                    break;
+            }
         }
 
         async Task NavigateToSelectedSignUp()

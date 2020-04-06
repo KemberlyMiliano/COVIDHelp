@@ -52,11 +52,9 @@
     <EmbeddedResource Update="Views\NeededViews\HomePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-    <Folder Include="Views\TemplateViews\" />
+    <EmbeddedResource Update="Views\TemplateViews\MedicView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

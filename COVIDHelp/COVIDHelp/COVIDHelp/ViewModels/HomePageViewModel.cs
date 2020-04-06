@@ -6,6 +6,7 @@ using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using COVIDHelp.Helpers;
 
 namespace COVIDHelp.ViewModels
 {
@@ -20,13 +21,12 @@ namespace COVIDHelp.ViewModels
             var param = new NavigationParameters();
             GoToMaps = new DelegateCommand<string>( async(filtrar)=> {
                 
-                Place place = new Place();
-                place.Radius = 20000;
-                place.TypePlace = filtrar;
-                string jamon = $"{User.Latitude},{User.Longitude}";
-                param.Add($"{nameof(Locations)}", jamon);
-                param.Add($"{nameof(Place)}",place);
-                await navigationService.NavigateAsync(new Uri(NavigationConstants.MapsPage,UriKind.Relative),param);
+                filtrar.SaveString("type");
+                string latitude = $"{User.Latitude}";
+                string longitude = $"{User.Longitude}";
+                latitude.SaveString("latitude");
+                longitude.SaveString("longitude");
+                await navigationService.NavigateAsync(new Uri(NavigationConstants.MapsPage,UriKind.Relative));
             });
             GoToMapsHelpers = new DelegateCommand(async () =>
             {
