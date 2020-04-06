@@ -77,15 +77,14 @@
                            TextColor="White" />
 
                     <DatePicker x:Name="DateOrbirth"
+                                Date="{Binding UserR.FNacimiento}"
                                 Grid.Row="7"
                                 Grid.ColumnSpan="4"
                                 TextColor="White"  />
 
-                    <Picker x:Name="Gender"
-                            Title="Gender"
+                    <Label x:Name="Gender"
                             Grid.Row="8"
-                            Grid.ColumnSpan="2"
-                            TitleColor="White"  />
+                            Grid.ColumnSpan="2"  />
 
                     <Entry Placeholder="Email Address"
                            Text="{Binding UserR.Correo}"
@@ -93,6 +92,7 @@
                            Grid.ColumnSpan="4"
                            PlaceholderColor="White"
                            TextColor="White" />
+                    
 
                     <Entry Placeholder=" IdOrPassport"
                            Text="{Binding UserR.Password}"
@@ -102,7 +102,7 @@
                            TextColor="White" />
 
                     <Entry Placeholder="Phone"
-                           Text="{Binding UserR}"
+                           Text="{Binding UserR.Telefono}"
                            Grid.Row="11"
                            Grid.ColumnSpan="4"
                            PlaceholderColor="White"
@@ -155,11 +155,17 @@
                            Grid.ColumnSpan="2"
                            PlaceholderColor="White"
                            TextColor="White" />
+                    <Entry Placeholder="Email Address"
+                           Text="{Binding UserR.Cedula}"
+                           Grid.Row="15"
+                           Grid.ColumnSpan="4"
+                           PlaceholderColor="White"
+                           TextColor="White" />
 
                 </StackLayout>
 
                 <Button Text="Confirm"
-                        Grid.Row="15"
+                        Grid.Row="16"
                         Grid.Column="0"
                         Grid.ColumnSpan="4"
                         HorizontalOptions="Center"

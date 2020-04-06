@@ -10,6 +10,10 @@ namespace COVIDHelp.Services
     public interface IApiCovitServices
     {
         [Post("/api/Users")]
-        Task PostUser([Body]User user);
+        Task<User>PostUser([Body]User user);
+        [Post("/api/Users/Login")]
+        Task<User> ValidateUser([Body]User user);
+        [Get("/api/Users")]
+        Task<List<User>> GetUser();
     }
 }

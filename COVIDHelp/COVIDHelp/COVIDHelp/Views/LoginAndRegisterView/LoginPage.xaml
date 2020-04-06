@@ -56,8 +56,9 @@
                        Grid.Row="2"
                        Grid.ColumnSpan="2"/>
                 <Entry Placeholder=""
-                       Text="{Binding UserR.Nombres}"
+                       Text="{Binding User.Correo}"
                        Grid.Row="2"
+                       Keyboard="Email"
                        Grid.Column="0"
                        Grid.ColumnSpan="4"
                        TextColor="White"
@@ -80,7 +81,7 @@
                        Grid.Row="3"
                        Grid.ColumnSpan="2"/>
                 <Entry Placeholder=""
-                       Text="{Binding UserR.Password}"
+                       Text="{Binding User.Password}"
                        IsPassword="{Binding IsVisible}"
                        Grid.Row="3"
                        Grid.Column="0" 
@@ -115,7 +116,7 @@
                 BackgroundColor="Black"
                 CornerRadius="30"
                 HorizontalOptions="Center"
-                Command="{Binding ButtonLogInCommand}"/>
+                Command="{Binding LogInCommand}"/>
 
         <Label Text="or login with"
                Grid.Row="8" 

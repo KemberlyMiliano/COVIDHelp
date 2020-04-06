@@ -19,42 +19,23 @@ namespace COVIDHelp.ViewModels
         public DelegateCommand ButtonEyeClickedCommand { get; set; }
         public ImageSource ImageModel { get; set; }
         public bool IsVisibleList { get; set; } = false;
-        private GooglePlaceAutoCompletePrediction selectGooglePlace;
-
-        public GooglePlaceAutoCompletePrediction SelectGooglePlace
-        {
-            get { return selectGooglePlace; }
-            set { 
-                selectGooglePlace = value;
-                if (selectGooglePlace!=null)
-                {
-                    PickupAddress = selectGooglePlace.Description;
-                }
-            }
-        }
-
-        public ObservableCollection<GooglePlaceAutoCompletePrediction> Places { get; set; }
-        string _pickupAddress;
-        public DelegateCommand<string>GetPlacesCommand { get; set; }
-        public string PickupAddress
-        {
-            get
-            {
-                return _pickupAddress;
-            }
-            set
-            {
-                _pickupAddress = value;
-                if (!string.IsNullOrEmpty(_pickupAddress))
-                {
-                    GetPlacesCommand.Execute(_pickupAddress);
-                }
-            }
-        }
+       
         public bool IsVisible { get; set; }
-        public SignUpPageViewModel(INavigationService navigationService, IPageDialogService dialogService) : base(navigationService, dialogService)
+        public SignUpPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
-            UserR = new User();
+            UserR = new User()
+            {
+                Nombres = "Rafael",
+                Apellidos = "Fernandez",
+                Cedula = 12345678912,
+                Sexo = "M",
+                SelfBiography = "Comiendo habichuela con dulce",
+                Correo = "castillo@gmail.com",
+                Password = "123456",
+                Latitude = "18.5167",
+                Longitude = "18.5167"
+
+            };
             IsVisible = true;
             ImageModel = "eyeW.png";
             ButtonConfirmCommand = new DelegateCommand(async () => {
@@ -68,7 +49,8 @@ namespace COVIDHelp.ViewModels
                     else if (UserR.Password != UserR.RepeatPassword) { await App.Current.MainPage.DisplayAlert("ALERT!", "THE PASSWORD ARE NOT EQUAL", "OK"); }
                     else
                     {
-                        NavigateToSelectedSignUp();
+                        PostUser(UserR);
+                        await NavigateToSelectedSignUp();
                     }
                 });
             ButtonEyeClickedCommand = new DelegateCommand(() => {
@@ -80,7 +62,13 @@ namespace COVIDHelp.ViewModels
     
         async Task NavigateToSelectedSignUp()
         {
-            await navigationService.NavigateAsync(new Uri($"/SelectedSignUpPage", UriKind.Relative));
+            var param = new NavigationParameters();
+            param.Add($"{nameof(User)}", UserR);
+            await navigationService.NavigateAsync(new Uri($"{NavigationConstants.NeededTabbedPage}{NavigationConstants.NeededHomePage}", UriKind.Relative),param);
+        }
+        void PostUser(User user)
+        {
+            apiCovitServices.PostUser(user);
         }
         void VisiblePassWord()
         {

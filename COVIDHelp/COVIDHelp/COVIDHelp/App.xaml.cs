@@ -18,7 +18,7 @@ namespace COVIDHelp
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync(new Uri("/SignUpPage", UriKind.Relative));
+            NavigationService.NavigateAsync(new Uri("/LoginPage", UriKind.Absolute));
 
         }
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -29,6 +29,8 @@ namespace COVIDHelp
             containerRegistry.RegisterForNavigation<MapsPage, MapsPageViewModel>();
             containerRegistry.RegisterForNavigation<HelpersMainPage>();
             containerRegistry.RegisterForNavigation<HelpPage>();
+            containerRegistry.RegisterInstance<IApiCovitServices>(new ApiCovitServices());
+            containerRegistry.RegisterInstance<IApiGoogleServices>(new ApiGoogleServices());
 
         }
     }

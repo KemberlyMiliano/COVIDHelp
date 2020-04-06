@@ -2,17 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms.GoogleMaps;
 
 namespace COVIDHelp.Models
 {
     public class User
     {
-
         [JsonProperty("id")]
         public int Id { get; set; }
 
         [JsonProperty("cedula")]
-        public string Cedula { get; set; }
+        public Int64 Cedula { get; set; }
 
         [JsonProperty("nombres")]
         public string Nombres { get; set; }
@@ -22,6 +22,9 @@ namespace COVIDHelp.Models
 
         [JsonProperty("correo")]
         public string Correo { get; set; }
+
+        [JsonProperty("telefono")]
+        public string Telefono { get; set; }
 
         [JsonProperty("password")]
         public string Password { get; set; }
@@ -55,6 +58,9 @@ namespace COVIDHelp.Models
 
         [JsonProperty("stars")]
         public int Stars { get; set; }
+
+        [JsonProperty("isActive")]
+        public bool IsActive { get; set; }
 
         [JsonProperty("rating")]
         public int Rating { get; set; }
