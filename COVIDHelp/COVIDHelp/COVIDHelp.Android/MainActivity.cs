@@ -21,6 +21,7 @@ namespace COVIDHelp.Droid
 
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.SetFlags("CarouselView_Experimental");
+            global::Xamarin.Forms.Forms.SetFlags("SwipeView_Experimental");
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);

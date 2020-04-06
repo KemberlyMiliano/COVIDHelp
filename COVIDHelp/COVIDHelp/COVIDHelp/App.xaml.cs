@@ -28,14 +28,19 @@ namespace COVIDHelp
             containerRegistry.RegisterForNavigation<SignUpPage, SignUpPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
             containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>();
+            containerRegistry.RegisterForNavigation<MedicineMap, MapsPageViewModel>();
+            containerRegistry.RegisterForNavigation<FoodMap, MapsPageViewModel>();
             containerRegistry.RegisterForNavigation<MapsPage, MapsPageViewModel>();
             containerRegistry.RegisterForNavigation<HelpersMainPage>();
-            containerRegistry.RegisterForNavigation<HelpPage,HelpPageViewModel>();
+            containerRegistry.RegisterForNavigation<HelpPage, HelpPageViewModel>();
             containerRegistry.RegisterInstance<IApiCovitServices>(new ApiCovitServices());
             containerRegistry.RegisterInstance<IApiGoogleServices>(new ApiGoogleServices());
             containerRegistry.RegisterForNavigation<HomePage, ViewModels.HomePageViewModel>();
             containerRegistry.RegisterForNavigation<CommitmentsPage, CommitmentsPageViewModel>();
             containerRegistry.RegisterForNavigation<LocationPermitionPage, LocationPermitionPageViewModel>();
+            containerRegistry.RegisterForNavigation<RequestDetailPage, RequestDetailPageViewModel>();
+            containerRegistry.RegisterForNavigation<MedicalAssistenceRequestPage, MedicalAssistenceRequestPageViewModel>();
+
 
         }
     }
