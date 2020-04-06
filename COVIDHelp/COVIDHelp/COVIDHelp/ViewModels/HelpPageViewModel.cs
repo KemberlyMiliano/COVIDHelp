@@ -19,11 +19,11 @@ namespace COVIDHelp.ViewModels
         public DelegateCommand<Necesity> GoToRequestDetail { get; set; }
         public HelpPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices, IApiGoogleServices apiGoogleServices) : base(navigationService, dialogService, apiCovitServices)
         {
-            Requests.Add(new Necesity { Image = "home", NeededPerson = "Eladio Rodriguez", Status = "Regular" });
-            Requests.Add(new Necesity { Image = "profile", NeededPerson = "Eladio Rodriguez", Status = "Regular" });
-            Requests.Add(new Necesity { Image = "home", NeededPerson = "Eladio Rodriguez", Status = "Regular" });
-            Requests.Add(new Necesity { Image = "profile", NeededPerson = "Eladio Rodriguez", Status = "Regular" });
-            Requests.Add(new Necesity { Image = "home", NeededPerson = "Eladio Rodriguez", Status = "Regular" });
+            Requests.Add(new Necesity { Image = "defaultUser", NeededPerson = "Eladio Rodriguez", Status = "Regular" });
+            Requests.Add(new Necesity { Image = "defaultUser", NeededPerson = "Eladio Rodriguez", Status = "Regular" });
+            Requests.Add(new Necesity { Image = "defaultUser", NeededPerson = "Eladio Rodriguez", Status = "Regular" });
+            Requests.Add(new Necesity { Image = "defaultUser", NeededPerson = "Eladio Rodriguez", Status = "Regular" });
+            Requests.Add(new Necesity { Image = "defaultUser", NeededPerson = "Eladio Rodriguez", Status = "Regular" });
 
             GoToRequestDetail = new DelegateCommand<Necesity>(async (necesity) =>
             {
@@ -43,7 +43,6 @@ namespace COVIDHelp.ViewModels
         {
 
         }
-
         public void OnNavigatedTo(INavigationParameters parameters)
         {
             var param = parameters[$"{nameof(User)}"] as User;

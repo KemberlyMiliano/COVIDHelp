@@ -15,18 +15,18 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
     public class CommitmentsPageViewModel : BaseViewModel
     {
         public DelegateCommand ContactCommand { get; set; }
-        public DelegateCommand DoneCommand { get; set; }
+        public DelegateCommand DetailCommand { get; set; }
         public ObservableCollection<Necesity> Historial { get; set; } = new ObservableCollection<Necesity>();
         public CommitmentsPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
-            Historial.Add(new Necesity { Image = "home", NeededPerson = "Rosa", Status = "Mal" });
-            Historial.Add(new Necesity { Image = "profile", NeededPerson = "Rosa", Status = "Mal" });
-            Historial.Add(new Necesity { Image = "home", NeededPerson = "Rosa", Status = "Mal" });
-            Historial.Add(new Necesity { Image = "profile", NeededPerson = "Rosa", Status = "Mal" });
-            Historial.Add(new Necesity { Image = "home", NeededPerson = "Rosa", Status = "Mal" });
-            Historial.Add(new Necesity { Image = "profile", NeededPerson = "Rosa", Status = "Mal" });
-            Historial.Add(new Necesity { Image = "home", NeededPerson = "Rosa", Status = "Mal" });
-            Historial.Add(new Necesity { Image = "profile", NeededPerson = "Rosa", Status = "Mal" });
+            Historial.Add(new Necesity { Image = "defaultUser", NeededPerson = "Rosa", Status = "Mal" });
+            Historial.Add(new Necesity { Image = "defaultUser", NeededPerson = "Rosa", Status = "Mal" });
+            Historial.Add(new Necesity { Image = "defaultUser", NeededPerson = "Rosa", Status = "Mal" });
+            Historial.Add(new Necesity { Image = "defaultUser", NeededPerson = "Rosa", Status = "Mal" });
+            Historial.Add(new Necesity { Image = "defaultUser", NeededPerson = "Rosa", Status = "Mal" });
+            Historial.Add(new Necesity { Image = "defaultUser", NeededPerson = "Rosa", Status = "Mal" });
+            Historial.Add(new Necesity { Image = "defaultUser", NeededPerson = "Rosa", Status = "Mal" });
+            Historial.Add(new Necesity { Image = "defaultUser", NeededPerson = "Rosa", Status = "Mal" });
 
             ContactCommand = new DelegateCommand(async () =>
             {
@@ -34,10 +34,9 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
 
             });
 
-            DoneCommand = new DelegateCommand(() =>
+            DetailCommand = new DelegateCommand(async () =>
             {
-
-
+                await navigationService.NavigateAsync(new Uri(NavigationConstants.NecesityDetailPage, UriKind.Relative));
             });
         }
         private async Task OpenWhatsApp(string number, string text)

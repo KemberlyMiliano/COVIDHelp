@@ -70,14 +70,15 @@
 
                    >
                 <pancakeview:PancakeView.GestureRecognizers>
-                    <TapGestureRecognizer  Command="{Binding GoToMaps}"
+                    <TapGestureRecognizer  Command="{Binding GoToMedicalAssintence}"
                          CommandParameter="Helpers"/>
                 </pancakeview:PancakeView.GestureRecognizers>
                 <StackLayout Orientation="Horizontal" >
                     <Image Source="doctor.png"
                            HeightRequest="60"
                            HorizontalOptions="CenterAndExpand"
-                           BackgroundColor="Transparent"/>
+                           BackgroundColor="Transparent"
+                           />
                     <Label Text="Asistencia Médica"
                    FontFamily="{StaticResource NormalFont}"
                    Grid.Row="1"
@@ -113,7 +114,7 @@
 
             <Button Text="Quiero ser voluntario!" 
                     FontFamily="{StaticResource NormalFont}"
-                    Command="{Binding GoToVolunteer}"
+                    Command="{Binding GoToIdentification}"
                     WidthRequest="300"
                     TextColor="Black" 
                     CornerRadius="20"

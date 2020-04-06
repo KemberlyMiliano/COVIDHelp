@@ -6,12 +6,13 @@
              mc:Ignorable="d"
              x:Class="COVIDHelp.Views.HelpersViews.HelpPage"
              xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             x:Name="helpPage">
     <ContentPage.Content>
-        <Grid Margin="10">
+        <Grid BackgroundColor="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="200"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <maps:Map x:Name="map"
                       Grid.Row="0"
@@ -24,29 +25,40 @@
                     </DataTemplate>
                 </maps:Map.ItemTemplate>
             </maps:Map>
-            <CarouselView Grid.Row="1"
-                          ItemsSource="{Binding Requests}"
-                          PeekAreaInsets="80">
-                <CarouselView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
-                </CarouselView.ItemsLayout>
-                <CarouselView.ItemTemplate>
+            <ListView Grid.Row="1"
+                      ItemsSource="{Binding Requests}"
+                      RowHeight="80">
+
+                <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Frame BackgroundColor="White" HorizontalOptions="Center" CornerRadius="5" HeightRequest="40" WidthRequest="40">
-                            <StackLayout>
-                                <Image Source="{Binding Image}" HeightRequest="50"/>
-                                <Label Text="{Binding NeededPerson}" HorizontalTextAlignment="Center"/>
-                                <Label Text="{Binding Status}" HorizontalTextAlignment="Center"/>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="{Binding Image}" HeightRequest="50" Margin="10,0,10,0"/>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Label Text="{Binding NeededPerson}" 
+                                           VerticalOptions="End" 
+                                           TextColor="Black"
+                                           FontFamily="{StaticResource BoldFont}" />
+                                    <Label Text="{Binding Status}" 
+                                           VerticalTextAlignment="Center" 
+                                           TextColor="Black"
+                                           Grid.Row="1" 
+                                           VerticalOptions="Start"
+                                           FontFamily="{StaticResource NormalFont}" />
+                                </Grid>
                                 <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding GoToRequestDetail}"
+                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.GoToRequestDetail, Source={x:Reference helpPage}}"
                                                           CommandParameter="{Binding .}"/>
                                 </StackLayout.GestureRecognizers>
                             </StackLayout>
-
-                        </Frame>
+                        </ViewCell>
                     </DataTemplate>
-                </CarouselView.ItemTemplate>
-            </CarouselView>
+                </ListView.ItemTemplate>
+            </ListView>
 
         </Grid>
     </ContentPage.Content>
