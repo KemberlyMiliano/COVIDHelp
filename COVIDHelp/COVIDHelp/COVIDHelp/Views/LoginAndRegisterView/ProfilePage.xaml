@@ -18,10 +18,10 @@
                     <RowDefinition Height="AUTO" />
                 </Grid.RowDefinitions>
 
-                <Image Aspect="AspectFill" Source="profileBackground.jpeg" />
+                <Image Aspect="AspectFill" BackgroundColor="#014666"/>
                 <Image Aspect="Fill" Margin="0,-1,0,-1" Source="CurvedMask" VerticalOptions="End" />
 
-                <Image HeightRequest="100" HorizontalOptions="Center" Source="profileImage.png" TranslationY="50" VerticalOptions="End" WidthRequest="100" />
+                <Image HeightRequest="100" HorizontalOptions="Center" Source="defaultUser" TranslationY="50" VerticalOptions="End" WidthRequest="100" />
 
                 <StackLayout Grid.Row="1" Padding="0,50,0,00" HorizontalOptions="Center" Margin="0,40,0,0">
                     <Label Text="{Binding User.Nombres}"  HorizontalOptions="Center" FontFamily="{StaticResource BoldFont}" FontSize="20" TextColor="#585858"/>

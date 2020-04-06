@@ -33,7 +33,22 @@ namespace COVIDHelp.ViewModels
                 }
                 else
                 {
+<<<<<<< HEAD
                    await ValidateUser();
+=======
+                    var user = await apiCovitServices.ValidateUser(User);
+                    if (user == null)
+                    {
+                        await dialogService.DisplayAlertAsync("ALERT!", "Incorrect password/email", "Ok");
+                    }
+                    else
+                    {
+                        var param = new NavigationParameters();
+                        param.Add($"{nameof(User)}", user);
+                        await navigationService.NavigateAsync(NavigationConstants.HelpersMainPage, param);
+                    }
+                   
+>>>>>>> e5a2ddcafcf67f52a494b511595a5894d82b5bc4
                 }
             });
 
