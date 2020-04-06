@@ -1,7 +1,9 @@
 ﻿using COVIDHelp.Services;
 using COVIDHelp.ViewModels;
+using COVIDHelp.ViewModels.LoginAndRegisterViewModels;
 using COVIDHelp.Views;
 using COVIDHelp.Views.HelpersViews;
+using COVIDHelp.Views.LoginAndRegisterView;
 using COVIDHelp.Views.NeededViews;
 using Prism;
 using Prism.Ioc;
@@ -18,7 +20,11 @@ namespace COVIDHelp
         {
             InitializeComponent();
 
+<<<<<<< HEAD
             NavigationService.NavigateAsync(new Uri("/LoginPage", UriKind.Absolute));
+=======
+            NavigationService.NavigateAsync(new Uri("/HelpersMainPage", UriKind.Relative));
+>>>>>>> f0f766ba39aa5979a1e5928b06a963a79bfa26f7
 
         }
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -28,9 +34,15 @@ namespace COVIDHelp
             containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>();
             containerRegistry.RegisterForNavigation<MapsPage, MapsPageViewModel>();
             containerRegistry.RegisterForNavigation<HelpersMainPage>();
+            containerRegistry.RegisterForNavigation<LocationPermitionPage>();
             containerRegistry.RegisterForNavigation<HelpPage>();
+<<<<<<< HEAD
             containerRegistry.RegisterInstance<IApiCovitServices>(new ApiCovitServices());
             containerRegistry.RegisterInstance<IApiGoogleServices>(new ApiGoogleServices());
+=======
+            containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
+            containerRegistry.RegisterForNavigation<CommitmentsPage, CommitmentsPageViewModel>();
+>>>>>>> f0f766ba39aa5979a1e5928b06a963a79bfa26f7
 
         }
     }

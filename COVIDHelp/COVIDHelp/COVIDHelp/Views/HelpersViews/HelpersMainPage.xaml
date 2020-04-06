@@ -8,11 +8,17 @@
             mc:Ignorable="d"
              x:Class="COVIDHelp.Views.HelpersViews.HelpersMainPage"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            xmlns:helper1="clr-namespace:COVIDHelp.Views.NeededViews"
             android:TabbedPage.ToolbarPlacement="Bottom"
             android:TabbedPage.BarItemColor ="#80D7FF"
             android:TabbedPage.BarSelectedItemColor ="White"
             BarBackgroundColor="#00344D">
     <TabbedPage.Children>
+        <NavigationPage IconImageSource="home">
+            <x:Arguments>
+                <helper1:HomePage/>
+            </x:Arguments>
+        </NavigationPage>
         <NavigationPage IconImageSource="commitments">
             <x:Arguments>
                 <helper:CommitmentsPage/>
