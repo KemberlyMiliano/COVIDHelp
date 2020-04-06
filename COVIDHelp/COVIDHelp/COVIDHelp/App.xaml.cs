@@ -30,11 +30,10 @@ namespace COVIDHelp
             containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>();
             containerRegistry.RegisterForNavigation<MapsPage, MapsPageViewModel>();
             containerRegistry.RegisterForNavigation<HelpersMainPage>();
-            containerRegistry.RegisterForNavigation<LocationPermitionPage>();
-            containerRegistry.RegisterForNavigation<HelpPage>();
+            containerRegistry.RegisterForNavigation<HelpPage,HelpPageViewModel>();
             containerRegistry.RegisterInstance<IApiCovitServices>(new ApiCovitServices());
             containerRegistry.RegisterInstance<IApiGoogleServices>(new ApiGoogleServices());
-            containerRegistry.RegisterForNavigation<HomePage>();
+            containerRegistry.RegisterForNavigation<HomePage, ViewModels.HomePageViewModel>();
             containerRegistry.RegisterForNavigation<CommitmentsPage, CommitmentsPageViewModel>();
             containerRegistry.RegisterForNavigation<LocationPermitionPage, LocationPermitionPageViewModel>();
 

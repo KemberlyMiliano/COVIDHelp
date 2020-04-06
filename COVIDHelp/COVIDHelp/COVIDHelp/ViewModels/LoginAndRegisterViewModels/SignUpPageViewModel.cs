@@ -15,10 +15,26 @@ namespace COVIDHelp.ViewModels
     public class SignUpPageViewModel : BaseViewModel,INavigatedAware
     {
         public User UserR { get; set; } = new User();
+        User _user;
         public DelegateCommand ButtonConfirmCommand { get; set; }
         public DelegateCommand ButtonEyeClickedCommand { get; set; }
+        public DelegateCommand AddImageUserCommand { get; set; }
         public ImageSource ImageModel { get; set; }
-       
+        public List<TypePicker> Genders { get; set; }
+        private TypePicker selectedGender;
+        public TypePicker SelectedGender
+        {
+            get { return selectedGender; }
+            set
+            {
+                selectedGender = value;
+                if (selectedGender != null)
+                {
+                    Gender();
+                }
+            }
+        }
+
         public bool IsVisible { get; set; }
         public SignUpPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
@@ -44,9 +60,22 @@ namespace COVIDHelp.ViewModels
 
                 VisiblePassWord();
             });
+            AddImageUserCommand = new DelegateCommand(() => {
+                // a;adir la imagen del usuario (usar permisos de camara y galeria.)
+            });
 
         }
-    
+        public void PickerGender()
+        {
+            Genders = new List<TypePicker>() { };
+            Genders.Add(new TypePicker { Gender = "Female" });
+            Genders.Add(new TypePicker { Gender = "Male" });
+        }
+        public void Gender()
+        {
+            _user.Sexo = SelectedGender.Gender;
+        }
+
         async Task NavigateToSelectedSignUp()
         {
             var param = new NavigationParameters();

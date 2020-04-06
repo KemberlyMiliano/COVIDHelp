@@ -49,12 +49,14 @@
                        FontSize="35" 
                        FontAttributes="Bold"
                        Grid.Row="1"
+                       FontFamily="{StaticResource BoldFont}"
                        Grid.ColumnSpan="2"/>
                 <Label Text="Email"
                        TextColor="White"
                        FontSize="20"
                        Grid.Row="2"
-                       Grid.ColumnSpan="2"/>
+                       Grid.ColumnSpan="2"
+                       FontFamily="{StaticResource NormalFont}"/>
                 <Entry Placeholder=""
                        Text="{Binding User.Correo}"
                        Grid.Row="2"
@@ -62,13 +64,15 @@
                        Grid.Column="0"
                        Grid.ColumnSpan="4"
                        TextColor="White"
-                       PlaceholderColor="White" />
+                       PlaceholderColor="White" 
+                       FontFamily="{StaticResource NormalFont}"/>
                 <Image Source="{Binding ImageModel}"
-                       Grid.Row="0"
+                       Grid.Row="3"
                        Grid.ColumnSpan="4"
                        HorizontalOptions="End" 
-                       HeightRequest="30"
-                       TranslationY="260">
+                       VerticalOptions="Center"
+                       TranslationX="-35"
+                       HeightRequest="30">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ButtonEyeClickedCommand}"
                                           NumberOfTapsRequired="1"/>
@@ -79,21 +83,31 @@
                        TextColor="White"
                        FontSize="20" 
                        Grid.Row="3"
-                       Grid.ColumnSpan="2"/>
+                       Grid.ColumnSpan="2"
+                       FontFamily="{StaticResource NormalFont}"/>
                 <Entry Placeholder=""
                        Text="{Binding User.Password}"
                        IsPassword="{Binding IsVisible}"
                        Grid.Row="3"
                        Grid.Column="0" 
-                       Grid.ColumnSpan="4" 
+                       Grid.ColumnSpan="3" 
                        TextColor="White"
-                       PlaceholderColor="White" />
-                <Label Text="Forgot Password?"
+                       PlaceholderColor="White"
+                       FontFamily="{StaticResource NormalFont}"/>
+                <Label
+                       Text="Forgot Password?"
                        TextColor="White" 
                        FontSize="18" 
                        Grid.Row="4" 
                        HorizontalOptions="EndAndExpand"
-                       Grid.ColumnSpan="4"/>
+                       Grid.ColumnSpan="4"
+                       FontFamily="{StaticResource NormalFont}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"
+                                          NumberOfTapsRequired="1"/>
+
+                    </Label.GestureRecognizers>
+                </Label> 
             </Grid>
         </pancakeview:PancakeView>
 
@@ -132,7 +146,13 @@
                Grid.ColumnSpan="4"
                HorizontalOptions="Center" 
                HeightRequest="75"
-               WidthRequest="50"/>
+               WidthRequest="50">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding LoginWithGoogleCommand}"
+                                          NumberOfTapsRequired="1"/>
+
+            </Image.GestureRecognizers>
+        </Image> 
         
     </Grid>
 </ContentPage>

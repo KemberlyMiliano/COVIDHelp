@@ -13,18 +13,9 @@
                 <Grid.RowDefinitions >
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions >
@@ -35,8 +26,11 @@
 
                 </Grid.ColumnDefinitions>
 
-                <Image Source="bg.jpg" Grid.Row="0" Grid.RowSpan="4" Aspect="AspectFill" Grid.ColumnSpan="4" />
-                <pancakeview:PancakeView BackgroundColor="#014666" CornerRadius="0,0,60,60"  Grid.Row="3" Grid.RowSpan="13" Grid.Column="0" Grid.ColumnSpan="4">
+               
+                <pancakeview:PancakeView Grid.Row="0" BackgroundColor="White" Grid.ColumnSpan="4" CornerRadius="0,0,200,200" >
+                    <Image Source="bg.jpg" Grid.Row="0" Aspect="AspectFill" Grid.ColumnSpan="4" />
+                </pancakeview:PancakeView>
+                <pancakeview:PancakeView BackgroundColor="#014666" CornerRadius="60,60,60,60"  Grid.Row="1" Grid.RowSpan="13" Grid.Column="0" Grid.ColumnSpan="4">
 
                     <Grid Padding="30">
                         <Grid.RowDefinitions>
@@ -63,55 +57,65 @@
                            Grid.Row="1"
                            Grid.ColumnSpan="4"
                            PlaceholderColor="White"
-                               VerticalOptions="End"
-                           TextColor="White"/>
+                           VerticalOptions="End"
+                           TextColor="White"
+                           FontFamily="{StaticResource NormalFont}"/>
 
                         <Entry Placeholder=" Last Name"
                            Text="{Binding UserR.Apellidos}"
                            Grid.Row="2"
                            Grid.ColumnSpan="4"
                            PlaceholderColor="White"
-                           TextColor="White" />
+                           TextColor="White" 
+                           FontFamily="{StaticResource NormalFont}"/>
                         <DatePicker x:Name="DateOrbirth"
                                 Date="{Binding UserR.FNacimiento}"
-                                Grid.Row="7"
+                                Grid.Row="3"
                                 Grid.ColumnSpan="4"
-                                TextColor="White"  />
+                                TextColor="White" 
+                                FontFamily="{StaticResource NormalFont}"/>
 
 
-                        <Picker x:Name="Gender"
+                        <Picker x:Name="Gender"   
+                            ItemsSource="{Binding Genders}"
+                            SelectedItem="{Binding SelectedGender}"
+                            ItemDisplayBinding="{Binding Gender}"
                             Title="Gender"
-                                Grid.Row="8"
+                            Grid.Row="4"
                             Grid.ColumnSpan="2" 
-                            TitleColor="White"  />
+                            TitleColor="White"
+                            TextColor="Black"
+                           FontFamily="{StaticResource NormalFont}"/>
                         <Entry Placeholder="Email Address"
                            Text="{Binding UserR.Correo}"
                            Grid.Row="5"
                            Grid.ColumnSpan="4"
                            PlaceholderColor="White"
-                           TextColor="White" />
+                           TextColor="White"
+                           FontFamily="{StaticResource NormalFont}"/>
 
 
-                        <Entry Placeholder=" IdOrPassport"
+                        <Entry Placeholder=" ID or Passport"
                            Text="{Binding UserR.Password}"
                            Grid.Row="6"
                            Grid.ColumnSpan="4"
                            PlaceholderColor="White"
-                           TextColor="White" />
+                           TextColor="White"
+                           FontFamily="{StaticResource NormalFont}"/>
                         <Entry Placeholder="Phone"
-                           Text="{Binding UserR.Telefono}"
-                           Grid.Row="11"/>
-                        <Entry Placeholder="Phone"
-                           Text="{Binding UserR}"
-                           Grid.Row="7"/>
-
-
-                        <Entry Placeholder="Direccion"
+                               Text="{Binding UserR.Telefono}"
+                               Grid.Row="7"
+                               TextColor="White"
+                               Grid.ColumnSpan="4" 
+                               PlaceholderColor="White"
+                                FontFamily="{StaticResource NormalFont}"/>
+                        <Entry Placeholder="Address"
                            Text="{Binding UserR.Direccion}"
                            Grid.Row="8"
                            Grid.ColumnSpan="4"
                            PlaceholderColor="White"
-                           TextColor="White"/>
+                           TextColor="White"
+                           FontFamily="{StaticResource NormalFont}"/>
 
                         <Image Source="{Binding ImageModel}"
                            Grid.Row="9"
@@ -154,27 +158,32 @@
                            Grid.ColumnSpan="3"
                            PlaceholderColor="White"
                            TextColor="White" />
-                        <Entry Placeholder="Email Address"
-                           Text="{Binding UserR.Cedula}"
-                           Grid.Row="15"
-                           Grid.ColumnSpan="4"
-                           PlaceholderColor="White"
-                           TextColor="White" />
                     </Grid>
 
                 </pancakeview:PancakeView>
                 <Button Text="Confirm"
-                        Grid.Row="16"
-                        TranslationY="-25"
+                        Grid.Row="14"
+                        TranslationY="-30"
+                        WidthRequest="200"
                         Grid.Column="0"
                         Grid.ColumnSpan="4"
                         HorizontalOptions="CenterAndExpand"
-                        CornerRadius="10"
-                        BackgroundColor="Black"
-                        TextColor="White"
-                        Command="{Binding ButtonConfirmCommand}"/>
+                        CornerRadius="20"
+                        BackgroundColor="White"
+                        TextColor="Black"
+                        BorderColor="#014666"
+                        BorderWidth="2"
+                        Command="{Binding ButtonConfirmCommand}"
+                        FontFamily="{StaticResource BoldFont}"/>
 
-                <Image Source="PP.png" Grid.Row="1" Grid.RowSpan="3" Aspect="AspectFit" Grid.ColumnSpan="4" Opacity="0.8" HeightRequest="100" />
+                <Image Source="PP.png" Grid.Row="0" Grid.RowSpan="1" TranslationY="60" Grid.ColumnSpan="4"  HeightRequest="50" WidthRequest="20">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AddImageUserCommand}"
+                                          NumberOfTapsRequired="1"/>
+
+                    </Image.GestureRecognizers>
+                </Image>  
+                
 
             </Grid>
         </ScrollView>

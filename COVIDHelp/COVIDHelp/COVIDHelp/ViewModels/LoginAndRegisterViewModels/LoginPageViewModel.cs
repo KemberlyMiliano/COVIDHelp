@@ -17,6 +17,8 @@ namespace COVIDHelp.ViewModels
         public DelegateCommand LogInCommand { get; set; }
         public DelegateCommand ButtonSignUpCommand { get; set; }
         public DelegateCommand ButtonEyeClickedCommand { get; set; }
+        public DelegateCommand ForgotPasswordCommand { get; set; }
+        public DelegateCommand LoginWithGoogleCommand { get; set; }
         public ImageSource ImageModel { get; set; }
         public bool IsVisible { get; set; }
 
@@ -37,6 +39,7 @@ namespace COVIDHelp.ViewModels
                     var user = await apiCovitServices.ValidateUser(User);
                     if (user == null)
                     {
+
                         await dialogService.DisplayAlertAsync("ALERT!", "Incorrect password/email", "Ok");
                     }
                     else
@@ -57,6 +60,13 @@ namespace COVIDHelp.ViewModels
 
                 VisiblePassWord();
             });
+            ForgotPasswordCommand = new DelegateCommand(() => {
+                //enviar correo con sus datos obtenidos del API.
+            });
+            LoginWithGoogleCommand = new DelegateCommand(() => {
+                // Logearse con Google.
+            });
+
         }
 
         async Task NavigateToRegister()

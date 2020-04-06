@@ -4,11 +4,12 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             BackgroundColor="#01608C"
              x:Class="COVIDHelp.Views.NeededViews.HomePage"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Content>
-        <Grid>
+        <Grid Padding="40" RowSpacing="30">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -18,84 +19,129 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Label Text="Qué necesitas? " 
-                   FontSize="36"
-                   TextColor="Black"
-                   Grid.Row="1"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="StartAndExpand"
-                   Grid.ColumnSpan="3"
-                   Margin="30,60,10,35"
-                   FontFamily="{StaticResource BoldFont}"/>
-            <ImageButton BackgroundColor="Transparent"
-                         Source="dinner"
-                         Grid.Column="0"
-                         Grid.Row="2"
-                         Command="{Binding GoToMaps}"
-                         CommandParameter="supermarket"
-                         Margin="25,5,5,5"
-                         />
-            <Label Text="Alimentos"
-                   Grid.Column="0"
-                   FontFamily="{StaticResource NormalFont}"
-                     HorizontalOptions="CenterAndExpand"
-                   Grid.Row="3"
-                   />
-            <ImageButton BackgroundColor="Transparent"
-                         Grid.Column="1"
-                         Grid.Row="2"
-                         Source="pill"
-                         Command="{Binding GoToMaps}"
-                         CommandParameter="pharmacy"
-                          Margin="8"/>
-            <Label Text="Medicina"
-                   FontFamily="{StaticResource NormalFont}"
+            <Label Text="Necesitas ayuda?"
+                   TextColor="White"
+                   FontSize="25"
+                   Grid.Row="0" 
+                   Grid.ColumnSpan="4"
+                   VerticalOptions="Center" 
                    HorizontalOptions="CenterAndExpand"
-                   Grid.Column="1"
-                   Grid.Row="3"
-                   />
-            <ImageButton BackgroundColor="Transparent"
-                         Grid.Column="2"
+                   FontFamily="{StaticResource BoldFont}" />
+            
+
+            <ImageButton Source="comer.png"
+                         HeightRequest="100"
+                         BorderColor="White"
+                         BorderWidth="1"
+                         WidthRequest="300"
+                         CornerRadius="40"
+                         BackgroundColor="Transparent"
+                         Grid.Row="1"
+                         Grid.ColumnSpan="4"
+                         VerticalOptions="Center" 
+                         HorizontalOptions="CenterAndExpand"
+                         Command="{Binding GoToMaps}"
+                         CommandParameter="supermarket" />
+            
+            <Label Text="Alimentos"
+                   FontFamily="{StaticResource NormalFont}"
+                   Grid.Row="1"
+                   TextColor="White"
+                   FontSize="18"
+                   Margin="0,-20"
+                   Grid.ColumnSpan="4"
+                   VerticalOptions="End"
+                   HorizontalOptions="CenterAndExpand" />
+
+
+            <ImageButton Source="medicina.png"
+                         HeightRequest="100" 
+                         WidthRequest="300" 
+                         CornerRadius="40" 
+                         BorderColor="White" 
+                         BorderWidth="1" 
+                         BackgroundColor="Transparent"
                          Grid.Row="2"
-                         Source="doctor"
-                         CommandParameter="Helpers"
-                          Margin="8,8,25,8"/>
-            <Label Text="Atención Médica"
-                   Grid.Column="2"
+                         Grid.ColumnSpan="4"
+                         VerticalOptions="Center" 
+                         HorizontalOptions="CenterAndExpand" 
+                         Command="{Binding GoToMaps}"
+                         CommandParameter="pharmacy"/>
+            <Label Text="Medicamentos"
+                   Grid.Row="2" 
                    FontFamily="{StaticResource NormalFont}"
-                     HorizontalOptions="CenterAndExpand"  
-                   HorizontalTextAlignment="Center"
+                   TextColor="White"
+                   FontSize="18"
+                   Margin="0,-20"
+                   Grid.ColumnSpan="4"
+                   VerticalOptions="End"
+                   HorizontalOptions="CenterAndExpand" />
+            
+            
+            <ImageButton Source="doctor.png"
+                         HeightRequest="100"
+                         WidthRequest="300" 
+                         CornerRadius="40" 
+                         BorderWidth="1"
+                         BorderColor="White" 
+                         BackgroundColor="Transparent"
+                         Grid.Row="3"
+                         Grid.ColumnSpan="4"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="CenterAndExpand" CommandParameter="Helpers" />
+            <Label Text="Asistencia Medica"
+                   FontFamily="{StaticResource NormalFont}"
                    Grid.Row="3"
-                   Margin="0,0,20,40"
-                   />
-            <Button Text="Emergencia" 
-                    CornerRadius="10"  
-                    Grid.Row="5" 
-                    Grid.ColumnSpan="3" 
-                    Padding="50" 
-                    Margin="20,0,20,10" 
-                    TextColor="White"
-                    FontFamily="{StaticResource BoldFont}" 
-                    BackgroundColor="DarkRed"
-                    Command="{Binding EmergencyCommand}"/>
-            <Label Text="Quiero ser voluntario" 
-                    Grid.Row="4"
-                   HorizontalOptions="End"
-                   FontFamily="{StaticResource NormalFont}"
+                   TextColor="White"
+                   FontSize="18"
+                   Margin="0,-20"
+                   Grid.ColumnSpan="4"
+                   VerticalOptions="End" 
+                   HorizontalOptions="CenterAndExpand" />
+
+
+            <ImageButton Source="hospital.png"
+                         Command="{Binding EmergencyCommand}"
+                         HeightRequest="100"
+                         WidthRequest="300"
+                         CornerRadius="40" 
+                         BorderWidth="1"
+                         BorderColor="White"
+                         BackgroundColor="Red" 
+                         Grid.Row="4"
+                         Grid.ColumnSpan="4"
+                         VerticalOptions="Center" 
+                         HorizontalOptions="CenterAndExpand"/>
+            <Label Text="EMERGENCIA"
+                   FontFamily="{StaticResource BoldFont}"
+                   Grid.Row="4" 
+                   TextColor="White" 
+                   FontSize="18" 
+                   Margin="0,-20"
                    TextDecorations="Underline"
-                    Grid.ColumnSpan="3"
-                    TextColor="#00cbcc"
-                   Margin="0,0,20,120" 
-                    VerticalOptions="CenterAndExpand"
-                    >
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding GoToVolunteer}"/>
-                </Label.GestureRecognizers>
-            </Label>
+                   Grid.ColumnSpan="4"
+                   VerticalOptions="End"
+                   HorizontalOptions="CenterAndExpand" />
+
+            <Button Text="Quiero ser voluntario!" 
+                    FontFamily="{StaticResource NormalFont}"
+                    Command="{Binding GoToVolunteer}"
+                    WidthRequest="300"
+                    TextColor="White" 
+                    CornerRadius="20"
+                    BackgroundColor="Transparent"
+                    BorderColor="White" 
+                    BorderWidth="1"
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="4"
+                    VerticalOptions="EndAndExpand" 
+                    HorizontalOptions="EndAndExpand" />
 
         </Grid>
     </ContentPage.Content>
