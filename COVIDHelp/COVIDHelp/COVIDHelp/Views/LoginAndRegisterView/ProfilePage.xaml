@@ -41,8 +41,8 @@
                     </StackLayout>
 
                     <StackLayout Grid.Column="1">
-                        <Label Text="94" HorizontalTextAlignment="Center" FontFamily="{StaticResource NormalFont}"/>
-                        <Label Text="{Binding User.Rate}" HorizontalTextAlignment="Center" FontFamily="{StaticResource BoldFont}"/>
+                        <Label Text="{Binding User.Rate}" HorizontalTextAlignment="Center" FontFamily="{StaticResource NormalFont}"/>
+                        <Label Text="Rating" HorizontalTextAlignment="Center" FontFamily="{StaticResource BoldFont}"/>
                     </StackLayout>
                 </Grid>
 

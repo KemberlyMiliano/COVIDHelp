@@ -14,9 +14,21 @@ namespace COVIDHelp.ViewModels
     public class HelpPageViewModel : BaseViewModel, INavigationAware
     {
         public ObservableCollection<User> NeaderPerson { get; set; }
+        public ObservableCollection<Necesity> Requests { get; set; } = new ObservableCollection<Necesity>();
         public DelegateCommand LoadPins { get; set; }
+        public DelegateCommand<Necesity> GoToRequestDetail { get; set; }
         public HelpPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices, IApiGoogleServices apiGoogleServices) : base(navigationService, dialogService, apiCovitServices)
         {
+            Requests.Add(new Necesity { Image = "home", NeededPerson = "Eladio Rodriguez", Status = "Regular" });
+            Requests.Add(new Necesity { Image = "profile", NeededPerson = "Eladio Rodriguez", Status = "Regular" });
+            Requests.Add(new Necesity { Image = "home", NeededPerson = "Eladio Rodriguez", Status = "Regular" });
+            Requests.Add(new Necesity { Image = "profile", NeededPerson = "Eladio Rodriguez", Status = "Regular" });
+            Requests.Add(new Necesity { Image = "home", NeededPerson = "Eladio Rodriguez", Status = "Regular" });
+
+            GoToRequestDetail = new DelegateCommand<Necesity>(async (necesity) =>
+            {
+                await navigationService.NavigateAsync(new Uri(NavigationConstants.RequestDetailPage, UriKind.Relative));
+            });
         }
         async Task GetPerson()
         {

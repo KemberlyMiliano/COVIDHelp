@@ -20,28 +20,34 @@
                 <maps:Map.ItemTemplate>
                     <DataTemplate>
                         <maps:Pin Position="{Binding Position}"
-                              Label="{Binding Description}" />
+                              Label="{Binding Description}"/>
                     </DataTemplate>
                 </maps:Map.ItemTemplate>
             </maps:Map>
-            <CarouselView Grid.Row="1" 
-                          ItemsSource="{Binding Necesities}"
+            <CarouselView Grid.Row="1"
+                          ItemsSource="{Binding Requests}"
                           PeekAreaInsets="80">
                 <CarouselView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="20"/>
+                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
                 </CarouselView.ItemsLayout>
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
-                        <Frame BackgroundColor="#0272A6" HorizontalOptions="Center" CornerRadius="5" HeightRequest="40" WidthRequest="40">
+                        <Frame BackgroundColor="White" HorizontalOptions="Center" CornerRadius="5" HeightRequest="40" WidthRequest="40">
                             <StackLayout>
                                 <Image Source="{Binding Image}" HeightRequest="50"/>
                                 <Label Text="{Binding NeededPerson}" HorizontalTextAlignment="Center"/>
                                 <Label Text="{Binding Status}" HorizontalTextAlignment="Center"/>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding GoToRequestDetail}"
+                                                          CommandParameter="{Binding .}"/>
+                                </StackLayout.GestureRecognizers>
                             </StackLayout>
+
                         </Frame>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>
