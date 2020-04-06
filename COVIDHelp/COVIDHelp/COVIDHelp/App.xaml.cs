@@ -20,7 +20,7 @@ namespace COVIDHelp
         protected override void OnInitialized()
         {
             InitializeComponent();
-            NavigationService.NavigateAsync(new Uri($"{NavigationConstants.MedicalAssistenceRequestPage}", UriKind.Absolute));
+            NavigationService.NavigateAsync(new Uri($"{NavigationConstants.LoginPage}", UriKind.Absolute));
         }
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
@@ -38,7 +38,8 @@ namespace COVIDHelp
             containerRegistry.RegisterForNavigation<LocationPermitionPage, LocationPermitionPageViewModel>();
             containerRegistry.RegisterForNavigation<RequestDetailPage, RequestDetailPageViewModel>();
             containerRegistry.RegisterForNavigation<MedicalAssistenceRequestPage, MedicalAssistenceRequestPageViewModel>();
-
+            containerRegistry.RegisterForNavigation<IdentificationPage, IdentificationPageViewModel>();
+            containerRegistry.RegisterForNavigation<NecesityDetailPage, NecesityDetailPageViewModel>();
 
         }
     }
