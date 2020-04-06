@@ -42,7 +42,7 @@ namespace COVIDHelp.ViewModels
                     {
                         var param = new NavigationParameters();
                         param.Add($"{nameof(User)}", user);
-                        await navigationService.NavigateAsync(new Uri($"{NavigationConstants.HelpersMainPage}{NavigationConstants.HomePage}", UriKind.Absolute), param);
+                        await navigationService.NavigateAsync(NavigationConstants.HelpersMainPage, param);
                     }
                    
                 }

@@ -14,7 +14,6 @@ namespace COVIDHelp.ViewModels
     public class HelpPageViewModel : BaseViewModel, INavigationAware
     {
         public ObservableCollection<User> NeaderPerson { get; set; }
-
         public DelegateCommand LoadPins { get; set; }
         public HelpPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices, IApiGoogleServices apiGoogleServices) : base(navigationService, dialogService, apiCovitServices)
         {
