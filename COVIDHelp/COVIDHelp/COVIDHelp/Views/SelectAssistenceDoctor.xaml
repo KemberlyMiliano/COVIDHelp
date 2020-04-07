@@ -10,18 +10,19 @@
             <CollectionView ItemsSource="{Binding Diseases}">
                 <CollectionView.Header>
                     <StackLayout>
-                        <Label Text="Sintomas :"
-                                       FontFamily="{StaticResource NormalFont}" 
+                        <Label Text="Síntomas :"
+                                       FontFamily="{StaticResource BoldFont}" 
                                        HorizontalOptions="Center"
                                        TextColor="White" 
-                                       FontSize="22"
+                                       FontSize="24"
                                        Grid.Row="0" 
-                                       Grid.RowSpan="4"/>
+                                       Grid.RowSpan="4"
+                               Margin="10"/>
                     </StackLayout>
                 </CollectionView.Header>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="8">
+                        <StackLayout Padding="8" Orientation="Horizontal">
                             <CheckBox 
                                  Grid.Row="1" 
                                  IsChecked="{Binding IsEnable}"/>
@@ -30,7 +31,7 @@
                                 FontFamily="{StaticResource NormalFont}"
                                 FontSize="16"
                                 TextColor="White"
-                                VerticalOptions="StartAndExpand"
+                                VerticalOptions="CenterAndExpand"
                                 Grid.Row="1"
                                 HorizontalOptions="StartAndExpand"/>
 
@@ -39,25 +40,28 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
                 <CollectionView.Footer>
-                    <StackLayout Padding="30">
-                        <CheckBox  
+                    <StackLayout Padding="8">
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox  
                                  IsChecked="{Binding DiseasesAdd.IsEnable}"
-                                HorizontalOptions="StartAndExpand"/>
-                        <Label 
+                                HorizontalOptions="Start"/>
+                            <Label 
                                 Text="Otros :"
                                 FontFamily="{StaticResource NormalFont}"
                                 FontSize="16"
                                 TextColor="White"
-                                VerticalOptions="StartAndExpand"
+                                VerticalOptions="CenterAndExpand"
                                 HorizontalOptions="StartAndExpand"/>
+                        </StackLayout>
                         <Entry Placeholder=""
                                    Text="{Binding DiseasesAdd.Name}"
-                                   TextColor="White" />
+                                   TextColor="White"/>
 
                         <Button Text="Solicitar ayuda"
                                     Margin="0,30"
                                     CornerRadius="20"
                                     BackgroundColor="White"
+                                TextColor="#0272A6"
                                     Command="{Binding AddDataAndNavigateCommand}" />
                     </StackLayout>
 

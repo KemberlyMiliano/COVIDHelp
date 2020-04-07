@@ -10,11 +10,13 @@ using COVIDHelp.Helpers;
 
 using Xamarin.Essentials;
 using System.Threading.Tasks;
+using Prism.Services.Dialogs;
 
 namespace COVIDHelp.ViewModels
 {
     public class HomePageViewModel : BaseViewModel, INavigatedAware
     {
+        public DelegateCommand ShowDialogCommand { get; set; }
         public DelegateCommand<string> GoToMaps { get; set; }
         public DelegateCommand EmergencyCommand { get; set; }
         public DelegateCommand GoToMedicalAssintence { get; set; }
@@ -22,12 +24,12 @@ namespace COVIDHelp.ViewModels
         public DelegateCommand PermissionsCommand { get; set; }
         public bool IsVoluntary { get; set; }
         public User User { get; set; }
-        public HomePageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
+        public HomePageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices, IDialogService dialog) : base(navigationService, dialogService, apiCovitServices)
         {
             var param = new NavigationParameters();
             PermissionsCommand = new DelegateCommand(async () =>
             {
-               await  NavigateToPermisson();
+                await NavigateToPermisson();
             });
             PermissionsCommand.Execute();
             GoToMaps = new DelegateCommand<string>(async (filtrar) =>
@@ -42,6 +44,7 @@ namespace COVIDHelp.ViewModels
             });
 
             GoToIdentification = new DelegateCommand(async () =>
+<<<<<<< HEAD
                 {
                     param.Add("User", User);
                     await navigationService.NavigateAsync(new Uri(NavigationConstants.IdentificationPage, UriKind.Relative), param);
@@ -57,7 +60,32 @@ namespace COVIDHelp.ViewModels
                     PlacePhoneCall("911");
                 });
             }
+=======
+            {
+                await navigationService.NavigateAsync(new Uri(NavigationConstants.IdentificationPage, UriKind.Relative), param);
+            });
 
+            GoToMedicalAssintence = new DelegateCommand(async () =>
+            {
+                await navigationService.NavigateAsync(new Uri(NavigationConstants.MedicalAssistenceRequestPage, UriKind.Relative), param);
+            });
+
+            EmergencyCommand = new DelegateCommand(() =>
+            {
+                PlacePhoneCall("911");
+            });
+>>>>>>> 7f1b20b3298e5577215b9c4998b3c3b8aadd83eb
+
+            ShowDialogCommand = new DelegateCommand(() =>
+            {
+                dialog.ShowDialog("EmergencyPage", CloseDialogCallback);
+            });
+        }
+
+        void CloseDialogCallback(IDialogResult dialogResult)
+        {
+
+        }
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
 
@@ -77,9 +105,9 @@ namespace COVIDHelp.ViewModels
             {
                 var param = parameters[$"{nameof(User)}"] as User;
                 User = param;
-              
+
                 var lat = await User.Latitude.Latitude();
-                User.Latitude = lat!=User.Latitude? lat:User.Latitude;
+                User.Latitude = lat != User.Latitude ? lat : User.Latitude;
                 var lng = await User.Longitude.Longitude();
                 User.Longitude = lng != User.Longitude ? lng : User.Longitude;
                 User = await apiCovitServices.UpdateUser(User);
