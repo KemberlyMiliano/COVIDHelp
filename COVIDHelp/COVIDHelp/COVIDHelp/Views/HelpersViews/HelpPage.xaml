@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="COVIDHelp.Views.HelpersViews.HelpPage"
-             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              NavigationPage.HasNavigationBar="False"
              x:Name="helpPage">
     <ContentPage.Content>
@@ -15,50 +15,39 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <maps:Map x:Name="map"
-                      Grid.Row="0"
-                      InitialCameraUpdate="40.67,-73.94"
-                  ItemsSource="{Binding FoodsPin, Mode=TwoWay}">
-                <maps:Map.ItemTemplate>
-                    <DataTemplate>
-                        <maps:Pin Position="{Binding Position}"
-                              Label="{Binding Description}"/>
-                    </DataTemplate>
-                </maps:Map.ItemTemplate>
-            </maps:Map>
-            <ListView Grid.Row="1"
-                      ItemsSource="{Binding Requests}"
-                      RowHeight="80">
+                      Grid.Row="0"/>
 
-                <ListView.ItemTemplate>
+            <CollectionView Grid.Row="1"
+                      ItemsSource="{Binding HelpsPerson}">
+
+                <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal">
-                                <Image Source="{Binding Image}" HeightRequest="50" Margin="10,0,10,0"/>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-                                    <Label Text="{Binding NeededPerson}" 
+                        <StackLayout Orientation="Horizontal">
+                            <ff:CachedImage Source="{Binding Image}" HeightRequest="50" Margin="10,0,10,0"/>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Label Text="{Binding NeededPerson}" 
                                            VerticalOptions="End" 
                                            TextColor="Black"
                                            FontFamily="{StaticResource BoldFont}" />
-                                    <Label Text="{Binding Status}" 
+                                <Label Text="{Binding Status}" 
                                            VerticalTextAlignment="Center" 
                                            TextColor="Black"
                                            Grid.Row="1" 
                                            VerticalOptions="Start"
                                            FontFamily="{StaticResource NormalFont}" />
-                                </Grid>
-                                <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.GoToRequestDetail, Source={x:Reference helpPage}}"
+                            </Grid>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=BindingContext.GoToRequestDetail, Source={x:Reference helpPage}}"
                                                           CommandParameter="{Binding .}"/>
-                                </StackLayout.GestureRecognizers>
-                            </StackLayout>
-                        </ViewCell>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
         </Grid>
     </ContentPage.Content>

@@ -64,6 +64,12 @@ namespace COVIDHelp.Models
 
         [JsonProperty("rating")]
         public int Rating { get; set; }
+        [JsonIgnore]
+        public string RepeatPassword { get; set; }
+        public User()
+        {
+            Password = RepeatPassword;
+        }
     }
 
 }

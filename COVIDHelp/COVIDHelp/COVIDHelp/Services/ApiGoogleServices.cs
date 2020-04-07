@@ -27,9 +27,11 @@ namespace COVIDHelp.Services
             return places;
         }
 
-        public Task<NearbyPlaces> GetNearbyPlaces(string api_Key, string origen, string destination)
+        public async Task<GoogleDirection> GetDirection(string api_Key, string origen, string destination)
         {
-            throw new NotImplementedException();
+            var getRequest = RestService.For<IApiGoogleServices>(ConfigApi.UrlApiGoogle);
+            var places = await getRequest.GetDirection(api_Key, origen, destination);
+            return places;
         }
     }
 }

@@ -14,40 +14,20 @@ namespace COVIDHelp.ViewModels
 {
     public class HelpPageViewModel : BaseViewModel, INavigationAware
     {
-        public ObservableCollection<User> NeaderPerson { get; set; }
-        public List<Pin> NeederPin { get; set; }
-        public ObservableCollection<Necesity> Requests { get; set; } = new ObservableCollection<Necesity>();
+        public ObservableCollection<Help> HelpsPerson { get; set; }
         public DelegateCommand LoadPins { get; set; }
         public DelegateCommand<Necesity> GoToRequestDetail { get; set; }
+        IApiGoogleServices apiGoogleServices;
         public HelpPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices, IApiGoogleServices apiGoogleServices) : base(navigationService, dialogService, apiCovitServices)
         {
-            Requests.Add(new Necesity { Image = "defaultUser", NeededPerson = "Eladio Rodriguez", Status = "Regular" });
-            Requests.Add(new Necesity { Image = "defaultUser", NeededPerson = "Eladio Rodriguez", Status = "Regular" });
-            Requests.Add(new Necesity { Image = "defaultUser", NeededPerson = "Eladio Rodriguez", Status = "Regular" });
-            Requests.Add(new Necesity { Image = "defaultUser", NeededPerson = "Eladio Rodriguez", Status = "Regular" });
-            Requests.Add(new Necesity { Image = "defaultUser", NeededPerson = "Eladio Rodriguez", Status = "Regular" });
-
-            GoToRequestDetail = new DelegateCommand<Necesity>(async (necesity) =>
-            {
-                await navigationService.NavigateAsync(new Uri(NavigationConstants.RequestDetailPage, UriKind.Relative));
-            });
+            this.apiGoogleServices = apiGoogleServices;
         }
-        async Task GetPerson()
+        public async Task GetPerson()
         {
-            var getrequest = await apiCovitServices.GetUser();
-            var users = getrequest;
-            if (users != null && users.Count > 0)
+            var getrequest = await apiCovitServices.GetHelpActive();
+            if (getrequest!=null)
             {
-                NeaderPerson = new ObservableCollection<User>(users);
-            }
-        }
-        async Task GetPins()
-        {
-            var getrequest = await apiCovitServices.GetUser();
-            var users = getrequest;
-            if (users != null && users.Count > 0)
-            {
-                NeaderPerson = new ObservableCollection<User>(users);
+                HelpsPerson = new ObservableCollection<Help>(getrequest);
             }
         }
         public void OnNavigatedFrom(INavigationParameters parameters)

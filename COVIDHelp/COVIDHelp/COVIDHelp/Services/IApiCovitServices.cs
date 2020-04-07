@@ -28,6 +28,12 @@ namespace COVIDHelp.Services
         Task<Help> PutHelp([Body] Help help);
         [Get("/api/Helps")]
         Task<List<Help>> GetHelp();
+        [Get("/api/Helps/ByStatus/Activo")]
+        Task<List<Help>> GetHelpActive();
+        [Get("/api/Helps/ByStatus/Proceso")]
+        Task<List<Help>> GetHelpProcess();
+        [Get("/api/Helps/ByStatus/Completado")]
+        Task<List<Help>> GetHelpCompletado();
 
 
 

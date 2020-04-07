@@ -26,7 +26,7 @@ namespace COVIDHelp.Models
         public string Email { get; set; }
 
         [JsonProperty("cedula")]
-        public int Cedula { get; set; }
+        public Int64 Cedula { get; set; }
 
         [JsonProperty("descripcionProblema")]
         public string DescripcionProblema { get; set; }
@@ -44,7 +44,7 @@ namespace COVIDHelp.Models
         public string PosicionVoluntario { get; set; }
 
         [JsonProperty("cedulaVoluntario")]
-        public int CedulaVoluntario { get; set; }
+        public Int64 CedulaVoluntario { get; set; }
 
         [JsonProperty("status")]
         public string Status { get; set; }

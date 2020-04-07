@@ -22,6 +22,27 @@ namespace COVIDHelp.Services
             return helps;
         }
 
+        public async Task<List<Help>> GetHelpActive()
+        {
+            var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
+            var helps = await getRequest.GetHelpActive();
+            return helps;
+        }
+
+        public async Task<List<Help>> GetHelpCompletado()
+        {
+            var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
+            var helps = await getRequest.GetHelpCompletado();
+            return helps;
+        }
+
+        public async Task<List<Help>> GetHelpProcess()
+        {
+            var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
+            var helps = await getRequest.GetHelpProcess();
+            return helps;
+        }
+
         public async Task<List<User>> GetUser()
         {
             var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
