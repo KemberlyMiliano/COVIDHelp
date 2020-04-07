@@ -27,7 +27,7 @@ namespace COVIDHelp.ViewModels
             var param = new NavigationParameters();
             PermissionsCommand = new DelegateCommand(async () =>
             {
-               await NavigateToPermisson();
+               await  NavigateToPermisson();
             });
             PermissionsCommand.Execute();
             GoToMaps = new DelegateCommand<string>(async (filtrar) =>

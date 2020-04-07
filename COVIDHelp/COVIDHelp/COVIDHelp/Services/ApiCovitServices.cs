@@ -15,11 +15,24 @@ namespace COVIDHelp.Services
             return await getRequest.FindUser(cedula);
         }
 
+        public async Task<List<Help>> GetHelp()
+        {
+            var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
+            var helps = await getRequest.GetHelp();
+            return helps;
+        }
+
         public async Task<List<User>> GetUser()
         {
             var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
-            var users = await getRequest.GetUser();
-            return users;
+            var help = await getRequest.GetUser();
+            return help;
+        }
+
+        public async Task<Help> PostHelp([Body] Help help)
+        {
+            var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
+            return await getRequest.PostHelp(help);
         }
 
         public async Task<User> PostUser([Body] User user)
@@ -28,9 +41,21 @@ namespace COVIDHelp.Services
             return await getRequest.PostUser(user);
         }
 
+        public async Task<Help> PutHelp([Body] Help help)
+        {
+            var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
+            return await getRequest.PutHelp(help);
+        }
+
         public Task<User> SendCodePhone(long cedula)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<User> UpdateUser([Body] User user)
+        {
+            var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
+            return await getRequest.UpdateUser(user);
         }
 
         public async Task<User> ValidateUser([Body] User user)

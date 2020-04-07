@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using System.Threading.Tasks;
 using COVIDHelp.Services;
 using COVIDHelp.Helpers;
+using Xamarin.Essentials;
 
 namespace COVIDHelp.ViewModels
 {
@@ -45,6 +46,7 @@ namespace COVIDHelp.ViewModels
             IsVisible = true;
             ImageModel = "eyeW.png";
             User.Correo = User.Correo.Recordar(IsEnable);
+       
             LogInCommand = new DelegateCommand(async () => {
                 if (string.IsNullOrEmpty(User.Correo) && string.IsNullOrEmpty(User.Password))
                 {
@@ -80,6 +82,7 @@ namespace COVIDHelp.ViewModels
         {
             await navigationService.NavigateAsync(new Uri($"/SignUpPage", UriKind.Relative));
         }
+
         async Task ValidateUser()
         {
             try

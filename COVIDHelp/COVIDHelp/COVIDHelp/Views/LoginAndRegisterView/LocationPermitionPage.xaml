@@ -22,7 +22,14 @@
                    VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand"
                    TextColor="White"/>
-            <Button Text="TURN ON" BorderColor="White" BorderWidth="2" CornerRadius="10" Grid.Row="2"  TextColor="White" BackgroundColor="Transparent" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand"/>
+            <Button Text="TURN ON" 
+                    Command="{Binding ConfirmCommand}"
+                    BorderColor="White" BorderWidth="2" 
+                    CornerRadius="10" Grid.Row="2"  
+                    TextColor="White" 
+                    BackgroundColor="Transparent" 
+                    VerticalOptions="StartAndExpand" 
+                    HorizontalOptions="CenterAndExpand"/>
         </Grid>
         
     </ContentPage.Content>

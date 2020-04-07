@@ -51,7 +51,6 @@ namespace COVIDHelp.ViewModels
                     else if (UserR.Password != UserR.RepeatPassword) { await App.Current.MainPage.DisplayAlert("ALERT!", "THE PASSWORD ARE NOT EQUAL", "OK"); }
                     else
                     {
-                       await NavigateTToPermisson();
                         PostUser(UserR);
                         await NavigateToSelectedSignUp();
                     }
@@ -92,10 +91,7 @@ namespace COVIDHelp.ViewModels
             param.Add($"{nameof(User)}", UserR);
             await navigationService.NavigateAsync($"{NavigationConstants.HelpersMainPage}",param);
         }
-        async Task NavigateTToPermisson()
-        {
-            await navigationService.NavigateAsync(new Uri($"{NavigationConstants.LocationPermitionPage}",UriKind.Relative));
-        }
+
         void PostUser(User user)
         {
             apiCovitServices.PostUser(user);

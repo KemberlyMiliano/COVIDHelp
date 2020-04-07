@@ -33,7 +33,7 @@ namespace COVIDHelp.ViewModels
         }
         public bool IsVisible { get; set; } = false;
         public List<Place> PlaceNearbys { get; set; }
-        public List<User> NeaderPerson { get; set; }
+      
         public DelegateCommand LoadPins { get; set; }
         IApiGoogleServices apiGoogleServices;
         public MapsPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices, IApiGoogleServices apiGoogleServices) : base(navigationService, dialogService, apiCovitServices)

@@ -37,7 +37,7 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
                 await navigationService.NavigateAsync(NavigationConstants.ProfilePage);
             });
 
-            EmergencyCommand = new DelegateCommand(async () =>
+            EmergencyCommand = new DelegateCommand( () =>
             {
                 PlacePhoneCall("911");
             });
