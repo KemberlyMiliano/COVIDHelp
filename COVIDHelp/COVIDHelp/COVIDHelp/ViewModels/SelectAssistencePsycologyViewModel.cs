@@ -58,7 +58,7 @@ namespace COVIDHelp.ViewModels
         void SaveData()
         {
             Barrel.ApplicationId = ConfigApi.MonkeyChadeKey;
-            Barrel.Current.Add(key: $"DataUserAssistence", data: Diseases, expireIn: TimeSpan.FromDays(31));
+            Barrel.Current.Add(key: $"DataUserAssistencePsycology", data: Diseases, expireIn: TimeSpan.FromDays(31));
         }
         async Task NavigateTo()
         {
