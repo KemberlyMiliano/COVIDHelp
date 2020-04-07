@@ -51,7 +51,7 @@
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
-                                        <Image Source="{Binding Foto}" 
+                                        <Image Source="defaultUser.png" 
                                            WidthRequest="50"
                                            Grid.Column="0"
                                        Margin="0,0,15,0"/>

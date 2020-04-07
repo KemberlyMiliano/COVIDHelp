@@ -61,7 +61,7 @@
                    Margin="50,0"
                    Placeholder="añadir descripcion.... "
                    PlaceholderColor="White"
-                   Text=""
+                   Text="{Binding User.SelfBiography}"
                    TextColor="White"
                    Grid.Row="2"
                    Grid.ColumnSpan="4"
@@ -69,11 +69,12 @@
                    HorizontalOptions="Start"
                    FontFamily="{StaticResource NormalFont}"/>
 
-                    <Button Text="Guardar cambios"
+                    <Button Text="Editado"
                             TextColor="#0272A6"
                             HeightRequest="50" 
                             WidthRequest="100" 
                             Grid.Row="3"
+                            Command="{Binding EditCommand}"
                             VerticalOptions="EndAndExpand"
                             CornerRadius="40" 
                             Grid.ColumnSpan="4"

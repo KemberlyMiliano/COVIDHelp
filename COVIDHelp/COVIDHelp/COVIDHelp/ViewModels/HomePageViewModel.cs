@@ -43,6 +43,7 @@ namespace COVIDHelp.ViewModels
 
             GoToIdentification = new DelegateCommand(async () =>
                 {
+                    param.Add("User", User);
                     await navigationService.NavigateAsync(new Uri(NavigationConstants.IdentificationPage, UriKind.Relative), param);
                 });
 
@@ -72,7 +73,7 @@ namespace COVIDHelp.ViewModels
         }
         public async void OnNavigatedTo(INavigationParameters parameters)
         {
-            if (parameters.ContainsKey($"{nameof(User)}"))
+            if (parameters.ContainsKey($"User"))
             {
                 var param = parameters[$"{nameof(User)}"] as User;
                 User = param;

@@ -23,7 +23,7 @@ namespace COVIDHelp.ViewModels
             LoadProfile.Execute();
             EditCommand = new DelegateCommand(async () => {
                 await navigationService.NavigateAsync(new Uri(NavigationConstants.EditProfilePage, UriKind.Relative));
-        
+
             });
         }
         async Task FindUser() {
@@ -35,24 +35,20 @@ namespace COVIDHelp.ViewModels
             }
         }
 
-        async Task UpdateUser()
-        {
-            var getResquest = await apiCovitServices.UpdateUser(User);
-
-        }
-
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
       
             
         }
 
-        public void OnNavigatedTo(INavigationParameters parameters)
+        public async void OnNavigatedTo(INavigationParameters parameters)
         {
            
-            if (parameters.ContainsKey("Edit"))
+            if (parameters.ContainsKey("EditUser"))
             {
-                var param = parameters["Edit"];
+                var param = parameters["EditUser"] as User;
+                User = param;
+                var getResquest = await apiCovitServices.UpdateUser(User);
             }
        
 

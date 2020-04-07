@@ -19,10 +19,13 @@ namespace COVIDHelp.ViewModels
         public ObservableCollection<Help> HelpsPerson { get; set; }
 
         private Help selectHelp;
+
+
         public DelegateCommand GoToDetailCommand { get; set; }
         public Help SelectHelp
         {
-            get { return selectHelp; }
+            get { 
+                return selectHelp;  }
             set
             {
                 selectHelp = value;
@@ -56,7 +59,7 @@ namespace COVIDHelp.ViewModels
         {
             var param = new NavigationParameters();
             param.Add("Helper", help);
-            await navigationService.NavigateAsync(new Uri($"{NavigationConstants.RequestDetailPage}", UriKind.Relative), param);
+            await navigationService.NavigateAsync(new Uri($"{NavigationConstants.RequestDetailPage}", UriKind.Relative),param);
         }
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
@@ -64,8 +67,6 @@ namespace COVIDHelp.ViewModels
         }
         public void OnNavigatedTo(INavigationParameters parameters)
         {
-            var param = parameters[$"{nameof(User)}"] as User;
-
             LoadPins = new DelegateCommand(async () => await GetPerson());
             LoadPins.Execute();
 

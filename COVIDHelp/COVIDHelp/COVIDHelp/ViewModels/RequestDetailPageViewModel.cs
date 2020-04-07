@@ -7,10 +7,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using COVIDHelp.Helpers;
 
 namespace COVIDHelp.ViewModels
 {
-    public class RequestDetailPageViewModel : BaseViewModel
+    public class RequestDetailPageViewModel : BaseViewModel,INavigatedAware
     {
         public Help Help { get; set; }
         public DelegateCommand GoToHistorial { get; set; }
@@ -22,7 +23,6 @@ namespace COVIDHelp.ViewModels
             GoBack = new DelegateCommand(async () =>
             {
 
-                await navigationService.GoBackAsync();
             });
 
             GoToHistorial = new DelegateCommand(async () =>
@@ -33,24 +33,33 @@ namespace COVIDHelp.ViewModels
         }
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
-            //Recibir la ayuda de la lista de HelpPage a esta page
         }
 
         public void OnNavigatedTo(INavigationParameters parameters)
         {
-            //var param = parameters["Helper"] as Help;
-            //Help = param;
-            //Enviar el objeto que se recibio de HelpPage agregandolo la lista de historial
-
+            var param = parameters["Helper"] as Help;
+            Help = param;
         }
         public async Task DisplayAction()
         {
             bool action = await dialogService.DisplayAlertAsync("", "Estás seguro/a?", "Aceptar", "Cancelar");
-
-            if (action)
+            Int64 cedula = 0;
+            var id = cedula.GetPreferencesInt("Cedula");
+            var user = await apiCovitServices.FindUser(id);
+            if (action&&user!=null)
             {
-                // Agregar al historial del usuario
-                await navigationService.NavigateAsync(new Uri(NavigationConstants.CommitmentsPage, UriKind.Relative));
+                Help help = new Help
+                {
+                    Id = Help.Id,
+                    NombreVoluntario = user.Nombres,
+                    CedulaVoluntario = user.Cedula,
+                    TelefonoVoluntario = user.Telefono,
+                    Status = "Proceso",
+                    EmailVoluntario = user.Correo,
+                    PosicionVoluntario = $"{user.Latitude}{user.Longitude}"
+                };
+                await apiCovitServices.PutHelp(help);
+                await navigationService.NavigateAsync(new Uri($"{NavigationConstants.HelpersMainPage}?selectedTab=CommitmentsPage", UriKind.Absolute));
             }
             else
             {

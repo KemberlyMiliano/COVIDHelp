@@ -13,7 +13,9 @@
     <ContentPage.Content>
         <Grid>
             <maps:Map x:Name="map"
-                      Grid.Row="0"/>
+                      Grid.Row="0"
+                      MyLocationEnabled="True"
+                      IsShowingUser="True"/>
             <pancakeview:PancakeView 
                                      HorizontalOptions="EndAndExpand"
                                      VerticalOptions="EndAndExpand"
@@ -28,6 +30,7 @@
                                     VerticalOptions="EndAndExpand"
                                     HorizontalOptions="Center"
                                     BackgroundColor="Transparent"
+
                                     SelectedItem="{Binding SelectHelp,Mode=TwoWay}"
                                    SelectionMode="Single"
                                     ItemsSource="{Binding HelpsPerson}">

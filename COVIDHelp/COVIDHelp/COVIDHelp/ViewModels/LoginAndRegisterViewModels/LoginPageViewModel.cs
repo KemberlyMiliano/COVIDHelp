@@ -102,6 +102,10 @@ namespace COVIDHelp.ViewModels
                     };
                     await navigationService.NavigateAsync($"{NavigationConstants.HelpersMainPage}", param);
                 }
+                else
+                {
+                    await dialogService.DisplayAlertAsync("incorrecta", "contraseña/correo incorrecta", "ok");
+                }
             }
             catch (Exception)
             {

@@ -11,7 +11,7 @@
             <StackLayout Padding="20,40,20,20">
             <Frame CornerRadius="20">
                 <StackLayout>
-                    <Label Text="Nombre del necesitado"
+                        <Label Text="{Binding Help.Nombre}"
                            VerticalOptions="StartAndExpand" 
                            HorizontalOptions="Center" 
                            HorizontalTextAlignment="Center"
@@ -21,12 +21,12 @@
                            VerticalOptions="StartAndExpand"
                            HeightRequest="80"
                            Margin="10"/>
-                    <Label  Text="Tipo de ayuda:"
+                        <Label  Text="{Binding Help.Dirrecion ,StringFormat='Direccion: {0}'}" 
                             VerticalOptions="StartAndExpand" 
                             HorizontalOptions="StartAndExpand" 
                             FontFamily="{StaticResource BoldFont}"
                             FontSize="20"/>
-                    <Label Text="X ayuda"
+                        <Label Text="{Binding Help.Telefono,StringFormat='Telefono: {0}'}" 
                             VerticalOptions="StartAndExpand" 
                             FontFamily="{StaticResource NormalFont}"
                             HorizontalOptions="StartAndExpand" 
@@ -36,7 +36,7 @@
                             VerticalOptions="StartAndExpand" 
                             HorizontalOptions="StartAndExpand" 
                             FontSize="20"/>
-                    <Label Text="Texto.............."
+                        <Label Text="{Binding Help.DescripcionProblema}" 
                             VerticalOptions="StartAndExpand" 
                            FontAttributes="Italic"
                             HorizontalOptions="StartAndExpand" 

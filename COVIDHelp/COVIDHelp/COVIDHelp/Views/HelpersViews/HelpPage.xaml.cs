@@ -27,12 +27,13 @@ namespace COVIDHelp.Views.HelpersViews
             latitude = latitude.GetPreferences("latitude");
             longitude = longitude.GetPreferences("longitude");
             type = type.GetPreferences("type");
-            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(double.Parse(latitude), double.Parse(longitude)), Distance.FromMiles(100)));
+            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(double.Parse(latitude), double.Parse(longitude)), Distance.FromMiles(2)));
             if (BindingContext is HelpPageViewModel viewModel)
             {             
                 await viewModel.GetPerson();
                 foreach (var item in viewModel.HelpsPerson)
                 {
+
                     double lat = double.Parse(item.Posicion.Split(',')[0]);
                      double lng = double.Parse(item.Posicion.Split(',')[1]);
                     map.Pins.Add(new Pin()
