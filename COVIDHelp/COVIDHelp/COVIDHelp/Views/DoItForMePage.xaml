@@ -4,24 +4,54 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="COVIDHelp.Views.DoItForMePage">
+             x:Class="COVIDHelp.Views.DoItForMePage"
+             x:Name="doPage">
     <ContentPage.Content>
         <StackLayout Padding="20">
-            <Label Text="Haz una lista!" />
-            <Label Text="Necesidades:"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <ListView ItemsSource="{Binding Requests}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Label Text="{Binding DescripcionProblema}"/>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <Entry Text="{Binding }"/>
-            <Button Text="Añadir" CornerRadius="10"/>
+            <Label Text="Haz una lista!" 
+                   FontSize="27" 
+                   FontFamily="{StaticResource BoldFont}"
+                   TextColor="Black"
+                   Margin="0,0,0,20"/>
+            <Label Text="Necesidades:" 
+                   TextColor="Gray"
+                   FontSize="17"
+                   FontFamily="{StaticResource BoldFont}"/>
+            <StackLayout>
+                <ListView ItemsSource="{Binding Requests}"
+                          CachingStrategy="RecycleElement">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.ContextActions>
+                                    <MenuItem IconImageSource="delete" 
+                                              Text="Eliminar"
+                                          Command="{Binding Path=BindingContext.OnDeleteCommand, Source={x:Reference doPage}}"
+                                          CommandParameter="{Binding .}"
+                                          IsDestructive="True"/>
+                                </ViewCell.ContextActions>
+                                <Label Text="{Binding Text}"
+                                       TextColor="Black"
+                                       FontSize="17" 
+                                       FontFamily="{StaticResource NormalFont}"/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <Entry Text="{Binding Need.Text}" 
+                   Placeholder="Necesidad"
+                   FontFamily="{StaticResource NormalFont}"/>
+            <Button Text="Añadir" CornerRadius="10"
+                    BackgroundColor="Green"
+                    TextColor="White"
+                    FontFamily="{StaticResource BoldFont}"
+                    Margin="20,10,20,0"
+                    Command="{Binding AddToList}"/>
+            <Button Text="Listo!" CornerRadius="10"
+                    FontFamily="{StaticResource BoldFont}"
+                    Margin="20"
+                    Command="{Binding AddToGlobalRequests}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
