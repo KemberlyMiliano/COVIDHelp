@@ -21,5 +21,9 @@ namespace COVIDHelp
         public const string FoodMapPage = "/FoodMap";
         public const string IdentificationPage = "/IdentificationPage";
         public const string NecesityDetailPage = "/NecesityDetailPage";
+        public const string SelectAssistenceNurse = "/SelectAssistenceNurse";
+        public const string SelectAssistenceDoctor = "/SelectAssistenceDoctor";
+        public const string SelectAssistencePsycology = "/SelectAssistencePsycology";
+
     }
 }
