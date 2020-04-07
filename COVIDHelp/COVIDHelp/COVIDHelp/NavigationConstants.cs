@@ -26,5 +26,6 @@ namespace COVIDHelp
         public const string SelectAssistencePsycology = "/SelectAssistencePsycology";
         public const string EditProfilePage = "/EditProfilePage";
         public const string DoItForMePage = "/DoItForMePage";
+        public const string EmergencyPage = "/EmergencyPage";
     }
 }

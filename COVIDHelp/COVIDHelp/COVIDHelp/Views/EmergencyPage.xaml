@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Frame xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="COVIDHelp.Views.EmergencyPage"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             prism:DialogLayout.RelativeWidthRequest="{OnIdiom Default=0.75, Desktop=0.5}"
+             HasShadow="false"
+             BackgroundColor="White">
+    <StackLayout>
+        <Label Text="Ayuda!"
+                HorizontalOptions="CenterAndExpand"
+               FontFamily="{StaticResource BoldFont}"
+               TextColor="Black"
+               FontSize="20"
+               Margin="10"/>
+        <Button Text="Salud"
+                Command="{Binding CloseCommand}"
+                TextColor="White"
+                FontFamily="{StaticResource BoldFont}"
+                HorizontalOptions="FillAndExpand"
+                BackgroundColor="#01608C"
+                CornerRadius="5"/>
+        <Button Text="Policia"
+                Command="{Binding CloseCommand}"
+                FontFamily="{StaticResource BoldFont}"
+                TextColor="White"
+                HorizontalOptions="FillAndExpand"
+                BackgroundColor="#01608C"
+                CornerRadius="5"/>
+        <Button Text="Bomberos"
+                Command="{Binding CloseCommand}"
+                FontFamily="{StaticResource BoldFont}"
+                TextColor="White"
+                HorizontalOptions="FillAndExpand"
+                BackgroundColor="#01608C"
+                CornerRadius="5"/>
+    </StackLayout>
+</Frame>

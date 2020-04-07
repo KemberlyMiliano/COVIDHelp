@@ -23,26 +23,23 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Frame  CornerRadius="20"
-                        Grid.RowSpan="5"
-                        Grid.ColumnSpan="3"
-                        HasShadow="True">
                     <Label Text="Quién te puede ayudar?"
                            FontFamily="{StaticResource BoldFont}"
-                           FontSize="23"
+                           FontSize="27"
                            HorizontalTextAlignment="Center"
                            TextColor="Black"
                            Grid.Row="0"
+                           Grid.RowSpan="2"
+                           Grid.ColumnSpan="3"
                            HorizontalOptions="CenterAndExpand"       
                            Margin="0,20,0,20"/>
 
-                </Frame>
 
            
                 <ImageButton Source="nurse"
                              TranslationY="15"
                              Grid.Row="3"
-                             HeightRequest="80"
+                             HeightRequest="100"
                              BackgroundColor="Transparent"
                              Grid.ColumnSpan="3"
                              HorizontalOptions="CenterAndExpand"
@@ -52,7 +49,7 @@
             <ImageButton Source="doctor1.png"
                          Grid.Row="1"
                          TranslationY="15"
-                         HeightRequest="80"
+                         HeightRequest="100"
                          BackgroundColor="Transparent"
                          Grid.ColumnSpan="3"
                          HorizontalOptions="CenterAndExpand"
@@ -69,7 +66,7 @@
 
                 <Label Text="Enfermero(a)"
                        Grid.Row="1" 
-                       HeightRequest="80" 
+                       HeightRequest="100" 
                        BackgroundColor="Transparent" 
                        TextColor="#014666"
                        Grid.ColumnSpan="3" 
