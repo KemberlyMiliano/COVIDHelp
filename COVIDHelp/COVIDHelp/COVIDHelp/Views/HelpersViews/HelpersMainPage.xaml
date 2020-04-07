@@ -14,20 +14,30 @@
             android:TabbedPage.BarSelectedItemColor ="White"
             BarBackgroundColor="#00344D">
     <TabbedPage.Children>
+
         <NavigationPage IconImageSource="home" Title="Home">
             <x:Arguments>
                 <helper1:HomePage/>
             </x:Arguments>
         </NavigationPage>
+
+        <NavigationPage IconImageSource="request" Title="Request">
+            <x:Arguments>
+                <local:RequestsListPage/>
+            </x:Arguments>
+        </NavigationPage>
+
         <NavigationPage IconImageSource="commitments" Title="Historial">
             <x:Arguments>
                 <helper:CommitmentsPage/>
             </x:Arguments>
         </NavigationPage>
+
         <NavigationPage IconImageSource="profile" Title="Profile">
             <x:Arguments>
                 <local:ProfilePage/>
             </x:Arguments>
         </NavigationPage>
+
     </TabbedPage.Children>
 </TabbedPage>

@@ -26,7 +26,7 @@
                                 HorizontalOptions="StartAndExpand" 
                                 FontFamily="{StaticResource BoldFont}"
                                 FontSize="20"/>
-                        <Label Text="X ayuda"
+                        <Label Text="{Binding Help.Gravedad}"
                                 VerticalOptions="StartAndExpand" 
                                 FontFamily="{StaticResource NormalFont}"
                                 HorizontalOptions="StartAndExpand" 
@@ -36,7 +36,7 @@
                                 VerticalOptions="StartAndExpand" 
                                 HorizontalOptions="StartAndExpand" 
                                 FontSize="20"/>
-                        <Label Text="{Binding Help.Description}"
+                        <Label Text="{Binding Help.DescripcionProblema}"
                                 VerticalOptions="StartAndExpand" 
                                 FontAttributes="Italic"
                                  HorizontalOptions="StartAndExpand" 

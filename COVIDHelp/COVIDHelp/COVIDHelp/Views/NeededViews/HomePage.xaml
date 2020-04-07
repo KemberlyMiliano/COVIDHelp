@@ -125,7 +125,7 @@
                     BorderWidth="2"
                     Grid.Row="5"
                     VerticalOptions="EndAndExpand" 
-                    HorizontalOptions="EndAndExpand" />
+                    HorizontalOptions="CenterAndExpand" />
 
         </StackLayout>
     </ContentPage.Content>

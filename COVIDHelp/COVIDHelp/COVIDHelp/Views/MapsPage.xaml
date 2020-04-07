@@ -14,6 +14,31 @@
             <maps:Map x:Name="map"
                       SelectedPin="{Binding SelectPlace,Mode=TwoWay}"
                       />
+            <pancakeview:PancakeView 
+                                     HorizontalOptions="StartAndExpand"
+                                     VerticalOptions="StartAndExpand"
+                                     BackgroundColor="White"
+                                     CornerRadius="20,0,0,20"
+                                     Margin="15"
+                                     HeightRequest="100"
+                                     Padding="8"
+                                     HasShadow="True">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="volunteer" 
+                           WidthRequest="70"/>
+                    <Label Text="Necesito que alguien haga esto por mi!"
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="CenterAndExpand"
+                           FontFamily="{StaticResource BoldFont}"
+                           FontSize="18"
+                           TextColor="IndianRed"/>
+                </StackLayout>
+                <pancakeview:PancakeView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoToDoItForMe}"/>
+                </pancakeview:PancakeView.GestureRecognizers>
+
+            </pancakeview:PancakeView>
+
             <pancakeview:PancakeView IsVisible="False"
                                      HorizontalOptions="CenterAndExpand"
                                      VerticalOptions="EndAndExpand"

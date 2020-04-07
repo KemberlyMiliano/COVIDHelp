@@ -52,8 +52,11 @@ namespace COVIDHelp.ViewModels
                 // Agregar al historial del usuario
                 await navigationService.NavigateAsync(new Uri(NavigationConstants.CommitmentsPage, UriKind.Relative));
             }
+            else
+            {
+                await navigationService.GoBackAsync();
+            }
 
-            await navigationService.GoBackAsync();
         }
     }
 }
