@@ -29,7 +29,7 @@ namespace COVIDHelp.Views.HelpersViews
             type = type.GetPreferences("type");
             map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(double.Parse(latitude), double.Parse(longitude)), Distance.FromMiles(100)));
             if (BindingContext is HelpPageViewModel viewModel)
-            {
+            {             
                 await viewModel.GetPerson();
                 foreach (var item in viewModel.HelpsPerson)
                 {
@@ -43,18 +43,7 @@ namespace COVIDHelp.Views.HelpersViews
                 }
 
             }
-        }
-        BitmapDescriptor SelectImage(string type)
-        {
-            switch (type)
-            {
-                case "pharmacy":
-                    return BitmapDescriptorFactory.FromBundle("pharmacy_cross.png");
-                case "supermarket":
-                    return BitmapDescriptorFactory.FromBundle("comestibles.png");
-                default:
-                    return BitmapDescriptorFactory.DefaultMarker(Color.Blue);
-            }
+        
 
         }
     }

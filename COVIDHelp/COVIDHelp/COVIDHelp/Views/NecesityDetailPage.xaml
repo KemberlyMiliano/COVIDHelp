@@ -10,7 +10,7 @@
             <StackLayout Padding="20,40,20,20">
                 <Frame CornerRadius="20">
                     <StackLayout>
-                        <Label Text="Nombre del necesitado"
+                        <Label Text="{Binding Help.Nombre}"
                 VerticalOptions="StartAndExpand" 
                 HorizontalOptions="Center" 
                            HorizontalTextAlignment="Center"

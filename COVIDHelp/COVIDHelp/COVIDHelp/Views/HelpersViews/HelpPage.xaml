@@ -5,50 +5,65 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="COVIDHelp.Views.HelpersViews.HelpPage"
-             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps" 
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:system="clr-namespace:System;assembly=netstandard" xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              NavigationPage.HasNavigationBar="False"
              x:Name="helpPage">
     <ContentPage.Content>
-        <Grid BackgroundColor="White">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+        <Grid>
             <maps:Map x:Name="map"
                       Grid.Row="0"/>
+            <pancakeview:PancakeView 
+                                     HorizontalOptions="EndAndExpand"
+                                     VerticalOptions="EndAndExpand"
+                                     BackgroundColor="White"
+                                     CornerRadius="20,0,0,20"
+                                     Margin="20"
+                                   HeightRequest="100"
+                                     Padding="10"
+                                     HasShadow="True">
 
-            <CollectionView Grid.Row="1"
+                    <CollectionView Grid.Row="0"
+                            VerticalOptions="EndAndExpand"
+                            HorizontalOptions="Center"
+                            BackgroundColor="Transparent"
+                                    SelectedItem="{Binding SelectHelp,Mode=TwoWay}"
+                                   SelectionMode="Single"
                       ItemsSource="{Binding HelpsPerson}">
-
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout Orientation="Horizontal">
-                            <ff:CachedImage Source="{Binding Image}" HeightRequest="50" Margin="10,0,10,0"/>
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
                             <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <Label Text="{Binding NeededPerson}" 
-                                           VerticalOptions="End" 
-                                           TextColor="Black"
-                                           FontFamily="{StaticResource BoldFont}" />
-                                <Label Text="{Binding Status}" 
-                                           VerticalTextAlignment="Center" 
-                                           TextColor="Black"
-                                           Grid.Row="1" 
-                                           VerticalOptions="Start"
-                                           FontFamily="{StaticResource NormalFont}" />
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="defaultUser"
+                                                Grid.Column="0"
+                                                WidthRequest="100"/>
+                                <Label  Grid.Column="1"
+                                           VerticalOptions="CenterAndExpand" 
+                                           FontFamily="{StaticResource BoldFont}" >
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Nombre}"  TextColor="Black" FontSize="20"/>
+                                            <Span Text="{x:Static system:Environment.NewLine}" />
+                                            <Span Text="{Binding Dirrecion}" FontSize="16" />
+                                            <Span Text="{x:Static system:Environment.NewLine}"/>
+                                            <Span Text="{Binding Telefono}" FontSize="16"/>
+                                            <Span Text="{x:Static system:Environment.NewLine}"/>
+                                            <Span Text="{Binding Status}"  FontSize="16"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
                             </Grid>
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Path=BindingContext.GoToRequestDetail, Source={x:Reference helpPage}}"
-                                                          CommandParameter="{Binding .}"/>
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
-                    </DataTemplate>
+                        </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
+            </pancakeview:PancakeView>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

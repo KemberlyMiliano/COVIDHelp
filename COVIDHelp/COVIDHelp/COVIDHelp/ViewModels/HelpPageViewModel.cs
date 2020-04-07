@@ -9,12 +9,33 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms.GoogleMaps;
+using COVIDHelp.Helpers;
+using System.Linq;
 
 namespace COVIDHelp.ViewModels
 {
-    public class HelpPageViewModel : BaseViewModel, INavigationAware
+    public class HelpPageViewModel : BaseViewModel
     {
         public ObservableCollection<Help> HelpsPerson { get; set; }
+
+        private Help selectHelp;
+        public DelegateCommand GoToDetailCommand { get; set; }
+        public Help SelectHelp
+        {
+            get { return selectHelp; }
+            set {
+                selectHelp = value;
+                if (selectHelp!=null)
+                {
+                    GoToDetailCommand = new DelegateCommand(async () =>
+                    {
+                        await NavigateTo(SelectHelp);
+                    });
+                    GoToDetailCommand.Execute();
+                }
+            }
+        }
+
         public DelegateCommand LoadPins { get; set; }
         public DelegateCommand<Necesity> GoToRequestDetail { get; set; }
         IApiGoogleServices apiGoogleServices;
@@ -29,6 +50,12 @@ namespace COVIDHelp.ViewModels
             {
                 HelpsPerson = new ObservableCollection<Help>(getrequest);
             }
+        }
+        async Task NavigateTo(Help help)
+        {
+            var param = new NavigationParameters();
+            param.Add("Helper", help);
+            await navigationService.NavigateAsync(new Uri($"{NavigationConstants.NecesityDetailPage}",UriKind.Relative),param);
         }
         public void OnNavigatedFrom(INavigationParameters parameters)
         {

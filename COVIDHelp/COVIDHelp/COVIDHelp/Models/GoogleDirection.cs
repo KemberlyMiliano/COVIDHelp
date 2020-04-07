@@ -171,7 +171,7 @@ namespace COVIDHelp.Models
         public IList<GeocodedWaypoint> GeocodedWaypoints { get; set; }
 
         [JsonProperty("routes")]
-        public IList<Route> Routes { get; set; }
+        public List<Route> Routes { get; set; }
 
         [JsonProperty("status")]
         public string Status { get; set; }
