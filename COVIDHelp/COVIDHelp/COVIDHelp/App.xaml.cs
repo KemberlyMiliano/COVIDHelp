@@ -43,6 +43,8 @@ namespace COVIDHelp
             containerRegistry.RegisterForNavigation<SelectAssistenceDoctor, SelectAssistenceDoctorViewModel>();
             containerRegistry.RegisterForNavigation<SelectAssistenceNurse, SelectAssistenceNurseViewModel>();
             containerRegistry.RegisterForNavigation<SelectAssistencePsycology, SelectAssistencePsycologyViewModel>();
+            containerRegistry.RegisterForNavigation<EditProfilePage, EditProfilePageViewModel>();
+
 
         }
     }

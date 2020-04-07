@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="True"
+             NavigationPage.HasBackButton="True"
+             x:Class="COVIDHelp.Views.LoginAndRegisterView.EditProfilePage">
+    <ContentPage.Content>
+        <Grid Padding="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Frame CornerRadius="30" Padding="10" Grid.ColumnSpan="4" Grid.RowSpan="8" BackgroundColor="#0272A6">
+
+                <StackLayout Padding="20">
+
+                    <ImageButton BackgroundColor="Transparent" Source="defaultUser.png"
+                         Grid.Row="1"
+                         Grid.ColumnSpan="4"
+                         HeightRequest="100"
+                         WidthRequest="100"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="CenterAndExpand" />
+
+                    <Label Text="Cambiar foto de perfil"
+                           TextColor="White"
+                           FontSize="20"
+                           Grid.Row="1"
+                           Grid.ColumnSpan="4"
+                           VerticalOptions="Start"
+                           HorizontalOptions="Center"
+                           FontFamily="{StaticResource NormalFont}"/>
+
+                    <Label Text="-Descripcion :" 
+                           TextColor="White"
+                           FontSize="20"
+                           Grid.Row="2"
+                           Padding="30"
+                           Grid.ColumnSpan="4"
+                           VerticalOptions="Start"
+                           HorizontalOptions="Start"
+                           FontFamily="{StaticResource NormalFont}"/>
+
+                    <Editor Keyboard="Text" AutoSize="TextChanges" IsTextPredictionEnabled="True" 
+                   Margin="50,0"
+                   Placeholder="añadir descripcion.... "
+                   PlaceholderColor="White"
+                   Text=""
+                   TextColor="White"
+                   Grid.Row="2"
+                   Grid.ColumnSpan="4"
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Start"
+                   FontFamily="{StaticResource NormalFont}"/>
+
+                    <Button Text="Guardar cambios"
+                            TextColor="#0272A6"
+                            HeightRequest="50" 
+                            WidthRequest="100" 
+                            Grid.Row="3"
+                            VerticalOptions="EndAndExpand"
+                            CornerRadius="40" 
+                            Grid.ColumnSpan="4"
+                            BackgroundColor="White"
+                            FontFamily="{StaticResource NormalFont}"/>
+                </StackLayout>
+
+            </Frame>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

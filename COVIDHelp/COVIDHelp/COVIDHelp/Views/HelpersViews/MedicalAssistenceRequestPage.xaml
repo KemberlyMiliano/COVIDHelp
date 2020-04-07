@@ -8,7 +8,7 @@
              Title="Requerimiento">
     <ContentPage.Content>
      
-            <Grid Padding="20" RowSpacing="20">
+            <Grid Padding="20" RowSpacing="40">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -34,12 +34,12 @@
                     Margin="0,20,0,20"/>
 
                 </Frame>
-                <Label Text="Enfermero(a)" Grid.Row="1" HeightRequest="80" BackgroundColor="Transparent" TextColor="#014666" Grid.ColumnSpan="3" VerticalOptions="Start" HorizontalOptions="CenterAndExpand"/>
+            <Label Text="Enfermero(a)" FontFamily="{StaticResource NormalFont}" Grid.Row="1" HeightRequest="80" BackgroundColor="Transparent" TextColor="#014666" Grid.ColumnSpan="3" VerticalOptions="Start" HorizontalOptions="CenterAndExpand"/>
                 <ImageButton Source="nurse" TranslationY="15" Grid.Row="1" HeightRequest="80" BackgroundColor="Transparent" Grid.ColumnSpan="3" HorizontalOptions="CenterAndExpand" Command="{Binding GoToNurseAssistence}"/>
 
-                <Label Text="Doctor(a)" Grid.Row="2" HeightRequest="80" BackgroundColor="Transparent" TextColor="#014666" Grid.ColumnSpan="3"  HorizontalOptions="CenterAndExpand"/>
-            <ImageButton Source="doctor1.png" Grid.Row="2" TranslationY="15" HeightRequest="80" BackgroundColor="Transparent" Grid.ColumnSpan="3" HorizontalOptions="CenterAndExpand" Command="{Binding GoToDoctorAssistence}"/>
-                <Label Text="Psicologo(a)" Grid.Row="3" HeightRequest="80" BackgroundColor="Transparent" TextColor="#014666" Grid.ColumnSpan="3" HorizontalOptions="CenterAndExpand"/>
+            <Label Text="Doctor(a)" FontFamily="{StaticResource NormalFont}" Grid.Row="2" HeightRequest="80" BackgroundColor="Transparent" TextColor="#014666" Grid.ColumnSpan="3"  HorizontalOptions="CenterAndExpand"/>
+            <ImageButton Source="doctor1.png"  Grid.Row="2" TranslationY="15" HeightRequest="80" BackgroundColor="Transparent" Grid.ColumnSpan="3" HorizontalOptions="CenterAndExpand" Command="{Binding GoToDoctorAssistence}"/>
+            <Label Text="Psicologo(a)" FontFamily="{StaticResource NormalFont}" Grid.Row="3" HeightRequest="80" BackgroundColor="Transparent" TextColor="#014666" Grid.ColumnSpan="3" HorizontalOptions="CenterAndExpand"/>
             <ImageButton Source="woman.png" Grid.Row="3" TranslationY="20" HeightRequest="80" BackgroundColor="Transparent" Grid.ColumnSpan="3" HorizontalOptions="CenterAndExpand" Command="{Binding GoToPsycologyAssistence}"/>
         </Grid>
     </ContentPage.Content>

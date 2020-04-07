@@ -24,6 +24,6 @@ namespace COVIDHelp
         public const string SelectAssistenceNurse = "/SelectAssistenceNurse";
         public const string SelectAssistenceDoctor = "/SelectAssistenceDoctor";
         public const string SelectAssistencePsycology = "/SelectAssistencePsycology";
-
+        public const string EditProfilePage = "/EditProfilePage";
     }
 }

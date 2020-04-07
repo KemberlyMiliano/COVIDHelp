@@ -113,15 +113,16 @@
                 </StackLayout>
             </pancakeview:PancakeView>
 
-            <Button Text="Quiero ser voluntario!" 
+            <Button 
+                    Text="Quiero ser voluntario!" 
                     FontFamily="{StaticResource NormalFont}"
                     Command="{Binding GoToIdentification}"
                     WidthRequest="300"
                     TextColor="Black" 
                     CornerRadius="20"
                     BackgroundColor="Transparent"
-                    BorderColor="White" 
-                    BorderWidth="1"
+                    BorderColor="#01608C" 
+                    BorderWidth="2"
                     Grid.Row="5"
                     VerticalOptions="EndAndExpand" 
                     HorizontalOptions="EndAndExpand" />

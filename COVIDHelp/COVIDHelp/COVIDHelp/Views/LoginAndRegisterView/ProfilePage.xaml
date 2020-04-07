@@ -33,7 +33,7 @@
                         </Label.FormattedText>
                     </Label>
                     <Label Margin="0,-5" Text="{Binding Binding User.Rol}" FontFamily="{StaticResource NormalFont}" HorizontalOptions="Center" />
-                    <Button Text="Edit" Margin="7" HeightRequest="40" BackgroundColor="White" BorderWidth="5" BorderColor="#585858" TextColor="#585858" CornerRadius="50" HorizontalOptions="Fill"/>
+                    <Button Text="Edit" Margin="7" HeightRequest="40" BackgroundColor="White" BorderWidth="5" BorderColor="#585858" TextColor="#585858" CornerRadius="50" HorizontalOptions="Fill" Command="{Binding EditCommand}"/>
                 </StackLayout>
 
                 <Grid Grid.Row="2" Margin="0,30" ColumnSpacing="0" RowSpacing="0">
