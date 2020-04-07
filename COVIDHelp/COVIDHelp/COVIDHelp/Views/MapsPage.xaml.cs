@@ -27,8 +27,7 @@ namespace COVIDHelp.Views
             latitude = latitude.GetPreferences("latitude");
             longitude = longitude.GetPreferences("longitude");
             type = type.GetPreferences("type");
-
-            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(double.Parse(latitude), double.Parse(longitude)), Distance.FromMiles(100)));
+            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(double.Parse(latitude), double.Parse(longitude)), Distance.FromMiles(2)));
             if (BindingContext is MapsPageViewModel viewModel)
             {
                 await viewModel.GetPlace($"{latitude},{longitude}",20000,type);

@@ -1,4 +1,5 @@
-﻿using COVIDHelp.Models;
+﻿using COVIDHelp.Helpers;
+using COVIDHelp.Models;
 using COVIDHelp.Services;
 using Prism.Commands;
 using Prism.Navigation;
@@ -10,19 +11,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms.OpenWhatsApp;
-using COVIDHelp.Helpers;
 
-namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
+namespace COVIDHelp.ViewModels
 {
-    public class CommitmentsPageViewModel : BaseViewModel
+    class RequestsListPageViewModel:BaseViewModel
     {
         public DelegateCommand<Help> ContactCommand { get; set; }
         public DelegateCommand DetailCommand { get; set; }
         public DelegateCommand LoadHisotiral { get; set; }
-        public ObservableCollection<Help> Historial { get; set; }
         public DelegateCommand RefreshCommand { get; set; }
         public bool IsRefresh { get; set; }
-        public CommitmentsPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
+        public ObservableCollection<Help> Requests { get; set; }
+        public RequestsListPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
             LoadHisotiral = new DelegateCommand(async () =>
             {
@@ -41,7 +41,6 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
                 await GetHistorialHelper();
                 IsRefresh = false;
             });
-
             DetailCommand = new DelegateCommand(async () =>
             {
                 await navigationService.NavigateAsync(new Uri(NavigationConstants.NecesityDetailPage, UriKind.Relative));
@@ -53,7 +52,7 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
             Int64 cedula = 0;
             if (request != null)
             {
-                Historial = new ObservableCollection<Help>(request.Where(e => e.Cedula == cedula.GetPreferencesInt("Cedula")));
+                Requests = new ObservableCollection<Help>(request.Where(e => e.CedulaVoluntario == cedula.GetPreferencesInt("Cedula")));
             }
 
         }
@@ -69,5 +68,4 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
             }
         }
     }
-
 }

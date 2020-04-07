@@ -54,5 +54,33 @@ namespace COVIDHelp.Models
 
         [JsonProperty("fechaEnviado")]
         public DateTime FechaEnviado { get; set; }
+
+        [JsonIgnore]
+        public double State
+        {
+            get
+            {
+                switch (Status)
+                {
+                    case "Activo":
+                        {
+                            return 0;
+                        }
+                    case "Proceso":
+                        {
+                            return 0.5;
+
+                        }
+                    case "Completado":
+                        {
+                            return 1;
+
+                        }
+                    default:
+
+                        return 0;
+                }
+            }
+        }
     }
 }

@@ -70,12 +70,18 @@ namespace COVIDHelp.ViewModels
             }
 
         }
-        public void OnNavigatedTo(INavigationParameters parameters)
+        public async void OnNavigatedTo(INavigationParameters parameters)
         {
             if (parameters.ContainsKey($"{nameof(User)}"))
             {
                 var param = parameters[$"{nameof(User)}"] as User;
                 User = param;
+              
+                var lat = await User.Latitude.Latitude();
+                User.Latitude = lat!=User.Latitude? lat:User.Latitude;
+                var lng = await User.Longitude.Longitude();
+                User.Longitude = lng != User.Longitude ? lng : User.Longitude;
+                User = await apiCovitServices.UpdateUser(User);
             }
 
         }
