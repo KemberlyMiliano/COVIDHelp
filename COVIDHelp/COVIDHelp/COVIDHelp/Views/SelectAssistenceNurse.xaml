@@ -21,7 +21,7 @@
                 </CollectionView.Header>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="30">
+                        <StackLayout Padding="8">
                             <CheckBox 
                                  Grid.Row="1" 
                                  IsChecked="{Binding IsEnable}"/>
@@ -52,9 +52,7 @@
                                 HorizontalOptions="StartAndExpand"/>
                         <Entry Placeholder=""
                                Text="{Binding DiseasesAdd.Name}"
-                               TextColor="White" 
-                               />
-
+                               TextColor="White"/>
                         <Button Text="Solicitar ayuda"
                                 Margin="0,30"
                                 CornerRadius="20"

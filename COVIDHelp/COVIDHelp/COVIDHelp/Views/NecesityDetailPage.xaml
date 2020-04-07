@@ -36,7 +36,7 @@
                                 VerticalOptions="StartAndExpand" 
                                 HorizontalOptions="StartAndExpand" 
                                 FontSize="20"/>
-                        <Label Text="Texto.............."
+                        <Label Text="{Binding Help.Description}"
                                 VerticalOptions="StartAndExpand" 
                                 FontAttributes="Italic"
                                  HorizontalOptions="StartAndExpand" 
@@ -44,7 +44,7 @@
                     </StackLayout>
                 </Frame>
 
-                <Button Text="Confirmar" 
+                <Button Text="Volver" 
                         TextColor="White"  
                         BackgroundColor="#01608C" 
                         CornerRadius="40" 

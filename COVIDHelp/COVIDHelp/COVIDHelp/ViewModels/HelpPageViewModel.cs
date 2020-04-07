@@ -23,9 +23,10 @@ namespace COVIDHelp.ViewModels
         public Help SelectHelp
         {
             get { return selectHelp; }
-            set {
+            set
+            {
                 selectHelp = value;
-                if (selectHelp!=null)
+                if (selectHelp != null)
                 {
                     GoToDetailCommand = new DelegateCommand(async () =>
                     {
@@ -46,7 +47,7 @@ namespace COVIDHelp.ViewModels
         public async Task GetPerson()
         {
             var getrequest = await apiCovitServices.GetHelpActive();
-            if (getrequest!=null)
+            if (getrequest != null)
             {
                 HelpsPerson = new ObservableCollection<Help>(getrequest);
             }
@@ -55,7 +56,7 @@ namespace COVIDHelp.ViewModels
         {
             var param = new NavigationParameters();
             param.Add("Helper", help);
-            await navigationService.NavigateAsync(new Uri($"{NavigationConstants.NecesityDetailPage}",UriKind.Relative),param);
+            await navigationService.NavigateAsync(new Uri($"{NavigationConstants.RequestDetailPage}", UriKind.Relative), param);
         }
         public void OnNavigatedFrom(INavigationParameters parameters)
         {

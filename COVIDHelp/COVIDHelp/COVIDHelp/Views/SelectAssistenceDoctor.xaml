@@ -7,7 +7,7 @@
              x:Class="COVIDHelp.Views.SelectAssistenceDoctor">
     <ContentPage.Content>
         <Frame BackgroundColor="#0272A6"  CornerRadius="20" Margin="30" >
-                <CollectionView ItemsSource="{Binding Diseases}">
+            <CollectionView ItemsSource="{Binding Diseases}">
                 <CollectionView.Header>
                     <StackLayout>
                         <Label Text="Sintomas :"
@@ -20,12 +20,12 @@
                     </StackLayout>
                 </CollectionView.Header>
                 <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout Padding="30">
-                                <CheckBox 
+                    <DataTemplate>
+                        <StackLayout Padding="8">
+                            <CheckBox 
                                  Grid.Row="1" 
                                  IsChecked="{Binding IsEnable}"/>
-                                <Label 
+                            <Label 
                                 Text="{Binding Name}"
                                 FontFamily="{StaticResource NormalFont}"
                                 FontSize="16"
@@ -33,39 +33,39 @@
                                 VerticalOptions="StartAndExpand"
                                 Grid.Row="1"
                                 HorizontalOptions="StartAndExpand"/>
-                      
-                            </StackLayout>
 
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                    <CollectionView.Footer>
-                        <StackLayout Padding="30">
-                            <CheckBox  
+                        </StackLayout>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.Footer>
+                    <StackLayout Padding="30">
+                        <CheckBox  
                                  IsChecked="{Binding DiseasesAdd.IsEnable}"
                                 HorizontalOptions="StartAndExpand"/>
-                            <Label 
+                        <Label 
                                 Text="Otros :"
                                 FontFamily="{StaticResource NormalFont}"
                                 FontSize="16"
                                 TextColor="White"
                                 VerticalOptions="StartAndExpand"
                                 HorizontalOptions="StartAndExpand"/>
-                            <Entry Placeholder=""
+                        <Entry Placeholder=""
                                    Text="{Binding DiseasesAdd.Name}"
                                    TextColor="White" />
 
-                            <Button Text="Solicitar ayuda"
+                        <Button Text="Solicitar ayuda"
                                     Margin="0,30"
                                     CornerRadius="20"
                                     BackgroundColor="White"
                                     Command="{Binding AddDataAndNavigateCommand}" />
-                        </StackLayout>
-                      
-                    </CollectionView.Footer>
-                    
-                </CollectionView>
-                
-            </Frame>
+                    </StackLayout>
+
+                </CollectionView.Footer>
+
+            </CollectionView>
+
+        </Frame>
 
     </ContentPage.Content>
 </ContentPage>

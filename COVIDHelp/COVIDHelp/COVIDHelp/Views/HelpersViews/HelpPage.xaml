@@ -24,7 +24,7 @@
                                      Padding="10"
                                      HasShadow="True">
 
-                    <CollectionView Grid.Row="0"
+                <CollectionView Grid.Row="0"
                                     VerticalOptions="EndAndExpand"
                                     HorizontalOptions="Center"
                                     BackgroundColor="Transparent"
@@ -49,20 +49,20 @@
                                                 FontFamily="{StaticResource BoldFont}" >
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="{Binding Nombre}"  TextColor="Black" FontSize="20"/>
+                                            <Span Text="{Binding Nombre}"  TextColor="Black" FontSize="20" FontFamily="{StaticResource BoldFont}"/>
                                             <Span Text="{x:Static system:Environment.NewLine}" />
-                                            <Span Text="{Binding Dirrecion}" FontSize="16" />
+                                            <Span Text="{Binding Dirrecion}" FontSize="16" FontFamily="{StaticResource NormalFont}"/>
                                             <Span Text="{x:Static system:Environment.NewLine}"/>
                                             <Span Text="{Binding Telefono}" FontSize="16"/>
-                                            <Span Text="{x:Static system:Environment.NewLine}"/>
+                                            <Span Text="{x:Static system:Environment.NewLine}" FontFamily="{StaticResource NormalFont}"/>
                                             <Span Text="{Binding Status}"  FontSize="16"/>
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
                             </Grid>
                         </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </pancakeview:PancakeView>
         </Grid>
     </ContentPage.Content>

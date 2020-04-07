@@ -6,10 +6,11 @@ using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace COVIDHelp.ViewModels
 {
-    public class NecesityDetailPageViewModel : BaseViewModel,INavigatedAware
+    public class NecesityDetailPageViewModel : BaseViewModel, INavigatedAware
     {
         public Help Help { get; set; }
         public DelegateCommand GoBackCommand { get; set; }
@@ -17,7 +18,7 @@ namespace COVIDHelp.ViewModels
         {
             GoBackCommand = new DelegateCommand(async () =>
             {
-
+                await navigationService.GoBackAsync();
             });
         }
 
@@ -28,8 +29,10 @@ namespace COVIDHelp.ViewModels
 
         public void OnNavigatedTo(INavigationParameters parameters)
         {
+            //Recibe el SelectedHelp de Historial
             var param = parameters["Helper"] as Help;
             Help = param;
         }
+
     }
 }

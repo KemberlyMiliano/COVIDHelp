@@ -18,18 +18,18 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
     {
         public DelegateCommand ContactCommand { get; set; }
         public DelegateCommand DetailCommand { get; set; }
-
         public DelegateCommand LoadHisotiral { get; set; }
         public ObservableCollection<Help> Historial { get; set; }
         public CommitmentsPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
             LoadHisotiral = new DelegateCommand(async () =>
             {
-               await GetHistorialHelper();
+                await GetHistorialHelper();
             });
             LoadHisotiral.Execute();
             ContactCommand = new DelegateCommand(async () =>
             {
+                //Agregar numero del usuario
                 await OpenWhatsApp("+1 829 465 8565", "Hola! Estoy aquí para ayudarte");
 
             });
@@ -43,10 +43,11 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
         {
             var request = await apiCovitServices.GetHelp();
             Int64 cedula = 0;
-            if (request != null) {
+            if (request != null)
+            {
                 Historial = new ObservableCollection<Help>(request.Where(e => e.Cedula == cedula.GetPreferencesInt("Cedula")));
             }
-     
+
         }
         private async Task OpenWhatsApp(string number, string text)
         {

@@ -21,7 +21,7 @@
                 </CollectionView.Header>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="30">
+                        <StackLayout Padding="8">
                             <CheckBox 
                                  Grid.Row="1" 
                                  IsChecked="{Binding IsEnable}"/>
