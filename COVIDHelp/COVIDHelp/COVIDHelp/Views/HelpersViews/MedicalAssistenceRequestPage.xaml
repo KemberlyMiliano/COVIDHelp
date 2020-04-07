@@ -7,39 +7,40 @@
              x:Class="COVIDHelp.Views.HelpersViews.MedicalAssistenceRequestPage"
              Title="Requerimiento">
     <ContentPage.Content>
-        <ScrollView>
-        <StackLayout  Padding="20">
-            <Frame CornerRadius="20">
-                <StackLayout>
+     
+            <Grid Padding="20" RowSpacing="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Frame  CornerRadius="20" Grid.RowSpan="5" Grid.ColumnSpan="3" HasShadow="True">
                     <Label Text="Quién te puede ayudar?"
                    FontFamily="{StaticResource BoldFont}"
                    FontSize="20"
                    TextColor="Black"
-                           Margin="0,20,0,20"/>
-                    <StackLayout Orientation="Horizontal">
-                        <ImageButton Source="dinner" HeightRequest="80" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand"/>
-                        <ImageButton Source="dinner" HeightRequest="80" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand"/>
-                        <ImageButton Source="dinner" HeightRequest="80" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand"/>
+                   Grid.Row="0"
+                    HorizontalOptions="CenterAndExpand"       
+                    Margin="0,20,0,20"/>
 
-                    </StackLayout>
+                </Frame>
+                <Label Text="Enfermero(a)" Grid.Row="1" HeightRequest="80" BackgroundColor="Transparent" TextColor="#014666" Grid.ColumnSpan="3" VerticalOptions="Start" HorizontalOptions="CenterAndExpand"/>
+                <ImageButton Source="nurse" TranslationY="15" Grid.Row="1" HeightRequest="80" BackgroundColor="Transparent" Grid.ColumnSpan="3" HorizontalOptions="CenterAndExpand" Command="{Binding GoToNurseAssistence}"/>
 
-                    <Label Text="Cuál es tu situación?"
-                   FontFamily="{StaticResource BoldFont}"
-                   FontSize="20"
-                   TextColor="Black"
-                           Margin="0,20,0,20"/>
-
-                    <Entry Text="Otros" FontFamily="{StaticResource NormalFont}"/>
-                </StackLayout>
-            </Frame>
-            <Button Text="Pedir ayuda"
-                    TextColor="White"  
-                    BackgroundColor="Green" 
-                    CornerRadius="40" 
-                    Margin="0,40,0,0"
-                    FontFamily="{StaticResource BoldFont}"
-                    />
-        </StackLayout>
-        </ScrollView>
+                <Label Text="Doctor(a)" Grid.Row="2" HeightRequest="80" BackgroundColor="Transparent" TextColor="#014666" Grid.ColumnSpan="3"  HorizontalOptions="CenterAndExpand"/>
+            <ImageButton Source="doctor1.png" Grid.Row="2" TranslationY="15" HeightRequest="80" BackgroundColor="Transparent" Grid.ColumnSpan="3" HorizontalOptions="CenterAndExpand" Command="{Binding GoToDoctorAssistence}"/>
+                <Label Text="Psicologo(a)" Grid.Row="3" HeightRequest="80" BackgroundColor="Transparent" TextColor="#014666" Grid.ColumnSpan="3" HorizontalOptions="CenterAndExpand"/>
+            <ImageButton Source="woman.png" Grid.Row="3" TranslationY="20" HeightRequest="80" BackgroundColor="Transparent" Grid.ColumnSpan="3" HorizontalOptions="CenterAndExpand" Command="{Binding GoToPsycologyAssistence}"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="COVIDHelp.Views.SelectAssistenceDoctor">
+    <ContentPage.Content>
+        <Frame BackgroundColor="#0272A6"  CornerRadius="20" Margin="30" >
+                <CollectionView ItemsSource="{Binding Diseases}">
+                <CollectionView.Header>
+                    <StackLayout>
+                        <Label Text="Sintomas :"
+                                       FontFamily="{StaticResource NormalFont}" 
+                                       HorizontalOptions="Center"
+                                       TextColor="White" 
+                                       FontSize="22"
+                                       Grid.Row="0" 
+                                       Grid.RowSpan="4"/>
+                    </StackLayout>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="30">
+                                <CheckBox 
+                                 Grid.Row="1" 
+                                 IsChecked="{Binding IsEnable}"/>
+                                <Label 
+                       Text="{Binding Name}"
+                       FontFamily="{StaticResource NormalFont}"
+                       FontSize="16"
+                        TextColor="White"
+                       VerticalOptions="StartAndExpand"
+                           Grid.Row="1"
+                       HorizontalOptions="StartAndExpand"/>
+                      
+                            </StackLayout>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.Footer>
+                        <StackLayout Padding="30">
+                            <CheckBox  
+                         IsChecked="{Binding DiseasesAdd.IsEnable}"
+                       HorizontalOptions="StartAndExpand"/>
+                            <Label 
+                       Text="Otros :"
+                       FontFamily="{StaticResource NormalFont}"
+                       FontSize="16"
+                        TextColor="White"
+                       VerticalOptions="StartAndExpand"
+                       HorizontalOptions="StartAndExpand"/>
+                            <Entry Placeholder="" Text="{Binding DiseasesAdd.Name}" TextColor="White" />
+
+                            <Button Text="Solicitar ayuda" Margin="0,30"  CornerRadius="20" BackgroundColor="White" Command="{Binding AddDataAndNavigateCommand}" />
+                        </StackLayout>
+                      
+                    </CollectionView.Footer>
+                    
+                </CollectionView>
+                
+            </Frame>
+
+    </ContentPage.Content>
+</ContentPage>
