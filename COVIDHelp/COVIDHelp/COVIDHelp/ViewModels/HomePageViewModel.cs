@@ -9,7 +9,7 @@ using System.Text;
 using COVIDHelp.Helpers;
 
 using Xamarin.Essentials;
-
+using System.Threading.Tasks;
 
 namespace COVIDHelp.ViewModels
 {
@@ -19,12 +19,17 @@ namespace COVIDHelp.ViewModels
         public DelegateCommand EmergencyCommand { get; set; }
         public DelegateCommand GoToMedicalAssintence { get; set; }
         public DelegateCommand GoToIdentification { get; set; }
+        public DelegateCommand PermissionsCommand { get; set; }
         public bool IsVoluntary { get; set; }
         public User User { get; set; }
         public HomePageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
             var param = new NavigationParameters();
-
+            PermissionsCommand = new DelegateCommand(async () =>
+            {
+               await NavigateToPermisson();
+            });
+            PermissionsCommand.Execute();
             GoToMaps = new DelegateCommand<string>(async (filtrar) =>
             {
 
@@ -56,7 +61,15 @@ namespace COVIDHelp.ViewModels
         {
 
         }
+        async Task NavigateToPermisson()
+        {
+            var status = await Permissions.CheckStatusAsync<Permissions.LocationAlways>();
+            if (status != PermissionStatus.Granted)
+            {
+                await navigationService.NavigateAsync(new Uri($"{NavigationConstants.LocationPermitionPage}", UriKind.Relative));
+            }
 
+        }
         public void OnNavigatedTo(INavigationParameters parameters)
         {
             if (parameters.ContainsKey($"{nameof(User)}"))
