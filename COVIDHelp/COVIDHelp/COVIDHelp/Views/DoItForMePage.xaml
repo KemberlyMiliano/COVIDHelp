@@ -4,7 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="COVIDHelp.Views.DoItForMePage">
+             x:Class="COVIDHelp.Views.DoItForMePage"
+             x:Name="doPage">
     <ContentPage.Content>
         <StackLayout Padding="20">
             <Label Text="Haz una lista!" 
@@ -17,11 +18,19 @@
                    FontSize="17"
                    FontFamily="{StaticResource BoldFont}"/>
             <StackLayout>
-                <ListView ItemsSource="{Binding Requests}">
+                <ListView ItemsSource="{Binding Requests}"
+                          CachingStrategy="RecycleElement">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Label Text="{Binding Need.Text}"
+                                <ViewCell.ContextActions>
+                                    <MenuItem IconImageSource="delete" 
+                                              Text="Eliminar"
+                                          Command="{Binding Path=BindingContext.OnDeleteCommand, Source={x:Reference doPage}}"
+                                          CommandParameter="{Binding .}"
+                                          IsDestructive="True"/>
+                                </ViewCell.ContextActions>
+                                <Label Text="{Binding Text}"
                                        TextColor="Black"
                                        FontSize="17" 
                                        FontFamily="{StaticResource NormalFont}"/>

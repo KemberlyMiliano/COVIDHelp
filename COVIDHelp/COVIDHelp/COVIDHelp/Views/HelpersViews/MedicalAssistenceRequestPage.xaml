@@ -4,8 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="COVIDHelp.Views.HelpersViews.MedicalAssistenceRequestPage"
-             Title="Requerimiento">
+             x:Class="COVIDHelp.Views.HelpersViews.MedicalAssistenceRequestPage">
     <ContentPage.Content>
      
             <Grid Padding="20" RowSpacing="40">
@@ -30,7 +29,8 @@
                         HasShadow="True">
                     <Label Text="Quién te puede ayudar?"
                            FontFamily="{StaticResource BoldFont}"
-                           FontSize="20"
+                           FontSize="23"
+                           HorizontalTextAlignment="Center"
                            TextColor="Black"
                            Grid.Row="0"
                            HorizontalOptions="CenterAndExpand"       
@@ -41,7 +41,7 @@
            
                 <ImageButton Source="nurse"
                              TranslationY="15"
-                             Grid.Row="1"
+                             Grid.Row="3"
                              HeightRequest="80"
                              BackgroundColor="Transparent"
                              Grid.ColumnSpan="3"
@@ -50,7 +50,7 @@
 
           
             <ImageButton Source="doctor1.png"
-                         Grid.Row="2"
+                         Grid.Row="1"
                          TranslationY="15"
                          HeightRequest="80"
                          BackgroundColor="Transparent"
@@ -73,7 +73,8 @@
                        BackgroundColor="Transparent" 
                        TextColor="#014666"
                        Grid.ColumnSpan="3" 
-                       VerticalOptions="Start" 
+                       VerticalOptions="Start"
+                       FontFamily="{StaticResource NormalFont}"
                        HorizontalOptions="CenterAndExpand"/>
                 
                 <ImageButton Source="nurse" 
@@ -92,6 +93,7 @@
                        BackgroundColor="Transparent"
                        TextColor="#014666" 
                        Grid.ColumnSpan="3" 
+                       FontFamily="{StaticResource NormalFont}"
                        HorizontalOptions="CenterAndExpand"/>
                 
             <ImageButton Source="doctor1.png"
@@ -110,6 +112,7 @@
                    BackgroundColor="Transparent" 
                    TextColor="#014666"
                    Grid.ColumnSpan="3" 
+                   FontFamily="{StaticResource NormalFont}"
                    HorizontalOptions="CenterAndExpand"/>
             <ImageButton Source="woman.png"
                          Grid.Row="3" 

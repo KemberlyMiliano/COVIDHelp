@@ -6,48 +6,34 @@
              mc:Ignorable="d"
              x:Class="COVIDHelp.Views.HelpersViews.IdentificationPage">
     <ContentPage.Content>
-        <Frame BackgroundColor="#0272A6"  CornerRadius="20" Margin="30">
-            <ScrollView>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                 
-                        <Label      Text="¿Eres un profesional de la salud?" 
-                                    TextColor="White"
+
+        <StackLayout Padding="20">
+
+
+            <Label      Text="¿Eres un profesional de la salud?" 
+                                    TextColor="Black"
                                     VerticalOptions="Center"
                                     HorizontalTextAlignment="Center"
                                     FontFamily="{StaticResource BoldFont}"
                                     FontSize="40"
                                     Grid.Row="0"
+                                    Margin="0,60,0,0"
                                />
-                        <Button Text="Si" 
-                                Padding="30"
-                                BackgroundColor="White" 
-                                TextColor="#0272A6"
-                                FontFamily="{StaticResource BoldFont}" 
-                                CornerRadius="40" 
-                                VerticalOptions="Center" 
-                                Grid.Row="1"
+            <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
+                <ImageButton Source="checked"
+                         BackgroundColor="Transparent"
+                         HeightRequest="100"
+                                Margin="30"
+                                VerticalOptions="Start"
                                 Command="{Binding GoToVolunteer}"/>
-                        <Button Text="No" 
-                                Padding="30"
-                                BackgroundColor="White" 
-                                TextColor="#0272A6"
-                                FontFamily="{StaticResource BoldFont}" 
-                                CornerRadius="40"
-                                Grid.Row="2"
+                <ImageButton Source="cancel"
+                         BackgroundColor="Transparent"
+                         HeightRequest="100"
+                                Margin="30"
                                 VerticalOptions="Start"
                                 Command="{Binding GoToVolunteer}"/>
 
-                </Grid>
-            </ScrollView>
-          
-        </Frame>
+            </StackLayout>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
