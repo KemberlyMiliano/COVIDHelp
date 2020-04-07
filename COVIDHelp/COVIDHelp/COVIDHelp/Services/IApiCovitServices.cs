@@ -19,7 +19,7 @@ namespace COVIDHelp.Services
         Task<User> FindUser(Int64 cedula); 
         [Get("/api/Users/SendActivationCode")]
         Task<User> SendCodePhone(Int64 cedula);
-        [Get("/api/Users")]
+        [Put("/api/Users")]
         Task<User> UpdateUser([Body] User user);
 
         [Post("/api/Helps")]

@@ -13,6 +13,8 @@
         <Grid>
             <maps:Map x:Name="map"
                       SelectedPin="{Binding SelectPlace,Mode=TwoWay}"
+                      MyLocationEnabled="True"
+                      IsShowingUser="True"
                       />
             <pancakeview:PancakeView 
                                      HorizontalOptions="StartAndExpand"

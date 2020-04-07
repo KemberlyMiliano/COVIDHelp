@@ -10,7 +10,7 @@
     <ContentPage.Content>
         <StackLayout Margin="20">
             <Label Text="Mis requerimientos" FontSize="28" FontFamily="{StaticResource BoldFont}" Margin="0,10,0,20" TextColor="Black"/>
-            <ListView ItemsSource="{Binding Historial}"  
+            <ListView ItemsSource="{Binding Requests}"  
                             Grid.Row="2"
                   RowHeight="80">
                 <ListView.ItemTemplate>
@@ -50,7 +50,12 @@
                                         <Image Source="{Binding Image}" 
                                            HeightRequest="40"
                                        Margin="0,0,15,0"/>
-                                    </Grid>
+                                    <ProgressBar  Progress="{Binding State}"
+                                                  ProgressColor="Green"
+                                                  Grid.Row="1"
+                                                  Grid.Column="1"
+                                                  Grid.ColumnSpan="2"/>
+                                </Grid>
                              
                                 
                             </StackLayout>
