@@ -18,7 +18,7 @@ namespace COVIDHelp.ViewModels
         public DelegateCommand<string> GoToMaps { get; set; }
         public DelegateCommand EmergencyCommand { get; set; }
         public DelegateCommand GoToMedicalAssintence { get; set; }
-        public DelegateCommand GoToVolunteer { get; set; }
+        public DelegateCommand GoToIdentification { get; set; }
         public bool IsVoluntary { get; set; }
         public User User { get; set; }
         public HomePageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
@@ -36,9 +36,9 @@ namespace COVIDHelp.ViewModels
                 await navigationService.NavigateAsync(new Uri(NavigationConstants.MapsPage, UriKind.Relative));
             });
 
-                GoToVolunteer = new DelegateCommand(async () =>
+            GoToIdentification = new DelegateCommand(async () =>
                 {
-                    await navigationService.NavigateAsync(new Uri(NavigationConstants.HelpPage, UriKind.Relative), param);
+                    await navigationService.NavigateAsync(new Uri(NavigationConstants.IdentificationPage, UriKind.Relative), param);
                 });
 
                 GoToMedicalAssintence = new DelegateCommand(async () =>

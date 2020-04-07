@@ -14,8 +14,21 @@
                    FontFamily="{StaticResource BoldFont}"
                    FontSize="40"
                    Margin="0,0,0,70"/>
-            <Button Text="Si" BackgroundColor="Green" FontFamily="{StaticResource BoldFont}" CornerRadius="40" VerticalOptions="Start" Margin="0,0,0,10"/>
-            <Button Text="No" BackgroundColor="Red" FontFamily="{StaticResource BoldFont}" CornerRadius="40" VerticalOptions="Start"/>
+            <Button Text="Si" 
+                    Padding="30"
+                    BackgroundColor="Green" 
+                    FontFamily="{StaticResource BoldFont}" 
+                    CornerRadius="40" 
+                    VerticalOptions="Start" 
+                    Margin="0,0,0,10"
+                    Command="{Binding GoToVolunteer}"/>
+            <Button Text="No" 
+                    Padding="30"
+                    BackgroundColor="Red" 
+                    FontFamily="{StaticResource BoldFont}" 
+                    CornerRadius="40" 
+                    VerticalOptions="Start"
+                    Command="{Binding GoToVolunteer}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

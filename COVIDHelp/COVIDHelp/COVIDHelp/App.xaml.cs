@@ -38,7 +38,8 @@ namespace COVIDHelp
             containerRegistry.RegisterForNavigation<LocationPermitionPage, LocationPermitionPageViewModel>();
             containerRegistry.RegisterForNavigation<RequestDetailPage, RequestDetailPageViewModel>();
             containerRegistry.RegisterForNavigation<MedicalAssistenceRequestPage, MedicalAssistenceRequestPageViewModel>();
-
+            containerRegistry.RegisterForNavigation<IdentificationPage, IdentificationPageViewModel>();
+            containerRegistry.RegisterForNavigation<NecesityDetailPage, NecesityDetailPageViewModel>();
 
         }
     }
