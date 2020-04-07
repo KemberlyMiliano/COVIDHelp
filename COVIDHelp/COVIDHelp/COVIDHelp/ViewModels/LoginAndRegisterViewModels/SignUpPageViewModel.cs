@@ -15,7 +15,6 @@ namespace COVIDHelp.ViewModels
     public class SignUpPageViewModel : BaseViewModel,INavigatedAware
     {
         public User UserR { get; set; } = new User();
-        User _user;
         public DelegateCommand ButtonConfirmCommand { get; set; }
         public DelegateCommand ButtonEyeClickedCommand { get; set; }
         public DelegateCommand AddImageUserCommand { get; set; }

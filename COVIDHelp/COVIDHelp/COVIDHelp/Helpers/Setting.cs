@@ -32,10 +32,16 @@ namespace COVIDHelp.Helpers
             if (remenber)
             {
                 Barrel.ApplicationId = ConfigApi.MonkeyChadeKey;
-                Barrel.Current.Add(key:$"Rember/{remenber}",data: correo, expireIn:TimeSpan.FromDays(20));
+                Barrel.Current.Add(key:$"Rember/true",data: correo, expireIn:TimeSpan.FromDays(20));
                 return true;
             }
             return false;
+        }
+        public static bool IsCheckRember()
+        {
+
+            return Barrel.Current.Exists(key: $"Rember/true");
+
         }
         public static string Recordar(this string remenber, bool Isremeber)
         {

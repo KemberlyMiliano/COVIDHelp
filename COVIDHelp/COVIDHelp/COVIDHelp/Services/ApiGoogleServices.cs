@@ -26,5 +26,10 @@ namespace COVIDHelp.Services
             Barrel.Current.Add(key:$"{nameof(GetNearbyPlaces)}",places,expireIn:TimeSpan.FromDays(1));
             return places;
         }
+
+        public Task<NearbyPlaces> GetNearbyPlaces(string api_Key, string origen, string destination)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

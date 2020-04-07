@@ -23,12 +23,28 @@ namespace COVIDHelp.ViewModels
         public ImageSource ImageModel { get; set; }
         public bool IsBusy { get; set; } = false;
         public bool IsVisible { get; set; }
+        private bool isEnable;
+
+        public bool IsEnable
+        {
+            get { 
+
+                return isEnable;
+
+
+            }
+            set { 
+                isEnable = value;
+
+            }
+        }
 
         public LoginPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
+            IsEnable = Setting.IsCheckRember() == true ? Setting.IsCheckRember() : false;
             IsVisible = true;
             ImageModel = "eyeW.png";
-
+            User.Correo = User.Correo.Recordar(IsEnable);
             LogInCommand = new DelegateCommand(async () => {
                 if (string.IsNullOrEmpty(User.Correo) && string.IsNullOrEmpty(User.Password))
                 {
@@ -71,6 +87,10 @@ namespace COVIDHelp.ViewModels
                 var user = await apiCovitServices.ValidateUser(User);
                 if (user != null)
                 {
+                    if (IsEnable)
+                    {
+                        IsEnable.IsRemeberme(User.Correo);
+                    }
                     User = user;
                     User.Cedula.SaveInt("Cedula");
                     var param = new NavigationParameters

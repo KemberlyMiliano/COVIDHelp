@@ -112,6 +112,7 @@
                 </Label>
                 <CheckBox 
                        Grid.Row="4" 
+                         IsChecked="{Binding IsEnable}"
                        HorizontalOptions="StartAndExpand"
                        Grid.ColumnSpan="4"/>
                 <Label Grid.Row="4"

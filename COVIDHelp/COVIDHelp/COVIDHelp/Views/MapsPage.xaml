@@ -7,7 +7,8 @@
               xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
              xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:system="clr-namespace:System;assembly=netstandard"
-             x:Class="COVIDHelp.Views.MapsPage">
+             x:Class="COVIDHelp.Views.MapsPage"
+             >
     <ContentPage.Content>
         <Grid>
             <maps:Map x:Name="map"
