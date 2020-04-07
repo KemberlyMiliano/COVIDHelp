@@ -44,7 +44,6 @@ namespace COVIDHelp.ViewModels
             });
 
             GoToIdentification = new DelegateCommand(async () =>
-<<<<<<< HEAD
                 {
                     param.Add("User", User);
                     await navigationService.NavigateAsync(new Uri(NavigationConstants.IdentificationPage, UriKind.Relative), param);
@@ -59,11 +58,6 @@ namespace COVIDHelp.ViewModels
                 {
                     PlacePhoneCall("911");
                 });
-            }
-=======
-            {
-                await navigationService.NavigateAsync(new Uri(NavigationConstants.IdentificationPage, UriKind.Relative), param);
-            });
 
             GoToMedicalAssintence = new DelegateCommand(async () =>
             {
@@ -74,7 +68,6 @@ namespace COVIDHelp.ViewModels
             {
                 PlacePhoneCall("911");
             });
->>>>>>> 7f1b20b3298e5577215b9c4998b3c3b8aadd83eb
 
             ShowDialogCommand = new DelegateCommand(() =>
             {
