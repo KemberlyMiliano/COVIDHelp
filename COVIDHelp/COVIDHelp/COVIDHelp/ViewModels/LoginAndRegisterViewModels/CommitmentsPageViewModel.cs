@@ -20,6 +20,8 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
         public DelegateCommand DetailCommand { get; set; }
         public DelegateCommand LoadHisotiral { get; set; }
         public ObservableCollection<Help> Historial { get; set; }
+        public DelegateCommand RefreshCommand { get; set; }
+        public bool IsRefresh { get; set; }
         public CommitmentsPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
             LoadHisotiral = new DelegateCommand(async () =>
@@ -32,6 +34,12 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
                 //Agregar numero del usuario help.User.Phone
                 await OpenWhatsApp(help.Telefono, "Hola! Estoy aquí para ayudarte");
 
+            });
+            RefreshCommand = new DelegateCommand(async () =>
+            {
+                IsRefresh = true;
+                await GetHistorialHelper();
+                IsRefresh = false;
             });
 
             DetailCommand = new DelegateCommand(async () =>

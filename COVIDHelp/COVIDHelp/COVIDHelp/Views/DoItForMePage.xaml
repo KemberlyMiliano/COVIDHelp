@@ -7,20 +7,23 @@
              x:Class="COVIDHelp.Views.DoItForMePage"
              x:Name="doPage">
     <ContentPage.Content>
-        <StackLayout Padding="20">
-            <Label Text="Haz una lista!" 
+
+                <ListView ItemsSource="{Binding Requests}"
+                          CachingStrategy="RecycleElement">
+            <ListView.Header>
+                <StackLayout Padding="20">
+                    <Label Text="Haz una lista!" 
                    FontSize="27" 
                    FontFamily="{StaticResource BoldFont}"
                    TextColor="Black"
                    Margin="0,0,0,20"/>
-            <Label Text="Necesidades:" 
+                    <Label Text="Necesidades:" 
                    TextColor="Gray"
                    FontSize="17"
                    FontFamily="{StaticResource BoldFont}"/>
-            <StackLayout>
-                <ListView ItemsSource="{Binding Requests}"
-                          CachingStrategy="RecycleElement">
-                    <ListView.ItemTemplate>
+                    </StackLayout>
+            </ListView.Header>
+            <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <ViewCell.ContextActions>
@@ -37,21 +40,23 @@
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
-            <Entry Text="{Binding Need.Text}" 
+                    <ListView.Footer>
+                        <StackLayout>
+                            <Entry Text="{Binding Text}" 
                    Placeholder="Necesidad"
                    FontFamily="{StaticResource NormalFont}"/>
-            <Button Text="Añadir" CornerRadius="10"
+                            <Button Text="Añadir" CornerRadius="10"
                     BackgroundColor="Green"
                     TextColor="White"
                     FontFamily="{StaticResource BoldFont}"
                     Margin="20,10,20,0"
                     Command="{Binding AddToList}"/>
-            <Button Text="Listo!" CornerRadius="10"
+                            <Button Text="Listo!" CornerRadius="10"
                     FontFamily="{StaticResource BoldFont}"
                     Margin="20"
                     Command="{Binding AddToGlobalRequests}"/>
-        </StackLayout>
+                        </StackLayout>
+                    </ListView.Footer>
+                </ListView>
     </ContentPage.Content>
 </ContentPage>
