@@ -78,7 +78,7 @@
                             CornerRadius="40" 
                             Grid.ColumnSpan="4"
                             BackgroundColor="White"
-                            FontFamily="{StaticResource NormalFont}"/>
+                            FontFamily="{StaticResource BoldFont}"/>
                 </StackLayout>
 
             </Frame>

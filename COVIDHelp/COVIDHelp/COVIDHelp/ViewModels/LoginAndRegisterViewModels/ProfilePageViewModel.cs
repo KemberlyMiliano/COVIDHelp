@@ -22,8 +22,8 @@ namespace COVIDHelp.ViewModels
             LoadProfile = new DelegateCommand(async () => await FindUser());
             LoadProfile.Execute();
             EditCommand = new DelegateCommand(async () => {
-
-                await navigationService.NavigateAsync(new Uri($"/EditProfilePage", UriKind.Relative));
+                await navigationService.NavigateAsync(new Uri(NavigationConstants.EditProfilePage, UriKind.Relative));
+        
             });
         }
         async Task FindUser() {

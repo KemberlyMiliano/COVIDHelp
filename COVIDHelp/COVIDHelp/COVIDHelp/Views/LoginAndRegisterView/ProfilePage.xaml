@@ -18,13 +18,27 @@
                     <RowDefinition Height="AUTO" />
                 </Grid.RowDefinitions>
 
-                <Image Aspect="AspectFill" BackgroundColor="#014666"/>
-                <Image Aspect="Fill" Margin="0,-1,0,-1" Source="CurvedMask" VerticalOptions="End" />
+                <Image Aspect="AspectFill"
+                       BackgroundColor="#014666"
+                       />
+                <Image Aspect="Fill"
+                       Margin="0,-1,0,-1"
+                       Source="CurvedMask"
+                       VerticalOptions="End" />
 
-                <Image HeightRequest="100" HorizontalOptions="Center" Source="defaultUser" TranslationY="50" VerticalOptions="End" WidthRequest="100" />
+                <Image HeightRequest="100"
+                       HorizontalOptions="Center"
+                       Source="defaultUser"
+                       TranslationY="50"
+                       VerticalOptions="End"
+                       WidthRequest="100" />
 
                 <StackLayout Grid.Row="1" Padding="0,50,0,00" HorizontalOptions="Center" Margin="0,40,0,0">
-                    <Label Text="{Binding User.Nombres}"  HorizontalOptions="Center" FontFamily="{StaticResource BoldFont}" FontSize="20" TextColor="#585858">
+                    <Label Text="{Binding User.Nombres}" 
+                           HorizontalOptions="Center"
+                           FontFamily="{StaticResource BoldFont}"
+                           FontSize="20"
+                           TextColor="#585858">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="{Binding User.Nombres}"  />
@@ -32,8 +46,21 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Label Margin="0,-5" Text="{Binding Binding User.Rol}" FontFamily="{StaticResource NormalFont}" HorizontalOptions="Center" />
-                    <Button Text="Edit" Margin="7" HeightRequest="40" BackgroundColor="White" BorderWidth="5" BorderColor="#585858" TextColor="#585858" CornerRadius="50" HorizontalOptions="Fill" Command="{Binding EditCommand}"/>
+                    <Label Margin="0,-5"
+                           Text="{Binding Binding User.Rol}"
+                           FontFamily="{StaticResource NormalFont}"
+                           HorizontalOptions="Center"
+                           />
+                    <Button Text="Editar"
+                            Margin="7"
+                            HeightRequest="40"
+                            BackgroundColor="White" 
+                            BorderWidth="5"
+                            BorderColor="#585858"
+                            TextColor="#585858"
+                            CornerRadius="50" 
+                            HorizontalOptions="Fill"
+                            Command="{Binding EditCommand}"/>
                 </StackLayout>
 
                 <Grid Grid.Row="2" Margin="0,30" ColumnSpacing="0" RowSpacing="0">
@@ -43,20 +70,62 @@
                     </Grid.ColumnDefinitions>
 
                     <StackLayout>
-                        <Label Text="33" HorizontalTextAlignment="Center" FontFamily="{StaticResource NormalFont}"/>
-                        <Label Text="Servicios" HorizontalTextAlignment="Center" FontFamily="{StaticResource BoldFont}"/>
+                        <Label Text="33"
+                               HorizontalTextAlignment="Center"
+                               FontFamily="{StaticResource NormalFont}"
+                               />
+                        <Label Text="Servicios"
+                               HorizontalTextAlignment="Center"
+                               FontFamily="{StaticResource BoldFont}"/>
                     </StackLayout>
 
                     <StackLayout Grid.Column="1">
-                        <Label Text="{Binding User.Rate}" HorizontalTextAlignment="Center" FontFamily="{StaticResource NormalFont}"/>
-                        <Label Text="Rating" HorizontalTextAlignment="Center" FontFamily="{StaticResource BoldFont}"/>
+                        <Label Text="{Binding User.Rate}"
+                               HorizontalTextAlignment="Center"
+                               FontFamily="{StaticResource NormalFont}"/>
+                        <Label Text="Rating"
+                               HorizontalTextAlignment="Center"
+                               FontFamily="{StaticResource BoldFont}"/>
                     </StackLayout>
                 </Grid>
 
+                <Label Grid.Row="3"
+                       Margin="30,15"
+                       HorizontalOptions="Start" 
+                       HorizontalTextAlignment="Center" 
+                       Text="Descripcion :"
+                       FontFamily="{StaticResource BoldFont}"/>
+                
                 <Label Margin="20,40,20,0" Grid.Row="3" 
                        HorizontalOptions="Center" 
                        HorizontalTextAlignment="Center" 
                        Text="{Binding User.SelfBiography}"
+                       FontFamily="{StaticResource NormalFont}"/>
+                
+                <Label Grid.Row="3"
+                       Margin="30,80"
+                       HorizontalOptions="Start" 
+                       VerticalOptions="Start"
+                       Text="Cedula :"
+                       FontFamily="{StaticResource BoldFont}"/>
+
+                <Label Margin="40,90,40,20" Grid.Row="3" 
+                       HorizontalOptions="Center" 
+                       HorizontalTextAlignment="Center" 
+                       Text="{Binding User.Cedula}"
+                       FontFamily="{StaticResource NormalFont}"/>
+                
+                <Label Grid.Row="3"
+                       Margin="30,125"
+                       HorizontalOptions="Start" 
+                       VerticalOptions="Start"
+                       Text="Telefono :"
+                       FontFamily="{StaticResource BoldFont}"/>
+
+                <Label Margin="40,140,40,20" Grid.Row="3" 
+                       HorizontalOptions="Center" 
+                       HorizontalTextAlignment="Center" 
+                       Text="{Binding User.Telefono}"
                        FontFamily="{StaticResource NormalFont}"/>
             </Grid>
         </ScrollView>

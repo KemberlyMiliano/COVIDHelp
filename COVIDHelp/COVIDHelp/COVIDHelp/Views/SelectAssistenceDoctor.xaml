@@ -26,13 +26,13 @@
                                  Grid.Row="1" 
                                  IsChecked="{Binding IsEnable}"/>
                                 <Label 
-                       Text="{Binding Name}"
-                       FontFamily="{StaticResource NormalFont}"
-                       FontSize="16"
-                        TextColor="White"
-                       VerticalOptions="StartAndExpand"
-                           Grid.Row="1"
-                       HorizontalOptions="StartAndExpand"/>
+                                Text="{Binding Name}"
+                                FontFamily="{StaticResource NormalFont}"
+                                FontSize="16"
+                                TextColor="White"
+                                VerticalOptions="StartAndExpand"
+                                Grid.Row="1"
+                                HorizontalOptions="StartAndExpand"/>
                       
                             </StackLayout>
 
@@ -41,18 +41,24 @@
                     <CollectionView.Footer>
                         <StackLayout Padding="30">
                             <CheckBox  
-                         IsChecked="{Binding DiseasesAdd.IsEnable}"
-                       HorizontalOptions="StartAndExpand"/>
+                                 IsChecked="{Binding DiseasesAdd.IsEnable}"
+                                HorizontalOptions="StartAndExpand"/>
                             <Label 
-                       Text="Otros :"
-                       FontFamily="{StaticResource NormalFont}"
-                       FontSize="16"
-                        TextColor="White"
-                       VerticalOptions="StartAndExpand"
-                       HorizontalOptions="StartAndExpand"/>
-                            <Entry Placeholder="" Text="{Binding DiseasesAdd.Name}" TextColor="White" />
+                                Text="Otros :"
+                                FontFamily="{StaticResource NormalFont}"
+                                FontSize="16"
+                                TextColor="White"
+                                VerticalOptions="StartAndExpand"
+                                HorizontalOptions="StartAndExpand"/>
+                            <Entry Placeholder=""
+                                   Text="{Binding DiseasesAdd.Name}"
+                                   TextColor="White" />
 
-                            <Button Text="Solicitar ayuda" Margin="0,30"  CornerRadius="20" BackgroundColor="White" Command="{Binding AddDataAndNavigateCommand}" />
+                            <Button Text="Solicitar ayuda"
+                                    Margin="0,30"
+                                    CornerRadius="20"
+                                    BackgroundColor="White"
+                                    Command="{Binding AddDataAndNavigateCommand}" />
                         </StackLayout>
                       
                     </CollectionView.Footer>

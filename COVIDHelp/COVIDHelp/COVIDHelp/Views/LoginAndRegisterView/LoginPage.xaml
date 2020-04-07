@@ -51,11 +51,11 @@
                        Grid.Row="1"
                        FontFamily="{StaticResource BoldFont}"
                        Grid.ColumnSpan="2"/>
-                <Label Text="Email"
+                <Label Text="Correo electronico"
                        TextColor="White"
                        FontSize="20"
                        Grid.Row="2"
-                       Grid.ColumnSpan="2"
+                       Grid.ColumnSpan="4"
                        FontFamily="{StaticResource NormalFont}"/>
                 <Entry Placeholder=""
                        Text="{Binding User.Correo}"
@@ -79,7 +79,7 @@
 
                     </Image.GestureRecognizers>
                 </Image>
-                <Label Text="Password"
+                <Label Text="Contraseña"
                        TextColor="White"
                        FontSize="20" 
                        Grid.Row="3"
@@ -95,9 +95,9 @@
                        PlaceholderColor="White"
                        FontFamily="{StaticResource NormalFont}"/>
                 <Label
-                       Text="Forgot Password?"
+                       Text="Olvidaste tu contraseña?"
                        TextColor="White" 
-                       FontSize="18" 
+                       FontSize="16" 
                        Grid.Row="4" 
                        HorizontalOptions="EndAndExpand"
                        Grid.ColumnSpan="4"

@@ -10,24 +10,12 @@ namespace COVIDHelp.ViewModels
 {
     public class MedicalAssistenceRequestPageViewModel : BaseViewModel, INavigationAware
     {
-        public DelegateCommand GoToNurseAssistence { get; set; }
-        public DelegateCommand GoToDoctorAssistence { get; set; }
-        public DelegateCommand GoToPsycologyAssistence { get; set; }
+        public DelegateCommand<string>GoToAssistence { get; set; }
         public MedicalAssistenceRequestPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
-            GoToNurseAssistence = new DelegateCommand(async () =>
+            GoToAssistence = new DelegateCommand<string>(async (param) =>
             {
-                await navigationService.NavigateAsync(new Uri(NavigationConstants.SelectAssistenceNurse, UriKind.Relative));
-
-            });
-            GoToDoctorAssistence = new DelegateCommand(async () =>
-            {
-                await navigationService.NavigateAsync(new Uri(NavigationConstants.SelectAssistenceDoctor, UriKind.Relative));
-
-            });
-            GoToPsycologyAssistence = new DelegateCommand(async () =>
-            {
-                await navigationService.NavigateAsync(new Uri(NavigationConstants.SelectAssistencePsycology, UriKind.Relative));
+                await navigationService.NavigateAsync(new Uri(param, UriKind.Relative));
 
             });
 

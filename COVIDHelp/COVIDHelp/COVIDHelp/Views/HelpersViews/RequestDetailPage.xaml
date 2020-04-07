@@ -12,32 +12,35 @@
             <Frame CornerRadius="20">
                 <StackLayout>
                     <Label Text="Nombre del necesitado"
-                VerticalOptions="StartAndExpand" 
-                HorizontalOptions="Center" 
+                           VerticalOptions="StartAndExpand" 
+                           HorizontalOptions="Center" 
                            HorizontalTextAlignment="Center"
-                   FontFamily="{StaticResource BoldFont}"
-                   FontSize="25"/>
-                    <Image Source="defaultUser" VerticalOptions="StartAndExpand" HeightRequest="80" Margin="10"/>
-                    <Label Text="Tipo de ayuda:"
-                VerticalOptions="StartAndExpand" 
-                HorizontalOptions="StartAndExpand" 
                            FontFamily="{StaticResource BoldFont}"
-                   FontSize="20"/>
+                           FontSize="25"/>
+                    <Image Source="defaultUser"
+                           VerticalOptions="StartAndExpand"
+                           HeightRequest="80"
+                           Margin="10"/>
+                    <Label  Text="Tipo de ayuda:"
+                            VerticalOptions="StartAndExpand" 
+                            HorizontalOptions="StartAndExpand" 
+                            FontFamily="{StaticResource BoldFont}"
+                            FontSize="20"/>
                     <Label Text="X ayuda"
-                VerticalOptions="StartAndExpand" 
-                           FontFamily="{StaticResource NormalFont}"
-                HorizontalOptions="StartAndExpand" 
-                   FontSize="18"/>
+                            VerticalOptions="StartAndExpand" 
+                            FontFamily="{StaticResource NormalFont}"
+                            HorizontalOptions="StartAndExpand" 
+                            FontSize="18"/>
                     <Label Text="Descripcion:"
                            FontFamily="{StaticResource BoldFont}"
-                VerticalOptions="StartAndExpand" 
-                HorizontalOptions="StartAndExpand" 
-                   FontSize="20"/>
+                            VerticalOptions="StartAndExpand" 
+                            HorizontalOptions="StartAndExpand" 
+                            FontSize="20"/>
                     <Label Text="Texto.............."
-                VerticalOptions="StartAndExpand" 
+                            VerticalOptions="StartAndExpand" 
                            FontAttributes="Italic"
-                HorizontalOptions="StartAndExpand" 
-                   FontSize="18"/>
+                            HorizontalOptions="StartAndExpand" 
+                            FontSize="18"/>
                 </StackLayout>
                 </Frame>
             

@@ -6,29 +6,48 @@
              mc:Ignorable="d"
              x:Class="COVIDHelp.Views.HelpersViews.IdentificationPage">
     <ContentPage.Content>
-        <StackLayout Margin="20,80,20,40">
-            <Label Text="Eres un profesional de la salud?"
-                VerticalOptions="Start" 
-                   TextColor="Black"
-                   HorizontalTextAlignment="Center"
-                   FontFamily="{StaticResource BoldFont}"
-                   FontSize="40"
-                   Margin="0,0,0,70"/>
-            <Button Text="Si" 
-                    Padding="30"
-                    BackgroundColor="Green" 
-                    FontFamily="{StaticResource BoldFont}" 
-                    CornerRadius="40" 
-                    VerticalOptions="Start" 
-                    Margin="0,0,0,10"
-                    Command="{Binding GoToVolunteer}"/>
-            <Button Text="No" 
-                    Padding="30"
-                    BackgroundColor="Red" 
-                    FontFamily="{StaticResource BoldFont}" 
-                    CornerRadius="40" 
-                    VerticalOptions="Start"
-                    Command="{Binding GoToVolunteer}"/>
-        </StackLayout>
+        <Frame BackgroundColor="#0272A6"  CornerRadius="20" Margin="30">
+            <ScrollView>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                 
+                        <Label      Text="¿Eres un profesional de la salud?" 
+                                    TextColor="White"
+                                    VerticalOptions="Center"
+                                    HorizontalTextAlignment="Center"
+                                    FontFamily="{StaticResource BoldFont}"
+                                    FontSize="40"
+                                    Grid.Row="0"
+                               />
+                        <Button Text="Si" 
+                                Padding="30"
+                                BackgroundColor="White" 
+                                TextColor="#0272A6"
+                                FontFamily="{StaticResource BoldFont}" 
+                                CornerRadius="40" 
+                                VerticalOptions="Center" 
+                                Grid.Row="1"
+                                Command="{Binding GoToVolunteer}"/>
+                        <Button Text="No" 
+                                Padding="30"
+                                BackgroundColor="White" 
+                                TextColor="#0272A6"
+                                FontFamily="{StaticResource BoldFont}" 
+                                CornerRadius="40"
+                                Grid.Row="2"
+                                VerticalOptions="Start"
+                                Command="{Binding GoToVolunteer}"/>
+
+                </Grid>
+            </ScrollView>
+          
+        </Frame>
     </ContentPage.Content>
 </ContentPage>
