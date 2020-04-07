@@ -46,6 +46,7 @@ namespace COVIDHelp
             containerRegistry.RegisterForNavigation<EditProfilePage, EditProfilePageViewModel>();
             containerRegistry.RegisterForNavigation<RequestsListPage, CommitmentsPageViewModel>();
             containerRegistry.RegisterForNavigation<DoItForMePage, DoItForMePageViewModel>();
+            containerRegistry.RegisterForNavigation<EmergencyPage, EmergencyPageViewModel>();
 
         }
     }
