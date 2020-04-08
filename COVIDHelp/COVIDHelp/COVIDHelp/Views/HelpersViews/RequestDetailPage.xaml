@@ -9,13 +9,11 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="20,40,20,20">
-            <Frame CornerRadius="20">
+                <Frame CornerRadius="20"  BackgroundColor="#0272A6" >
                 <StackLayout>
-                        <ImageButton Source="ic_action_keyboard_backspace.png"
-                                     VerticalOptions="Start"
-                                     HorizontalOptions="Start"
-                                     Command="{Binding GoBack}"/>
+                      
                         <Label Text="{Binding Help.Nombre}" 
+                               TextColor="White"
                            VerticalOptions="StartAndExpand" 
                            HorizontalOptions="Center" 
                            HorizontalTextAlignment="Center"
@@ -25,44 +23,70 @@
                            VerticalOptions="StartAndExpand"
                            HeightRequest="80"
                            Margin="10"/>
-                        <Label  Text="{Binding Help.Dirrecion ,StringFormat='Direccion: {0}'}" 
+                        <StackLayout Padding="10">
+                            <Label Text="Dirección:"
+                           FontFamily="{StaticResource BoldFont}"
+                           TextColor="White"
                             VerticalOptions="StartAndExpand" 
                             HorizontalOptions="StartAndExpand" 
-                            FontFamily="{StaticResource BoldFont}"
                             FontSize="20"/>
-                        <Label Text="{Binding Help.Telefono,StringFormat='Telefono: {0}'}" 
+                            <Label  Text="{Binding Help.Dirrecion ,StringFormat='{0}'}" 
                             VerticalOptions="StartAndExpand" 
+                            HorizontalOptions="StartAndExpand" 
+                                TextColor="White"
+                            FontFamily="{StaticResource NormalFont}"
+                            FontSize="20"/>
+                            <Label Text="Telefono:"
+                           FontFamily="{StaticResource BoldFont}"
+                           TextColor="White"
+                            VerticalOptions="StartAndExpand" 
+                            HorizontalOptions="StartAndExpand" 
+                            FontSize="20"/>
+                            <Label Text="{Binding Help.Telefono,StringFormat='{0}'}" 
+                            VerticalOptions="StartAndExpand" 
+                               TextColor="White"
                             FontFamily="{StaticResource NormalFont}"
                             HorizontalOptions="StartAndExpand" 
                             FontSize="18"/>
-                    <Label Text="Descripcion:"
+                            <Label Text="Descripcion:"
                            FontFamily="{StaticResource BoldFont}"
+                           TextColor="White"
                             VerticalOptions="StartAndExpand" 
                             HorizontalOptions="StartAndExpand" 
                             FontSize="20"/>
-                        <Label Text="{Binding Help.DescripcionProblema}" 
+                            <Label Text="{Binding Help.DescripcionProblema}" 
                             VerticalOptions="StartAndExpand" 
                            FontAttributes="Italic"
                             HorizontalOptions="StartAndExpand" 
+                               TextColor="White"
                             FontSize="18"/>
-                </StackLayout>
-                </Frame>
-            
-            <Button Text="Aceptar" 
-                    TextColor="White"  
-                    BackgroundColor="Green" 
+                        </StackLayout>
+                        <Button Text="Aceptar solicitud" 
+                    TextColor="#0272A6"  
+                    BackgroundColor="White" 
                     CornerRadius="40" 
-                    Margin="0,40,0,0"
+                    Margin="15,10,15,0"
                     FontFamily="{StaticResource BoldFont}"
                     Command="{Binding GoToHistorial}"
                     CommandParameter="{Binding .}"/>
-                <Button Text="Ir al lugar" 
-                    TextColor="White"  
-                    BackgroundColor="IndianRed" 
+                        <Button Text="Ver dirección" 
+                    TextColor="#0272A6"  
+                    BackgroundColor="White" 
                     CornerRadius="40" 
-                    Margin="0,40,0,0"
+                    Margin="15,15,15,0"
                     FontFamily="{StaticResource BoldFont}"
                     Command="{Binding GoToMaps}"/>
+                        <Button Text="Llamar" 
+                    TextColor="#0272A6"  
+                    BackgroundColor="White" 
+                    CornerRadius="40" 
+                    Margin="15,15,15,0"
+                    FontFamily="{StaticResource BoldFont}"
+                    Command="{Binding CallNeededCommand}"/>
+                    </StackLayout>
+                </Frame>
+            
+          
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
