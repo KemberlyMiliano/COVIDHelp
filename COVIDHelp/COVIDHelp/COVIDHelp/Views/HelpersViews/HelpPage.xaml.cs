@@ -1,4 +1,5 @@
 ﻿using COVIDHelp.Helpers;
+using COVIDHelp.Models;
 using COVIDHelp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -18,33 +19,27 @@ namespace COVIDHelp.Views.HelpersViews
         public HelpPage()
         {
             InitializeComponent();
-
-        }
-        protected async override void OnBindingContextChanged()
-        {
-            base.OnBindingContextChanged();
             string latitude = null, longitude = null, type = null;
             latitude = latitude.GetPreferences("latitude");
             longitude = longitude.GetPreferences("longitude");
-            type = type.GetPreferences("type");
-            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(double.Parse(latitude), double.Parse(longitude)), Distance.FromMiles(100)));
-            if (BindingContext is HelpPageViewModel viewModel)
-            {             
-                await viewModel.GetPerson();
-                foreach (var item in viewModel.HelpsPerson)
+            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(double.Parse(latitude), double.Parse(longitude)), Distance.FromMiles(2)));
+        }
+
+        private void listPeople_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectHelp = e.CurrentSelection.FirstOrDefault() as Help;
+            if (selectHelp!=null)
+            {
+                double lat = double.Parse(selectHelp.Posicion.Split(',')[0]);
+                double lng = double.Parse(selectHelp.Posicion.Split(',')[1]);
+                map.Pins.Add(new Pin
                 {
-                    double lat = double.Parse(item.Posicion.Split(',')[0]);
-                     double lng = double.Parse(item.Posicion.Split(',')[1]);
-                    map.Pins.Add(new Pin()
-                    {
-                        Position = new Position(lat, lng),
-                        Label = item.Nombre
-                    });
-                }
-
+                    Position = new Position(lat, lng),
+                    Label = selectHelp.Nombre
+                });
+                map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(lat, lng), Distance.FromMiles(2)));
             }
-        
-
+           
         }
     }
 }

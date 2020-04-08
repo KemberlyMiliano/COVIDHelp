@@ -7,21 +7,24 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using COVIDHelp.Helpers;
+using Xamarin.Essentials;
 
 namespace COVIDHelp.ViewModels
 {
-    public class RequestDetailPageViewModel : BaseViewModel
+    public class RequestDetailPageViewModel : BaseViewModel,INavigatedAware
     {
         public Help Help { get; set; }
         public DelegateCommand GoToHistorial { get; set; }
         public DelegateCommand GoBack { get; set; }
+        public DelegateCommand GoToMaps { get; set; }
+        public DelegateCommand CallNeededCommand { get; set; }
         public RequestDetailPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
             var param = new NavigationParameters();
 
             GoBack = new DelegateCommand(async () =>
             {
-
                 await navigationService.GoBackAsync();
             });
 
@@ -29,28 +32,75 @@ namespace COVIDHelp.ViewModels
             {
                 await DisplayAction();
             });
+            GoToMaps = new DelegateCommand(async () =>
+            {
+                double lat = double.Parse(Help.Posicion.Split(',')[0]);
+                double lng = double.Parse(Help.Posicion.Split(',')[1]);
+                await Map.OpenAsync(lat, lng, new MapLaunchOptions
+                {
+                    Name = Help.Nombre,
+                    NavigationMode = Xamarin.Essentials.NavigationMode.Driving
+                });
+            });
+            CallNeededCommand = new DelegateCommand( () =>
+            {
+                 Call(Help.Telefono);
+            });
 
+
+        }
+        public void Call(string number)
+        {
+            try
+            {
+                PhoneDialer.Open(number);
+            }
+            catch (ArgumentNullException anEx)
+            {
+                // Number was null or white space
+            }
+            catch (FeatureNotSupportedException ex)
+            {
+                // Phone Dialer is not supported on this device.
+            }
+            catch (Exception ex)
+            {
+                // Other error has occurred.
+            }
         }
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
-            //Recibir la ayuda de la lista de HelpPage a esta page
         }
 
         public void OnNavigatedTo(INavigationParameters parameters)
         {
-            //var param = parameters["Helper"] as Help;
-            //Help = param;
-            //Enviar el objeto que se recibio de HelpPage agregandolo la lista de historial
-
+            var param = parameters["Helper"] as Help;
+            Help = param;
         }
         public async Task DisplayAction()
         {
             bool action = await dialogService.DisplayAlertAsync("", "Estás seguro/a?", "Aceptar", "Cancelar");
-
-            if (action)
+            Int64 cedula = 0;
+            string status = "";
+            var id = cedula.GetPreferencesInt("Cedula");
+            var user = await apiCovitServices.FindUser(id);
+            if (action&&user!=null)
             {
-                // Agregar al historial del usuario
-                await navigationService.NavigateAsync(new Uri(NavigationConstants.CommitmentsPage, UriKind.Relative));
+                Help help = new Help
+                {
+                    Id = Help.Id,
+                    NombreVoluntario = $"{user.Nombres} {user.Apellidos}",
+                    CedulaVoluntario = user.Cedula,
+                    TelefonoVoluntario = user.Telefono,
+                    Status = "Proceso",
+                    EmailVoluntario = user.Correo,
+                    PosicionVoluntario = $"{user.Latitude}{user.Longitude}",
+                    FechaEnviado = DateTime.Now,
+                    Tipo= status.GetPreferences("status")
+
+                };
+                await apiCovitServices.PutHelp(help);
+                await navigationService.NavigateAsync(new Uri($"{NavigationConstants.HelpersMainPage}?selectedTab=CommitmentsPage", UriKind.Absolute));
             }
             else
             {

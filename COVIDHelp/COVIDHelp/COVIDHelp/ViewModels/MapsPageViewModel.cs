@@ -33,7 +33,7 @@ namespace COVIDHelp.ViewModels
         }
         public bool IsVisible { get; set; } = false;
         public List<Place> PlaceNearbys { get; set; }
-
+        private string status;
         public DelegateCommand LoadPins { get; set; }
         IApiGoogleServices apiGoogleServices;
         public MapsPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices, IApiGoogleServices apiGoogleServices) : base(navigationService, dialogService, apiCovitServices)
@@ -42,7 +42,8 @@ namespace COVIDHelp.ViewModels
 
             GoToDoItForMe = new DelegateCommand(async () =>
             {
-                await navigationService.NavigateAsync(new Uri(NavigationConstants.DoItForMePage, UriKind.Relative));
+                var param = new NavigationParameters();
+                await navigationService.NavigateAsync(new Uri(NavigationConstants.DoItForMePage, UriKind.Relative),param);
             });
         }
         public async Task GetPlace(string locations, int radius, string type)
@@ -63,7 +64,6 @@ namespace COVIDHelp.ViewModels
 
         public void OnNavigatedTo(INavigationParameters parameters)
         {
-
         }
     }
 }

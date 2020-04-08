@@ -25,13 +25,15 @@
                          HeightRequest="100"
                                 Margin="30"
                                 VerticalOptions="Start"
-                                Command="{Binding GoToVolunteer}"/>
+                                Command="{Binding GoToVolunteer}"
+                             CommandParameter="Medicamentos"/>
                 <ImageButton Source="cancel"
                          BackgroundColor="Transparent"
                          HeightRequest="100"
                                 Margin="30"
                                 VerticalOptions="Start"
-                                Command="{Binding GoToVolunteer}"/>
+                                Command="{Binding GoToVolunteer}"
+                             CommandParameter="Alimentos"/>
 
             </StackLayout>
         </StackLayout>

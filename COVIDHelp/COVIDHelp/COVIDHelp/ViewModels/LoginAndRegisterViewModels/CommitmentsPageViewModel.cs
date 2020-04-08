@@ -53,7 +53,7 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
             Int64 cedula = 0;
             if (request != null)
             {
-                Historial = new ObservableCollection<Help>(request.Where(e => e.Cedula == cedula.GetPreferencesInt("Cedula")));
+                Historial = new ObservableCollection<Help>(request.Where(e => e.CedulaVoluntario == cedula.GetPreferencesInt("Cedula")));
             }
 
         }

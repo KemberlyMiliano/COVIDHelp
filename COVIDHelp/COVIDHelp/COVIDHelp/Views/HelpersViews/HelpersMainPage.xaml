@@ -15,13 +15,13 @@
             BarBackgroundColor="#00344D">
     <TabbedPage.Children>
 
-        <NavigationPage IconImageSource="home" Title="Home">
+        <NavigationPage IconImageSource="home" Title="Inicio">
             <x:Arguments>
                 <helper1:HomePage/>
             </x:Arguments>
         </NavigationPage>
 
-        <NavigationPage IconImageSource="request" Title="Request">
+        <NavigationPage IconImageSource="request" Title="Solicitudes">
             <x:Arguments>
                 <local:RequestsListPage/>
             </x:Arguments>
@@ -33,7 +33,7 @@
             </x:Arguments>
         </NavigationPage>
 
-        <NavigationPage IconImageSource="profile" Title="Profile">
+        <NavigationPage IconImageSource="profile" Title="Perfil">
             <x:Arguments>
                 <local:ProfilePage/>
             </x:Arguments>

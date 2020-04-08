@@ -34,7 +34,8 @@ namespace COVIDHelp.ViewModels
             PermissionsCommand.Execute();
             GoToMaps = new DelegateCommand<string>(async (filtrar) =>
             {
-
+                var status = filtrar == "supermarket" ? "Alimentos" : "Medicamentos";
+                status.SaveString("status");
                 filtrar.SaveString("type");
                 string latitude = $"{User.Latitude}";
                 string longitude = $"{User.Longitude}";
@@ -44,9 +45,20 @@ namespace COVIDHelp.ViewModels
             });
 
             GoToIdentification = new DelegateCommand(async () =>
-            {
-                await navigationService.NavigateAsync(new Uri(NavigationConstants.IdentificationPage, UriKind.Relative), param);
-            });
+                {
+                    param.Add("User", User);
+                    await navigationService.NavigateAsync(new Uri(NavigationConstants.IdentificationPage, UriKind.Relative), param);
+                });
+
+                GoToMedicalAssintence = new DelegateCommand(async () =>
+                {
+                    await navigationService.NavigateAsync(new Uri(NavigationConstants.MedicalAssistenceRequestPage, UriKind.Relative), param);
+                });
+
+                EmergencyCommand = new DelegateCommand(() =>
+                {
+                    PlacePhoneCall("911");
+                });
 
             GoToMedicalAssintence = new DelegateCommand(async () =>
             {
@@ -83,7 +95,7 @@ namespace COVIDHelp.ViewModels
         }
         public async void OnNavigatedTo(INavigationParameters parameters)
         {
-            if (parameters.ContainsKey($"{nameof(User)}"))
+            if (parameters.ContainsKey($"User"))
             {
                 var param = parameters[$"{nameof(User)}"] as User;
                 User = param;

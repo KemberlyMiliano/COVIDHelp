@@ -24,9 +24,9 @@ namespace COVIDHelp.ViewModels
                 new Diseases { Name = "Presion Arterial" },
             };
 
-            AddDataAndNavigateCommand = new DelegateCommand(async () =>
+            AddDataAndNavigateCommand = new DelegateCommand<string>(async (paran) =>
             {
-                await DisplayAction();
+                await DisplayAction(paran);
             });
         }
 

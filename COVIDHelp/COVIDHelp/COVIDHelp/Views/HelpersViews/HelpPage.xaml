@@ -7,63 +7,142 @@
              x:Class="COVIDHelp.Views.HelpersViews.HelpPage"
              xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps" 
              xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             xmlns:system="clr-namespace:System;assembly=netstandard" xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:system="clr-namespace:System;assembly=netstandard" xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:converter="clr-namespace:COVIDHelp.Converters"
              NavigationPage.HasNavigationBar="False"
-             x:Name="helpPage">
+             x:Name="helpPage"
+             >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:RelativeDateTimeConvertor x:Key="RelativeDateTimeConvertor" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <pancakeview:PancakeView CornerRadius="20" 
+                                     HeightRequest="300"
+                                     WidthRequest="500"
+                                       HorizontalOptions="CenterAndExpand" 
+                                     VerticalOptions="StartAndExpand"
+                                     HasShadow="True"
+                                     />
             <maps:Map x:Name="map"
-                      Grid.Row="0"/>
-            <pancakeview:PancakeView 
-                                     HorizontalOptions="EndAndExpand"
-                                     VerticalOptions="EndAndExpand"
-                                     BackgroundColor="White"
-                                     CornerRadius="20,0,0,20"
-                                     Margin="20"
-                                     HeightRequest="100"
-                                     Padding="15"
-                                     HasShadow="True">
+                      Grid.Row="0"
+                      MyLocationEnabled="True"
+                        
+                       ItemsSource="{Binding Pins}"
+                          >
+                <maps:Map.ItemTemplate>
+                    <DataTemplate>
+                        <maps:Pin Position="{Binding Position}"
+                                      Label="{Binding Label}"
+                                      />
+                    </DataTemplate>
+                </maps:Map.ItemTemplate>
+            </maps:Map>
 
-                <CollectionView Grid.Row="0"
-                                    VerticalOptions="EndAndExpand"
-                                    HorizontalOptions="Center"
-                                    BackgroundColor="Transparent"
-                                    SelectedItem="{Binding SelectHelp,Mode=TwoWay}"
-                                   SelectionMode="Single"
-                                    ItemsSource="{Binding HelpsPerson}">
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Horizontal"/>
-                    </CollectionView.ItemsLayout>
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="10">
+
+            <CollectionView Grid.Row="1"
+                            x:Name="listPeople"
+                                    ItemsSource="{Binding HelpsPerson}"
+                            SelectionChanged="listPeople_SelectionChanged"
+                            SelectionMode="Single"
+                            >
+                <CollectionView.ItemsLayout>
+                    
+                    <GridItemsLayout Orientation="Vertical"
+                                     VerticalItemSpacing="20"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <pancakeview:PancakeView CornerRadius="10"
+                                                 HasShadow="False"
+                                                 HeightRequest="130"
+                                                 
+                                                 >
+                            <Grid Margin="10" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="defaultUser"
                                                 Grid.Column="0"
-                                                WidthRequest="100"/>
+                                       Grid.RowSpan="2"
+                                       VerticalOptions="CenterAndExpand"
+                                                WidthRequest="70"
+                                       />
                                 <Label          Grid.Column="1"
                                                 VerticalOptions="CenterAndExpand" 
                                                 FontFamily="{StaticResource BoldFont}" >
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="{Binding Nombre}"  TextColor="Black" FontSize="20" FontFamily="{StaticResource BoldFont}"/>
+                                            <Span Text="{Binding Nombre}"  TextColor="Black" FontSize="16" FontFamily="{StaticResource BoldFont}"/>
                                             <Span Text="{x:Static system:Environment.NewLine}" />
-                                            <Span Text="{Binding Dirrecion}" FontSize="16" FontFamily="{StaticResource NormalFont}"/>
-                                            <Span Text="{x:Static system:Environment.NewLine}"/>
-                                            <Span Text="{Binding Telefono}" FontSize="16"/>
-                                            <Span Text="{x:Static system:Environment.NewLine}" FontFamily="{StaticResource NormalFont}"/>
-                                            <Span Text="{Binding Status}"  FontSize="16"/>
+                                            <Span Text="{Binding Email}" Grid.ColumnSpan="3" FontSize="14" FontFamily="{StaticResource NormalFont}"/>
+                                            <Span Text="{x:Static system:Environment.NewLine}" />
+                                            <Span Text="{Binding Telefono}" FontSize="14" Grid.ColumnSpan="2" FontFamily="{StaticResource NormalFont}"/>
+                                            <Span Text="{x:Static system:Environment.NewLine}" />
+                                            
+                     
                                         </FormattedString>
                                     </Label.FormattedText>
+                                    
+                                    
                                 </Label>
+                                <Image Grid.Column="1"
+                                       Source="ic_action_location_on.png"
+                                       HorizontalOptions="Start"
+                                       Margin="0,80,0,0"
+                                       HeightRequest="20"/>
+                                
+                                <Label Margin="20,0,0,0"
+                                       VerticalOptions="EndAndExpand" 
+                                       Grid.Column="1" 
+                                       Text="{Binding Dirrecion}" 
+                                       FontSize="14"
+                                       FontFamily="{StaticResource NormalFont}"/>
+                                
+                                <Label  HorizontalOptions="CenterAndExpand" 
+                                       VerticalOptions="EndAndExpand"
+                                       Grid.Column="2" 
+                                       Text="{Binding FechaEnviado, Converter={StaticResource RelativeDateTimeConvertor}}" 
+                                       FontSize="14"
+                                       FontFamily="{StaticResource NormalFont}"/>
+                                <Image Grid.Column="2"
+                                       Source="ic_action_access_time.png"
+                                       HorizontalOptions="EndAndExpand"
+                                       Margin="0,80,0,0"
+                                       HeightRequest="20"/>
+                                <Button Text="Detalles"
+                                        CornerRadius="15"
+                                        BackgroundColor="#0272A6"
+                                        Opacity="0.8"
+                                        Command="{Binding Path=BindingContext.GoToDetail, Source={x:Reference helpPage}}"
+                                        Grid.Column="2"
+                                        CommandParameter="{Binding .}"
+                                        Grid.RowSpan="2"
+                                        VerticalOptions="CenterAndExpand"
+                                        HorizontalOptions="EndAndExpand"/>
                             </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </pancakeview:PancakeView>
+                        </pancakeview:PancakeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <ActivityIndicator IsVisible="{Binding IsReshing}" IsRunning="{Binding IsReshing}"
+                               Grid.Row="1"
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -14,7 +14,11 @@ namespace COVIDHelp.Services
             var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
             return await getRequest.FindUser(cedula);
         }
-
+        public async Task<List<Help>> GetHelpID(string type,Int64 cedula)
+        {
+            var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
+            return await getRequest.GetHelpID(type, cedula);
+        }
         public async Task<List<Help>> GetHelp()
         {
             var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
@@ -22,10 +26,10 @@ namespace COVIDHelp.Services
             return helps;
         }
 
-        public async Task<List<Help>> GetHelpActive()
+        public async Task<List<Help>> GetHelpActive(string type)
         {
             var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
-            var helps = await getRequest.GetHelpActive();
+            var helps = await getRequest.GetHelpActive(type);
             return helps;
         }
 
