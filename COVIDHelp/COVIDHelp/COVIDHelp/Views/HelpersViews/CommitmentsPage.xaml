@@ -13,7 +13,16 @@
         <RefreshView IsRefreshing="{Binding IsRefresh}" Command="{Binding RefreshCommand}">
             <ListView ItemsSource="{Binding Historial}"  
                             Grid.Row="2"
-                  RowHeight="80">
+                  RowHeight="80"
+                      IsGroupingEnabled="true"
+                      >
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label Text="{Binding Name}" />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

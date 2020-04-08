@@ -11,7 +11,11 @@
             <StackLayout Padding="20,40,20,20">
             <Frame CornerRadius="20">
                 <StackLayout>
-                        <Label Text="{Binding Help.Nombre}"
+                        <ImageButton Source="ic_action_keyboard_backspace.png"
+                                     VerticalOptions="Start"
+                                     HorizontalOptions="Start"
+                                     Command="{Binding GoBack}"/>
+                        <Label Text="{Binding Help.Nombre}" 
                            VerticalOptions="StartAndExpand" 
                            HorizontalOptions="Center" 
                            HorizontalTextAlignment="Center"
@@ -52,7 +56,14 @@
                     FontFamily="{StaticResource BoldFont}"
                     Command="{Binding GoToHistorial}"
                     CommandParameter="{Binding .}"/>
-        </StackLayout>
+                <Button Text="Ir al lugar" 
+                    TextColor="White"  
+                    BackgroundColor="IndianRed" 
+                    CornerRadius="40" 
+                    Margin="0,40,0,0"
+                    FontFamily="{StaticResource BoldFont}"
+                    Command="{Binding GoToMaps}"/>
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

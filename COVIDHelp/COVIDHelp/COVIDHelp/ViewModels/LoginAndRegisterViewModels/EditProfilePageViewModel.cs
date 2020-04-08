@@ -1,12 +1,10 @@
-﻿using COVIDHelp.Models;
+﻿using COVIDHelp.Helpers;
+using COVIDHelp.Models;
 using COVIDHelp.Services;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using COVIDHelp.Helpers;
 using System.Threading.Tasks;
 
 namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
@@ -16,7 +14,7 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
         public User User { get; set; }
         public DelegateCommand EditCommand { get; set; }
         public DelegateCommand LoadUserCommand { get; set; }
-        public EditProfilePageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices, IApiGoogleServices apiGoogleServices) : base(navigationService, dialogService, apiCovitServices)
+        public EditProfilePageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
             Int64 cedula = 0;
             var id = cedula.GetPreferencesInt("Cedula");

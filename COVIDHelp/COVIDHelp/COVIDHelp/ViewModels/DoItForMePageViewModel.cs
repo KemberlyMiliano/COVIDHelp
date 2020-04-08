@@ -47,18 +47,21 @@ namespace COVIDHelp.ViewModels
             if (action)
             {
                 Int64 cedula = 0;
+                string status= "";
                 var user = await apiCovitServices.FindUser(cedula.GetPreferencesInt("Cedula"));
                 if (user != null)
                 {
                     var help = new Help
                     {
-                        Nombre = user.Nombres,
+                        Nombre = $"{user.Nombres} {user.Apellidos}",
                         Cedula = user.Cedula,
                         Email = user.Correo,
                         Telefono = user.Telefono,
                         Posicion = $"{user.Latitude},{user.Longitude}",
                         Dirrecion = user.Direccion,
-                        Status = "Activo"
+                        Status = "Activo",
+                        FechaEnviado = DateTime.Now,
+                        Tipo = status.GetPreferences("status")
 
                     };
                     foreach (var item in Requests)

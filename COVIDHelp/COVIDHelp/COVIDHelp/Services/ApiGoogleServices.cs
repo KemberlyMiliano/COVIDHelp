@@ -27,11 +27,5 @@ namespace COVIDHelp.Services
             return places;
         }
 
-        public async Task<GoogleDirection> GetDirection(string api_Key, string origen, string destination)
-        {
-            var getRequest = RestService.For<IApiGoogleServices>(ConfigApi.UrlApiGoogle);
-            var places = await getRequest.GetDirection(api_Key, origen, destination);
-            return places;
-        }
     }
 }

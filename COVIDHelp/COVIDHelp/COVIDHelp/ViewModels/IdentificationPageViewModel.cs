@@ -12,16 +12,21 @@ namespace COVIDHelp.ViewModels
 {
     public class IdentificationPageViewModel: BaseViewModel,INavigatedAware
     {
-        public DelegateCommand GoToVolunteer { get; set; }
+        public DelegateCommand<string> GoToVolunteer { get; set; }
         public User User { get; set; }
         public IdentificationPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
             Int64 cedula = 0;
             apiCovitServices.FindUser(cedula.GetPreferencesInt("Cedula"));
-            GoToVolunteer = new DelegateCommand(async () =>
+            GoToVolunteer = new DelegateCommand<string>(async (filter) =>
             {
-                var param = new NavigationParameters();
-                param.Add("User", User);
+                string IsProfesional = filter == "Medicamentos" ? "Medicamentos" : "Alimentos";
+                IsProfesional.SaveString("Who");
+                
+                var param = new NavigationParameters
+                {
+                    { "User", User }
+                };
                 await navigationService.NavigateAsync(new Uri(NavigationConstants.HelpPage, UriKind.Relative),param);
             });
         }

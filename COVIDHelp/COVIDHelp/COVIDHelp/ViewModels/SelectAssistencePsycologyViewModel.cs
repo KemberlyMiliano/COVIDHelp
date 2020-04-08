@@ -24,9 +24,9 @@ namespace COVIDHelp.ViewModels
                 new Diseases { Name = "Paranoia" },
             };
 
-            AddDataAndNavigateCommand = new DelegateCommand(async () =>
+            AddDataAndNavigateCommand = new DelegateCommand<string>(async (param) =>
             {
-                await DisplayAction();
+                await DisplayAction(param);
 
             });
         }

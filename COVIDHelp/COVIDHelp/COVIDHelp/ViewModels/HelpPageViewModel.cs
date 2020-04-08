@@ -17,43 +17,58 @@ namespace COVIDHelp.ViewModels
     public class HelpPageViewModel : BaseViewModel
     {
         public ObservableCollection<Help> HelpsPerson { get; set; }
-
-        private Help selectHelp;
-
-
+        public List<Pin> Pins { get; set; }
         public DelegateCommand GoToDetailCommand { get; set; }
-        public Help SelectHelp
-        {
-            get { 
-                return selectHelp;  }
-            set
-            {
-                selectHelp = value;
-                if (selectHelp != null)
-                {
-                    GoToDetailCommand = new DelegateCommand(async () =>
-                    {
-                        await NavigateTo(SelectHelp);
-                    });
-                    GoToDetailCommand.Execute();
-                }
-            }
-        }
 
         public DelegateCommand LoadPins { get; set; }
+        public DelegateCommand<Help> GoToDetail { get; set; }
+        public bool IsReshing { get; set; }
+
         public DelegateCommand<Necesity> GoToRequestDetail { get; set; }
         IApiGoogleServices apiGoogleServices;
         public HelpPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices, IApiGoogleServices apiGoogleServices) : base(navigationService, dialogService, apiCovitServices)
         {
             this.apiGoogleServices = apiGoogleServices;
+            GoToDetailCommand = new DelegateCommand(async () =>
+            {
+                IsReshing = true;
+                await GetPerson();
+                IsReshing = false;
+            });
+            GoToDetailCommand.Execute();
+            GoToDetail = new DelegateCommand<Help>(async(param) =>{
+                await NavigateTo(param);
+            });
         }
         public async Task GetPerson()
         {
-            var getrequest = await apiCovitServices.GetHelpActive();
-            if (getrequest != null)
+            string status = "";
+            if (status.GetPreferences("Who")== "Medicamentos")
             {
-                HelpsPerson = new ObservableCollection<Help>(getrequest);
+                var emergencia = await apiCovitServices.GetHelpActive("Emergencia");
+                HelpsPerson = new ObservableCollection<Help>(emergencia);
+                var asistencia = await apiCovitServices.GetHelpActive("Asistencia");
+                foreach (var item in asistencia)
+                {
+                    HelpsPerson.Add(item);
+                }
+                var psicologica = await apiCovitServices.GetHelpActive("Psicologica");
+                foreach (var item in psicologica)
+                {
+                    HelpsPerson.Add(item);
+                }
             }
+            else
+            {
+                var alimentos = await apiCovitServices.GetHelpActive("Alimentos");
+                HelpsPerson = new ObservableCollection<Help>(alimentos);
+                var medicamentos = await apiCovitServices.GetHelpActive("Medicamentos");
+                foreach (var item in medicamentos)
+                {
+                    HelpsPerson.Add(item);
+                }
+            }
+
         }
         async Task NavigateTo(Help help)
         {

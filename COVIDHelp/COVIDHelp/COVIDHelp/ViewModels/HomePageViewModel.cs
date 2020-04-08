@@ -34,7 +34,8 @@ namespace COVIDHelp.ViewModels
             PermissionsCommand.Execute();
             GoToMaps = new DelegateCommand<string>(async (filtrar) =>
             {
-
+                var status = filtrar == "supermarket" ? "Alimentos" : "Medicamentos";
+                status.SaveString("status");
                 filtrar.SaveString("type");
                 string latitude = $"{User.Latitude}";
                 string longitude = $"{User.Longitude}";

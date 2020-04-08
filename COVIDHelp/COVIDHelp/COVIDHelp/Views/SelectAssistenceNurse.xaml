@@ -62,7 +62,8 @@
                                 CornerRadius="20"
                                 BackgroundColor="White"
                                 TextColor="#0272A6"
-                                Command="{Binding AddDataAndNavigateCommand}" />
+                                Command="{Binding AddDataAndNavigateCommand}" 
+                                CommandParameter="Asistencia" />
                     </StackLayout>
 
                 </CollectionView.Footer>

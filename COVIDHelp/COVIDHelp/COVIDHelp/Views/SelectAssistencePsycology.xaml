@@ -63,7 +63,8 @@
                                 CornerRadius="20"
                                 TextColor="#0272A6"
                                 BackgroundColor="White"
-                                Command="{Binding AddDataAndNavigateCommand}" />
+                                Command="{Binding AddDataAndNavigateCommand}"
+                                CommandParameter="Psicologica"/>
                     </StackLayout>
                 </CollectionView.Footer>
             </CollectionView>
