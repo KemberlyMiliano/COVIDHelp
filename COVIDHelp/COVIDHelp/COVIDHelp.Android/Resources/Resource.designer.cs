@@ -10881,6 +10881,7 @@ namespace COVIDHelp.Droid
 			public const int Historial = 2131165327;
 			
 			// aapt resource value: 0x7F070090
+<<<<<<< HEAD
 			public const int home = 2131165328;
 			
 			// aapt resource value: 0x7F070091
@@ -10987,6 +10988,117 @@ namespace COVIDHelp.Droid
 			
 			// aapt resource value: 0x7F0700B3
 			public const int woman = 2131165363;
+=======
+			public const int ic_action_access_time = 2131165328;
+			
+			// aapt resource value: 0x7F070091
+			public const int ic_action_keyboard_backspace = 2131165329;
+			
+			// aapt resource value: 0x7F070092
+			public const int ic_action_location_on = 2131165330;
+			
+			// aapt resource value: 0x7F070093
+			public const int ic_mtrl_chip_checked_black = 2131165331;
+			
+			// aapt resource value: 0x7F070094
+			public const int ic_mtrl_chip_checked_circle = 2131165332;
+			
+			// aapt resource value: 0x7F070095
+			public const int ic_mtrl_chip_close_circle = 2131165333;
+			
+			// aapt resource value: 0x7F070096
+			public const int ImageGMap = 2131165334;
+			
+			// aapt resource value: 0x7F070097
+			public const int medicamentos = 2131165335;
+			
+			// aapt resource value: 0x7F070098
+			public const int medicina = 2131165336;
+			
+			// aapt resource value: 0x7F070099
+			public const int mtrl_snackbar_background = 2131165337;
+			
+			// aapt resource value: 0x7F07009A
+			public const int mtrl_tabs_default_indicator = 2131165338;
+			
+			// aapt resource value: 0x7F07009B
+			public const int navigation_empty_icon = 2131165339;
+			
+			// aapt resource value: 0x7F07009C
+			public const int notification_action_background = 2131165340;
+			
+			// aapt resource value: 0x7F07009D
+			public const int notification_bg = 2131165341;
+			
+			// aapt resource value: 0x7F07009E
+			public const int notification_bg_low = 2131165342;
+			
+			// aapt resource value: 0x7F07009F
+			public const int notification_bg_low_normal = 2131165343;
+			
+			// aapt resource value: 0x7F0700A0
+			public const int notification_bg_low_pressed = 2131165344;
+			
+			// aapt resource value: 0x7F0700A1
+			public const int notification_bg_normal = 2131165345;
+			
+			// aapt resource value: 0x7F0700A2
+			public const int notification_bg_normal_pressed = 2131165346;
+			
+			// aapt resource value: 0x7F0700A3
+			public const int notification_icon_background = 2131165347;
+			
+			// aapt resource value: 0x7F0700A4
+			public const int notification_template_icon_bg = 2131165348;
+			
+			// aapt resource value: 0x7F0700A5
+			public const int notification_template_icon_low_bg = 2131165349;
+			
+			// aapt resource value: 0x7F0700A6
+			public const int notification_tile_bg = 2131165350;
+			
+			// aapt resource value: 0x7F0700A7
+			public const int notify_panel_notification_icon_bg = 2131165351;
+			
+			// aapt resource value: 0x7F0700A8
+			public const int nurse = 2131165352;
+			
+			// aapt resource value: 0x7F0700A9
+			public const int pill = 2131165353;
+			
+			// aapt resource value: 0x7F0700AA
+			public const int PP = 2131165354;
+			
+			// aapt resource value: 0x7F0700AB
+			public const int PPP = 2131165355;
+			
+			// aapt resource value: 0x7F0700AC
+			public const int profile = 2131165356;
+			
+			// aapt resource value: 0x7F0700AD
+			public const int profileBackground = 2131165357;
+			
+			// aapt resource value: 0x7F0700AE
+			public const int profileImage = 2131165358;
+			
+			// aapt resource value: 0x7F0700AF
+			public const int request = 2131165359;
+			
+			// aapt resource value: 0x7F0700B0
+			public const int settings = 2131165360;
+			
+			// aapt resource value: 0x7F0700B1
+			public const int tooltip_frame_dark = 2131165361;
+			
+			// aapt resource value: 0x7F0700B2
+			public const int tooltip_frame_light = 2131165362;
+			
+			// aapt resource value: 0x7F0700B3
+			public const int volunteer = 2131165363;
+			
+			// aapt resource value: 0x7F0700B4
+			public const int woman = 2131165364;
+>>>>>>> 0ad4ae911e9131205da679da480122805e4b5891
 			
 			static Drawable()
 			{
