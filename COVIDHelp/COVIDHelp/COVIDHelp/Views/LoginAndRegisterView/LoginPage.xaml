@@ -51,7 +51,7 @@
                        Grid.Row="1"
                        FontFamily="{StaticResource BoldFont}"
                        Grid.ColumnSpan="2"/>
-                <Label Text="Correo electronico"
+                <Label Text="Correo electrónico"
                        TextColor="White"
                        FontSize="20"
                        Grid.Row="2"

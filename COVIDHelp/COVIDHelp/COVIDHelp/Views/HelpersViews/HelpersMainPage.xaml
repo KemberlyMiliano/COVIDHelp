@@ -10,7 +10,7 @@
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             xmlns:helper1="clr-namespace:COVIDHelp.Views.NeededViews"
             android:TabbedPage.ToolbarPlacement="Bottom"
-            android:TabbedPage.BarItemColor ="#80D7FF"
+            android:TabbedPage.BarItemColor ="#0272A6"
             android:TabbedPage.BarSelectedItemColor ="White"
             BarBackgroundColor="#00344D">
     <TabbedPage.Children>
