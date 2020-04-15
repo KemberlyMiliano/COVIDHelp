@@ -10,7 +10,7 @@ using COVIDHelp.Helpers;
 
 namespace COVIDHelp.ViewModels
 {
-    public class IdentificationPageViewModel: BaseViewModel,INavigatedAware
+    public class IdentificationPageViewModel : BaseViewModel, INavigatedAware
     {
         public DelegateCommand<string> GoToVolunteer { get; set; }
         public User User { get; set; }
@@ -22,20 +22,18 @@ namespace COVIDHelp.ViewModels
             {
                 string IsProfesional = filter == "Medicamentos" ? "Medicamentos" : "Alimentos";
                 IsProfesional.SaveString("Who");
-                
+
                 var param = new NavigationParameters
                 {
                     { "User", User }
                 };
-                await navigationService.NavigateAsync(new Uri(NavigationConstants.HelpPage, UriKind.Relative),param);
+                await navigationService.NavigateAsync(new Uri(NavigationConstants.HelpPage, UriKind.Relative), param);
             });
         }
-
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
-           
-        }
 
+        }
         public void OnNavigatedTo(INavigationParameters parameters)
         {
             var param = parameters["User"] as User;

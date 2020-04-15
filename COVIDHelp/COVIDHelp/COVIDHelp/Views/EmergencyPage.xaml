@@ -13,11 +13,12 @@
              BackgroundColor="White">
     <StackLayout>
         <Label Text="Ayuda!"
-                HorizontalOptions="CenterAndExpand"
+               HorizontalOptions="CenterAndExpand"
                FontFamily="{StaticResource BoldFont}"
                TextColor="Black"
                FontSize="20"
                Margin="10"/>
+
         <Button Text="Salud"
                 Command="{Binding CloseCommand}"
                 TextColor="White"
@@ -25,6 +26,7 @@
                 HorizontalOptions="FillAndExpand"
                 BackgroundColor="#01608C"
                 CornerRadius="5"/>
+
         <Button Text="Policia"
                 Command="{Binding CloseCommand}"
                 FontFamily="{StaticResource BoldFont}"
@@ -32,6 +34,7 @@
                 HorizontalOptions="FillAndExpand"
                 BackgroundColor="#01608C"
                 CornerRadius="5"/>
+
         <Button Text="Bomberos"
                 Command="{Binding CloseCommand}"
                 FontFamily="{StaticResource BoldFont}"
@@ -39,5 +42,6 @@
                 HorizontalOptions="FillAndExpand"
                 BackgroundColor="#01608C"
                 CornerRadius="5"/>
+
     </StackLayout>
 </Frame>

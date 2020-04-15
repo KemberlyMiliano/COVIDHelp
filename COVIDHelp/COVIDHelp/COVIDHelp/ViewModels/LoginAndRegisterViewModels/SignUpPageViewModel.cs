@@ -12,7 +12,7 @@ using Xamarin.Forms;
 
 namespace COVIDHelp.ViewModels
 {
-    public class SignUpPageViewModel : BaseViewModel,INavigatedAware
+    public class SignUpPageViewModel : BaseViewModel, INavigatedAware
     {
         public User UserR { get; set; } = new User();
         public DelegateCommand ButtonConfirmCommand { get; set; }
@@ -20,10 +20,14 @@ namespace COVIDHelp.ViewModels
         public DelegateCommand AddImageUserCommand { get; set; }
         public ImageSource ImageModel { get; set; }
         public List<TypePicker> Genders { get; set; }
+
         private TypePicker selectedGender;
         public TypePicker SelectedGender
         {
-            get { return selectedGender; }
+            get
+            {
+                return selectedGender;
+            }
             set
             {
                 selectedGender = value;
@@ -40,26 +44,29 @@ namespace COVIDHelp.ViewModels
             IsVisible = true;
             ImageModel = "eyeW.png";
             PickerGender();
-            ButtonConfirmCommand = new DelegateCommand(async () => {
-                    if (String.IsNullOrEmpty(UserR.Nombres) && String.IsNullOrEmpty(UserR.Correo) && String.IsNullOrEmpty(UserR.Password) && String.IsNullOrEmpty(UserR.RepeatPassword))
-                    { await dialogService.DisplayAlertAsync("ALERT!", "THERE ARE EMPTY FIELDS", "Ok"); }
-                    else if (String.IsNullOrEmpty(UserR.Correo))
-                    { await dialogService.DisplayAlertAsync("ALERT!", "THE FIELD EMAIL ADDRESS IS EMPTY", "Ok"); }
-                    else if (String.IsNullOrEmpty(UserR.Nombres)) { await dialogService.DisplayAlertAsync("ALERT!", "THE FIELD NAME IS EMPTY", "Ok"); }
-                    else if (String.IsNullOrEmpty(UserR.Password)) { await dialogService.DisplayAlertAsync("ALERT!", "THE FIELD PASSWORD IS EMPTY", "Ok"); }
-                    else if (String.IsNullOrEmpty(UserR.RepeatPassword)) { await dialogService.DisplayAlertAsync("ALERT!", "THE FIELD REPEAT PASSWORD IS EMPTY", "Ok"); }
-                    else if (UserR.Password != UserR.RepeatPassword) { await App.Current.MainPage.DisplayAlert("ALERT!", "THE PASSWORD ARE NOT EQUAL", "OK"); }
-                    else
-                    {
-                        PostUser(UserR);
-                        await NavigateToSelectedSignUp();
-                    }
-                });
-            ButtonEyeClickedCommand = new DelegateCommand(() => {
+            ButtonConfirmCommand = new DelegateCommand(async () =>
+            {
+                if (String.IsNullOrEmpty(UserR.Nombres) && String.IsNullOrEmpty(UserR.Correo) && String.IsNullOrEmpty(UserR.Password) && String.IsNullOrEmpty(UserR.RepeatPassword))
+                { await dialogService.DisplayAlertAsync("ALERT!", "THERE ARE EMPTY FIELDS", "Ok"); }
+                else if (String.IsNullOrEmpty(UserR.Correo))
+                { await dialogService.DisplayAlertAsync("ALERT!", "THE FIELD EMAIL ADDRESS IS EMPTY", "Ok"); }
+                else if (String.IsNullOrEmpty(UserR.Nombres)) { await dialogService.DisplayAlertAsync("ALERT!", "THE FIELD NAME IS EMPTY", "Ok"); }
+                else if (String.IsNullOrEmpty(UserR.Password)) { await dialogService.DisplayAlertAsync("ALERT!", "THE FIELD PASSWORD IS EMPTY", "Ok"); }
+                else if (String.IsNullOrEmpty(UserR.RepeatPassword)) { await dialogService.DisplayAlertAsync("ALERT!", "THE FIELD REPEAT PASSWORD IS EMPTY", "Ok"); }
+                else if (UserR.Password != UserR.RepeatPassword) { await App.Current.MainPage.DisplayAlert("ALERT!", "THE PASSWORD ARE NOT EQUAL", "OK"); }
+                else
+                {
+                    PostUser(UserR);
+                    await NavigateToSelectedSignUp();
+                }
+            });
+            ButtonEyeClickedCommand = new DelegateCommand(() =>
+            {
 
                 VisiblePassWord();
             });
-            AddImageUserCommand = new DelegateCommand(() => {
+            AddImageUserCommand = new DelegateCommand(() =>
+            {
                 // a;adir la imagen del usuario (usar permisos de camara y galeria.)
             });
 
@@ -70,7 +77,7 @@ namespace COVIDHelp.ViewModels
             Genders.Add(new TypePicker { Gender = "Masculino" });
             Genders.Add(new TypePicker { Gender = "Femenino" });
         }
-        public void Gender(string gender )
+        public void Gender(string gender)
         {
             switch (gender)
             {
@@ -89,7 +96,7 @@ namespace COVIDHelp.ViewModels
         {
             var param = new NavigationParameters();
             param.Add($"{nameof(User)}", UserR);
-            await navigationService.NavigateAsync($"{NavigationConstants.HelpersMainPage}",param);
+            await navigationService.NavigateAsync($"{NavigationConstants.HelpersMainPage}", param);
         }
 
         void PostUser(User user)
@@ -98,25 +105,24 @@ namespace COVIDHelp.ViewModels
         }
         void VisiblePassWord()
         {
-                ImageModel = !IsVisible ? "eyeW.png" : "eyeW_off";
-                IsVisible = !IsVisible;
+            ImageModel = !IsVisible ? "eyeW.png" : "eyeW_off";
+            IsVisible = !IsVisible;
         }
 
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
-           
+
         }
 
         public void OnNavigatedTo(INavigationParameters parameters)
         {
-            if (parameters.ContainsKey("Location")) 
+            if (parameters.ContainsKey("Location"))
             {
                 var param = parameters["Location"] as Locations;
                 UserR.Latitude = $"{param.Lat}";
                 UserR.Longitude = $"{param.Lng}";
             }
-
         }
     }
-   
+
 }

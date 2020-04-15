@@ -47,7 +47,7 @@ namespace COVIDHelp.ViewModels
             if (action)
             {
                 Int64 cedula = 0;
-                string status= "";
+                string status = "";
                 var user = await apiCovitServices.FindUser(cedula.GetPreferencesInt("Cedula"));
                 if (user != null)
                 {
@@ -64,6 +64,7 @@ namespace COVIDHelp.ViewModels
                         Tipo = status.GetPreferences("status")
 
                     };
+
                     foreach (var item in Requests)
                     {
                         help.DescripcionProblema += $"{item.Text}\n";
@@ -72,8 +73,6 @@ namespace COVIDHelp.ViewModels
                     var probar = await apiCovitServices.PostHelp(help);
                     await navigationService.GoBackToRootAsync();
                 }
-
-
             }
         }
     }

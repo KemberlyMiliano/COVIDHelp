@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
 {
-    public class EditProfilePageViewModel:BaseViewModel
+    public class EditProfilePageViewModel : BaseViewModel
     {
         public User User { get; set; }
         public DelegateCommand EditCommand { get; set; }
@@ -18,13 +18,14 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
         {
             Int64 cedula = 0;
             var id = cedula.GetPreferencesInt("Cedula");
-            LoadUserCommand = new DelegateCommand(async () => {
-               await GetUser(id);
-            });
-            LoadUserCommand.Execute();
-           EditCommand = new DelegateCommand(async () =>
+            LoadUserCommand = new DelegateCommand(async () =>
             {
+                await GetUser(id);
+            });
 
+            LoadUserCommand.Execute();
+            EditCommand = new DelegateCommand(async () =>
+            {
                 var param = new NavigationParameters();
                 param.Add("EditUser", User);
                 await navigationService.GoBackAsync();
@@ -37,5 +38,5 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
 
         }
     }
-    
+
 }

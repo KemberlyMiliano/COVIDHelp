@@ -14,7 +14,7 @@ using Xamarin.Forms.OpenWhatsApp;
 
 namespace COVIDHelp.ViewModels
 {
-    class RequestsListPageViewModel:BaseViewModel
+    public class RequestsListPageViewModel : BaseViewModel
     {
         public DelegateCommand<Help> ContactCommand { get; set; }
         public DelegateCommand DetailCommand { get; set; }
@@ -28,19 +28,21 @@ namespace COVIDHelp.ViewModels
             {
                 await GetHistorialHelper();
             });
+
             LoadHisotiral.Execute();
+
             ContactCommand = new DelegateCommand<Help>(async (help) =>
             {
-                //Agregar numero del usuario help.User.Phone
                 await OpenWhatsApp(help.Telefono, "Hola! Estoy aquí para ayudarte");
-
             });
+
             RefreshCommand = new DelegateCommand(async () =>
             {
                 IsRefresh = true;
                 await GetHistorialHelper();
                 IsRefresh = false;
             });
+
             DetailCommand = new DelegateCommand(async () =>
             {
                 await navigationService.NavigateAsync(new Uri(NavigationConstants.NecesityDetailPage, UriKind.Relative));
@@ -54,7 +56,6 @@ namespace COVIDHelp.ViewModels
             {
                 Requests = new ObservableCollection<Help>(request.Where(e => e.Cedula == cedula.GetPreferencesInt("Cedula")));
             }
-
         }
         private async Task OpenWhatsApp(string number, string text)
         {
@@ -62,6 +63,7 @@ namespace COVIDHelp.ViewModels
             {
                 Chat.Open(number, text);
             }
+
             catch (Exception ex)
             {
                 await dialogService.DisplayAlertAsync("Error", ex.Message, "OK");

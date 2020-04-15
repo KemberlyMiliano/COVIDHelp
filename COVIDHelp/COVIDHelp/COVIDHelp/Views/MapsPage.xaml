@@ -13,9 +13,7 @@
         <Grid>
             <maps:Map x:Name="map"
                       SelectedPin="{Binding SelectPlace,Mode=TwoWay}"
-                      MyLocationEnabled="True"
-                       
-                      />
+                      MyLocationEnabled="True"/>
 
             <pancakeview:PancakeView 
                                      HorizontalOptions="StartAndExpand"
@@ -27,15 +25,19 @@
                                      Padding="8"
                                      HasShadow="True">
                 <StackLayout Orientation="Horizontal">
+
                     <Image Source="volunteer" 
                            WidthRequest="70"/>
+
                     <Label Text="Necesito que alguien haga esto por mi!"
                            HorizontalOptions="CenterAndExpand"
                            VerticalOptions="CenterAndExpand"
                            FontFamily="{StaticResource BoldFont}"
                            FontSize="18"
                            TextColor="IndianRed"/>
+
                 </StackLayout>
+
                 <pancakeview:PancakeView.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding GoToDoItForMe}"/>
                 </pancakeview:PancakeView.GestureRecognizers>
@@ -49,19 +51,17 @@
                                      CornerRadius="20"
                                      Margin="20"
                                      Padding="10"
-                                     HasShadow="True"
-                                     >
+                                     HasShadow="True">
                 <Grid>
+
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <ffimageloading:CachedImage Grid.Row="0"
-                                                BackgroundColor="Red"
-                                                 WidthRequest="95"/>
-                    <Label 
-                           Grid.Column="1"
-                          >
+
+                    <ffimageloading:CachedImage BackgroundColor="Red" WidthRequest="95"/>
+
+                    <Label Grid.Column="1">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="{Binding Place.Name,StringFormat='{0} '}" FontSize="20" FontFamily="{StaticResource BoldFont}"/>

@@ -18,7 +18,6 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -26,17 +25,23 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Frame CornerRadius="30" Padding="10" Grid.ColumnSpan="4" Grid.RowSpan="8" BackgroundColor="#0272A6">
+
+            <Frame CornerRadius="30" 
+                   Padding="10" 
+                   Grid.ColumnSpan="4" 
+                   Grid.RowSpan="8" 
+                   BackgroundColor="#0272A6">
 
                 <StackLayout Padding="20">
 
-                    <ImageButton BackgroundColor="Transparent" Source="defaultUser.png"
-                         Grid.Row="1"
-                         Grid.ColumnSpan="4"
-                         HeightRequest="100"
-                         WidthRequest="100"
-                        VerticalOptions="Center" 
-                        HorizontalOptions="CenterAndExpand" />
+                    <ImageButton BackgroundColor="Transparent" 
+                                 Source="defaultUser.png"                       
+                                 Grid.Row="1"
+                                 Grid.ColumnSpan="4"                       
+                                 HeightRequest="100"                    
+                                 WidthRequest="100"                      
+                                 VerticalOptions="Center" 
+                                 HorizontalOptions="CenterAndExpand" />
 
                     <Label Text="Cambiar foto de perfil"
                            TextColor="White"
@@ -47,7 +52,7 @@
                            HorizontalOptions="Center"
                            FontFamily="{StaticResource NormalFont}"/>
 
-                    <Label Text="-Descripcion :" 
+                    <Label Text="-Descripción:" 
                            TextColor="White"
                            FontSize="20"
                            Grid.Row="2"
@@ -57,17 +62,19 @@
                            HorizontalOptions="Start"
                            FontFamily="{StaticResource NormalFont}"/>
 
-                    <Editor Keyboard="Text" AutoSize="TextChanges" IsTextPredictionEnabled="True" 
-                   Margin="50,0"
-                   Placeholder="añadir descripcion.... "
-                   PlaceholderColor="White"
-                   Text="{Binding User.SelfBiography}"
-                   TextColor="White"
-                   Grid.Row="2"
-                   Grid.ColumnSpan="4"
-                   VerticalOptions="Center" 
-                   HorizontalOptions="Start"
-                   FontFamily="{StaticResource NormalFont}"/>
+                    <Editor Keyboard="Text" 
+                            AutoSize="TextChanges" 
+                            IsTextPredictionEnabled="True" 
+                            Margin="50,0"   
+                            Placeholder="Añadir descripción... "
+                            PlaceholderColor="White"
+                            Text="{Binding User.SelfBiography}"
+                            TextColor="White"
+                            Grid.Row="2"
+                            Grid.ColumnSpan="4"
+                            VerticalOptions="Center" 
+                            HorizontalOptions="Start"
+                            FontFamily="{StaticResource NormalFont}"/>
 
                     <Button Text="Editado"
                             TextColor="#0272A6"
@@ -80,10 +87,9 @@
                             Grid.ColumnSpan="4"
                             BackgroundColor="White"
                             FontFamily="{StaticResource BoldFont}"/>
+
                 </StackLayout>
-
             </Frame>
-
         </Grid>
     </ContentPage.Content>
 </ContentPage>

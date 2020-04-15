@@ -7,32 +7,34 @@
              x:Class="COVIDHelp.Views.HelpersViews.CommitmentsPage"
              xmlns:system="clr-namespace:System;assembly=netstandard" xmlns:converter="clr-namespace:COVIDHelp.Converters"
              NavigationPage.HasNavigationBar="False"
-             x:Name="historialPage">
+             x:Name="HistorialPage">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:RelativeDateTimeConvertor x:Key="RelativeDateTimeConvertor" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <StackLayout Margin="20">
-        <Label Text="Historial de ayudas" FontSize="28" FontFamily="{StaticResource BoldFont}" Margin="0,10,0,20" TextColor="Black"/>
-        <RefreshView IsRefreshing="{Binding IsRefresh}" Command="{Binding RefreshCommand}">
-            <ListView ItemsSource="{Binding Historial}"  
-                            Grid.Row="2"
-                  RowHeight="80"
-                      >
+        <Label Text="Historial de ayudas" 
+               FontSize="28" 
+               FontFamily="{StaticResource BoldFont}" 
+               Margin="0,10,0,20" 
+               TextColor="Black"/>
+        <RefreshView IsRefreshing="{Binding IsRefresh}" 
+                     Command="{Binding RefreshCommand}">
+            <ListView ItemsSource="{Binding Historial}"          
+                      Grid.Row="2" 
+                      RowHeight="80">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.ContextActions>
-                                <MenuItem Text="Contactar" 
-                                      IconImageSource="contact"
-                                      Command="{Binding Path=BindingContext.ContactCommand, Source={x:Reference historialPage}}"  
-                                     CommandParameter="{Binding .}"/>
-                                <MenuItem Text="Detalles" 
-                                      IconImageSource="detail"
-                                      Command="{Binding Path=BindingContext.DetailCommand, Source={x:Reference historialPage}}"
-                                      CommandParameter="{Binding .}"
-                                      IsDestructive="True"/>
+                                <MenuItem IconImageSource="contact"
+                                          Command="{Binding Path=BindingContext.ContactCommand, Source={x:Reference HistorialPage}}"  
+                                          CommandParameter="{Binding .}"/>
+                                <MenuItem IconImageSource="detail"
+                                          Command="{Binding Path=BindingContext.DetailCommand, Source={x:Reference HistorialPage}}"
+                                          CommandParameter="{Binding .}" 
+                                          IsDestructive="True"/>
                             </ViewCell.ContextActions>
                             <StackLayout>
                                 <Frame CornerRadius="10" Padding="5">
@@ -45,37 +47,42 @@
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
+
                                         <Label   
                                             Grid.Column="1"
                                             Margin="0,10,0,0">
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span  Text="{Binding Nombre}"  FontFamily="{StaticResource BoldFont}" />
-                                                    <Span Text="{x:Static system:Environment.NewLine}"/>
-                                                    <Span   Text="{Binding Tipo}"    
-                                                     FontFamily="{StaticResource NormalFont}"/>
+                                                    <Span  Text="{Binding Nombre}"  
+                                                           FontFamily="{StaticResource BoldFont}" />
+                                                    <Span  Text="{x:Static system:Environment.NewLine}"/>
+                                                    <Span  Text="{Binding Tipo}"    
+                                                           FontFamily="{StaticResource NormalFont}"/>
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
+
                                         <Label Grid.Column="2"
                                                HorizontalOptions="EndAndExpand"
                                                Text="{Binding FechaEnviado, Converter={StaticResource RelativeDateTimeConvertor}}" />
-                                        <Image Source="defaultUser.png" 
-                                           WidthRequest="50"
-                                           Grid.Column="0"
-                                       Margin="0,0,15,0"/>
+
+                                        <Image Source="defaultUser.png"                                      
+                                               WidthRequest="50"                                          
+                                               Margin="0,0,15,0"/>
+
                                         <ProgressBar  Progress="{Binding State}"
-                                                  ProgressColor="Green"
-                                                  Grid.Row="1"
-                                                  Grid.Column="1"
-                                                  Grid.ColumnSpan="2"/>
+                                                      ProgressColor="Green"
+                                                      Grid.Row="1"
+                                                      Grid.Column="1"
+                                                      Grid.ColumnSpan="2"/>
                                     </Grid>
                                 </Frame>
 
                                 <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.DetailCommand, Source={x:Reference historialPage}}"
-                                                      CommandParameter="{Binding .}"/>
+                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.DetailCommand, Source={x:Reference HistorialPage}}"
+                                                          CommandParameter="{Binding .}"/>
                                 </StackLayout.GestureRecognizers>
+
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

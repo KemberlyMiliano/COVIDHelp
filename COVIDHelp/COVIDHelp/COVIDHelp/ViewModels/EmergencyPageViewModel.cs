@@ -14,7 +14,6 @@ namespace COVIDHelp.ViewModels
         public DelegateCommand CloseCommand { get; }
         public EmergencyPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
-
             CloseCommand = new DelegateCommand(async () =>
             {
                 RequestClose(null);

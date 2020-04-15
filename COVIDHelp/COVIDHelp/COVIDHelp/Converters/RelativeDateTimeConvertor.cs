@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace COVIDHelp.Converters
 {
-    class RelativeDateTimeConvertor:IValueConverter
+    class RelativeDateTimeConvertor : IValueConverter
     {
         const int SECOND = 1;
         const int MINUTE = 60 * SECOND;
@@ -28,7 +28,7 @@ namespace COVIDHelp.Converters
             {
                 if (ts.Seconds < 0)
                 {
-                    return "sometime ago";
+                    return "sSmetime ago";
                 }
                 return ts.Seconds == 1 ? "One second ago" : ts.Seconds + " seconds ago";
             }
@@ -40,7 +40,7 @@ namespace COVIDHelp.Converters
             {
                 if (ts.Seconds < 0)
                 {
-                    return "sometime ago";
+                    return "Sometime ago";
                 }
                 return ts.Minutes + " minutes ago";
             }
@@ -52,7 +52,7 @@ namespace COVIDHelp.Converters
             {
                 if (ts.Hours < 0)
                 {
-                    return "sometime ago";
+                    return "Sometime ago";
                 }
 
                 if (ts.Hours == 1)
@@ -76,12 +76,12 @@ namespace COVIDHelp.Converters
             if (delta < 12 * MONTH)
             {
                 int months = (int)(Math.Floor((double)ts.Days / 30));
-                return months <= 1 ? "one month ago" : months + " months ago";
+                return months <= 1 ? "One month ago" : months + " months ago";
             }
             else
             {
                 int years = (int)(Math.Floor((double)ts.Days / 365));
-                return years <= 1 ? "one year ago" : years + " years ago";
+                return years <= 1 ? "One year ago" : years + " years ago";
             }
         }
 

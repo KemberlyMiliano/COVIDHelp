@@ -17,7 +17,6 @@ namespace COVIDHelp.ViewModels
     {
         public Place Place { get; set; }
         private Pin selectPlace;
-
         public Pin SelectPlace
         {
             get { return selectPlace; }
@@ -43,7 +42,7 @@ namespace COVIDHelp.ViewModels
             GoToDoItForMe = new DelegateCommand(async () =>
             {
                 var param = new NavigationParameters();
-                await navigationService.NavigateAsync(new Uri(NavigationConstants.DoItForMePage, UriKind.Relative),param);
+                await navigationService.NavigateAsync(new Uri(NavigationConstants.DoItForMePage, UriKind.Relative), param);
             });
         }
         public async Task GetPlace(string locations, int radius, string type)
@@ -55,15 +54,14 @@ namespace COVIDHelp.ViewModels
                 PlaceNearbys = new List<Place>(places);
             }
         }
-
         public DelegateCommand GoToDoItForMe { get; set; }
-
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
-        }
 
+        }
         public void OnNavigatedTo(INavigationParameters parameters)
         {
+
         }
     }
 }

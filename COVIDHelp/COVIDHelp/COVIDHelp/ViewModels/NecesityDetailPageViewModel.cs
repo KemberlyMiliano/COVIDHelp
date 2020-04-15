@@ -21,15 +21,12 @@ namespace COVIDHelp.ViewModels
                 await navigationService.GoBackAsync();
             });
         }
-
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
-            throw new NotImplementedException();
-        }
 
+        }
         public void OnNavigatedTo(INavigationParameters parameters)
         {
-            //Recibe el SelectedHelp de Historial
             var param = parameters["Helper"] as Help;
             Help = param;
         }

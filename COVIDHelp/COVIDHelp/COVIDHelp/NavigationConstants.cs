@@ -27,5 +27,6 @@ namespace COVIDHelp
         public const string EditProfilePage = "/EditProfilePage";
         public const string DoItForMePage = "/DoItForMePage";
         public const string EmergencyPage = "/EmergencyPage";
+        public const string FormularyNavigation = "https://711.intec.edu.do/covid19/";
     }
 }

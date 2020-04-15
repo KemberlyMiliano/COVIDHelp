@@ -11,7 +11,7 @@ using Prism.Commands;
 
 namespace COVIDHelp.ViewModels
 {
-    public class ProfilePageViewModel: BaseViewModel,INavigatedAware
+    public class ProfilePageViewModel : BaseViewModel, INavigatedAware
     {
         public User User { get; set; }
         public DelegateCommand EditCommand { get; set; }
@@ -21,15 +21,17 @@ namespace COVIDHelp.ViewModels
         {
             LoadProfile = new DelegateCommand(async () => await FindUser());
             LoadProfile.Execute();
-            EditCommand = new DelegateCommand(async () => {
+            EditCommand = new DelegateCommand(async () =>
+            {
                 await navigationService.NavigateAsync(new Uri(NavigationConstants.EditProfilePage, UriKind.Relative));
 
             });
         }
-        async Task FindUser() {
+        async Task FindUser()
+        {
             Int64 cedula = 0;
-          var user =  await apiCovitServices.FindUser(cedula.GetPreferencesInt("Cedula"));
-            if (user!=null)
+            var user = await apiCovitServices.FindUser(cedula.GetPreferencesInt("Cedula"));
+            if (user != null)
             {
                 User = user;
             }
@@ -37,21 +39,17 @@ namespace COVIDHelp.ViewModels
 
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
-      
-            
+
         }
 
         public async void OnNavigatedTo(INavigationParameters parameters)
         {
-           
             if (parameters.ContainsKey("EditUser"))
             {
                 var param = parameters["EditUser"] as User;
                 User = param;
                 var getResquest = await apiCovitServices.UpdateUser(User);
             }
-       
-
         }
     }
 }

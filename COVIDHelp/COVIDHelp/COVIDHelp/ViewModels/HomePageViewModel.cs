@@ -19,7 +19,6 @@ namespace COVIDHelp.ViewModels
         public DelegateCommand ShowDialogCommand { get; set; }
         public DelegateCommand ShowFormulary { get; set; }
         public DelegateCommand<string> GoToMaps { get; set; }
-        public DelegateCommand EmergencyCommand { get; set; }
         public DelegateCommand GoToMedicalAssintence { get; set; }
         public DelegateCommand GoToIdentification { get; set; }
         public DelegateCommand PermissionsCommand { get; set; }
@@ -28,11 +27,14 @@ namespace COVIDHelp.ViewModels
         public HomePageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices, IDialogService dialog) : base(navigationService, dialogService, apiCovitServices)
         {
             var param = new NavigationParameters();
+
             PermissionsCommand = new DelegateCommand(async () =>
             {
                 await NavigateToPermisson();
             });
+
             PermissionsCommand.Execute();
+
             GoToMaps = new DelegateCommand<string>(async (filtrar) =>
             {
                 var status = filtrar == "supermarket" ? "Alimentos" : "Medicamentos";
@@ -46,19 +48,9 @@ namespace COVIDHelp.ViewModels
             });
 
             GoToIdentification = new DelegateCommand(async () =>
-                {
-                    param.Add("User", User);
-                    await navigationService.NavigateAsync(new Uri(NavigationConstants.IdentificationPage, UriKind.Relative), param);
-                });
-
-            GoToMedicalAssintence = new DelegateCommand(async () =>
             {
-                await navigationService.NavigateAsync(new Uri(NavigationConstants.MedicalAssistenceRequestPage, UriKind.Relative), param);
-            });
-
-            EmergencyCommand = new DelegateCommand(() =>
-            {
-                PlacePhoneCall("911");
+                param.Add("User", User);
+                await navigationService.NavigateAsync(new Uri(NavigationConstants.IdentificationPage, UriKind.Relative), param);
             });
 
             GoToMedicalAssintence = new DelegateCommand(async () =>
@@ -66,9 +58,9 @@ namespace COVIDHelp.ViewModels
                 await navigationService.NavigateAsync(new Uri(NavigationConstants.MedicalAssistenceRequestPage, UriKind.Relative), param);
             });
 
-            EmergencyCommand = new DelegateCommand(() =>
+            GoToMedicalAssintence = new DelegateCommand(async () =>
             {
-                PlacePhoneCall("911");
+                await navigationService.NavigateAsync(new Uri(NavigationConstants.MedicalAssistenceRequestPage, UriKind.Relative), param);
             });
 
             ShowDialogCommand = new DelegateCommand(() =>
@@ -84,7 +76,7 @@ namespace COVIDHelp.ViewModels
 
         public async Task<bool> OpenRideShareAsync()
         {
-            return await Launcher.TryOpenAsync("https://711.intec.edu.do/covid19/");
+            return await Launcher.TryOpenAsync(NavigationConstants.FormularyNavigation);
         }
 
         void CloseDialogCallback(IDialogResult dialogResult)

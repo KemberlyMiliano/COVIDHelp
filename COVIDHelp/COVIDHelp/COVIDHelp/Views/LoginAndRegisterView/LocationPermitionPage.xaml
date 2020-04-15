@@ -14,23 +14,28 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Image Source="gps.png" Grid.Row="0"
-                VerticalOptions="StartAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+            <Image Source="gps.png" 
+                   VerticalOptions="StartAndExpand" 
+                   HorizontalOptions="CenterAndExpand"/>
+
             <Label Text="Si desea poder encontrar ayuda cerca de usted, permita que CovidHelp acceda a su ubicación mientras usa la aplicación." 
-                   Grid.Row="1" FontSize="18"
+                   Grid.Row="1" 
+                   FontSize="18"
                    VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"
                    TextColor="White"/>
+
             <Button Text="TURN ON" 
                     Command="{Binding ConfirmCommand}"
-                    BorderColor="White" BorderWidth="2" 
-                    CornerRadius="10" Grid.Row="2"  
+                    BorderColor="White" 
+                    BorderWidth="2" 
+                    CornerRadius="10" 
+                    Grid.Row="2"  
                     TextColor="White" 
                     BackgroundColor="Transparent" 
                     VerticalOptions="StartAndExpand" 
                     HorizontalOptions="CenterAndExpand"/>
         </Grid>
-        
     </ContentPage.Content>
 </ContentPage>

@@ -49,12 +49,12 @@ namespace COVIDHelp.Models
         [JsonProperty("status")]
         public string Status { get; set; }
 
-
         [JsonProperty("gravedad")]
         public int Gravedad { get; set; }
 
         [JsonProperty("fechaEnviado")]
         public DateTime FechaEnviado { get; set; }
+
         [JsonProperty("tipo")]
         public string Tipo { get; set; }
 

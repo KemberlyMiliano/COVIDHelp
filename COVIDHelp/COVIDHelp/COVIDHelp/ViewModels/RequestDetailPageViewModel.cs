@@ -12,7 +12,7 @@ using Xamarin.Essentials;
 
 namespace COVIDHelp.ViewModels
 {
-    public class RequestDetailPageViewModel : BaseViewModel,INavigatedAware
+    public class RequestDetailPageViewModel : BaseViewModel, INavigatedAware
     {
         public Help Help { get; set; }
         public DelegateCommand GoToHistorial { get; set; }
@@ -42,12 +42,10 @@ namespace COVIDHelp.ViewModels
                     NavigationMode = Xamarin.Essentials.NavigationMode.Driving
                 });
             });
-            CallNeededCommand = new DelegateCommand( () =>
-            {
-                 Call(Help.Telefono);
-            });
-
-
+            CallNeededCommand = new DelegateCommand(() =>
+           {
+               Call(Help.Telefono);
+           });
         }
         public void Call(string number)
         {
@@ -70,6 +68,7 @@ namespace COVIDHelp.ViewModels
         }
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
+
         }
 
         public void OnNavigatedTo(INavigationParameters parameters)
@@ -84,7 +83,7 @@ namespace COVIDHelp.ViewModels
             string status = "";
             var id = cedula.GetPreferencesInt("Cedula");
             var user = await apiCovitServices.FindUser(id);
-            if (action&&user!=null)
+            if (action && user != null)
             {
                 Help help = new Help
                 {
@@ -96,7 +95,7 @@ namespace COVIDHelp.ViewModels
                     EmailVoluntario = user.Correo,
                     PosicionVoluntario = $"{user.Latitude}{user.Longitude}",
                     FechaEnviado = DateTime.Now,
-                    Tipo= status.GetPreferences("status")
+                    Tipo = status.GetPreferences("status")
 
                 };
                 await apiCovitServices.PutHelp(help);
@@ -106,7 +105,6 @@ namespace COVIDHelp.ViewModels
             {
                 await navigationService.GoBackAsync();
             }
-
         }
     }
 }

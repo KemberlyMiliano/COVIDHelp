@@ -57,7 +57,7 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
             }
 
         }
-        private async Task OpenWhatsApp(string number, string text)
+        async Task OpenWhatsApp(string number, string text)
         {
             try
             {

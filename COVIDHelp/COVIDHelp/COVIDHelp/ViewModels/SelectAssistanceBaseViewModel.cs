@@ -56,7 +56,6 @@ namespace COVIDHelp.ViewModels
         public async Task NavigateTo(string filtra)
         {
             Int64 cedula = 0;
-            string status = "";
             var user = await apiCovitServices.FindUser(cedula.GetPreferencesInt("Cedula"));
             if (user != null)
             {

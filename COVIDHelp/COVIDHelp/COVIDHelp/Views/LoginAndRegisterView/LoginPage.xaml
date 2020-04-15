@@ -61,7 +61,6 @@
                        Text="{Binding User.Correo}"
                        Grid.Row="2"
                        Keyboard="Email"
-                       Grid.Column="0"
                        Grid.ColumnSpan="4"
                        TextColor="White"
                        PlaceholderColor="White" 
@@ -89,7 +88,6 @@
                        Text="{Binding User.Password}"
                        IsPassword="{Binding IsVisible}"
                        Grid.Row="3"
-                       Grid.Column="0" 
                        Grid.ColumnSpan="3" 
                        TextColor="White"
                        PlaceholderColor="White"
@@ -102,8 +100,8 @@
                        HorizontalOptions="EndAndExpand"
                        Grid.ColumnSpan="4"
                        FontFamily="{StaticResource NormalFont}">
-                    
-                    
+
+
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"
                                           NumberOfTapsRequired="1"/>
@@ -150,7 +148,6 @@
 
         <Label Text="or login with"
                Grid.Row="8" 
-               Grid.Column="0"
                Grid.ColumnSpan="4" 
                HorizontalOptions="Center"
                VerticalOptions="End"/>
@@ -158,14 +155,13 @@
         <Image Source="googleLogin.png" 
                Grid.Row="9"
                VerticalOptions="End"
-               Grid.Column="0"
                Grid.ColumnSpan="4"
                HorizontalOptions="Center" 
                HeightRequest="75"
                WidthRequest="50">
             <Image.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding LoginWithGoogleCommand}"
-                                          NumberOfTapsRequired="1"/>
+                                      NumberOfTapsRequired="1"/>
 
             </Image.GestureRecognizers>
         </Image>

@@ -25,18 +25,15 @@ namespace COVIDHelp.ViewModels
         public bool IsBusy { get; set; } = false;
         public bool IsVisible { get; set; }
         private bool isEnable;
-
         public bool IsEnable
         {
-            get { 
-
+            get
+            {
                 return isEnable;
-
-
             }
-            set { 
+            set
+            {
                 isEnable = value;
-
             }
         }
 
@@ -46,8 +43,10 @@ namespace COVIDHelp.ViewModels
             IsVisible = true;
             ImageModel = "eyeW.png";
             User.Correo = User.Correo.Recordar(IsEnable);
-       
-            LogInCommand = new DelegateCommand(async () => {
+
+            LogInCommand = new DelegateCommand(async () =>
+            {
+
                 if (string.IsNullOrEmpty(User.Correo) && string.IsNullOrEmpty(User.Password))
                 {
                     await dialogService.DisplayAlertAsync("ALERT!", "THERE ARE EMPTY FIELDS", "Ok");
@@ -55,24 +54,28 @@ namespace COVIDHelp.ViewModels
                 else
                 {
                     IsBusy = true;
-                   await ValidateUser();
+                    await ValidateUser();
                     IsBusy = false;
                 }
             });
 
-            ButtonSignUpCommand = new DelegateCommand(async () => {
+            ButtonSignUpCommand = new DelegateCommand(async () =>
+            {
 
                 await NavigateToRegister();
             });
-            
-            ButtonEyeClickedCommand = new DelegateCommand(() => {
+
+            ButtonEyeClickedCommand = new DelegateCommand(() =>
+            {
 
                 VisiblePassWord();
             });
-            ForgotPasswordCommand = new DelegateCommand(() => {
-                //enviar correo con sus datos obtenidos del API.
+            ForgotPasswordCommand = new DelegateCommand(() =>
+            {
+                //Enviar correo con sus datos obtenidos del API.
             });
-            LoginWithGoogleCommand = new DelegateCommand(() => {
+            LoginWithGoogleCommand = new DelegateCommand(() =>
+            {
                 // Logearse con Google.
             });
 
@@ -104,18 +107,18 @@ namespace COVIDHelp.ViewModels
                 }
                 else
                 {
-                    await dialogService.DisplayAlertAsync("incorrecta", "contraseña/correo incorrecta", "ok");
+                    await dialogService.DisplayAlertAsync("", "Contraseña/Correo incorrecto", "OK");
                 }
             }
             catch (Exception)
             {
-                await dialogService.DisplayAlertAsync("incorrecta", "contraseña/correo incorrecta", "ok");
+                await dialogService.DisplayAlertAsync("", "Contraseña/Correo incorrecto", "OK");
             }
         }
         void VisiblePassWord()
         {
-                ImageModel = !IsVisible ? "eyeW.png" : "eyeW_off.png";
-                IsVisible = !IsVisible;
+            ImageModel = !IsVisible ? "eyeW.png" : "eyeW_off.png";
+            IsVisible = !IsVisible;
         }
     }
 }

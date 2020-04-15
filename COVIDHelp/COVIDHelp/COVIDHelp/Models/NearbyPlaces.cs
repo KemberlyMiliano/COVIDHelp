@@ -9,14 +9,13 @@ namespace COVIDHelp.Models
 {
     public class Locations
     {
-
         [JsonProperty("lat")]
         public double Lat { get; set; }
 
         [JsonProperty("lng")]
         public double Lng { get; set; }
 
-        public Position Position { get=>new Position(Lat,Lng); }
+        public Position Position { get => new Position(Lat, Lng); }
     }
 
     public class Northeast
@@ -28,7 +27,6 @@ namespace COVIDHelp.Models
         [JsonProperty("lng")]
         public double Lng { get; set; }
     }
-
     public class Southwest
     {
 
@@ -38,7 +36,6 @@ namespace COVIDHelp.Models
         [JsonProperty("lng")]
         public double Lng { get; set; }
     }
-
     public class Viewport
     {
 
@@ -48,7 +45,6 @@ namespace COVIDHelp.Models
         [JsonProperty("southwest")]
         public Southwest Southwest { get; set; }
     }
-
     public class Geometry
     {
 
@@ -64,10 +60,9 @@ namespace COVIDHelp.Models
 
         [JsonProperty("open_now")]
         public bool OpenNow { get; set; }
-        public string OpenOrClose { get=> OpenNow==true?"Abierto":"Cerrado";}
+        public string OpenOrClose { get => OpenNow == true ? "Abierto" : "Cerrado"; }
 
     }
-
     public class Photo
     {
 
@@ -83,7 +78,6 @@ namespace COVIDHelp.Models
         [JsonProperty("width")]
         public int Width { get; set; }
     }
-
     public class PlusCode
     {
 
@@ -96,19 +90,16 @@ namespace COVIDHelp.Models
 
     public class Place
     {
-
         [JsonProperty("geometry")]
         public Geometry Geometry { get; set; }
 
         [JsonProperty("icon")]
         private string icon;
-
         public string Icon
         {
             get { return icon; }
             set { icon = value; }
         }
-
 
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -135,16 +126,13 @@ namespace COVIDHelp.Models
         public int UserRatingsTotal { get; set; }
         public int Radius { get; set; }
         public string TypePlace { get; set; }
-        
-         [JsonProperty("vicinity")]
-        public string Vicinity { get; set; }
 
+        [JsonProperty("vicinity")]
+        public string Vicinity { get; set; }
     }
 
     public class NearbyPlaces
     {
-
-
         [JsonProperty("results")]
         public IList<Place> Results { get; set; }
 

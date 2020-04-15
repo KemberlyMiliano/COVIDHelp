@@ -10,7 +10,7 @@ namespace COVIDHelp.ViewModels
 {
     public class MedicalAssistenceRequestPageViewModel : BaseViewModel, INavigationAware
     {
-        public DelegateCommand<string>GoToAssistence { get; set; }
+        public DelegateCommand<string> GoToAssistence { get; set; }
         public MedicalAssistenceRequestPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
             GoToAssistence = new DelegateCommand<string>(async (param) =>
@@ -18,17 +18,15 @@ namespace COVIDHelp.ViewModels
                 await navigationService.NavigateAsync(new Uri(param, UriKind.Relative));
 
             });
-
         }
-
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
-            throw new NotImplementedException();
+
         }
 
         public void OnNavigatedTo(INavigationParameters parameters)
         {
-            throw new NotImplementedException();
+
         }
     }
 }

@@ -6,46 +6,43 @@
              mc:Ignorable="d"
              x:Class="COVIDHelp.Views.HelpersViews.MedicalAssistenceRequestPage">
     <ContentPage.Content>
-     
-            <Grid Padding="20" RowSpacing="40">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
 
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+        <Grid Padding="20" RowSpacing="40">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
 
-                    <Label Text="Quién te puede ayudar?"
-                           FontFamily="{StaticResource BoldFont}"
-                           FontSize="27"
-                           HorizontalTextAlignment="Center"
-                           TextColor="Black"
-                           Grid.Row="0"
-                           Grid.RowSpan="2"
-                           Grid.ColumnSpan="3"
-                           HorizontalOptions="CenterAndExpand"       
-                           Margin="0,20,0,20"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
 
-           
-                <ImageButton Source="nurse"
-                             TranslationY="15"
-                             Grid.Row="3"
-                             HeightRequest="100"
-                             BackgroundColor="Transparent"
-                             Grid.ColumnSpan="3"
-                             HorizontalOptions="CenterAndExpand"
-                             Command="{Binding GoToNurseAssistence}"/>
+            <Label Text="Quién te puede ayudar?"                           
+                   FontFamily="{StaticResource BoldFont}"
+                   FontSize="27"                           
+                   HorizontalTextAlignment="Center"                          
+                   TextColor="Black"                         
+                   Grid.RowSpan="2"                          
+                   Grid.ColumnSpan="3"       
+                   HorizontalOptions="CenterAndExpand"       
+                   Margin="0,20,0,20"/>
 
-          
+            <ImageButton Source="nurse"
+                         TranslationY="15" 
+                         Grid.Row="3"
+                         HeightRequest="100"
+                         BackgroundColor="Transparent"
+                         Grid.ColumnSpan="3"
+                         HorizontalOptions="CenterAndExpand"
+                         Command="{Binding GoToNurseAssistence}"/>
+
             <ImageButton Source="doctor1.png"
                          Grid.Row="1"
                          TranslationY="15"
@@ -54,7 +51,7 @@
                          Grid.ColumnSpan="3"
                          HorizontalOptions="CenterAndExpand"
                          Command="{Binding GoToDoctorAssistence}"/>
-           
+
             <ImageButton Source="woman.png"
                          Grid.Row="3"
                          TranslationY="20"
@@ -64,7 +61,7 @@
                          HorizontalOptions="CenterAndExpand"
                          Command="{Binding GoToPsycologyAssistence}"/>
 
-                <Label Text="Enfermero(a)"
+            <Label Text="Enfermero(a)"
                        Grid.Row="1" 
                        HeightRequest="100" 
                        BackgroundColor="Transparent" 
@@ -73,8 +70,8 @@
                        VerticalOptions="Start"
                        FontFamily="{StaticResource NormalFont}"
                        HorizontalOptions="CenterAndExpand"/>
-                
-                <ImageButton Source="nurse" 
+
+            <ImageButton Source="nurse" 
                              TranslationY="15"
                              Grid.Row="1" 
                              HeightRequest="80"
@@ -84,7 +81,7 @@
                              Command="{Binding GoToAssistence}"
                              CommandParameter="/SelectAssistenceNurse"/>
 
-                <Label Text="Doctor(a)"
+            <Label Text="Doctor(a)"
                        Grid.Row="2" 
                        HeightRequest="80"
                        BackgroundColor="Transparent"
@@ -92,7 +89,7 @@
                        Grid.ColumnSpan="3" 
                        FontFamily="{StaticResource NormalFont}"
                        HorizontalOptions="CenterAndExpand"/>
-                
+
             <ImageButton Source="doctor1.png"
                          Grid.Row="2" 
                          TranslationY="15" 
@@ -101,8 +98,8 @@
                          Grid.ColumnSpan="3"
                          HorizontalOptions="CenterAndExpand"
                          Command="{Binding GoToAssistence}"
-                         CommandParameter="/SelectAssistenceDoctor"/> 
-                
+                         CommandParameter="/SelectAssistenceDoctor"/>
+
             <Label Text="Psicologo(a)"
                    Grid.Row="3" 
                    HeightRequest="80"
@@ -111,6 +108,7 @@
                    Grid.ColumnSpan="3" 
                    FontFamily="{StaticResource NormalFont}"
                    HorizontalOptions="CenterAndExpand"/>
+
             <ImageButton Source="woman.png"
                          Grid.Row="3" 
                          TranslationY="20" 
