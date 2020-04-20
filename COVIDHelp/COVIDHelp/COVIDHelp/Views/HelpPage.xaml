@@ -48,7 +48,7 @@
                 <CollectionView.ItemsLayout>
 
                     <GridItemsLayout Orientation="Vertical"
-                                     VerticalItemSpacing="20"/>
+                                     VerticalItemSpacing="5"/>
 
                 </CollectionView.ItemsLayout>
 
@@ -66,7 +66,7 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
 
                                 <Image Source="defaultUser"
@@ -81,44 +81,39 @@
                                         <FormattedString>
                                             <Span Text="{Binding Nombre}"  TextColor="Black" FontSize="16" FontFamily="{StaticResource BoldFont}"/>
                                             <Span Text="{x:Static system:Environment.NewLine}" />
-                                            <Span Text="{Binding Email}" Grid.ColumnSpan="3" FontSize="14" FontFamily="{StaticResource NormalFont}"/>
-                                            <Span Text="{x:Static system:Environment.NewLine}" />
-                                            <Span Text="{Binding Telefono}" FontSize="14" Grid.ColumnSpan="2" FontFamily="{StaticResource NormalFont}"/>
-                                            <Span Text="{x:Static system:Environment.NewLine}" />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
-
-                                <Image Grid.Column="1"
-                                       Source="ic_action_location_on.png"
+                                <StackLayout Grid.Column="1" Orientation="Horizontal">
+                                    <Image Source="ic_action_location_on.png"
                                        HorizontalOptions="Start"
-                                       Margin="0,80,0,0"
+                                       VerticalOptions="End"
                                        HeightRequest="20"/>
 
-                                <Label Margin="20,0,0,0"
-                                       VerticalOptions="EndAndExpand" 
-                                       Grid.Column="1" 
+                                    <Label VerticalOptions="EndAndExpand" 
                                        Text="{Binding Dirrecion}" 
-                                       FontSize="14"
+                                       FontSize="12"
                                        FontFamily="{StaticResource NormalFont}"/>
+                                </StackLayout>
 
-                                <Label  HorizontalOptions="CenterAndExpand" 
+                                <StackLayout Orientation="Horizontal" Grid.Column="2" >
+                                    <Label HorizontalOptions="CenterAndExpand" 
                                        VerticalOptions="EndAndExpand"
-                                       Grid.Column="2" 
                                        Text="{Binding FechaEnviado, Converter={StaticResource RelativeDateTimeConvertor}}" 
                                        FontSize="14"
                                        FontFamily="{StaticResource NormalFont}"/>
 
-                                <Image Grid.Column="2"
-                                       Source="ic_action_access_time.png"
+                                    <Image Source="ic_action_access_time.png"
                                        HorizontalOptions="EndAndExpand"
                                        Margin="0,80,0,0"
                                        HeightRequest="20"/>
+                                </StackLayout>
 
                                 <Button Text="Detalles"
                                         CornerRadius="15"
                                         BackgroundColor="#0272A6"
                                         Opacity="0.8"
+                                        FontFamily="{StaticResource BoldFont}"
                                         Command="{Binding Path=BindingContext.GoToDetail, Source={x:Reference helpPage}}"
                                         Grid.Column="2"
                                         CommandParameter="{Binding .}"

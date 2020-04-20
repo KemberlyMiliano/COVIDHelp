@@ -92,6 +92,15 @@
                        TextColor="White"
                        PlaceholderColor="White"
                        FontFamily="{StaticResource NormalFont}"/>
+
+                <Label Text="Contraseña/correo incorrectos"
+                       HorizontalOptions="Start"
+                       VerticalOptions="End"
+                       TextColor="IndianRed"
+                       Grid.Row="4" 
+                       Grid.ColumnSpan="4"
+                       FontFamily="{StaticResource NormalFont}"
+                       IsVisible="{Binding IsAlertVisible}"/>
                 <Label
                        Text="Olvidaste tu contraseña?"
                        TextColor="White" 
@@ -101,19 +110,16 @@
                        Grid.ColumnSpan="4"
                        FontFamily="{StaticResource NormalFont}">
 
-
                     <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"
-                                          NumberOfTapsRequired="1"/>
-
+                        <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"/>
                     </Label.GestureRecognizers>
                 </Label>
                 <CheckBox 
-                       Grid.Row="4" 
+                       Grid.Row="5" 
                          IsChecked="{Binding IsEnable}"
                        HorizontalOptions="StartAndExpand"
                        Grid.ColumnSpan="4"/>
-                <Label Grid.Row="4"
+                <Label Grid.Row="5"
                        Text="Recordar correo"
                        FontFamily="{StaticResource NormalFont}"
                        FontSize="16"
@@ -145,6 +151,7 @@
                 CornerRadius="30"
                 HorizontalOptions="Center"
                 Command="{Binding LogInCommand}"/>
+
 
         <Label Text="or login with"
                Grid.Row="8" 

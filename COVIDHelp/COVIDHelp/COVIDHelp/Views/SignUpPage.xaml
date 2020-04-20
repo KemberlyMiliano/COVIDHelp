@@ -26,13 +26,7 @@
 
                 </Grid.ColumnDefinitions>
 
-                <pancakeview:PancakeView BackgroundColor="White" 
-                                         Grid.ColumnSpan="4" 
-                                         CornerRadius="0,0,200,200" >
-                    <Image Source="bg.jpg" 
-                           Aspect="AspectFill" 
-                           Grid.ColumnSpan="4" />
-                </pancakeview:PancakeView>
+                
 
                 <pancakeview:PancakeView BackgroundColor="#014666" 
                                          CornerRadius="60,60,60,60"  
@@ -95,7 +89,7 @@
                                 TextColor="Black"
                                 FontFamily="{StaticResource NormalFont}"/>
 
-                        <Entry Placeholder="Correo electronico"
+                        <Entry Placeholder="Correo electrónico"
                                Text="{Binding UserR.Correo}"
                                Grid.Row="5"
                                Grid.ColumnSpan="4"
@@ -104,7 +98,7 @@
                                FontFamily="{StaticResource NormalFont}"/>
 
 
-                        <Entry Placeholder="Cedula"
+                        <Entry Placeholder="Cédula"
                                Keyboard="Telephone"
                                Text="{Binding UserR.Password}"
                                Grid.Row="6"
@@ -113,7 +107,7 @@
                                TextColor="White"
                                FontFamily="{StaticResource NormalFont}"/>
 
-                        <Entry Placeholder="Phone"
+                        <Entry Placeholder="Telefono"
                                Keyboard="Telephone"
                                Text="{Binding UserR.Telefono}"
                                Grid.Row="7"
@@ -122,7 +116,7 @@
                                PlaceholderColor="White"
                                 FontFamily="{StaticResource NormalFont}"/>
 
-                        <Entry Placeholder="Direccion"
+                        <Entry Placeholder="Dirección"
                                Text="{Binding UserR.Direccion}"
                                Grid.Row="8"
                                Grid.ColumnSpan="4"
@@ -137,8 +131,7 @@
                                HeightRequest="30" 
                                TranslationX="-30">
                             <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding ButtonEyeClickedCommand}"
-                                          NumberOfTapsRequired="1"/>
+                                <TapGestureRecognizer Command="{Binding ButtonEyeClickedCommand}"/>
                             </Image.GestureRecognizers>
                         </Image>
 
@@ -148,7 +141,8 @@
                                Grid.Row="9"
                                Grid.ColumnSpan="3"
                                PlaceholderColor="White"
-                               TextColor="White"/>
+                               TextColor="White"
+                               FontFamily="{StaticResource NormalFont}"/>
 
                         <Image Source="{Binding ImageModel}"
                                Grid.Row="10"
@@ -157,8 +151,7 @@
                                HeightRequest="30"
                                TranslationX="-30">
                             <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding ButtonEyeClickedCommand}"
-                                                      NumberOfTapsRequired="1"/>
+                                <TapGestureRecognizer Command="{Binding ButtonEyeClickedCommand}"/>
                             </Image.GestureRecognizers>
                         </Image>
                         <Entry Placeholder="Confirmar contraseña"
@@ -167,7 +160,8 @@
                                Grid.Row="10"
                                Grid.ColumnSpan="3"
                                PlaceholderColor="White"
-                               TextColor="White" />
+                               TextColor="White" 
+                               FontFamily="{StaticResource NormalFont}"/>
                     </Grid>
                 </pancakeview:PancakeView>
 
@@ -185,18 +179,19 @@
                         Command="{Binding ButtonConfirmCommand}"
                         FontFamily="{StaticResource BoldFont}"/>
 
-                <Image Source="defaultUser.png" 
-                       Grid.RowSpan="1" 
-                       TranslationY="60" 
-                       Grid.ColumnSpan="4" 
-                       HeightRequest="50"
-                       WidthRequest="20">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding AddImageUserCommand}"
-                                              NumberOfTapsRequired="1"/>
-                    </Image.GestureRecognizers>
-                </Image>
-
+                <StackLayout Grid.ColumnSpan="4"
+                             HorizontalOptions="CenterAndExpand"
+                             Grid.RowSpan="2">
+                    <Image Source="defaultUser" 
+                       Aspect="AspectFill" 
+                       HeightRequest="125"
+                       WidthRequest="125"
+                       Margin="30,30,30,0">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding AddImageUserCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
             </Grid>
         </ScrollView>
     </ContentPage.Content>

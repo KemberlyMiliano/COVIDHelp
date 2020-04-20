@@ -77,7 +77,6 @@
                                                       Grid.ColumnSpan="2"/>
                                     </Grid>
                                 </Frame>
-
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

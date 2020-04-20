@@ -27,6 +27,8 @@ namespace COVIDHelp.ViewModels
         public ImageSource ImageModel { get; set; }
         public bool IsBusy { get; set; } = false;
         public bool IsVisible { get; set; }
+        public bool IsAlertVisible { get; set; }
+
         private bool isEnable;
         public bool IsEnable
         {
@@ -44,6 +46,7 @@ namespace COVIDHelp.ViewModels
         {
             IsEnable = Setting.IsCheckRember() == true ? Setting.IsCheckRember() : false;
             IsVisible = true;
+            IsAlertVisible = false;
             ImageModel = "eyeW.png";
             User.Correo = User.Correo.Recordar(IsEnable);
 
@@ -106,16 +109,18 @@ namespace COVIDHelp.ViewModels
                     {
                     { $"{nameof(User)}", user }
                     };
-                    await navigationService.NavigateAsync($"{NavigationConstants.HelpersMainPage}", param);
+
+                    IsAlertVisible = false;
+                    await navigationService.NavigateAsync($"{NavigationConstants.HelpersMainPage}", param);                    
                 }
                 else
                 {
-                    await dialogService.DisplayAlertAsync("", "Contraseña/Correo incorrecto", "OK");
+                    IsAlertVisible = true;
                 }
             }
             catch (Exception)
             {
-                await dialogService.DisplayAlertAsync("", "Contraseña/Correo incorrecto", "OK");
+                IsAlertVisible = true;
             }
         }
         void VisiblePassWord()

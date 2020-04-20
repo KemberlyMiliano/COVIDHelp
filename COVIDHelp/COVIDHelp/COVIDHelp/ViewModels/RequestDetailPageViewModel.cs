@@ -16,22 +16,17 @@ namespace COVIDHelp.ViewModels
     {
         public Help Help { get; set; }
         public DelegateCommand GoToHistorial { get; set; }
-        public DelegateCommand GoBack { get; set; }
         public DelegateCommand GoToMaps { get; set; }
         public DelegateCommand CallNeededCommand { get; set; }
         public RequestDetailPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
             var param = new NavigationParameters();
 
-            GoBack = new DelegateCommand(async () =>
-            {
-                await navigationService.GoBackAsync();
-            });
-
             GoToHistorial = new DelegateCommand(async () =>
             {
                 await DisplayAction();
             });
+
             GoToMaps = new DelegateCommand(async () =>
             {
                 double lat = double.Parse(Help.Posicion.Split(',')[0]);
@@ -42,10 +37,11 @@ namespace COVIDHelp.ViewModels
                     NavigationMode = Xamarin.Essentials.NavigationMode.Driving
                 });
             });
+
             CallNeededCommand = new DelegateCommand(() =>
-           {
-               Call(Help.Telefono);
-           });
+            {
+                Call(Help.Telefono);
+            });
         }
         public void Call(string number)
         {

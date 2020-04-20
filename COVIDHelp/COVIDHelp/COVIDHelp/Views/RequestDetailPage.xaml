@@ -4,82 +4,94 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="COVIDHelp.Views.HelpersViews.RequestDetailPage">
+             x:Class="COVIDHelp.Views.HelpersViews.RequestDetailPage"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Padding="20,40,20,20">
-                <Frame CornerRadius="20"  BackgroundColor="#0272A6" >
-                    <StackLayout>
-
-                        <Label Text="{Binding Help.Nombre}" 
-                               TextColor="White"
-                               VerticalOptions="StartAndExpand" 
+            <StackLayout Padding="20">
+                <StackLayout>
+                    <Frame>
+                        <StackLayout>
+                            <ImageButton Source="back"
+                                 HorizontalOptions="End"
+                                 BackgroundColor="Transparent"
+                                 HeightRequest="40"/>
+                            <Label Text="{Binding Help.Nombre}" 
+                               TextColor="Black"
+                               VerticalOptions="Start" 
                                HorizontalOptions="Center" 
                                HorizontalTextAlignment="Center"
                                FontFamily="{StaticResource BoldFont}"
                                FontSize="25"/>
 
-                        <Image Source="defaultUser"
+                            <Image Source="defaultUser"
                                VerticalOptions="StartAndExpand"
                                HeightRequest="80"
                                Margin="10"/>
 
-                        <StackLayout Padding="10">
+                            <StackLayout Padding="10">
 
-                            <Label Text="Dirección:"
+                                <Label Text="Dirección:"
                                    FontFamily="{StaticResource BoldFont}"                              
-                                   TextColor="White"                           
+                                   TextColor="Black"                           
                                    VerticalOptions="StartAndExpand" 
                                    HorizontalOptions="StartAndExpand" 
                                    FontSize="20"/>
 
-                            <Label  Text="{Binding Help.Dirrecion ,StringFormat='{0}'}" 
+                                <Label  Text="{Binding Help.Dirrecion ,StringFormat='{0}'}" 
                                     VerticalOptions="StartAndExpand"      
                                     HorizontalOptions="StartAndExpand"    
-                                    TextColor="White"
+                                    TextColor="Black"
                                     FontFamily="{StaticResource NormalFont}"                       
-                                    FontSize="20"/>
+                                    FontSize="18"
+                                Margin="0,0,0,10"/>
 
-                            <Label Text="Telefono:"
+                                <!--<Label Text="Teléfono:"
                                    FontFamily="{StaticResource BoldFont}"
-                                   TextColor="White"
+                                   TextColor="Black"
                                    VerticalOptions="StartAndExpand" 
                                    HorizontalOptions="StartAndExpand" 
                                    FontSize="20"/>
 
-                            <Label Text="{Binding Help.Telefono,StringFormat='{0}'}" 
+                                <Label Text="{Binding Help.Telefono,StringFormat='{0}'}" 
                                    VerticalOptions="StartAndExpand" 
-                                   TextColor="White"
+                                   TextColor="Black"
                                    FontFamily="{StaticResource NormalFont}"
                                    HorizontalOptions="StartAndExpand" 
-                                   FontSize="18"/>
+                                   FontSize="18"
+                               Margin="0,0,0,10"/>-->
 
-                            <Label Text="Descripcion:"
+                                <Label Text="Descripción:"
                                    FontFamily="{StaticResource BoldFont}"
-                                   TextColor="White"
+                                   TextColor="Black"
                                    VerticalOptions="StartAndExpand" 
                                    HorizontalOptions="StartAndExpand" 
                                    FontSize="20"/>
 
-                            <Label Text="{Binding Help.DescripcionProblema}" 
+                                <Label Text="{Binding Help.DescripcionProblema}" 
+                                   FontFamily="{StaticResource NormalFont}"
                                    VerticalOptions="StartAndExpand"                           
-                                   FontAttributes="Italic"
                                    HorizontalOptions="StartAndExpand"                                
-                                   TextColor="White"
-                                   FontSize="18"/>
+                                   TextColor="Black"
+                                   FontSize="18"
+                               Margin="0,0,0,20"/>
+
+                            </StackLayout>
 
                         </StackLayout>
+                    </Frame>
 
-                        <Button Text="Aceptar solicitud" 
-                                TextColor="#0272A6"  
-                                BackgroundColor="White" 
-                                CornerRadius="40" 
-                                Margin="15,10,15,0"
+                    <Button Text="Aceptar solicitud" 
+                            TextColor="White"  
+                            Padding="20"
+                                BackgroundColor="#0272A6" 
+                                CornerRadius="10" 
+                                Margin="15,20,15,0"
                                 FontFamily="{StaticResource BoldFont}"
                                 Command="{Binding GoToHistorial}"
                                 CommandParameter="{Binding .}"/>
 
-                        <Button Text="Ver dirección"                    
+                    <!--<Button Text="Ver dirección"                    
                                 TextColor="#0272A6"  
                                 BackgroundColor="White" 
                                 CornerRadius="40" 
@@ -93,11 +105,11 @@
                                 CornerRadius="40" 
                                 Margin="15,15,15,0"
                                 FontFamily="{StaticResource BoldFont}"
-                                Command="{Binding CallNeededCommand}"/>
+                                Command="{Binding CallNeededCommand}"/>-->
 
-                    </StackLayout>
+                </StackLayout>
 
-                </Frame>
+
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
