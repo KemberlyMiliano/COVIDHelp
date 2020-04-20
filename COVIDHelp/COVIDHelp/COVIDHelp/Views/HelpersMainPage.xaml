@@ -27,7 +27,7 @@
             </x:Arguments>
         </NavigationPage>
 
-        <NavigationPage IconImageSource="commitments" Title="Historial">
+        <NavigationPage IconImageSource="commitments" Title="Ayudas">
             <x:Arguments>
                 <helper:CommitmentsPage/>
             </x:Arguments>

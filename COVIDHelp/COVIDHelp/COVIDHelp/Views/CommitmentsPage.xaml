@@ -78,11 +78,6 @@
                                     </Grid>
                                 </Frame>
 
-                                <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.DetailCommand, Source={x:Reference HistorialPage}}"
-                                                          CommandParameter="{Binding .}"/>
-                                </StackLayout.GestureRecognizers>
-
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

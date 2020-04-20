@@ -28,8 +28,8 @@ namespace COVIDHelp.iOS
             global::Xamarin.Forms.Forms.SetFlags("CarouselView_Experimental");
             global::Xamarin.Forms.Forms.Init();
             Xamarin.FormsGoogleMaps.Init("AIzaSyBvYUEfTGHvXCXaPeMRqwIZHxt3e8EjpAk");
+            Xamarin.Auth.Presenters.XamarinIOS.AuthenticationConfiguration.Init();
             LoadApplication(new App(new iOSInitializer()));
-
             return base.FinishedLaunching(app, options);
         }
     }

@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 using COVIDHelp.Services;
 using COVIDHelp.Helpers;
 using Xamarin.Essentials;
+using Xamarin.Auth;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace COVIDHelp.ViewModels
 {
@@ -46,7 +49,6 @@ namespace COVIDHelp.ViewModels
 
             LogInCommand = new DelegateCommand(async () =>
             {
-
                 if (string.IsNullOrEmpty(User.Correo) && string.IsNullOrEmpty(User.Password))
                 {
                     await dialogService.DisplayAlertAsync("ALERT!", "THERE ARE EMPTY FIELDS", "Ok");
@@ -61,22 +63,23 @@ namespace COVIDHelp.ViewModels
 
             ButtonSignUpCommand = new DelegateCommand(async () =>
             {
-
                 await NavigateToRegister();
             });
 
             ButtonEyeClickedCommand = new DelegateCommand(() =>
             {
-
                 VisiblePassWord();
             });
+
             ForgotPasswordCommand = new DelegateCommand(() =>
             {
                 //Enviar correo con sus datos obtenidos del API.
             });
+
             LoginWithGoogleCommand = new DelegateCommand(() =>
             {
                 // Logearse con Google.
+                GoogleLogin();
             });
 
         }
@@ -120,5 +123,53 @@ namespace COVIDHelp.ViewModels
             ImageModel = !IsVisible ? "eyeW.png" : "eyeW_off.png";
             IsVisible = !IsVisible;
         }
+
+        void GoogleLogin()
+        {
+            var authenticator = new OAuth2Authenticator
+                         (
+                           "Google client ID",
+                           "email profile",
+                            new System.Uri("https://accounts.google.com/o/oauth2/auth"),
+                            new System.Uri("https://www.google.com")
+                          );
+
+            authenticator.AllowCancel = true;
+
+            var presenter = new Xamarin.Auth.Presenters.OAuthLoginPresenter();
+            presenter.Login(authenticator);
+
+            authenticator.Completed += async (senders, obj) =>
+            {
+                if (obj.IsAuthenticated)
+                {
+                    var clientData = new HttpClient();
+
+                    //call google api to fetch logged in user profile info 
+                    var resData = await clientData.GetAsync("https://www.googleapis.com/oauth2/v3/userinfo?access_token=" + obj.Account.Properties["access_token"]);
+                    var jsonData = await resData.Content.ReadAsStringAsync();
+
+                    // deserlize the jsondata and intilize in GoogleAuthClass
+                    GoogleAuth googleObject = JsonConvert.DeserializeObject<GoogleAuth>(jsonData);
+
+                    //you can access following property after login
+                    string email = googleObject.Email;
+                    string photo = googleObject.Picture;
+                    string name = googleObject.Name;
+                }
+                else
+                {
+                    //Authentication fail
+                    // write the code to handle when auth failed
+                }
+            };
+            authenticator.Error += onAuthError;
+        }
+
+        private void onAuthError(object sender, AuthenticatorErrorEventArgs e)
+        {
+            dialogService.DisplayAlertAsync("Google Authentication Error", e.Message, "OK");
+        }
     }
 }
+
