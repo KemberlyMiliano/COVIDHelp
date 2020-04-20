@@ -10,12 +10,13 @@
         <ScrollView>
             <StackLayout Padding="20">
                 <StackLayout>
+                    <ImageButton Source="back"
+                                 HorizontalOptions="Start"
+                                 BackgroundColor="Transparent"
+                                 HeightRequest="25"
+                                 Margin="0,0,0,20"/>
                     <Frame>
                         <StackLayout>
-                            <ImageButton Source="back"
-                                 HorizontalOptions="End"
-                                 BackgroundColor="Transparent"
-                                 HeightRequest="40"/>
                             <Label Text="{Binding Help.Nombre}" 
                                TextColor="Black"
                                VerticalOptions="Start" 
@@ -45,21 +46,6 @@
                                     FontFamily="{StaticResource NormalFont}"                       
                                     FontSize="18"
                                 Margin="0,0,0,10"/>
-
-                                <!--<Label Text="Teléfono:"
-                                   FontFamily="{StaticResource BoldFont}"
-                                   TextColor="Black"
-                                   VerticalOptions="StartAndExpand" 
-                                   HorizontalOptions="StartAndExpand" 
-                                   FontSize="20"/>
-
-                                <Label Text="{Binding Help.Telefono,StringFormat='{0}'}" 
-                                   VerticalOptions="StartAndExpand" 
-                                   TextColor="Black"
-                                   FontFamily="{StaticResource NormalFont}"
-                                   HorizontalOptions="StartAndExpand" 
-                                   FontSize="18"
-                               Margin="0,0,0,10"/>-->
 
                                 <Label Text="Descripción:"
                                    FontFamily="{StaticResource BoldFont}"
@@ -91,25 +77,7 @@
                                 Command="{Binding GoToHistorial}"
                                 CommandParameter="{Binding .}"/>
 
-                    <!--<Button Text="Ver dirección"                    
-                                TextColor="#0272A6"  
-                                BackgroundColor="White" 
-                                CornerRadius="40" 
-                                Margin="15,15,15,0"
-                                FontFamily="{StaticResource BoldFont}"
-                                Command="{Binding GoToMaps}"/>
-
-                        <Button Text="Llamar" 
-                                TextColor="#0272A6"  
-                                BackgroundColor="White" 
-                                CornerRadius="40" 
-                                Margin="15,15,15,0"
-                                FontFamily="{StaticResource BoldFont}"
-                                Command="{Binding CallNeededCommand}"/>-->
-
                 </StackLayout>
-
-
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -17,7 +17,7 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
     public class CommitmentsPageViewModel : BaseViewModel
     {
         public DelegateCommand<Help> ContactCommand { get; set; }
-        public DelegateCommand DetailCommand { get; set; }
+        public DelegateCommand<Help> DetailCommand { get; set; }
         public DelegateCommand LoadHisotiral { get; set; }
         public ObservableCollection<Help> Historial { get; set; }
         public DelegateCommand RefreshCommand { get; set; }
@@ -31,7 +31,7 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
             LoadHisotiral.Execute();
             ContactCommand = new DelegateCommand<Help>(async (help) =>
             {
-                //Agregar numero del usuario help.User.Phone
+                //Agregar numero del voluntario User.Phone
                 await OpenWhatsApp(help.Telefono, "Hola! Estoy aquí para ayudarte");
 
             });
@@ -42,10 +42,16 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
                 IsRefresh = false;
             });
 
-            DetailCommand = new DelegateCommand(async () =>
+            DetailCommand = new DelegateCommand<Help>(async (param) =>
             {
-                await navigationService.NavigateAsync(new Uri(NavigationConstants.NecesityDetailPage, UriKind.Relative));
+                await NavigateTo(param);
             });
+        }
+        async Task NavigateTo(Help help)
+        {
+            var param = new NavigationParameters();
+            param.Add("Helper", help);
+            await navigationService.NavigateAsync(new Uri($"{NavigationConstants.NecesityDetailPage}", UriKind.Relative), param);
         }
         async Task GetHistorialHelper()
         {
@@ -61,7 +67,7 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
         {
             try
             {
-                Chat.Open(number, text);
+                Chat.Open($"+1{number}", text);
             }
             catch (Exception ex)
             {

@@ -17,7 +17,7 @@ namespace COVIDHelp.ViewModels
     public class RequestsListPageViewModel : BaseViewModel
     {
         public DelegateCommand<Help> ContactCommand { get; set; }
-        public DelegateCommand DetailCommand { get; set; }
+        public DelegateCommand<Help> DetailCommand { get; set; }
         public DelegateCommand LoadHisotiral { get; set; }
         public DelegateCommand RefreshCommand { get; set; }
         public bool IsRefresh { get; set; }
@@ -43,10 +43,16 @@ namespace COVIDHelp.ViewModels
                 IsRefresh = false;
             });
 
-            DetailCommand = new DelegateCommand(async () =>
+            DetailCommand = new DelegateCommand<Help>(async (param) =>
             {
-                await navigationService.NavigateAsync(new Uri(NavigationConstants.NecesityDetailPage, UriKind.Relative));
+                await NavigateTo(param);
             });
+        }
+        async Task NavigateTo(Help help)
+        {
+            var param = new NavigationParameters();
+            param.Add("Helper", help);
+            await navigationService.NavigateAsync(new Uri($"{NavigationConstants.NecesityDetailPage}", UriKind.Relative), param);
         }
         async Task GetHistorialHelper()
         {
@@ -61,7 +67,7 @@ namespace COVIDHelp.ViewModels
         {
             try
             {
-                Chat.Open(number, text);
+                Chat.Open($"+1{number}", text);
             }
 
             catch (Exception ex)

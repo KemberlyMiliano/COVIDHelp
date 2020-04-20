@@ -30,6 +30,5 @@ namespace COVIDHelp.ViewModels
             var param = parameters["Helper"] as Help;
             Help = param;
         }
-
     }
 }
