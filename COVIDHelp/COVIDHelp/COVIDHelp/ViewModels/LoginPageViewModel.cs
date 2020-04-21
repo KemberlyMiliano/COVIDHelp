@@ -13,11 +13,17 @@ using Xamarin.Essentials;
 using Xamarin.Auth;
 using System.Net.Http;
 using Newtonsoft.Json;
+using Plugin.GoogleClient;
+using Plugin.GoogleClient.Shared;
+using System.Diagnostics;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace COVIDHelp.ViewModels
 {
     public class LoginPageViewModel : BaseViewModel
     {
+        //IGoogleClientManager _googleService = CrossGoogleClient.Current;
         public User User { get; set; } = new User();
         public DelegateCommand LogInCommand { get; set; }
         public DelegateCommand ButtonSignUpCommand { get; set; }
@@ -25,6 +31,7 @@ namespace COVIDHelp.ViewModels
         public DelegateCommand ForgotPasswordCommand { get; set; }
         public DelegateCommand LoginWithGoogleCommand { get; set; }
         public ImageSource ImageModel { get; set; }
+        public AuthNetwork AuthNetwork { get; set; }
         public bool IsBusy { get; set; } = false;
         public bool IsVisible { get; set; }
         public bool IsAlertVisible { get; set; }
@@ -50,11 +57,19 @@ namespace COVIDHelp.ViewModels
             ImageModel = "eyeW.png";
             User.Correo = User.Correo.Recordar(IsEnable);
 
+            AuthNetwork = new AuthNetwork()
+            {
+                Name = "Google",
+                Icon = "googleLogin",
+                Foreground = "#000000",
+                Background = "#F8F8F8"
+            };
+
             LogInCommand = new DelegateCommand(async () =>
             {
                 if (string.IsNullOrEmpty(User.Correo) && string.IsNullOrEmpty(User.Password))
                 {
-                    await dialogService.DisplayAlertAsync("ALERT!", "THERE ARE EMPTY FIELDS", "Ok");
+                    await dialogService.DisplayAlertAsync("ALERT!", "THERE ARE EMPTY FIELDS", "OK");
                 }
                 else
                 {
@@ -79,19 +94,15 @@ namespace COVIDHelp.ViewModels
                 //Enviar correo con sus datos obtenidos del API.
             });
 
-            LoginWithGoogleCommand = new DelegateCommand(() =>
-            {
-                // Logearse con Google.
-                GoogleLogin();
-            });
-
+            //LoginWithGoogleCommand = new DelegateCommand(async () =>
+            //{
+            //    await LoginGoogleAsync(AuthNetwork);
+            //});
         }
-
         async Task NavigateToRegister()
         {
             await navigationService.NavigateAsync(new Uri(NavigationConstants.SignUpPage, UriKind.Relative));
         }
-
         async Task ValidateUser()
         {
             try
@@ -111,7 +122,7 @@ namespace COVIDHelp.ViewModels
                     };
 
                     IsAlertVisible = false;
-                    await navigationService.NavigateAsync($"{NavigationConstants.HelpersMainPage}", param);                    
+                    await navigationService.NavigateAsync($"{NavigationConstants.HelpersMainPage}", param);
                 }
                 else
                 {
@@ -128,53 +139,68 @@ namespace COVIDHelp.ViewModels
             ImageModel = !IsVisible ? "eyeW.png" : "eyeW_off.png";
             IsVisible = !IsVisible;
         }
+        //        async Task LoginGoogleAsync(AuthNetwork authNetwork)
+        //        {
+        //            try
+        //            {
+        //                if (!string.IsNullOrEmpty(_googleService.ActiveToken))
+        //                {
+        //                    //Always require user authentication
+        //                    _googleService.Logout();
+        //                }
 
-        void GoogleLogin()
-        {
-            var authenticator = new OAuth2Authenticator
-                         (
-                           "Google client ID",
-                           "email profile",
-                            new System.Uri("https://accounts.google.com/o/oauth2/auth"),
-                            new System.Uri("https://www.google.com")
-                          );
+        //                EventHandler<GoogleClientResultEventArgs<GoogleUser>> userLoginDelegate = null;
+        //                userLoginDelegate = async (object sender, GoogleClientResultEventArgs<GoogleUser> e) =>
+        //                {
+        //                    switch (e.Status)
+        //                    {
+        //                        case GoogleActionStatus.Completed:
 
-            authenticator.AllowCancel = true;
+        //#if DEBUG
+        //                            var googleUserString = JsonConvert.SerializeObject(e.Data);
+        //                            Debug.WriteLine($"Google Logged in succesfully: {googleUserString}");
+        //#endif
 
-            var presenter = new Xamarin.Auth.Presenters.OAuthLoginPresenter();
-            presenter.Login(authenticator);
+        //                            var socialLoginData = new NetworkAuthData
+        //                            {
+        //                                Id = e.Data.Id,
+        //                                Logo = authNetwork.Icon,
+        //                                Foreground = authNetwork.Foreground,
+        //                                Background = authNetwork.Background,
+        //                                Picture = e.Data.Picture.AbsoluteUri,
+        //                                Name = e.Data.Name,
+        //                            };
 
-            authenticator.Completed += async (senders, obj) =>
-            {
-                if (obj.IsAuthenticated)
-                {
-                    var clientData = new HttpClient();
+        //                            var param = new NavigationParameters();
+        //                            param.Add("GoogleHelper", socialLoginData);
+        //                            await navigationService.NavigateAsync(new Uri(NavigationConstants.HomePage, UriKind.Relative), param);
+        //                            break;
 
-                    //call google api to fetch logged in user profile info 
-                    var resData = await clientData.GetAsync("https://www.googleapis.com/oauth2/v3/userinfo?access_token=" + obj.Account.Properties["access_token"]);
-                    var jsonData = await resData.Content.ReadAsStringAsync();
+        //                        case GoogleActionStatus.Canceled:
+        //                            await dialogService.DisplayAlertAsync("Google Auth", "Canceled", "Ok");
+        //                            break;
 
-                    // deserlize the jsondata and intilize in GoogleAuthClass
-                    GoogleAuth googleObject = JsonConvert.DeserializeObject<GoogleAuth>(jsonData);
+        //                        case GoogleActionStatus.Error:
+        //                            await dialogService.DisplayAlertAsync("Google Auth", "Error", "Ok");
+        //                            break;
 
-                    //you can access following property after login
-                    string email = googleObject.Email;
-                    string photo = googleObject.Picture;
-                    string name = googleObject.Name;
-                }
-                else
-                {
-                    //Authentication fail
-                    // write the code to handle when auth failed
-                }
-            };
-            authenticator.Error += onAuthError;
-        }
+        //                        case GoogleActionStatus.Unauthorized:
+        //                            await dialogService.DisplayAlertAsync("Google Auth", "Unauthorized", "Ok");
+        //                            break;
+        //                    }
 
-        private void onAuthError(object sender, AuthenticatorErrorEventArgs e)
-        {
-            dialogService.DisplayAlertAsync("Google Authentication Error", e.Message, "OK");
-        }
+        //                    _googleService.OnLogin -= userLoginDelegate;
+        //                };
+
+        //                _googleService.OnLogin += userLoginDelegate;
+
+        //                await _googleService.LoginAsync();
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                Debug.WriteLine(ex.ToString());
+        //            }
+        //        }
     }
 }
 

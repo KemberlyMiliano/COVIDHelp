@@ -8,7 +8,7 @@ using System.Text;
 
 namespace COVIDHelp.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public abstract class BaseViewModel : INotifyPropertyChanged
     {
         protected INavigationService navigationService;
         protected IPageDialogService dialogService;

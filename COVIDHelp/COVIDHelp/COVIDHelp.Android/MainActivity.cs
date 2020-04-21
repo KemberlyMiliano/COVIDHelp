@@ -1,5 +1,4 @@
 ﻿using System;
-
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
@@ -8,6 +7,7 @@ using Android.Widget;
 using Android.OS;
 using Prism;
 using Prism.Ioc;
+using Plugin.GoogleClient;
 
 namespace COVIDHelp.Droid
 {
@@ -20,6 +20,7 @@ namespace COVIDHelp.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+            //GoogleClientManager.Initialize(this);
             global::Xamarin.Forms.Forms.SetFlags("CarouselView_Experimental");
             global::Xamarin.Forms.Forms.SetFlags("SwipeView_Experimental");
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
@@ -34,6 +35,12 @@ namespace COVIDHelp.Droid
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
+        //protected override void OnActivityResult(int requestCode, Result resultCode, Android.Content.Intent data)
+        //{
+        //    base.OnActivityResult(requestCode, resultCode, data);
+        //    GoogleClientManager.OnAuthCompleted(requestCode, resultCode, data);
+        //}
     }
 
     public class AndroidInitializer : IPlatformInitializer
@@ -42,5 +49,6 @@ namespace COVIDHelp.Droid
         {
 
         }
+
     }
 }
