@@ -2,83 +2,143 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              mc:Ignorable="d"
              x:Class="COVIDHelp.Views.HelpersViews.RequestDetailPage"
+             BackgroundImageSource="ProfileDai"
              NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="stlContactBtn" TargetType="Button">
+                <Setter Property="TranslationY"     Value="-22"/>
+                <Setter Property="TranslationX"     Value="65"/>
+                <Setter Property="BackgroundColor"  Value="#0272A6"/>
+                <Setter Property="WidthRequest"     Value="52"/>
+                <Setter Property="HeightRequest"    Value="52"/>
+                <Setter Property="CornerRadius"     Value="60"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Padding="20">
-                <StackLayout>
-                    <ImageButton Source="back"
-                                 HorizontalOptions="Start"
-                                 BackgroundColor="Transparent"
-                                 HeightRequest="25"
-                                 Margin="0,0,0,20"/>
-                    <Frame>
-                        <StackLayout>
-                            <Label Text="{Binding Help.Nombre}" 
+        
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <pancakeView:PancakeView CornerRadius="40,40,0,0" BackgroundColor="White" Padding="10" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="5" >
+                <Grid Padding="25,15,25,0" RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="{Binding Help.Nombre}"
+                             FontFamily="{StaticResource BoldFont}"
                                TextColor="Black"
                                VerticalOptions="Start" 
                                HorizontalOptions="Center" 
                                HorizontalTextAlignment="Center"
-                               FontFamily="{StaticResource BoldFont}"
-                               FontSize="25"/>
+                               Grid.Row="0"
+                               Grid.ColumnSpan="4"
+                               FontSize="25"
+                               Padding="5"
+                               FontAttributes="Bold"/>
 
-                            <Image Source="defaultUser"
-                               VerticalOptions="StartAndExpand"
-                               HeightRequest="80"
-                               Margin="10"/>
-
-                            <StackLayout Padding="10">
-
-                                <Label Text="Dirección:"
-                                   FontFamily="{StaticResource BoldFont}"                              
+                    <Label Text="Dirección:"
+                             FontFamily="{StaticResource BoldFont}"
                                    TextColor="Black"                           
                                    VerticalOptions="StartAndExpand" 
                                    HorizontalOptions="StartAndExpand" 
+                                     Grid.Row="1"
+                                    Grid.ColumnSpan="4"
                                    FontSize="20"/>
 
-                                <Label  Text="{Binding Help.Dirrecion ,StringFormat='{0}'}" 
+                    <Label  Text="{Binding Help.Dirrecion ,StringFormat='{0}'}" 
+                             FontFamily="{StaticResource NormalFont}" 
                                     VerticalOptions="StartAndExpand"      
                                     HorizontalOptions="StartAndExpand"    
                                     TextColor="Black"
-                                    FontFamily="{StaticResource NormalFont}"                       
+                                                Grid.Row="2"
+                                    Grid.ColumnSpan="4"
                                     FontSize="18"
                                 Margin="0,0,0,10"/>
 
-                                <Label Text="Descripción:"
-                                   FontFamily="{StaticResource BoldFont}"
+                    <Label Text="Descripción:"
+                             FontFamily="{StaticResource BoldFont}"
+                                 Grid.Row="3"
+                                    Grid.ColumnSpan="4"
                                    TextColor="Black"
                                    VerticalOptions="StartAndExpand" 
                                    HorizontalOptions="StartAndExpand" 
                                    FontSize="20"/>
 
-                                <Label Text="{Binding Help.DescripcionProblema}" 
-                                   FontFamily="{StaticResource NormalFont}"
+                    <Label Text="{Binding Help.DescripcionProblema}" 
+                            FontFamily="{StaticResource NormalFont}" 
+                            Grid.Row="4"
+                                    Grid.ColumnSpan="4"
                                    VerticalOptions="StartAndExpand"                           
                                    HorizontalOptions="StartAndExpand"                                
                                    TextColor="Black"
-                                   FontSize="18"
-                               Margin="0,0,0,20"/>
+                                   FontSize="18"/>
 
-                            </StackLayout>
+                    <Label Text="Telefono:"
+                             FontFamily="{StaticResource BoldFont}"
+                                 Grid.Row="5"
+                                    Grid.ColumnSpan="4"
+                                   TextColor="Black"
+                                   VerticalOptions="StartAndExpand" 
+                                   HorizontalOptions="StartAndExpand" 
+                                   FontSize="20"/>
 
-                        </StackLayout>
-                    </Frame>
+                    <Label Text="{Binding Help.DescripcionProblema}" 
+                            FontFamily="{StaticResource NormalFont}" 
+                            Grid.Row="6"
+                            Grid.ColumnSpan="4"
+                            VerticalOptions="StartAndExpand"                           
+                            HorizontalOptions="StartAndExpand"                                
+                            TextColor="Black"
+                            FontSize="18"
+                            Margin="0,0,0,20"/>
 
                     <Button Text="Aceptar solicitud" 
                             TextColor="White"  
-                            Padding="20"
-                                BackgroundColor="#0272A6" 
-                                CornerRadius="10" 
-                                Margin="15,20,15,0"
-                                FontFamily="{StaticResource BoldFont}"
-                                Command="{Binding GoToHistorial}"
-                                CommandParameter="{Binding .}"/>
+                            Grid.Row="6"
+                            VerticalOptions="Center"
+                            Margin="15,20,15,0"
+                            Grid.ColumnSpan="4"
+                            BackgroundColor="#0272A6" 
+                            CornerRadius="15" 
+                            FontFamily="{StaticResource BoldFont}"
+                            Command="{Binding GoToHistorial}"
+                            CommandParameter="{Binding .}"
+                               />
+                </Grid>
 
-                </StackLayout>
-            </StackLayout>
-        </ScrollView>
+            </pancakeView:PancakeView>
+
+            <Button Grid.Row="2" Grid.Column="2" VerticalOptions="Start" HorizontalOptions="End" Style="{StaticResource stlContactBtn}" ImageSource="telefono.png"/>
+            <Button Grid.Row="2" Grid.Column="3" VerticalOptions="Start" HorizontalOptions="Start" Style="{StaticResource stlContactBtn}" ImageSource="whatsapp.png"/>
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

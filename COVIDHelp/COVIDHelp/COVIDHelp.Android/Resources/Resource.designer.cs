@@ -15,7 +15,7 @@ namespace COVIDHelp.Droid
 {
 	
 	
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "1.0.0.0")]
+	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "1.0.0.0")]
 	public partial class Resource
 	{
 		
@@ -11109,22 +11109,31 @@ namespace COVIDHelp.Droid
 			public const int profile = 2131165349;
 			
 			// aapt resource value: 0x7F0700A6
-			public const int request = 2131165350;
+			public const int ProfileDai = 2131165350;
 			
 			// aapt resource value: 0x7F0700A7
-			public const int settings = 2131165351;
+			public const int request = 2131165351;
 			
 			// aapt resource value: 0x7F0700A8
-			public const int tooltip_frame_dark = 2131165352;
+			public const int settings = 2131165352;
 			
 			// aapt resource value: 0x7F0700A9
-			public const int tooltip_frame_light = 2131165353;
+			public const int telefono = 2131165353;
 			
 			// aapt resource value: 0x7F0700AA
-			public const int volunteer = 2131165354;
+			public const int tooltip_frame_dark = 2131165354;
 			
 			// aapt resource value: 0x7F0700AB
-			public const int woman = 2131165355;
+			public const int tooltip_frame_light = 2131165355;
+			
+			// aapt resource value: 0x7F0700AC
+			public const int volunteer = 2131165356;
+			
+			// aapt resource value: 0x7F0700AD
+			public const int whatsapp = 2131165357;
+			
+			// aapt resource value: 0x7F0700AE
+			public const int woman = 2131165358;
 			
 			static Drawable()
 			{
