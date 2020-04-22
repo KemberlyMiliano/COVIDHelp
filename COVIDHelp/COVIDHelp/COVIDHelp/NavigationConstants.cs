@@ -9,6 +9,7 @@ namespace COVIDHelp
         public const string MapsPage = "/MapsPage";
         public const string CommitmentsPage = "/CommitmentsPage";
         public const string HelpersMainPage = "/HelpersMainPage";
+        public const string NavigationPage = "/NavigationPage"; 
         public const string HelpPage = "/HelpPage";
         public const string LoginPage = "/LoginPage";
         public const string ProfilePage = "/ProfilePage";
@@ -27,13 +28,6 @@ namespace COVIDHelp
         public const string EditProfilePage = "/EditProfilePage";
         public const string DoItForMePage = "/DoItForMePage";
         public const string EmergencyPage = "/EmergencyPage";
-        public const string NumberPage = "/NumberPage";
-        public const string NamePage = "/NamePage";
-        public const string PhotoPage = "/PhotoPage";
-        public const string BirthdayPage = "/BirthdayPage";
-        public const string EmailPage = "/EmailPage";
-        public const string AddHomePage = "/AddHomePage";
-        public const string PasswordPage = "/PasswordPage";
         public const string FormularyNavigation = "https://711.intec.edu.do/covid19/";
     }
 }

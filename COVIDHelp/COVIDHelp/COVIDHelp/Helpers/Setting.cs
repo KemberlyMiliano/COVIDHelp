@@ -1,4 +1,5 @@
-﻿using COVIDHelp.Services;
+﻿using COVIDHelp.Models;
+using COVIDHelp.Services;
 using MonkeyCache.FileStore;
 using System;
 using System.Collections.Generic;
@@ -74,7 +75,24 @@ namespace COVIDHelp.Helpers
                 return $"{location.Longitude}";
             }
             return lng;
+        }
+        public static bool IsLoggedIn(this bool value,User user) {
+            if (value)
+            {
+                Barrel.ApplicationId = ConfigApi.MonkeyChadeKey;
+                Barrel.Current.Add(key: $"{nameof(IsLoggedIn)}/True", data: user, expireIn: TimeSpan.FromDays(30));
+                return value;
+            }
+            return false;
+        }
+        public static bool IsLoggedExists()
+        {
+            return Barrel.Current.Exists($"{nameof(IsLoggedIn)}/True");
+        }
+        public static User Logged() {
 
+            var user = Barrel.Current.Get<User>($"{nameof(IsLoggedIn)}/True");
+            return user;
         }
     }
 }

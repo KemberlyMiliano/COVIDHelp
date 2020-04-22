@@ -30,6 +30,7 @@ namespace COVIDHelp.ViewModels
         public DelegateCommand ButtonEyeClickedCommand { get; set; }
         public DelegateCommand ForgotPasswordCommand { get; set; }
         public DelegateCommand LoginWithGoogleCommand { get; set; }
+        public DelegateCommand LoggedInCommand { get; set; }
         public ImageSource ImageModel { get; set; }
         public AuthNetwork AuthNetwork { get; set; }
         public bool IsBusy { get; set; } = false;
@@ -51,10 +52,6 @@ namespace COVIDHelp.ViewModels
 
         public LoginPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
-            IsEnable = Setting.IsCheckRember() == true ? Setting.IsCheckRember() : false;
-            IsVisible = true;
-            IsAlertVisible = false;
-            ImageModel = "eyeW.png";
             User.Correo = User.Correo.Recordar(IsEnable);
 
             AuthNetwork = new AuthNetwork()
@@ -103,6 +100,7 @@ namespace COVIDHelp.ViewModels
         {
             await navigationService.NavigateAsync(new Uri(NavigationConstants.NumberPage, UriKind.Relative));
         }
+
         async Task ValidateUser()
         {
             try
@@ -112,7 +110,7 @@ namespace COVIDHelp.ViewModels
                 {
                     if (IsEnable)
                     {
-                        IsEnable.IsRemeberme(User.Correo);
+                        IsEnable = IsEnable.IsLoggedIn(user);
                     }
                     User = user;
                     User.Cedula.SaveInt("Cedula");

@@ -14,7 +14,7 @@ using Prism.Services.Dialogs;
 
 namespace COVIDHelp.ViewModels
 {
-    public class HomePageViewModel : BaseViewModel, INavigatedAware
+    public class HomePageViewModel : BaseViewModel, IInitialize
     {
         public DelegateCommand ShowDialogCommand { get; set; }
         public DelegateCommand ShowFormulary { get; set; }
@@ -33,7 +33,7 @@ namespace COVIDHelp.ViewModels
                 await NavigateToPermisson();
             });
 
-            PermissionsCommand.Execute();
+
 
             GoToMaps = new DelegateCommand<string>(async (filtrar) =>
             {
@@ -49,8 +49,7 @@ namespace COVIDHelp.ViewModels
 
             GoToIdentification = new DelegateCommand(async () =>
             {
-                param.Add("User", User);
-                await navigationService.NavigateAsync(new Uri(NavigationConstants.IdentificationPage, UriKind.Relative), param);
+                await navigationService.NavigateAsync(new Uri(NavigationConstants.IdentificationPage, UriKind.Relative));
             });
 
             GoToMedicalAssintence = new DelegateCommand(async () =>
@@ -72,17 +71,14 @@ namespace COVIDHelp.ViewModels
             {
                 await OpenRideShareAsync();
             });
-        }
+           }
 
         public async Task<bool> OpenRideShareAsync()
         {
             return await Launcher.TryOpenAsync(NavigationConstants.FormularyNavigation);
         }
-        void CloseDialogCallback(IDialogResult dialogResult)
-        {
 
-        }
-        public void OnNavigatedFrom(INavigationParameters parameters)
+        void CloseDialogCallback(IDialogResult dialogResult)
         {
 
         }
@@ -93,23 +89,20 @@ namespace COVIDHelp.ViewModels
             {
                 await navigationService.NavigateAsync(new Uri($"{NavigationConstants.LocationPermitionPage}", UriKind.Relative));
             }
-
-        }
-        public async void OnNavigatedTo(INavigationParameters parameters)
-        {
-            if (parameters.ContainsKey($"User"))
+            else
             {
-                var param = parameters[$"{nameof(User)}"] as User;
-                User = param;
-
-                var lat = await User.Latitude.Latitude();
-                User.Latitude = lat != User.Latitude ? lat : User.Latitude;
-                var lng = await User.Longitude.Longitude();
-                User.Longitude = lng != User.Longitude ? lng : User.Longitude;
-                User = await apiCovitServices.UpdateUser(User);
+                var request = new GeolocationRequest(GeolocationAccuracy.Default);
+                var location = await Geolocation.GetLocationAsync(request);
+                if (location != null)
+                {
+                    User.Latitude = $"{location.Latitude}";
+                    User.Longitude = $"{location.Longitude}";
+                    User = await apiCovitServices.UpdateUser(User);
+                }
             }
 
         }
+
         public void PlacePhoneCall(string number)
         {
             try
@@ -129,5 +122,14 @@ namespace COVIDHelp.ViewModels
                 await dialogService.DisplayAlertAsync("Error", ex.Message, "OK");
         }
 
+        public  void Initialize(INavigationParameters parameters)
+        {
+            if (parameters.ContainsKey(Constants.PersonKey))
+            {
+                var param = parameters[Constants.PersonKey] as User;
+                User = param;
+            }
+
+        }
     }
 }
