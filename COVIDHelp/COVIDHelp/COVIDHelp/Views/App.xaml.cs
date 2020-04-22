@@ -1,4 +1,6 @@
-﻿using COVIDHelp.Services;
+﻿using COVIDHelp.Helpers;
+using COVIDHelp.Models;
+using COVIDHelp.Services;
 using COVIDHelp.ViewModels;
 using COVIDHelp.ViewModels.LoginAndRegisterViewModels;
 using COVIDHelp.Views;
@@ -15,12 +17,24 @@ namespace COVIDHelp
 {
     public partial class App : PrismApplication
     {
+      
         public App(IPlatformInitializer initializer = null) : base(initializer) { }
-
         protected override void OnInitialized()
         {
             InitializeComponent();
-            NavigationService.NavigateAsync(new Uri($"{NavigationConstants.LoginPage}", UriKind.Absolute));
+            if (Setting.IsLoggedExists())
+            {
+                var param = new Prism.Navigation.NavigationParameters
+                {
+                    { Constants.PersonKey, Setting.Logged() }
+                };
+                NavigationService.NavigateAsync(new Uri($"{NavigationConstants.HelpersMainPage}", UriKind.Absolute),param);
+            }
+            else
+            {
+                NavigationService.NavigateAsync(new Uri($"{NavigationConstants.LoginPage}", UriKind.Absolute));
+            }
+        
         }
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
@@ -46,9 +60,10 @@ namespace COVIDHelp
             containerRegistry.RegisterForNavigation<EditProfilePage, EditProfilePageViewModel>();
             containerRegistry.RegisterForNavigation<RequestsListPage, RequestsListPageViewModel>();
             containerRegistry.RegisterForNavigation<DoItForMePage, DoItForMePageViewModel>();
+            containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterDialog<EmergencyPage, EmergencyPageViewModel>();
 
         }
+        
     }
-
 }

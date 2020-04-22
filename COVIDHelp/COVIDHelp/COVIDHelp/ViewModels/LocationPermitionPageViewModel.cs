@@ -1,4 +1,5 @@
-﻿using COVIDHelp.Models;
+﻿using COVIDHelp.Helpers;
+using COVIDHelp.Models;
 using COVIDHelp.Services;
 using Prism.Commands;
 using Prism.Navigation;
@@ -15,6 +16,7 @@ namespace COVIDHelp.ViewModels
     {
         public DelegateCommand ConfirmCommand { get; set; }
         public Locations GetLocation { get; set; } = new Locations();
+        public User User { get; set; }
         public LocationPermitionPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
             ConfirmCommand = new DelegateCommand(async () =>
@@ -22,8 +24,10 @@ namespace COVIDHelp.ViewModels
                 try
                 {
                     await GetPermisson();
-                    var param = new NavigationParameters();
-                    param.Add("Location", GetLocation);
+                    var param = new NavigationParameters
+                    {
+                        { $"{Constants.PersonKey}", User }
+                    };
                     await navigationService.GoBackAsync(param);
                 }
                 catch (Exception)
@@ -35,13 +39,15 @@ namespace COVIDHelp.ViewModels
         }
         async Task GetPermisson()
         {
-            var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+            long cedula = 0;
+            User = await apiCovitServices.FindUser(cedula.GetPreferencesInt("Cedula"));
+            var request = new GeolocationRequest(GeolocationAccuracy.Default);
             var location = await Geolocation.GetLocationAsync(request);
-
             if (location != null)
             {
-                GetLocation.Lat = location.Latitude;
-                GetLocation.Lng = location.Longitude;
+                User.Latitude = $"{location.Latitude}";
+                User.Longitude = $"{location.Longitude}";
+                User = await apiCovitServices.UpdateUser(User);
             }
         }
 

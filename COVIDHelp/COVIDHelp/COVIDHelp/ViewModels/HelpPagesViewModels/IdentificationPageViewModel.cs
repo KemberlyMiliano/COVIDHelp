@@ -10,7 +10,7 @@ using COVIDHelp.Helpers;
 
 namespace COVIDHelp.ViewModels
 {
-    public class IdentificationPageViewModel : BaseViewModel, INavigatedAware
+    public class IdentificationPageViewModel : BaseViewModel
     {
         public DelegateCommand<string> GoToVolunteer { get; set; }
         public User User { get; set; }
@@ -20,24 +20,13 @@ namespace COVIDHelp.ViewModels
             apiCovitServices.FindUser(cedula.GetPreferencesInt("Cedula"));
             GoToVolunteer = new DelegateCommand<string>(async (filter) =>
             {
-                string IsProfesional = filter == "Medicamentos" ? "Medicamentos" : "Alimentos";
-                IsProfesional.SaveString("Who");
 
                 var param = new NavigationParameters
                 {
-                    { "User", User }
+                    { Constants.TypeHelp, filter }
                 };
                 await navigationService.NavigateAsync(new Uri(NavigationConstants.HelpPage, UriKind.Relative), param);
             });
-        }
-        public void OnNavigatedFrom(INavigationParameters parameters)
-        {
-
-        }
-        public void OnNavigatedTo(INavigationParameters parameters)
-        {
-            var param = parameters["User"] as User;
-            User = param;
         }
     }
 }

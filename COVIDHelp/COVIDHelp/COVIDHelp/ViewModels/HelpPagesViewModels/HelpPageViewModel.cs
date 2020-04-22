@@ -14,7 +14,7 @@ using System.Linq;
 
 namespace COVIDHelp.ViewModels
 {
-    public class HelpPageViewModel : BaseViewModel
+    public class HelpPageViewModel : BaseViewModel,IInitialize
     {
         public ObservableCollection<Help> HelpsPerson { get; set; }
         public List<Pin> Pins { get; set; }
@@ -22,10 +22,9 @@ namespace COVIDHelp.ViewModels
         public DelegateCommand LoadPins { get; set; }
         public DelegateCommand<Help> GoToDetail { get; set; }
         public bool IsReshing { get; set; }
-        IApiGoogleServices apiGoogleServices;
-        public HelpPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices, IApiGoogleServices apiGoogleServices) : base(navigationService, dialogService, apiCovitServices)
+        private string typeHelp;
+        public HelpPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices ) : base(navigationService, dialogService, apiCovitServices)
         {
-            this.apiGoogleServices = apiGoogleServices;
 
             GoToDetailCommand = new DelegateCommand(async () =>
             {
@@ -40,56 +39,43 @@ namespace COVIDHelp.ViewModels
             {
                 await NavigateTo(param);
             });
+            LoadPins = new DelegateCommand(async () => await GetPerson());
+
         }
         public async Task GetPerson()
         {
-            string status = "";
-
-            if (status.GetPreferences("Who") == "Medicamentos")
+            if (typeHelp == $"{ETypeHelp.Medicamentos}")
             {
-                var emergencia = await apiCovitServices.GetHelpActive("Emergencia");
+                var emergencia = await apiCovitServices.GetHelpActive($"{ETypeHelp.Emergencias}");
+                var asistencia = await apiCovitServices.GetHelpActive($"{ETypeHelp.Asistencia}");
+                var psicologica = await apiCovitServices.GetHelpActive($"{ETypeHelp.Psicologo}");
+                emergencia.AddRange(asistencia);
+                emergencia.AddRange(psicologica);
                 HelpsPerson = new ObservableCollection<Help>(emergencia);
-                var asistencia = await apiCovitServices.GetHelpActive("Asistencia");
-
-                foreach (var item in asistencia)
-                {
-                    HelpsPerson.Add(item);
-                }
-
-                var psicologica = await apiCovitServices.GetHelpActive("Psicologica");
-
-                foreach (var item in psicologica)
-                {
-                    HelpsPerson.Add(item);
-                }
             }
-
             else
             {
-                var alimentos = await apiCovitServices.GetHelpActive("Alimentos");
+                var alimentos = await apiCovitServices.GetHelpActive($"{ETypeHelp.Medicamentos}");
+                var medicamentos = await apiCovitServices.GetHelpActive($"{ETypeHelp.Alimentos}");
+                alimentos.AddRange(medicamentos);
                 HelpsPerson = new ObservableCollection<Help>(alimentos);
-                var medicamentos = await apiCovitServices.GetHelpActive("Medicamentos");
-                foreach (var item in medicamentos)
-                {
-                    HelpsPerson.Add(item);
-                }
             }
 
         }
         async Task NavigateTo(Help help)
         {
-            var param = new NavigationParameters();
-            param.Add("Helper", help);
+            var param = new NavigationParameters
+            {
+                { Constants.TypeHelp, help }
+            };
             await navigationService.NavigateAsync(new Uri($"{NavigationConstants.RequestDetailPage}", UriKind.Relative), param);
         }
-        public void OnNavigatedFrom(INavigationParameters parameters)
-        {
 
-        }
-        public void OnNavigatedTo(INavigationParameters parameters)
+        public void Initialize(INavigationParameters parameters)
         {
-            LoadPins = new DelegateCommand(async () => await GetPerson());
+            typeHelp = parameters[Constants.TypeHelp] as string;
             LoadPins.Execute();
+
         }
     }
 }

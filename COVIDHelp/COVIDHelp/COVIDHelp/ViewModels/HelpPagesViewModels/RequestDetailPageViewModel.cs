@@ -12,7 +12,7 @@ using Xamarin.Essentials;
 
 namespace COVIDHelp.ViewModels
 {
-    public class RequestDetailPageViewModel : BaseViewModel, INavigatedAware
+    public class RequestDetailPageViewModel : BaseViewModel, IInitialize
     {
         public Help Help { get; set; }
         public DelegateCommand GoToHistorial { get; set; }
@@ -49,28 +49,9 @@ namespace COVIDHelp.ViewModels
             {
                 PhoneDialer.Open(number);
             }
-            catch (ArgumentNullException anEx)
-            {
-                // Number was null or white space
-            }
-            catch (FeatureNotSupportedException ex)
-            {
-                // Phone Dialer is not supported on this device.
-            }
             catch (Exception ex)
             {
-                // Other error has occurred.
             }
-        }
-        public void OnNavigatedFrom(INavigationParameters parameters)
-        {
-
-        }
-
-        public void OnNavigatedTo(INavigationParameters parameters)
-        {
-            var param = parameters["Helper"] as Help;
-            Help = param;
         }
         public async Task DisplayAction()
         {
@@ -87,20 +68,25 @@ namespace COVIDHelp.ViewModels
                     NombreVoluntario = $"{user.Nombres} {user.Apellidos}",
                     CedulaVoluntario = user.Cedula,
                     TelefonoVoluntario = user.Telefono,
-                    Status = "Proceso",
+                    Status = $"{EState.Proceso}",
                     EmailVoluntario = user.Correo,
                     PosicionVoluntario = $"{user.Latitude}{user.Longitude}",
-                    FechaEnviado = DateTime.Now,
-                    Tipo = status.GetPreferences("status")
+                    FechaEnviado = DateTime.Now
 
                 };
                 await apiCovitServices.PutHelp(help);
-                await navigationService.NavigateAsync(new Uri($"{NavigationConstants.HelpersMainPage}?selectedTab=CommitmentsPage", UriKind.Absolute));
+                await navigationService.NavigateAsync(new Uri($"{NavigationConstants.HelpersMainPage}?selectedTab={NavigationConstants.CommitmentsPage}", UriKind.Absolute));
             }
             else
             {
                 await navigationService.GoBackAsync();
             }
+        }
+
+        public void Initialize(INavigationParameters parameters)
+        {
+            var param = parameters[Constants.TypeHelp] as Help;
+            Help = param;
         }
     }
 }
