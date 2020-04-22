@@ -71,7 +71,7 @@ namespace COVIDHelp.ViewModels
             {
                 await OpenRideShareAsync();
             });
-        }
+           }
 
         public async Task<bool> OpenRideShareAsync()
         {

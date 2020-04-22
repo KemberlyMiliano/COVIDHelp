@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="COVIDHelp.Views.SignUpViews.EmailPage"
+             BackgroundColor="#014666">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="20,70,20,40">
+
+                <Label Text="Agrega tu correo"
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center"
+                   TextColor="White"
+                   FontSize="25"
+                   FontFamily="{StaticResource BoldFont}"
+                   Margin="0,0,0,40"/>
+
+                <Entry  Text="{Binding UserR.Correo}"
+                    Placeholder="Correo"
+                    TextColor="White" 
+                    PlaceholderColor="LightGray"
+                    FontFamily="{StaticResource NormalFont}"
+                    FontSize="22"
+                    HorizontalTextAlignment="Center"
+                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"/>
+
+                <Button Text="Continuar"
+                    FontFamily="{StaticResource NormalFont}"
+                    BackgroundColor="White"
+                    TextColor="#014666"
+                    CornerRadius="40"
+                    Padding="20"
+                    VerticalOptions="EndAndExpand"
+                    Command="{Binding GoToPasswordPage}"/>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

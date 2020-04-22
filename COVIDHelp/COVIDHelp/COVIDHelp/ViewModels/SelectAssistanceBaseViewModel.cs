@@ -8,6 +8,7 @@ using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -67,19 +68,13 @@ namespace COVIDHelp.ViewModels
                     Telefono = user.Telefono,
                     Posicion = $"{user.Latitude},{user.Longitude}",
                     Dirrecion = user.Direccion,
-                    Status = "Activo",
+                    Status = $"{EState.Activo}",
                     FechaEnviado = DateTime.Now,
                     Tipo = filtra,
 
                 };
-                foreach (var item in Diseases)
-                {
-                    if (item.IsEnable)
-                    {
-                        help.DescripcionProblema += $"{item.Name}\n";
-                    }
-
-                }
+                var diseases = Diseases.Select(e => e.Name);
+                help.DescripcionProblema = string.Join("\n",diseases.ToArray());
                 var probar = await apiCovitServices.PostHelp(help);
                 await navigationService.GoBackToRootAsync();
             }

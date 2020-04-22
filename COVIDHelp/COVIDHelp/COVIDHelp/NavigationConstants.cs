@@ -9,6 +9,7 @@ namespace COVIDHelp
         public const string MapsPage = "/MapsPage";
         public const string CommitmentsPage = "/CommitmentsPage";
         public const string HelpersMainPage = "/HelpersMainPage";
+        public const string NavigationPage = "/NavigationPage"; 
         public const string HelpPage = "/HelpPage";
         public const string LoginPage = "/LoginPage";
         public const string ProfilePage = "/ProfilePage";

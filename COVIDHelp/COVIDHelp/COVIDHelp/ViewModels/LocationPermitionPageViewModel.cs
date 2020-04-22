@@ -24,11 +24,18 @@ namespace COVIDHelp.ViewModels
                 try
                 {
                     await GetPermisson();
+<<<<<<< HEAD
                     var param = new NavigationParameters
                     {
                         { $"{Constants.PersonKey}", User }
                     };
                     await navigationService.GoBackAsync(param);
+=======
+                    var param = new NavigationParameters();
+                    param.Add("Location", GetLocation);
+                    //await navigationService.GoBackAsync(param);
+                    await navigationService.NavigateAsync(new Uri(NavigationConstants.AddHomePage, UriKind.Relative), param);
+>>>>>>> e4f5924b5e8c999b5a9c99417a26b303cc82c7fb
                 }
                 catch (Exception)
                 {

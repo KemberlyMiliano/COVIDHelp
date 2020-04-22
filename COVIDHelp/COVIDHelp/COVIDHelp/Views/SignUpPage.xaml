@@ -9,35 +9,28 @@
              x:Class="COVIDHelp.Views.SignUpPage">
     <ContentPage.Content>
         <ScrollView>
-            <Grid>
-                <Grid.RowDefinitions >
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions >
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-
-                </Grid.ColumnDefinitions>
-
-                
+            <StackLayout>
+                <ImageButton Source="back"
+                             BackgroundColor="Transparent"
+                             HeightRequest="20"
+                             HorizontalOptions="StartAndExpand"
+                             Margin="20"/>
+                <StackLayout HorizontalOptions="CenterAndExpand">
+                    <Image Source="defaultUser" 
+                       Aspect="AspectFill" 
+                       HeightRequest="125"
+                       WidthRequest="125"
+                       Margin="30,0,30,0">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding AddImageUserCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
 
                 <pancakeview:PancakeView BackgroundColor="#014666" 
-                                         CornerRadius="60,60,60,60"  
-                                         Grid.Row="1" 
-                                         Grid.RowSpan="13"
-                                         Grid.ColumnSpan="4">
-
+                                         CornerRadius="60,60,60,60">
                     <Grid Padding="30">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
@@ -54,9 +47,9 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Entry Placeholder="Nombre"
+                        <!--<Entry Placeholder="Nombre"
                                Text="{Binding UserR.Nombres}"
-                               Grid.Row="1"
+                               Margin="0,15,0,0"
                                Grid.ColumnSpan="4"
                                PlaceholderColor="White"
                                VerticalOptions="End"
@@ -65,18 +58,18 @@
 
                         <Entry Placeholder="Apellido"
                                Text="{Binding UserR.Apellidos}"
-                               Grid.Row="2"
+                               Grid.Row="1"
                                Grid.ColumnSpan="4"
                                PlaceholderColor="White"
                                TextColor="White" 
-                               FontFamily="{StaticResource NormalFont}"/>
+                               FontFamily="{StaticResource NormalFont}"/>-->
 
-                        <DatePicker x:Name="FechaDeNacimiento"
+                        <!--<DatePicker x:Name="FechaDeNacimiento"
                                     Date="{Binding UserR.FNacimiento}"
                                     Grid.Row="3"
                                     Grid.ColumnSpan="4"
                                     TextColor="White" 
-                                    FontFamily="{StaticResource NormalFont}"/>
+                                    FontFamily="{StaticResource NormalFont}"/>-->
 
                         <Picker x:Name="Gender"   
                                 ItemsSource="{Binding Genders}"
@@ -89,13 +82,13 @@
                                 TextColor="Black"
                                 FontFamily="{StaticResource NormalFont}"/>
 
-                        <Entry Placeholder="Correo electrónico"
+                        <!--<Entry Placeholder="Correo electrónico"
                                Text="{Binding UserR.Correo}"
-                               Grid.Row="5"
+                               Grid.Row="2"
                                Grid.ColumnSpan="4"
                                PlaceholderColor="White"
                                TextColor="White"
-                               FontFamily="{StaticResource NormalFont}"/>
+                               FontFamily="{StaticResource NormalFont}"/>-->
 
 
                         <Entry Placeholder="Cédula"
@@ -107,25 +100,25 @@
                                TextColor="White"
                                FontFamily="{StaticResource NormalFont}"/>
 
-                        <Entry Placeholder="Telefono"
+                        <!--<Entry Placeholder="Telefono"
                                Keyboard="Telephone"
                                Text="{Binding UserR.Telefono}"
-                               Grid.Row="7"
+                               Grid.Row="2"
                                TextColor="White"
                                Grid.ColumnSpan="4" 
                                PlaceholderColor="White"
-                                FontFamily="{StaticResource NormalFont}"/>
+                                FontFamily="{StaticResource NormalFont}"/>-->
 
-                        <Entry Placeholder="Dirección"
+                        <!--<Entry Placeholder="Dirección"
                                Text="{Binding UserR.Direccion}"
                                Grid.Row="8"
                                Grid.ColumnSpan="4"
                                PlaceholderColor="White"
                                TextColor="White"
-                               FontFamily="{StaticResource NormalFont}"/>
+                               FontFamily="{StaticResource NormalFont}"/>-->
 
-                        <Image Source="{Binding ImageModel}"
-                               Grid.Row="9"
+                        <!--<Image Source="{Binding ImageModel}"
+                               Grid.Row="3"
                                Grid.ColumnSpan="4"
                                HorizontalOptions="End"
                                HeightRequest="30" 
@@ -138,14 +131,14 @@
                         <Entry Placeholder="Contraseña"
                                Text="{Binding UserR.Password}"
                                IsPassword="{Binding IsVisible}"
-                               Grid.Row="9"
+                               Grid.Row="3"
                                Grid.ColumnSpan="3"
                                PlaceholderColor="White"
                                TextColor="White"
                                FontFamily="{StaticResource NormalFont}"/>
 
                         <Image Source="{Binding ImageModel}"
-                               Grid.Row="10"
+                               Grid.Row="4"
                                Grid.ColumnSpan="4"
                                HorizontalOptions="End"
                                HeightRequest="30"
@@ -157,16 +150,14 @@
                         <Entry Placeholder="Confirmar contraseña"
                                Text="{Binding UserR.RepeatPassword}"
                                IsPassword="{Binding IsVisible}"
-                               Grid.Row="10"
+                               Grid.Row="4"
                                Grid.ColumnSpan="3"
                                PlaceholderColor="White"
                                TextColor="White" 
-                               FontFamily="{StaticResource NormalFont}"/>
-                    </Grid>
-                </pancakeview:PancakeView>
+                               FontFamily="{StaticResource NormalFont}"/>-->
 
-                <Button Text="Confirmar"
-                        Grid.Row="14"
+                        <!--<Button Text="Siguiente"
+                        Grid.Row="6"
                         TranslationY="-30"
                         WidthRequest="200"
                         Grid.ColumnSpan="4"
@@ -177,22 +168,11 @@
                         BorderColor="#014666"
                         BorderWidth="2"
                         Command="{Binding ButtonConfirmCommand}"
-                        FontFamily="{StaticResource BoldFont}"/>
+                        FontFamily="{StaticResource BoldFont}"/>-->
+                    </Grid>
+                </pancakeview:PancakeView>
 
-                <StackLayout Grid.ColumnSpan="4"
-                             HorizontalOptions="CenterAndExpand"
-                             Grid.RowSpan="2">
-                    <Image Source="defaultUser" 
-                       Aspect="AspectFill" 
-                       HeightRequest="125"
-                       WidthRequest="125"
-                       Margin="30,30,30,0">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding AddImageUserCommand}"/>
-                        </Image.GestureRecognizers>
-                    </Image>
-                </StackLayout>
-            </Grid>
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

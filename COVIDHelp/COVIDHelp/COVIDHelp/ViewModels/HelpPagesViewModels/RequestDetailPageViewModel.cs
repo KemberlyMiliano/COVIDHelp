@@ -75,7 +75,7 @@ namespace COVIDHelp.ViewModels
 
                 };
                 await apiCovitServices.PutHelp(help);
-                await navigationService.NavigateAsync(new Uri($"{NavigationConstants.HelpersMainPage}?selectedTab={NavigationConstants.CommitmentsPage}", UriKind.Absolute));
+                await navigationService.NavigateAsync(new Uri($"{NavigationConstants.NavigationPage}{NavigationConstants.HelpersMainPage}?selectedTab={NavigationConstants.CommitmentsPage}", UriKind.Absolute));
             }
             else
             {

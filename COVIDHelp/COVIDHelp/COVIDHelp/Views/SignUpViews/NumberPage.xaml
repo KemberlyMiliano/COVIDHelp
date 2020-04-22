@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="COVIDHelp.Views.SignUpViews.NumberPage"
+             BackgroundColor="#014666">
+    <ContentPage.Content>
+        <StackLayout Margin="20,70,20,40">
+
+            <Label Text="Empezemos."
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center" 
+                   TextColor="White"
+                   FontSize="25"
+                   FontFamily="{StaticResource BoldFont}"/>
+
+            <Label Text="¿Cuál es tu número?"
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center"
+                   TextColor="White"
+                   FontSize="25"
+                   FontFamily="{StaticResource BoldFont}"
+                   Margin="0,0,0,40"/>
+
+            <StackLayout Orientation="Horizontal">
+                <Image Source="dominicanFlag"
+                       HeightRequest="35"/>
+                <Label Text="+1"
+                       FontFamily="{StaticResource NormalFont}"
+                       FontSize="25"
+                       TextColor="White"
+                       VerticalOptions="Center"
+                       Margin="0,0,10,0"/>
+                <Entry  Keyboard="Telephone"
+                        PlaceholderColor="LightGray"
+                        Placeholder="Ingresar número"
+                        Text="{Binding UserR.Telefono}"
+                        TextColor="White" 
+                        FontFamily="{StaticResource NormalFont}"
+                        FontSize="22"
+                        VerticalOptions="Center"
+                        HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+
+            <Button Text="Continuar"
+                    FontFamily="{StaticResource NormalFont}"
+                    BackgroundColor="White"
+                    TextColor="#014666"
+                    CornerRadius="40"
+                    Padding="20"
+                    VerticalOptions="EndAndExpand"
+                    Command="{Binding GoToNamePage}"/>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

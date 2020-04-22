@@ -68,7 +68,7 @@ namespace COVIDHelp.ViewModels
             {
                 { Constants.TypeHelp, help }
             };
-            await navigationService.NavigateAsync(new Uri($"{NavigationConstants.RequestDetailPage}", UriKind.Relative), param);
+            await navigationService.NavigateAsync(new Uri($"{NavigationConstants.NavigationPage}{NavigationConstants.RequestDetailPage}", UriKind.Relative), param);
         }
 
         public void Initialize(INavigationParameters parameters)

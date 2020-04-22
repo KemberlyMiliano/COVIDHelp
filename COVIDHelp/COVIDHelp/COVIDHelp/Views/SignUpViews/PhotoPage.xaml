@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="COVIDHelp.Views.SignUpViews.PhotoPage"
+             BackgroundColor="#014666">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="20,70,20,40">
+
+                <Label Text="Agrega tu foto"
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center"
+                   TextColor="White"
+                   FontSize="25"
+                   FontFamily="{StaticResource BoldFont}"
+                   Margin="0,0,0,40"/>
+
+
+                <Button Text="Añade tu foto"
+                    FontFamily="{StaticResource NormalFont}"
+                    BackgroundColor="LightBlue"
+                    TextColor="Black"
+                    CornerRadius="40"
+                    Padding="20"
+                    Margin="0,10,0,0"
+                    Command="{Binding AddPhotoCommand}"/>
+
+
+                <Button Text="Continuar"
+                    FontFamily="{StaticResource NormalFont}"
+                    BackgroundColor="White"
+                    TextColor="#014666"
+                    CornerRadius="40"
+                    Padding="20"
+                    VerticalOptions="EndAndExpand"
+                    Command="{Binding GoToLocationPermissionPage}"/>
+
+                <Button Text="Saltar"
+                    FontFamily="{StaticResource NormalFont}"
+                    BackgroundColor="#014666"
+                    TextColor="White"
+                    CornerRadius="40"
+                    Padding="20"
+                    VerticalOptions="End"
+                    Margin="0,10,0,0"
+                    Command="{Binding GoToLocationPermissionPage}"/>
+
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

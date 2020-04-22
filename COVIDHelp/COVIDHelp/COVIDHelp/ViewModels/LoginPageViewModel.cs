@@ -98,7 +98,7 @@ namespace COVIDHelp.ViewModels
         }
         async Task NavigateToRegister()
         {
-            await navigationService.NavigateAsync(new Uri(NavigationConstants.SignUpPage, UriKind.Relative));
+            await navigationService.NavigateAsync(new Uri(NavigationConstants.NumberPage, UriKind.Relative));
         }
 
         async Task ValidateUser()
