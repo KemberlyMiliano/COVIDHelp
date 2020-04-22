@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace COVIDHelp.ViewModels
@@ -18,9 +19,18 @@ namespace COVIDHelp.ViewModels
         public DelegateCommand ButtonConfirmCommand { get; set; }
         public DelegateCommand ButtonEyeClickedCommand { get; set; }
         public DelegateCommand AddImageUserCommand { get; set; }
+        public DelegateCommand GoToNamePage { get; set; }
+        public DelegateCommand GoToEmailPage { get; set; }
+        public DelegateCommand GoToPhotoPage { get; set; }
+        public DelegateCommand GoToBirthdayPage { get; set; }
+        public DelegateCommand GoToNumberPage { get; set; }
+        public DelegateCommand GoToAddHomePage { get; set; }
+        public DelegateCommand GoToPasswordPage { get; set; }
+        public DelegateCommand GoToLocationPermissionPage { get; set; }
+        public DelegateCommand AddPhotoCommand { get; set; }
         public ImageSource ImageModel { get; set; }
         public List<TypePicker> Genders { get; set; }
-
+        public bool IsVisible { get; set; }
         private TypePicker selectedGender;
         public TypePicker SelectedGender
         {
@@ -37,8 +47,6 @@ namespace COVIDHelp.ViewModels
                 }
             }
         }
-
-        public bool IsVisible { get; set; }
         public SignUpPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
             IsVisible = true;
@@ -60,15 +68,65 @@ namespace COVIDHelp.ViewModels
                     await NavigateToSelectedSignUp();
                 }
             });
+
             ButtonEyeClickedCommand = new DelegateCommand(() =>
             {
-
                 VisiblePassWord();
             });
+
             AddImageUserCommand = new DelegateCommand(() =>
             {
                 // a;adir la imagen del usuario (usar permisos de camara y galeria.)
             });
+
+            GoToNamePage = new DelegateCommand(() =>
+            {
+                navigationService.NavigateAsync(new Uri(NavigationConstants.NamePage, UriKind.Relative));
+            });
+
+            GoToPasswordPage = new DelegateCommand(() =>
+            {
+                navigationService.NavigateAsync(new Uri(NavigationConstants.PasswordPage, UriKind.Relative));
+            });
+
+            GoToEmailPage = new DelegateCommand(() =>
+            {
+                navigationService.NavigateAsync(new Uri(NavigationConstants.EmailPage, UriKind.Relative));
+            });
+
+            GoToAddHomePage = new DelegateCommand(() =>
+            {
+                navigationService.NavigateAsync(new Uri(NavigationConstants.AddHomePage, UriKind.Relative));
+            });
+
+            GoToNumberPage = new DelegateCommand(() =>
+            {
+                navigationService.NavigateAsync(new Uri(NavigationConstants.NumberPage, UriKind.Relative));
+            });
+
+            GoToPhotoPage = new DelegateCommand(() =>
+            {
+                navigationService.NavigateAsync(new Uri(NavigationConstants.PhotoPage, UriKind.Relative));
+            });
+
+            GoToBirthdayPage = new DelegateCommand(() =>
+            {
+                navigationService.NavigateAsync(new Uri(NavigationConstants.BirthdayPage, UriKind.Relative));
+            });
+
+            GoToLocationPermissionPage = new DelegateCommand(async () =>
+            {
+                await NavigateToPermisson();
+            });
+
+        }
+        async Task NavigateToPermisson()
+        {
+            var status = await Permissions.CheckStatusAsync<Permissions.LocationAlways>();
+            if (status != PermissionStatus.Granted)
+            {
+                await navigationService.NavigateAsync(new Uri($"{NavigationConstants.LocationPermitionPage}", UriKind.Relative));
+            }
 
         }
         public void PickerGender()
@@ -81,7 +139,7 @@ namespace COVIDHelp.ViewModels
         {
             switch (gender)
             {
-                case "Female":
+                case "Masculino":
                     UserR.Sexo = gender;
                     break;
                 case "Femenino":
@@ -91,14 +149,12 @@ namespace COVIDHelp.ViewModels
                     break;
             }
         }
-
         async Task NavigateToSelectedSignUp()
         {
             var param = new NavigationParameters();
             param.Add($"{nameof(User)}", UserR);
             await navigationService.NavigateAsync($"{NavigationConstants.HelpersMainPage}", param);
         }
-
         void PostUser(User user)
         {
             apiCovitServices.PostUser(user);
@@ -108,12 +164,10 @@ namespace COVIDHelp.ViewModels
             ImageModel = !IsVisible ? "eyeW.png" : "eyeW_off";
             IsVisible = !IsVisible;
         }
-
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
 
         }
-
         public void OnNavigatedTo(INavigationParameters parameters)
         {
             if (parameters.ContainsKey("Location"))

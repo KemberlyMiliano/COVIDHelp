@@ -5,6 +5,7 @@ using COVIDHelp.Views;
 using COVIDHelp.Views.HelpersViews;
 using COVIDHelp.Views.LoginAndRegisterView;
 using COVIDHelp.Views.NeededViews;
+using COVIDHelp.Views.SignUpViews;
 using Prism;
 using Prism.Ioc;
 using Prism.Unity;
@@ -47,7 +48,13 @@ namespace COVIDHelp
             containerRegistry.RegisterForNavigation<RequestsListPage, RequestsListPageViewModel>();
             containerRegistry.RegisterForNavigation<DoItForMePage, DoItForMePageViewModel>();
             containerRegistry.RegisterDialog<EmergencyPage, EmergencyPageViewModel>();
-
+            containerRegistry.RegisterForNavigation<NumberPage, SignUpPageViewModel>();
+            containerRegistry.RegisterForNavigation<NamePage, SignUpPageViewModel>();
+            containerRegistry.RegisterForNavigation<EmailPage, SignUpPageViewModel>();
+            containerRegistry.RegisterForNavigation<PhotoPage, SignUpPageViewModel>();
+            containerRegistry.RegisterForNavigation<BirthdayPage, SignUpPageViewModel>();
+            containerRegistry.RegisterForNavigation<AddHomePage, SignUpPageViewModel>();
+            containerRegistry.RegisterForNavigation<PasswordPage, SignUpPageViewModel>();
         }
     }
 

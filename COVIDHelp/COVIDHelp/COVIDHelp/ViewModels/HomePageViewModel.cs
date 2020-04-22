@@ -78,7 +78,6 @@ namespace COVIDHelp.ViewModels
         {
             return await Launcher.TryOpenAsync(NavigationConstants.FormularyNavigation);
         }
-
         void CloseDialogCallback(IDialogResult dialogResult)
         {
 

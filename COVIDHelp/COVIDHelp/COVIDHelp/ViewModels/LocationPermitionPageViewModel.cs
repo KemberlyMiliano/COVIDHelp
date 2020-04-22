@@ -24,7 +24,8 @@ namespace COVIDHelp.ViewModels
                     await GetPermisson();
                     var param = new NavigationParameters();
                     param.Add("Location", GetLocation);
-                    await navigationService.GoBackAsync(param);
+                    //await navigationService.GoBackAsync(param);
+                    await navigationService.NavigateAsync(new Uri(NavigationConstants.AddHomePage, UriKind.Relative), param);
                 }
                 catch (Exception)
                 {
