@@ -44,6 +44,7 @@ namespace COVIDHelp.ViewModels
         }
         public async Task GetPerson()
         {
+            HelpsPerson = new ObservableCollection<Help>();
             if (typeHelp == $"{ETypeHelp.Medicamentos}")
             {
                 var emergencia = await apiCovitServices.GetHelpActive($"{ETypeHelp.Emergencias}");
@@ -57,8 +58,8 @@ namespace COVIDHelp.ViewModels
             {
                 var alimentos = await apiCovitServices.GetHelpActive($"{ETypeHelp.Medicamentos}");
                 var medicamentos = await apiCovitServices.GetHelpActive($"{ETypeHelp.Alimentos}");
-                alimentos.AddRange(medicamentos);
-                HelpsPerson = new ObservableCollection<Help>(alimentos);
+                medicamentos.AddRange(alimentos);
+                HelpsPerson = new ObservableCollection<Help>(medicamentos);
             }
 
         }

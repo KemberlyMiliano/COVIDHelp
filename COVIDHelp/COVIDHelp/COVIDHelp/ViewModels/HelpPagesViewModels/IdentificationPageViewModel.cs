@@ -13,11 +13,8 @@ namespace COVIDHelp.ViewModels
     public class IdentificationPageViewModel : BaseViewModel
     {
         public DelegateCommand<string> GoToVolunteer { get; set; }
-        public User User { get; set; }
         public IdentificationPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
-            Int64 cedula = 0;
-            apiCovitServices.FindUser(cedula.GetPreferencesInt("Cedula"));
             GoToVolunteer = new DelegateCommand<string>(async (filter) =>
             {
 

@@ -28,8 +28,8 @@ namespace COVIDHelp.ViewModels
                     {
                         { $"{Constants.PersonKey}", User }
                     };
+                    param.Add("Location", GetLocation);
                     await navigationService.GoBackAsync(param);
-
                 }
                 catch (Exception)
                 {
