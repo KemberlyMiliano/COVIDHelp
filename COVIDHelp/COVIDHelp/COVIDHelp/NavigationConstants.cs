@@ -35,6 +35,8 @@ namespace COVIDHelp
         public const string PasswordPage = "/PasswordPage";
         public const string PhotoPage = "/PhotoPage";
         public const string EmailPage = "/EmailPage";
+        public const string RegisterPage = "/RegisterPage";
+
 
         public const string FormularyNavigation = "https://711.intec.edu.do/covid19/";
     }
