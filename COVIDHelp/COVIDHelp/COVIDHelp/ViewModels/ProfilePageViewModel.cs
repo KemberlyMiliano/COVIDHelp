@@ -8,6 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using COVIDHelp.Helpers;
 using Prism.Commands;
+using Xamarin.Forms.Internals;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
+using Xamarin.Forms;
+using System.Linq;
 
 namespace COVIDHelp.ViewModels
 {
@@ -16,7 +21,6 @@ namespace COVIDHelp.ViewModels
         public User User { get; set; }
         public DelegateCommand EditCommand { get; set; }
         public DelegateCommand LoadProfile { get; set; }
-        public bool Edit { get; set; }
         public ProfilePageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
             LoadProfile = new DelegateCommand(async () => await FindUser());
@@ -26,7 +30,11 @@ namespace COVIDHelp.ViewModels
                 await navigationService.NavigateAsync(new Uri(NavigationConstants.EditProfilePage, UriKind.Relative));
 
             });
+           
+
         }
+
+
         async Task FindUser()
         {
             Int64 cedula = 0;
@@ -45,5 +53,6 @@ namespace COVIDHelp.ViewModels
                 User = param;
             }
         }
+
     }
 }

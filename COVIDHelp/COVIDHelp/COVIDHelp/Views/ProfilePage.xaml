@@ -8,164 +8,219 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="White">
     <ContentPage.Content>
-        <ScrollView>
-            <Grid >
+
+        <Grid>
+
+            <!-- Menu view -->
+            <Grid BackgroundColor="#00344D">
+
                 <Grid.RowDefinitions>
+                    <RowDefinition x:Name="MenuSafeAreaRow" Height="0" />
+                    <RowDefinition x:Name="MenuTopRow" />
+                    <RowDefinition Height="67.5" />
+                    <RowDefinition Height="*"  />
+                    <RowDefinition Height="67.5" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="67.5" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="67.5" />
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="67.5" />
+                    <RowDefinition x:Name="MenuBottomRow" />
                 </Grid.RowDefinitions>
+
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="67.5" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <pancakeView:PancakeView CornerRadius="0,0,30,30" Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="4" BackgroundColor="#0272A6" Padding="15">
-                    <Grid >
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Source="espalda.png" 
-                       HeightRequest="30"
-                       WidthRequest="30"
-                       Grid.Row="0"
-                       Grid.Column="0"
-                       HorizontalOptions="Start"
-                       VerticalOptions="StartAndExpand"
-                       />
-                        <Image Source="config.png" 
-                       HeightRequest="35"
-                       WidthRequest="40"
-                       Grid.Row="0"
-                       Grid.Column="3"
-                       HorizontalOptions="End"
-                       VerticalOptions="StartAndExpand"
-                       />
 
-                        <Label Text="{Binding User.Nombres}" 
-                           HorizontalOptions="CenterAndExpand"
-                           FontFamily="{StaticResource BoldFont}"
-                           FontSize="20"
-                           Grid.Row="1"
-                           Grid.ColumnSpan="4"
-                           VerticalOptions="StartAndExpand"
-                           TextColor="Black">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="{Binding User.Nombres}"  />
-                                    <Span Text="{Binding User.Apellidos, StringFormat=' {0}'}"  />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <Label Text="Volunter" 
-                           HorizontalOptions="CenterAndExpand"
-                           FontFamily="{StaticResource BoldFont}"
-                           FontSize="16"
-                           Grid.Row="1"
-                           Grid.ColumnSpan="4"
-                           VerticalOptions="End"
-                           TextColor="DarkGray"/>
-                        <Label Text="Valoracion" 
-                         
-                           FontFamily="{StaticResource BoldFont}"
-                           FontSize="13"
-                           Grid.Row="1"
-                           Grid.ColumnSpan="4"
-                           VerticalOptions="EndAndExpand"
-                           HorizontalOptions="EndAndExpand"
-                           TranslationY="40"
-                           Margin="15,0"
-                           TextColor="DarkGray"/>
+                <Image Grid.Row="0" Grid.RowSpan="10" Grid.Column="0" Grid.ColumnSpan="3" Source="backgroundProfile.png" Aspect="AspectFill" Opacity="0.5" />
 
-                    </Grid >
-                </pancakeView:PancakeView>
-                
-                <Image HeightRequest="100"
-                       Source="defaultUser"
-                       Grid.Row="1"
-                       Grid.ColumnSpan="4"
-                       HorizontalOptions="StartAndExpand"
-                       VerticalOptions="EndAndExpand"
-                       WidthRequest="100"
-                       TranslationY="40"
-                       Margin="30,0"/>
-
-                <Frame Grid.Row="1"  TranslationY="30" VerticalOptions="EndAndExpand" Margin="30,0" HorizontalOptions="EndAndExpand" Grid.ColumnSpan="4" CornerRadius="15" HasShadow="True" HeightRequest="15" WidthRequest="30">
-                    <StackLayout Orientation="Horizontal">
-                        <Image Source="star.png" 
-                               HeightRequest="15"
-                               WidthRequest="15"
-                               />
-                        <Label Text="5" TextColor="Black" FontSize="14" />
-
-                    </StackLayout>
+                <Frame Grid.Row="2"
+                           Grid.Column="1"
+                           WidthRequest="67.5"
+                           x:Name="User"
+                           Opacity="0"
+                           TranslationY="-10"
+                            HorizontalOptions="Center" VerticalOptions="Center"
+                            BackgroundColor="White" HasShadow="False" 
+                            HeightRequest="67.5" CornerRadius="33.75" IsClippedToBounds="True">
+                    <Image Margin="-20"
+                               Source="defaultUser.png"
+                               HeightRequest="67.5"
+                               WidthRequest="67.5"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center" />
                 </Frame>
 
-                <Label Grid.Row="2"
-                       Grid.ColumnSpan="4"
-                       HorizontalOptions="Start" 
-                       Margin="15,0"
-                       VerticalOptions="CenterAndExpand"
-                       HorizontalTextAlignment="Center" 
-                       Text="Descripcion :"
-                       FontFamily="{StaticResource BoldFont}"/>
+                <Image Grid.Row="8" Grid.Column="1" WidthRequest="60.5" x:Name="editar" Opacity="0" TranslationY="-10"
+                   HorizontalOptions="Center" VerticalOptions="Center"
+                   Source="editar.png"
+                   HeightRequest="62.5"
+                  >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding EditCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
 
-                <Label  Grid.Row="2" 
-                        Grid.ColumnSpan="4"
-                         Margin="30,0"
-                       HorizontalOptions="StartAndExpand" 
-                        VerticalOptions="EndAndExpand"
-                       HorizontalTextAlignment="Center" 
-                       Text="{Binding User.SelfBiography}"
-                       FontFamily="{StaticResource NormalFont}"/>
-
-                <Label Grid.Row="3"
-                        Grid.ColumnSpan="4"
-                       HorizontalOptions="Start" 
-                       Margin="15,0"
-                       VerticalOptions="StartAndExpand"
-                       Text="Cedula :"
-                       FontFamily="{StaticResource BoldFont}"/>
-                <Label Grid.Row="3"
-                        Grid.ColumnSpan="4"
-                       Margin="30,0"
-                       HorizontalOptions="CenterAndExpand" 
-                       VerticalOptions="StartAndExpand"
-                       Text="Telefono :"
-                       FontFamily="{StaticResource BoldFont}"/>
-
-                <Label  Grid.Row="3" 
-                         Grid.ColumnSpan="4"
-                        Margin="30,0"
-                       HorizontalOptions="StartAndExpand" 
-                        VerticalOptions="CenterAndExpand"
-                       HorizontalTextAlignment="Center" 
-                       Text="{Binding User.Cedula}"
-                       FontFamily="{StaticResource NormalFont}"/>
-
-                <Label Grid.Row="3" 
-                        Grid.ColumnSpan="4"
-                        HorizontalOptions="CenterAndExpand" 
-                        VerticalOptions="CenterAndExpand"
-                       HorizontalTextAlignment="Center" 
-                       Text="{Binding User.Telefono}"
-                       FontFamily="{StaticResource NormalFont}"/>
-
-          
+                <Image Grid.Row="10" Grid.Column="1" WidthRequest="60.5" x:Name="CerrarSeccion" Opacity="0" TranslationY="-10"
+                   HorizontalOptions="Center" VerticalOptions="Center"
+                   Source="CerrarSeccion.png"
+                   HeightRequest="62.5"  />
             </Grid>
-        </ScrollView>
+
+            <!-- PROFILE PAGE -->
+
+            <Frame x:Name="ProfileePage" HasShadow="False" IsClippedToBounds="True" CornerRadius="0">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" x:Name="ToolbarSafeAreaRow" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <pancakeView:PancakeView CornerRadius="30,30,30,30" Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="4" BackgroundColor="#0272A6" Padding="15">
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image  Source="config.png" 
+                                        HeightRequest="35"
+                                        WidthRequest="40"
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="StartAndExpand">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer  NumberOfTapsRequired="1" Tapped="OnShowMenu"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+
+
+                            <Label Text="{Binding User.Nombres}" 
+                                        HorizontalOptions="CenterAndExpand"
+                                        FontFamily="{StaticResource BoldFont}"
+                                        FontSize="20"
+                                        Grid.Row="1"
+                                        Grid.ColumnSpan="4"
+                                        VerticalOptions="StartAndExpand"
+                                        TextColor="Black">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding User.Nombres}"  />
+                                        <Span Text="{Binding User.Apellidos, StringFormat=' {0}'}"  />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="Volunter" 
+                                        HorizontalOptions="CenterAndExpand"
+                                        FontFamily="{StaticResource BoldFont}"
+                                        FontSize="16"
+                                        Grid.Row="1"
+                                        Grid.ColumnSpan="4"
+                                        VerticalOptions="End"
+                                        TextColor="DarkGray"/>
+                    
+
+                        </Grid >
+                    </pancakeView:PancakeView>
+
+                    <Image HeightRequest="100"
+                                Source="defaultUser"
+                                Grid.Row="1"
+                                Grid.ColumnSpan="4"
+                                HorizontalOptions="StartAndExpand"
+                                VerticalOptions="EndAndExpand"
+                                WidthRequest="100"
+                                TranslationY="40"
+                                Margin="30,0"/>
+
+                   
+
+                    <Label Grid.Row="2"
+                                Grid.ColumnSpan="4"
+                                HorizontalOptions="Start" 
+                                Margin="15,50"
+                                VerticalOptions="StartAndExpand"
+                                HorizontalTextAlignment="Center" 
+                                Text="Descripcion :"
+                                FontFamily="{StaticResource BoldFont}"/>
+
+                    <Label  Grid.Row="2" 
+                                Grid.ColumnSpan="4"
+                                Margin="30,0"
+                                HorizontalOptions="StartAndExpand" 
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center" 
+                                Text="{Binding User.SelfBiography}"
+                                FontFamily="{StaticResource NormalFont}"/>
+
+                    <Frame Grid.Row="2" VerticalOptions="EndAndExpand" HeightRequest="30" WidthRequest="20" CornerRadius="10" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="AntiqueWhite">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Valoracion"   FontFamily="{StaticResource BoldFont}" HorizontalOptions="CenterAndExpand" FontSize="12" Grid.Row="0" Grid.ColumnSpan="2"/>
+                            <Label Text="4.8 "   FontFamily="{StaticResource BoldFont}" FontSize="12" HorizontalOptions="CenterAndExpand" Grid.Row="1" Grid.ColumnSpan="2"/>
+                            <Image Source="star.png" HorizontalOptions="End" HeightRequest="70" WidthRequest="70" Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" />
+                        </Grid>
+                    </Frame>
+                    <Frame Grid.Row="3" VerticalOptions="Start" HeightRequest="40" WidthRequest="30" CornerRadius="10" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="AntiqueWhite" Margin="0,5" >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Peticiones activas"   FontFamily="{StaticResource BoldFont}" HorizontalOptions="CenterAndExpand" FontSize="12" Grid.Row="0" Grid.ColumnSpan="2"/>
+                            <Label Text="5+ "   FontFamily="{StaticResource BoldFont}" FontSize="18" HorizontalOptions="CenterAndExpand" Grid.Row="1" Grid.ColumnSpan="2"/>
+                            <Image Source="volunteer.png" HorizontalOptions="End" HeightRequest="70" WidthRequest="70" Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" />
+                        </Grid>
+                    </Frame>
+
+                    <Frame Grid.Row="3" VerticalOptions="EndAndExpand"  HeightRequest="40" WidthRequest="30" CornerRadius="10" Grid.Column="0" Grid.ColumnSpan="4" BackgroundColor="AntiqueWhite" >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Peticiones completadas"   FontFamily="{StaticResource BoldFont}" HorizontalOptions="CenterAndExpand" FontSize="12" Grid.Row="0" Grid.ColumnSpan="2"/>
+                            <Label Text="5+ "   FontFamily="{StaticResource BoldFont}" FontSize="18" HorizontalOptions="CenterAndExpand" Grid.Row="1" Grid.ColumnSpan="2"/>
+                            <Image Source="volunteer.png" HorizontalOptions="End" HeightRequest="70" WidthRequest="70" Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" />
+                        </Grid>
+                    </Frame>
+                </Grid>
+            </Frame>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
