@@ -20,7 +20,7 @@ namespace COVIDHelp.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
-            //GoogleClientManager.Initialize(this);
+            GoogleClientManager.Initialize(this);
             global::Xamarin.Forms.Forms.SetFlags("CarouselView_Experimental");
             global::Xamarin.Forms.Forms.SetFlags("SwipeView_Experimental");
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
@@ -36,11 +36,11 @@ namespace COVIDHelp.Droid
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
-        //protected override void OnActivityResult(int requestCode, Result resultCode, Android.Content.Intent data)
-        //{
-        //    base.OnActivityResult(requestCode, resultCode, data);
-        //    GoogleClientManager.OnAuthCompleted(requestCode, resultCode, data);
-        //}
+        protected override void OnActivityResult(int requestCode, Result resultCode, Android.Content.Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            GoogleClientManager.OnAuthCompleted(requestCode, resultCode, data);
+        }
     }
 
     public class AndroidInitializer : IPlatformInitializer

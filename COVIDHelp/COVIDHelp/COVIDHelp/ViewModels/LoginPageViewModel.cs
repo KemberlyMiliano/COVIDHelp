@@ -23,7 +23,7 @@ namespace COVIDHelp.ViewModels
 {
     public class LoginPageViewModel : BaseViewModel
     {
-        //IGoogleClientManager _googleService = CrossGoogleClient.Current;
+        IGoogleClientManager _googleService = CrossGoogleClient.Current;
         public User User { get; set; } = new User();
         public DelegateCommand LogInCommand { get; set; }
         public DelegateCommand ButtonSignUpCommand { get; set; }
