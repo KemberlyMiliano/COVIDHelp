@@ -5,7 +5,6 @@ using Prism.Navigation;
 using Prism.Services;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -13,19 +12,13 @@ using Xamarin.Forms;
 
 namespace COVIDHelp.ViewModels
 {
-    public class SignUpPageViewModel : BaseViewModel, INavigatedAware
+    public class RegisterPageViewModel : BaseViewModel, INavigatedAware
     {
         public User UserR { get; set; } = new User();
         public DelegateCommand ButtonConfirmCommand { get; set; }
         public DelegateCommand ButtonEyeClickedCommand { get; set; }
         public DelegateCommand AddImageUserCommand { get; set; }
-        public DelegateCommand GoToNamePage { get; set; }
-        public DelegateCommand GoToEmailPage { get; set; }
-        public DelegateCommand GoToPhotoPage { get; set; }
-        public DelegateCommand GoToBirthdayPage { get; set; }
-        public DelegateCommand GoToNumberPage { get; set; }
-        public DelegateCommand GoToAddHomePage { get; set; }
-        public DelegateCommand GoToPasswordPage { get; set; }
+      
         public DelegateCommand GoToLocationPermissionPage { get; set; }
         public DelegateCommand AddPhotoCommand { get; set; }
         public ImageSource ImageModel { get; set; }
@@ -47,7 +40,7 @@ namespace COVIDHelp.ViewModels
                 }
             }
         }
-        public SignUpPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
+        public RegisterPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
             IsVisible = true;
             ImageModel = "eyeW.png";
@@ -79,40 +72,6 @@ namespace COVIDHelp.ViewModels
                 // a;adir la imagen del usuario (usar permisos de camara y galeria.)
             });
 
-            GoToNamePage = new DelegateCommand(() =>
-            {
-                navigationService.NavigateAsync(new Uri(NavigationConstants.NamePage, UriKind.Relative));
-            });
-
-            GoToPasswordPage = new DelegateCommand(() =>
-            {
-                navigationService.NavigateAsync(new Uri(NavigationConstants.PasswordPage, UriKind.Relative));
-            });
-
-            GoToEmailPage = new DelegateCommand(() =>
-            {
-                navigationService.NavigateAsync(new Uri(NavigationConstants.EmailPage, UriKind.Relative));
-            });
-
-            GoToAddHomePage = new DelegateCommand(() =>
-            {
-                navigationService.NavigateAsync(new Uri(NavigationConstants.AddHomePage, UriKind.Relative));
-            });
-
-            GoToNumberPage = new DelegateCommand(() =>
-            {
-                navigationService.NavigateAsync(new Uri(NavigationConstants.NumberPage, UriKind.Relative));
-            });
-
-            GoToPhotoPage = new DelegateCommand(() =>
-            {
-                navigationService.NavigateAsync(new Uri(NavigationConstants.PhotoPage, UriKind.Relative));
-            });
-
-            GoToBirthdayPage = new DelegateCommand(() =>
-            {
-                navigationService.NavigateAsync(new Uri(NavigationConstants.BirthdayPage, UriKind.Relative));
-            });
 
             GoToLocationPermissionPage = new DelegateCommand(async () =>
             {

@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace COVIDHelp.Views.SignUpViews
+namespace COVIDHelp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class BirthdayPage : ContentPage
+    public partial class RegisterPage : ContentPage
     {
-        public BirthdayPage()
+        public RegisterPage()
         {
             InitializeComponent();
         }
