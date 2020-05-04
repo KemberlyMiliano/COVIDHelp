@@ -23,7 +23,6 @@ namespace COVIDHelp.ViewModels
 {
     public class LoginPageViewModel : BaseViewModel
     {
-        IGoogleClientManager _googleService = CrossGoogleClient.Current;
         public User User { get; set; } = new User();
         public DelegateCommand LogInCommand { get; set; }
         public DelegateCommand ButtonSignUpCommand { get; set; }
@@ -35,6 +34,7 @@ namespace COVIDHelp.ViewModels
         public AuthNetwork AuthNetwork { get; set; }
         public bool IsBusy { get; set; } = false;
         public bool IsVisible { get; set; }
+        public string Phone { get; set; }
         public bool IsAlertVisible { get; set; }
 
         private bool isEnable;
@@ -52,28 +52,14 @@ namespace COVIDHelp.ViewModels
 
         public LoginPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
-            User.Correo = User.Correo.Recordar(IsEnable);
 
-            AuthNetwork = new AuthNetwork()
-            {
-                Name = "Google",
-                Icon = "googleLogin",
-                Foreground = "#000000",
-                Background = "#F8F8F8"
-            };
 
             LogInCommand = new DelegateCommand(async () =>
             {
-                if (string.IsNullOrEmpty(User.Correo) && string.IsNullOrEmpty(User.Password))
-                {
-                    await dialogService.DisplayAlertAsync("ALERT!", "THERE ARE EMPTY FIELDS", "OK");
-                }
-                else
-                {
                     IsBusy = true;
+                     User.Phone = Convert.ToInt64(Phone);
                     await ValidateUser();
                     IsBusy = false;
-                }
             });
 
             ButtonSignUpCommand = new DelegateCommand(async () =>
@@ -81,14 +67,9 @@ namespace COVIDHelp.ViewModels
                 await NavigateToRegister();
             });
 
-            ButtonEyeClickedCommand = new DelegateCommand(() =>
-            {
-                VisiblePassWord();
-            });
 
             ForgotPasswordCommand = new DelegateCommand(() =>
             {
-                //Enviar correo con sus datos obtenidos del API.
             });
 
             //LoginWithGoogleCommand = new DelegateCommand(async () =>
@@ -105,22 +86,20 @@ namespace COVIDHelp.ViewModels
         {
             try
             {
-                var user = await apiCovitServices.ValidateUser(User);
-                if (user != null)
+               var succes =  await apiCovitServices.LoginUser(User);
+                if (succes.IsSuccessStatusCode)
                 {
-                    if (IsEnable)
-                    {
-                        IsEnable = IsEnable.IsLoggedIn(user);
-                    }
+                    var user = await apiCovitServices.FindUser("phone", User.Phone, Setting.Token);
                     User = user;
-                    User.Cedula.SaveInt("Cedula");
+                    Setting.PhoneSetting = User.Phone;
+                    Setting.Id = user.Id;
                     var param = new NavigationParameters
                     {
                     { $"{nameof(User)}", user }
                     };
 
                     IsAlertVisible = false;
-                    await navigationService.NavigateAsync($"{NavigationConstants.HelpersMainPage}", param);
+                        await navigationService.NavigateAsync($"{NavigationConstants.HelpersMainPage}");
                 }
                 else
                 {
@@ -131,11 +110,6 @@ namespace COVIDHelp.ViewModels
             {
                 IsAlertVisible = true;
             }
-        }
-        void VisiblePassWord()
-        {
-            ImageModel = !IsVisible ? "eyeW.png" : "eyeW_off.png";
-            IsVisible = !IsVisible;
         }
         //        async Task LoginGoogleAsync(AuthNetwork authNetwork)
         //        {

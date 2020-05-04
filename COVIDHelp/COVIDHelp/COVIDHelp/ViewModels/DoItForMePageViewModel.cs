@@ -7,9 +7,11 @@ using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms.Internals;
 
 namespace COVIDHelp.ViewModels
 {
@@ -29,10 +31,14 @@ namespace COVIDHelp.ViewModels
 
             AddToList = new DelegateCommand(() =>
             {
-                Requests.Add(new Request
+                if (!string.IsNullOrEmpty(Text))
                 {
-                    Text = Text
-                });
+                    Text.Split(',').ForEach(e => Requests.Add(new Request
+                    {
+                        Text = e
+                    }));
+                }
+
             });
 
             OnDeleteCommand = new DelegateCommand<Request>((param) =>
@@ -47,29 +53,22 @@ namespace COVIDHelp.ViewModels
 
             if (action)
             {
-                Int64 cedula = 0;
+                var user = await apiCovitServices.FindUser( Constants.IdKey, Setting.Id, Setting.Token);
                 string status = "";
-                var user = await apiCovitServices.FindUser(cedula.GetPreferencesInt("Cedula"));
-                if (user != null)
-                {
-                    var help = new Help
+                    var help = new Help 
                     {
-                        Nombre = $"{user.Nombres} {user.Apellidos}",
-                        Cedula = user.Cedula,
-                        Email = user.Correo,
-                        Telefono = user.Telefono,
-                        Posicion = $"{user.Latitude},{user.Longitude}",
-                        Dirrecion = user.Direccion,
+                        Id = user.Id,
                         Status = $"{EState.Activo}",
-                        FechaEnviado = DateTime.Now,
-                        Tipo = status.GetPreferences("status")
-
+                        Date = DateTime.Now,
+                        Type = status.GetPreferences("status"),
+                        Longitude=user.Longitude,
+                        Latitude = user.Latitude,
+                        Address = user.Address
                     };
                    var request = Requests.Select(e => e.Text);
-                    help.DescripcionProblema = string.Join("\n", request.ToArray());
-                   await apiCovitServices.PostHelp(help);
+                    help.Description = string.Join("\n", request.ToArray());
+                   await apiCovitServices.PostHelp(help,Setting.Token);
                     await navigationService.GoBackToRootAsync();
-                }
             }
         }
     }

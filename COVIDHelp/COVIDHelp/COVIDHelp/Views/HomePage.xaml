@@ -10,13 +10,13 @@
 
     <ContentPage.Content>
         <StackLayout Margin="20,40,10,20">
-            <Label Text="Bienvenido!"
+            <Label Text="¡Bienvenido!"
                    TextColor="White"
                    FontSize="30"
                    VerticalOptions="Center" 
                    HorizontalOptions="StartAndExpand"
                    FontFamily="{StaticResource BoldFont}"/>
-            <Label Text="Necesitas ayuda?"
+            <Label Text="¿Necesitas ayuda?"
                    TextColor="White"
                    FontSize="28"
                    VerticalOptions="Center" 
@@ -38,7 +38,7 @@
                                          Margin="0,0,2,10">
                     <pancakeview:PancakeView.GestureRecognizers>
                         <TapGestureRecognizer  Command="{Binding GoToMaps}"
-                                               CommandParameter="supermarket"/>
+                                               CommandParameter="Alimentos"/>
                     </pancakeview:PancakeView.GestureRecognizers>
                     <StackLayout Orientation="Horizontal" >
                         <Image Source="comer.png"
@@ -62,7 +62,7 @@
                                           Grid.Column="1">
                     <pancakeview:PancakeView.GestureRecognizers>
                         <TapGestureRecognizer   Command="{Binding GoToMaps}"
-                                                CommandParameter="pharmacy"/>
+                                                CommandParameter="Medicamentos"/>
                     </pancakeview:PancakeView.GestureRecognizers>
 
                     <StackLayout Orientation="Horizontal" >

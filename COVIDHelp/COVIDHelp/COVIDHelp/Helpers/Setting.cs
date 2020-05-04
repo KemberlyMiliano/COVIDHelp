@@ -12,12 +12,16 @@ namespace COVIDHelp.Helpers
 {
     public static class Setting
     {
-        public static int SaveInt(this Int64 value, string key)
+        static Setting()
+        {
+            Barrel.ApplicationId = ConfigApi.MonkeyCacheKey;
+        }
+        public static int SaveInt(this int value, string key)
         {
             Preferences.Set(key, value);
             return 1;
         }
-        public static Int64 GetPreferencesInt(this Int64 value, string key )
+        public static int GetPreferencesInt(this int value, string key )
         {
             return Preferences.Get(key, value);
         }
@@ -30,31 +34,90 @@ namespace COVIDHelp.Helpers
         {
             return Preferences.Get(key, value);
         }
-        public static bool IsRemeberme(this bool remenber,string correo) {
+        public static long PhoneSetting {
+            get {
+                try
+                {
+                    return Convert.ToInt64(SecureStorage.GetAsync(Constants.PhoneKey).Result);
+                }
+                catch (Exception)
+                {
 
-            if (remenber)
-            {
-                Barrel.ApplicationId = ConfigApi.MonkeyChadeKey;
-                Barrel.Current.Add(key:$"Rember/true",data: correo, expireIn:TimeSpan.FromDays(20));
-                return true;
+                 return Barrel.Current.Get<long>(Constants.PhoneKey);
+                }
+
             }
-            return false;
-        }
-        public static bool IsCheckRember()
-        {
-
-            return Barrel.Current.Exists(key: $"Rember/true");
-
-        }
-        public static string Recordar(this string remenber, bool Isremeber)
-        {
-
-            if (Isremeber)
+            set
             {
-                Barrel.ApplicationId = ConfigApi.MonkeyChadeKey;
-               return Barrel.Current.Get<string>(key: $"Rember/true");
+                try
+                {
+                    SecureStorage.SetAsync(Constants.PhoneKey,$"{value}");
+                }
+                catch (Exception)
+                {
+
+                    Barrel.Current.Add(key: Constants.PhoneKey, data: value, expireIn: TimeSpan.FromDays(20));
+                }
+
+            }   
+        }
+
+        public static int Id
+        {
+            get
+            {
+                try
+                {
+                     return Convert.ToInt32(SecureStorage.GetAsync(Constants.IdKey).Result);
+                }
+                catch (Exception)
+                {
+                    return Barrel.Current.Get<int>(Constants.IdKey);
+                }
+             
             }
-            return null;
+            set
+            {
+                try
+                {
+                    SecureStorage.SetAsync(Constants.IdKey, $"{value}");
+                }
+                catch (Exception)
+                {
+
+                    Barrel.Current.Add(key: Constants.IdKey, data: value, expireIn: TimeSpan.FromDays(20));
+                }
+
+            }
+        }
+        public static string Token
+        {
+            get
+            {
+                try
+                {
+                    return SecureStorage.GetAsync(Constants.Token).Result;
+                }
+                catch (Exception)
+                {
+                    return Barrel.Current.Get<string>(Constants.Token);
+                }
+               
+            }
+            set
+            {
+                try
+                {
+                    SecureStorage.SetAsync(Constants.Token, $"Bearer {value}");
+                }
+                catch (Exception)
+                {
+
+                    Barrel.Current.Add(key: Constants.Token, data: $"Bearer {value}", expireIn: TimeSpan.FromDays(20));
+                }
+                
+
+            }
         }
         public async static Task<string> Latitude(this string lat) {
 
@@ -76,23 +139,17 @@ namespace COVIDHelp.Helpers
             }
             return lng;
         }
-        public static bool IsLoggedIn(this bool value,User user) {
-            if (value)
-            {
-                Barrel.ApplicationId = ConfigApi.MonkeyChadeKey;
-                Barrel.Current.Add(key: $"{nameof(IsLoggedIn)}/True", data: user, expireIn: TimeSpan.FromDays(30));
-                return value;
-            }
-            return false;
-        }
-        public static bool IsLoggedExists()
+        public static void CloseLogged()
         {
-            return Barrel.Current.Exists($"{nameof(IsLoggedIn)}/True");
-        }
-        public static User Logged() {
+            try
+            {
+                SecureStorage.RemoveAll();
+            }
+            catch (Exception)
+            {
+                Barrel.Current.EmptyAll();
+            }
 
-            var user = Barrel.Current.Get<User>($"{nameof(IsLoggedIn)}/True");
-            return user;
         }
     }
 }

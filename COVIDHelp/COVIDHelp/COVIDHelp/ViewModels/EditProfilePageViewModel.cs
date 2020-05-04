@@ -17,7 +17,7 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
         {
             EditCommand = new DelegateCommand(async () =>
             {
-                User = await apiCovitServices.UpdateUser(User);
+                User = await apiCovitServices.UpdateUser(User,Setting.Token);
                 var param = new NavigationParameters
                 {
                     { Constants.PersonKey, User }

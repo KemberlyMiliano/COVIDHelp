@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="COVIDHelp.Views.SelectAssistenceDoctor">
+             x:Class="COVIDHelp.Views.SelectAssistence">
     <ContentPage.Content>
         <Frame BackgroundColor="#0272A6"  CornerRadius="20" Margin="30" >
             <CollectionView ItemsSource="{Binding Diseases}">
@@ -62,8 +62,7 @@
                                 CornerRadius="20"
                                 BackgroundColor="White"
                                 TextColor="#0272A6"
-                                Command="{Binding AddDataAndNavigateCommand}" 
-                                CommandParameter="Emergencia"/>
+                                Command="{Binding AddDataAndNavigateCommand}" />
 
                     </StackLayout>
 
@@ -72,6 +71,5 @@
             </CollectionView>
 
         </Frame>
-
     </ContentPage.Content>
 </ContentPage>

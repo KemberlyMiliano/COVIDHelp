@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace COVIDHelp.Views
+namespace COVIDHelp.Views.DailogsViews
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SelectAssistenceDoctor : ContentPage
+    public partial class DialogRateView : Frame
     {
-        public SelectAssistenceDoctor()
+        public DialogRateView()
         {
             InitializeComponent();
         }

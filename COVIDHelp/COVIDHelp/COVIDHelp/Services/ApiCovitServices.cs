@@ -1,7 +1,9 @@
-﻿using COVIDHelp.Models;
+﻿using COVIDHelp.Helpers;
+using COVIDHelp.Models;
 using Refit;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,93 +11,103 @@ namespace COVIDHelp.Services
 {
     public class ApiCovitServices : IApiCovitServices
     {
-        public async Task<User> FindUser(Int64 cedula)
+        public async Task<User> FindUser(string type,long phone, [Header(Constants.Authorization)] string token)
         {
-            var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
-            return await getRequest.FindUser(cedula);
+            User user = null;
+                var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
+                 user = await getRequest.FindUser(type, phone, token);
+                return user;
+
         }
-        public async Task<List<Help>> GetHelpID(string type, Int64 cedula)
+        public async Task<List<Help>> GetHelp(string type,string status,[Header(Constants.Authorization)] string token)
         {
             var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
-            return await getRequest.GetHelpID(type, cedula);
-        }
-        public async Task<List<Help>> GetHelp()
-        {
-            var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
-            var helps = await getRequest.GetHelp();
+            var helps = await getRequest.GetHelp(type,status,token);
             return helps;
         }
 
-        public async Task<List<Help>> GetHelpActive(string type)
+       
+        public async Task<List<User>> GetUser([Header(Constants.Authorization)] string token)
         {
             var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
-            var helps = await getRequest.GetHelpActive(type);
-            return helps;
-        }
-
-        public async Task<List<Help>> GetHelpCompletado()
-        {
-            var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
-            var helps = await getRequest.GetHelpCompletado();
-            return helps;
-        }
-
-        public async Task<List<Help>> GetHelpProcess()
-        {
-            var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
-            var helps = await getRequest.GetHelpProcess();
-            return helps;
-        }
-
-        public async Task<List<User>> GetUser()
-        {
-            var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
-            var help = await getRequest.GetUser();
+            var help = await getRequest.GetUser(token);
             return help;
         }
 
-        public async Task<Help> PostHelp([Body] Help help)
+        public async Task<Help> PostHelp([Body] Help help, [Header(Constants.Authorization)] string token)
         {
             var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
-            return await getRequest.PostHelp(help);
+            return await getRequest.PostHelp(help,token);
         }
 
-        public async Task<User> PostUser([Body] User user)
+
+        public async Task<Help> PutHelp([Body] Help help, [Header(Constants.Authorization)] string token)
         {
             var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
-            return await getRequest.PostUser(user);
+            return await getRequest.PutHelp(help,token);
         }
 
-        public async Task<Help> PutHelp([Body] Help help)
-        {
-            var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
-            return await getRequest.PutHelp(help);
-        }
-
-        public Task<User> SendCodePhone(long cedula)
+        public Task<User> SendCodePhone(int phone, [Header(Constants.Authorization)] string token)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<User> UpdateUser([Body] User user)
+        public async Task<User> UpdateUser([Body] User user, [Header(Constants.Authorization    )] string token)
         {
             var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
-            return await getRequest.UpdateUser(user);
+            return await getRequest.UpdateUser(user,token);
         }
 
-        public async Task<User> ValidateUser([Body] User user)
+        public async Task<HttpResponseMessage> LoginUser([Body] User user)
         {
-            User users = null;
             try
             {
                 var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
-                users = await getRequest.ValidateUser(user);
-                return users;
+               var token = await getRequest.LoginUser(user);
+                Setting.Token = $"{await token.Content.ReadAsStringAsync()}";
+                return token;
+            }
+            catch (Exception err)
+            {
+                return null;
+            }
+
+        }
+
+        public async Task<HttpResponseMessage> SignUpUser([Body] User user)
+        {
+            var getrequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
+            try
+            {
+                var token = await getrequest.SignUpUser(user);
+                Setting.Token = $"{await token.Content.ReadAsStringAsync()}";
+                return token;
             }
             catch (Exception)
             {
-                return users;
+
+                return null;
             }
+        }
+
+        public Task<User> ForgotPassword([Body] User user, [Header(Constants.Authorization)] string token)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<User> EvaluateVoluntary([Body] User user, [Header(Constants.Authorization)] string token)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<User> ValidateCode(long phone, int code, [Header(Constants.Authorization)] string token)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Help>> GetHelpID(string type, int id, [Header(Constants.Authorization)] string token)
+        {
+            throw new NotImplementedException();
         }
     }
 

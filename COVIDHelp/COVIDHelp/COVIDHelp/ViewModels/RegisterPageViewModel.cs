@@ -1,10 +1,12 @@
-﻿using COVIDHelp.Models;
+﻿using COVIDHelp.Helpers;
+using COVIDHelp.Models;
 using COVIDHelp.Services;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -36,35 +38,27 @@ namespace COVIDHelp.ViewModels
                 selectedGender = value;
                 if (selectedGender != null)
                 {
-                    Gender(SelectedGender.Gender);
+                    UserR.Gender = selectedGender.Gender;
                 }
             }
         }
         public RegisterPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
             IsVisible = true;
-            ImageModel = "eyeW.png";
             PickerGender();
             ButtonConfirmCommand = new DelegateCommand(async () =>
             {
-                if (String.IsNullOrEmpty(UserR.Nombres) && String.IsNullOrEmpty(UserR.Correo) && String.IsNullOrEmpty(UserR.Password) && String.IsNullOrEmpty(UserR.RepeatPassword))
+                if (String.IsNullOrEmpty(UserR.Name) && String.IsNullOrEmpty(UserR.Email) && String.IsNullOrEmpty(UserR.Password) )
                 { await dialogService.DisplayAlertAsync("ALERT!", "THERE ARE EMPTY FIELDS", "Ok"); }
-                else if (String.IsNullOrEmpty(UserR.Correo))
+                else if (String.IsNullOrEmpty(UserR.Email))
                 { await dialogService.DisplayAlertAsync("ALERT!", "THE FIELD EMAIL ADDRESS IS EMPTY", "Ok"); }
-                else if (String.IsNullOrEmpty(UserR.Nombres)) { await dialogService.DisplayAlertAsync("ALERT!", "THE FIELD NAME IS EMPTY", "Ok"); }
+                else if (String.IsNullOrEmpty(UserR.Name)) { await dialogService.DisplayAlertAsync("ALERT!", "THE FIELD NAME IS EMPTY", "Ok"); }
                 else if (String.IsNullOrEmpty(UserR.Password)) { await dialogService.DisplayAlertAsync("ALERT!", "THE FIELD PASSWORD IS EMPTY", "Ok"); }
-                else if (String.IsNullOrEmpty(UserR.RepeatPassword)) { await dialogService.DisplayAlertAsync("ALERT!", "THE FIELD REPEAT PASSWORD IS EMPTY", "Ok"); }
-                else if (UserR.Password != UserR.RepeatPassword) { await App.Current.MainPage.DisplayAlert("ALERT!", "THE PASSWORD ARE NOT EQUAL", "OK"); }
                 else
                 {
-                    PostUser(UserR);
+                  
                     await NavigateToSelectedSignUp();
                 }
-            });
-
-            ButtonEyeClickedCommand = new DelegateCommand(() =>
-            {
-                VisiblePassWord();
             });
 
             AddImageUserCommand = new DelegateCommand(() =>
@@ -91,37 +85,22 @@ namespace COVIDHelp.ViewModels
         public void PickerGender()
         {
             Genders = new List<TypePicker>() { };
-            Genders.Add(new TypePicker { Gender = "Masculino" });
-            Genders.Add(new TypePicker { Gender = "Femenino" });
-        }
-        public void Gender(string gender)
-        {
-            switch (gender)
-            {
-                case "Masculino":
-                    UserR.Sexo = gender;
-                    break;
-                case "Femenino":
-                    UserR.Sexo = gender;
-                    break;
-                default:
-                    break;
-            }
+            Genders.Add(new TypePicker { Gender = $"{EGender.Male}" });
+            Genders.Add(new TypePicker { Gender = $"{EGender.Female}" });
         }
         async Task NavigateToSelectedSignUp()
         {
+             var request = await PostUser(UserR);
+            if (request.IsSuccessStatusCode)
+            {
             var param = new NavigationParameters();
             param.Add($"{nameof(User)}", UserR);
             await navigationService.NavigateAsync($"{NavigationConstants.HelpersMainPage}", param);
+            }
         }
-        void PostUser(User user)
+        async Task<HttpResponseMessage> PostUser(User user)
         {
-            apiCovitServices.PostUser(user);
-        }
-        void VisiblePassWord()
-        {
-            ImageModel = !IsVisible ? "eyeW.png" : "eyeW_off";
-            IsVisible = !IsVisible;
+         return await apiCovitServices.SignUpUser(user);
         }
         public void OnNavigatedFrom(INavigationParameters parameters)
         {

@@ -12,6 +12,7 @@
             android:TabbedPage.ToolbarPlacement="Bottom"
             android:TabbedPage.BarItemColor ="#0272A6"
             android:TabbedPage.BarSelectedItemColor ="White"
+            NavigationPage.HasNavigationBar="False"
             BarBackgroundColor="#00344D">
     <TabbedPage.Children>
 
@@ -32,12 +33,10 @@
                 <helper:CommitmentsPage/>
             </x:Arguments>
         </NavigationPage>
-
         <NavigationPage IconImageSource="profile" Title="Perfil">
             <x:Arguments>
                 <local:ProfilePage/>
             </x:Arguments>
         </NavigationPage>
-
     </TabbedPage.Children>
 </TabbedPage>

@@ -1,4 +1,5 @@
-﻿using COVIDHelp.Services;
+﻿using COVIDHelp.Helpers;
+using COVIDHelp.Services;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
@@ -13,9 +14,13 @@ namespace COVIDHelp.ViewModels
         public DelegateCommand<string> GoToAssistence { get; set; }
         public MedicalAssistenceRequestPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
-            GoToAssistence = new DelegateCommand<string>(async (param) =>
+            GoToAssistence = new DelegateCommand<string>(async (type) =>
             {
-                await navigationService.NavigateAsync(new Uri(param, UriKind.Relative));
+                var param = new NavigationParameters
+                {
+                    { Constants.TypeHelp, type }
+                };
+                await navigationService.NavigateAsync(new Uri(NavigationConstants.SelectAssistence, UriKind.Relative),param);
 
             });
         }

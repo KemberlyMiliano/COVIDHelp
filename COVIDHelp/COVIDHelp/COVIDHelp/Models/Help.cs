@@ -10,71 +10,56 @@ namespace COVIDHelp.Models
         [JsonProperty("id")]
         public int Id { get; set; }
 
-        [JsonProperty("nombre")]
-        public string Nombre { get; set; }
+        [JsonProperty("description")]
+        public string Description { get; set; }
 
-        [JsonProperty("telefono")]
-        public string Telefono { get; set; }
+        [JsonProperty("address")]
+        public string Address { get; set; }
 
-        [JsonProperty("dirrecion")]
-        public string Dirrecion { get; set; }
+        [JsonProperty("latitude")]
+        public string Latitude { get; set; }
 
-        [JsonProperty("posicion")]
-        public string Posicion { get; set; }
-
-        [JsonProperty("email")]
-        public string Email { get; set; }
-
-        [JsonProperty("cedula")]
-        public Int64 Cedula { get; set; }
-
-        [JsonProperty("descripcionProblema")]
-        public string DescripcionProblema { get; set; }
-
-        [JsonProperty("nombreVoluntario")]
-        public string NombreVoluntario { get; set; }
-
-        [JsonProperty("telefonoVoluntario")]
-        public string TelefonoVoluntario { get; set; }
-
-        [JsonProperty("emailVoluntario")]
-        public string EmailVoluntario { get; set; }
-
-        [JsonProperty("posicionVoluntario")]
-        public string PosicionVoluntario { get; set; }
-
-        [JsonProperty("cedulaVoluntario")]
-        public Int64 CedulaVoluntario { get; set; }
+        [JsonProperty("longitude")]
+        public string Longitude { get; set; }
 
         [JsonProperty("status")]
         public string Status { get; set; }
 
-        [JsonProperty("gravedad")]
-        public int Gravedad { get; set; }
+        [JsonProperty("type")]
+        public string Type { get; set; }
 
-        [JsonProperty("fechaEnviado")]
-        public DateTime FechaEnviado { get; set; }
+        [JsonProperty("date")]
+        public DateTime Date { get; set; }
 
-        [JsonProperty("tipo")]
-        public string Tipo { get; set; }
+        [JsonProperty("userID")]
+        public int UserID { get; set; }
+        [JsonProperty("needed")]
+        public User Needed { get; set; }
+
+        [JsonProperty("volunteer")]
+        public User Volunteer { get; set; }
+
+        [JsonProperty("volunteerID")]
+        public int VolunteerID { get; set; }
 
         [JsonIgnore]
         public double State
         {
             get
             {
-                switch (Status)
+                var type = Enum.Parse(typeof(EState), Status);
+                switch (type)
                 {
-                    case "Activo":
+                    case EState.Activo:
                         {
                             return 0;
                         }
-                    case "Proceso":
+                    case EState.Proceso:
                         {
                             return 0.5;
 
                         }
-                    case "Completado":
+                    case EState.Completado:
                         {
                             return 1;
 

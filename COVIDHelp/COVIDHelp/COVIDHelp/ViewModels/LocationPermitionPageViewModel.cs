@@ -6,13 +6,14 @@ using Prism.Navigation;
 using Prism.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
 namespace COVIDHelp.ViewModels
 {
-    public class LocationPermitionPageViewModel : BaseViewModel
+    public class LocationPermitionPageViewModel : BaseViewModel,IInitialize
     {
         public DelegateCommand ConfirmCommand { get; set; }
         public Locations GetLocation { get; set; } = new Locations();
@@ -26,7 +27,7 @@ namespace COVIDHelp.ViewModels
                     await GetPermisson();
                     var param = new NavigationParameters
                     {
-                        { $"{Constants.PersonKey}", User }
+                        { $"{Constants.IdKey}", User }
                     };
                     param.Add("Location", GetLocation);
                     await navigationService.GoBackAsync(param);
@@ -40,17 +41,22 @@ namespace COVIDHelp.ViewModels
         }
         async Task GetPermisson()
         {
-            long cedula = 0;
-            User = await apiCovitServices.FindUser(cedula.GetPreferencesInt("Cedula"));
+            User = await apiCovitServices.FindUser("phone", Setting.PhoneSetting, Setting.Token);
             var request = new GeolocationRequest(GeolocationAccuracy.Default);
             var location = await Geolocation.GetLocationAsync(request);
             if (location != null)
             {
                 User.Latitude = $"{location.Latitude}";
                 User.Longitude = $"{location.Longitude}";
-                User = await apiCovitServices.UpdateUser(User);
+                var address = (await Geocoding.GetPlacemarksAsync(location.Latitude, location.Longitude)).FirstOrDefault();
+                User.Address = $"{address.CountryName},{address.AdminArea},{address.SubAdminArea},{address.Locality},{address.Thoroughfare}";
             }
         }
 
+        public void Initialize(INavigationParameters parameters)
+        {
+            var param = parameters[Constants.IdKey] as User;
+            User = param;
+        }
     }
 }

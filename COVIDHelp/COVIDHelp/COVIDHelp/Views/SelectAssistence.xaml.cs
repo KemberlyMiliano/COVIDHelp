@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace COVIDHelp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SelectAssistencePsycology : ContentPage
+    public partial class SelectAssistence : ContentPage
     {
-        public SelectAssistencePsycology()
+        public SelectAssistence()
         {
             InitializeComponent();
         }

@@ -47,17 +47,17 @@ namespace COVIDHelp.ViewModels
             HelpsPerson = new ObservableCollection<Help>();
             if (typeHelp == $"{ETypeHelp.Medicamentos}")
             {
-                var emergencia = await apiCovitServices.GetHelpActive($"{ETypeHelp.Emergencias}");
-                var asistencia = await apiCovitServices.GetHelpActive($"{ETypeHelp.Asistencia}");
-                var psicologica = await apiCovitServices.GetHelpActive($"{ETypeHelp.Psicologo}");
+                var emergencia = await apiCovitServices.GetHelp($"{ETypeHelp.Emergencia}",$"{EState.Activo}",Setting.Token);
+                var asistencia = await apiCovitServices.GetHelp($"{ETypeHelp.Asistencia_Medica.ToString().Replace('_',' ')}",$"{EState.Activo}", Setting.Token);
+                var psicologica = await apiCovitServices.GetHelp($"{ETypeHelp.Psicologica}",$"{EState.Activo}", Setting.Token);
                 emergencia.AddRange(asistencia);
                 emergencia.AddRange(psicologica);
                 HelpsPerson = new ObservableCollection<Help>(emergencia);
             }
             else
             {
-                var alimentos = await apiCovitServices.GetHelpActive($"{ETypeHelp.Medicamentos}");
-                var medicamentos = await apiCovitServices.GetHelpActive($"{ETypeHelp.Alimentos}");
+                var alimentos = await apiCovitServices.GetHelp($"{ETypeHelp.Alimentos}", $"{EState.Activo}", Setting.Token);
+                var medicamentos = await apiCovitServices.GetHelp($"{ETypeHelp.Medicamentos}", $"{EState.Activo}", Setting.Token);
                 medicamentos.AddRange(alimentos);
                 HelpsPerson = new ObservableCollection<Help>(medicamentos);
             }

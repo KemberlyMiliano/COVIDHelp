@@ -11,6 +11,7 @@ using COVIDHelp.Helpers;
 using Xamarin.Essentials;
 using System.Threading.Tasks;
 using Prism.Services.Dialogs;
+using System.Linq;
 
 namespace COVIDHelp.ViewModels
 {
@@ -30,21 +31,21 @@ namespace COVIDHelp.ViewModels
 
             PermissionsCommand = new DelegateCommand(async () =>
             {
+                var user = await apiCovitServices.FindUser(Constants.IdKey, Setting.Id, Setting.Token);
+                User = user;
                 await NavigateToPermisson();
+                User = await apiCovitServices.UpdateUser(User, Setting.Token);
             });
-
-
-
-            GoToMaps = new DelegateCommand<string>(async (filtrar) =>
+            PermissionsCommand.Execute();
+             GoToMaps = new DelegateCommand<string>(async (filtrar) =>
             {
-                var status = filtrar == "supermarket" ? "Alimentos" : "Medicamentos";
-                status.SaveString("status");
-                filtrar.SaveString("type");
+                
+                filtrar.SaveString("status");
                 string latitude = $"{User.Latitude}";
                 string longitude = $"{User.Longitude}";
                 latitude.SaveString("latitude");
                 longitude.SaveString("longitude");
-                await navigationService.NavigateAsync(new Uri(NavigationConstants.MapsPage, UriKind.Relative));
+                await navigationService.NavigateAsync(new Uri(NavigationConstants.MapsPage, UriKind.Relative),null,false);
             });
 
             GoToIdentification = new DelegateCommand(async () =>
@@ -87,17 +88,24 @@ namespace COVIDHelp.ViewModels
             var status = await Permissions.CheckStatusAsync<Permissions.LocationAlways>();
             if (status != PermissionStatus.Granted)
             {
-                await navigationService.NavigateAsync(new Uri($"{NavigationConstants.LocationPermitionPage}", UriKind.Relative));
+                var param = new NavigationParameters
+                    {
+                        { $"{Constants.IdKey}", User }
+                    };
+                await navigationService.NavigateAsync(new Uri($"{NavigationConstants.LocationPermitionPage}", UriKind.Relative), param,false);
             }
             else
             {
                 var request = new GeolocationRequest(GeolocationAccuracy.Default);
                 var location = await Geolocation.GetLocationAsync(request);
+               
                 if (location != null)
                 {
                     User.Latitude = $"{location.Latitude}";
                     User.Longitude = $"{location.Longitude}";
-                    User = await apiCovitServices.UpdateUser(User);
+                    var address = (await Geocoding.GetPlacemarksAsync(location.Latitude, location.Longitude)).FirstOrDefault();
+                    User.Address = $"{address.CountryName},{address.AdminArea},{address.SubAdminArea},{address.Locality},{address.Thoroughfare}";
+
                 }
             }
 
@@ -122,14 +130,18 @@ namespace COVIDHelp.ViewModels
                 await dialogService.DisplayAlertAsync("Error", ex.Message, "OK");
         }
 
-        public  void Initialize(INavigationParameters parameters)
+        public void Initialize(INavigationParameters parameters)
         {
-            if (parameters.ContainsKey(Constants.PersonKey))
+            if (parameters.ContainsKey(Constants.IdKey))
             {
-                var param = parameters[Constants.PersonKey] as User;
-                User = param;
-            }
+                User param = parameters[Constants.IdKey] as User;
+                PermissionsCommand.Execute();
+                if (param != null)
+                {
+                    User = param;
+                }
 
+            }
         }
     }
 }

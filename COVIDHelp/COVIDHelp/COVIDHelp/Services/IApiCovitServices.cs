@@ -2,6 +2,7 @@
 using Refit;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,44 +10,41 @@ namespace COVIDHelp.Services
 {
     public interface IApiCovitServices
     {
-        [Post("/api/Users")]
-        Task<User> PostUser([Body]User user);
 
-        [Post("/api/Users/Login")]
-        Task<User> ValidateUser([Body]User user);
+        [Post("/api/Token/Login")]
+        Task<HttpResponseMessage> LoginUser([Body]User user);
+        [Post("/api/Token/SignUp")]
+        Task<HttpResponseMessage> SignUpUser([Body]User user);
+        [Post("/api/Users/Evaluate")]
+        Task<User> EvaluateVoluntary([Body]User user, [Header("Authorization")] string token);
+        [Post("/api/Token/ForgotPassword")]
+        Task<User> ForgotPassword([Body]User user, [Header("Authorization")] string token);
 
         [Get("/api/Users")]
-        Task<List<User>> GetUser();
+        Task<List<User>> GetUser([Header("Authorization")] string token);
+        [Get("/api/Users​/ValidateCode​/{number}​/{code}")]
+        Task<User> ValidateCode(long number, int code, [Header("Authorization")] string token);
 
-        [Get("/api/Users/{cedula}")]
-        Task<User> FindUser(Int64 cedula);
+        [Get("/api/Users/{type}/{number}")]
+        Task<User> FindUser(string type, long number, [Header("Authorization")] string token);
 
         [Get("/api/Users/SendActivationCode")]
-        Task<User> SendCodePhone(Int64 cedula);
+        Task<User> SendCodePhone(int phone, [Header("Authorization")] string token);
 
         [Put("/api/Users")]
-        Task<User> UpdateUser([Body] User user);
+        Task<User> UpdateUser([Body] User user, [Header("Authorization")] string token);
 
         [Post("/api/Helps")]
-        Task<Help> PostHelp([Body] Help help);
+        Task<Help> PostHelp([Body] Help help, [Header("Authorization")] string token);
 
         [Put("/api/Helps")]
-        Task<Help> PutHelp([Body] Help help);
+        Task<Help> PutHelp([Body] Help help, [Header("Authorization")] string token);
 
-        [Get("/api/Helps")]
-        Task<List<Help>> GetHelp();
+        [Get("/api/Helps/ByStatus/{type}/{status}")]
+        Task<List<Help>> GetHelp(string type,string status,[Header("Authorization")] string token);
 
-        [Get("/api/Helps/ByStatus/{type}/Activo")]
-        Task<List<Help>> GetHelpActive(string type);
-
-        [Get("/api/Helps/ByStatus/Proceso")]
-        Task<List<Help>> GetHelpProcess();
-
-        [Get("/api/Helps/ByStatus/Completado")]
-        Task<List<Help>> GetHelpCompletado();
-
-        [Get("/api/Helps/History/{type}/{cedula}")]
-        Task<List<Help>> GetHelpID(string type, Int64 cedula);
+        [Get("/api/Helps/History/{type}/{id}")]
+        Task<List<Help>> GetHelpID(string type, int id,[Header("Authorization")] string token);
 
     }
 }

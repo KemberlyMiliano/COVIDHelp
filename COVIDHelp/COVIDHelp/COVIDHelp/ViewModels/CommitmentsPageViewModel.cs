@@ -31,8 +31,8 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
             LoadHisotiral.Execute();
             ContactCommand = new DelegateCommand<Help>(async (help) =>
             {
-                //Agregar numero del voluntario User.Phone
-                await OpenWhatsApp(help.Telefono, "Hola! Estoy aquí para ayudarte");
+                var user  = await apiCovitServices.FindUser("Id", help.UserID, Setting.Token);
+                await OpenWhatsApp($"{user.Phone}", "Hola! Estoy aquí para ayudarte");
 
             });
             RefreshCommand = new DelegateCommand(async () =>
@@ -49,17 +49,18 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
         }
         async Task NavigateTo(Help help)
         {
-            var param = new NavigationParameters();
-            param.Add("Helper", help);
+            var param = new NavigationParameters
+            {
+                { "Helper", help }
+            };
             await navigationService.NavigateAsync(new Uri($"{NavigationConstants.NecesityDetailPage}", UriKind.Relative), param);
         }
         async Task GetHistorialHelper()
         {
-            var request = await apiCovitServices.GetHelp();
-            Int64 cedula = 0;
+            var request = await apiCovitServices.GetHelp("All","All",Setting.Token);
             if (request != null)
             {
-                Historial = new ObservableCollection<Help>(request.Where(e => e.CedulaVoluntario == cedula.GetPreferencesInt("Cedula")));
+                Historial = new ObservableCollection<Help>(request.Where(e => e.VolunteerID == Setting.Id));
             }
 
         }

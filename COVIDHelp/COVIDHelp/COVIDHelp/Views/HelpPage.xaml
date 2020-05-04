@@ -44,7 +44,7 @@
             <CollectionView Grid.Row="1"
                             x:Name="listPeople"
                             ItemsSource="{Binding HelpsPerson}"
-                            SelectionChanged="listPeople_SelectionChanged"
+                            SelectionChanged="ListPeople_SelectionChanged"
                             SelectionMode="Single">
                 <CollectionView.ItemsLayout>
 
@@ -80,8 +80,8 @@
                                        FontFamily="{StaticResource BoldFont}" >
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="{Binding Nombre}"  TextColor="Black" FontSize="16" FontFamily="{StaticResource BoldFont}"/>
-                                            <Span Text="{x:Static system:Environment.NewLine}" />
+                                            <Span Text="{Binding Needed.Name}"  TextColor="Black" FontSize="16" FontFamily="{StaticResource BoldFont}"/>
+                                            <Span Text="{Binding Needed.LastName,StringFormat=' {0}'}"  TextColor="Black" FontSize="16" FontFamily="{StaticResource BoldFont}"/>
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
@@ -92,7 +92,7 @@
                                        HeightRequest="20"/>
 
                                     <Label VerticalOptions="EndAndExpand" 
-                                       Text="{Binding Dirrecion}" 
+                                       Text="{Binding Address}" 
                                        FontSize="12"
                                        FontFamily="{StaticResource NormalFont}"/>
                                 </StackLayout>
@@ -100,7 +100,7 @@
                                 <StackLayout Orientation="Horizontal" Grid.Column="2" >
                                     <Label HorizontalOptions="CenterAndExpand" 
                                        VerticalOptions="EndAndExpand"
-                                       Text="{Binding FechaEnviado, Converter={StaticResource RelativeDateTimeConvertor}}" 
+                                       Text="{Binding Date, Converter={StaticResource RelativeDateTimeConvertor}}" 
                                        FontSize="14"
                                        FontFamily="{StaticResource NormalFont}"/>
 

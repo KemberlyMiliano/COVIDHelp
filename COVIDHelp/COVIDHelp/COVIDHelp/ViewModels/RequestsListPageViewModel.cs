@@ -20,10 +20,12 @@ namespace COVIDHelp.ViewModels
         public DelegateCommand<Help> DetailCommand { get; set; }
         public DelegateCommand LoadHisotiral { get; set; }
         public DelegateCommand RefreshCommand { get; set; }
+        public User User { get; set; }
         public bool IsRefresh { get; set; }
         public ObservableCollection<Help> Requests { get; set; }
         public RequestsListPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
+
             LoadHisotiral = new DelegateCommand(async () =>
             {
                 await GetHistorialHelper();
@@ -33,7 +35,7 @@ namespace COVIDHelp.ViewModels
 
             ContactCommand = new DelegateCommand<Help>(async (help) =>
             {
-                await OpenWhatsApp(help.Telefono, "Hola! Estoy aquí para ayudarte");
+                await OpenWhatsApp($"{help.Volunteer.Phone}", "Hola! Estoy aquí para ayudarte");
             });
 
             RefreshCommand = new DelegateCommand(async () =>
@@ -50,17 +52,18 @@ namespace COVIDHelp.ViewModels
         }
         async Task NavigateTo(Help help)
         {
-            var param = new NavigationParameters();
-            param.Add("Helper", help);
+            var param = new NavigationParameters
+            {
+                { "Helper", help }
+            };
             await navigationService.NavigateAsync(new Uri($"{NavigationConstants.NecesityDetailPage}", UriKind.Relative), param);
         }
         async Task GetHistorialHelper()
         {
-            var request = await apiCovitServices.GetHelp();
-            Int64 cedula = 0;
+            var request = await apiCovitServices.GetHelp("All","All",Setting.Token);
             if (request != null)
             {
-                Requests = new ObservableCollection<Help>(request.Where(e => e.Cedula == cedula.GetPreferencesInt("Cedula")));
+                Requests = new ObservableCollection<Help>(request.Where(e => e.UserID == Setting.Id));
             }
         }
         private async Task OpenWhatsApp(string number, string text)

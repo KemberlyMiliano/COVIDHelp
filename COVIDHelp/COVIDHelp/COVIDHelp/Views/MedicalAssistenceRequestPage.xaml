@@ -79,7 +79,7 @@
                              Grid.ColumnSpan="3"
                              HorizontalOptions="CenterAndExpand" 
                              Command="{Binding GoToAssistence}"
-                             CommandParameter="/SelectAssistenceNurse"/>
+                             CommandParameter="Asistencia_Medica"/>
 
             <Label Text="Doctor(a)"
                        Grid.Row="2" 
@@ -98,7 +98,7 @@
                          Grid.ColumnSpan="3"
                          HorizontalOptions="CenterAndExpand"
                          Command="{Binding GoToAssistence}"
-                         CommandParameter="/SelectAssistenceDoctor"/>
+                         CommandParameter="Emergencia"/>
 
             <Label Text="Psicologo(a)"
                    Grid.Row="3" 
@@ -117,7 +117,7 @@
                          Grid.ColumnSpan="3" 
                          HorizontalOptions="CenterAndExpand" 
                          Command="{Binding GoToAssistence}"
-                         CommandParameter="/SelectAssistencePsycology"/>
+                         CommandParameter="Psicologica"/>
 
         </Grid>
     </ContentPage.Content>

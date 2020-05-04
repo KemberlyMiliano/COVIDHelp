@@ -19,22 +19,14 @@ namespace COVIDHelp
         public const string RequestDetailPage = "/RequestDetailPage";
         public const string MedicalAssistenceRequestPage = "/MedicalAssistenceRequestPage";
         public const string MedicineMapPage = "/MedicineMap";
-        public const string FoodMapPage = "/FoodMap";
         public const string IdentificationPage = "/IdentificationPage";
         public const string NecesityDetailPage = "/NecesityDetailPage";
-        public const string SelectAssistenceNurse = "/SelectAssistenceNurse";
-        public const string SelectAssistenceDoctor = "/SelectAssistenceDoctor";
-        public const string SelectAssistencePsycology = "/SelectAssistencePsycology";
+        public const string SelectAssistence = "/SelectAssistence";
         public const string EditProfilePage = "/EditProfilePage";
         public const string DoItForMePage = "/DoItForMePage";
         public const string EmergencyPage = "/EmergencyPage";
-        public const string NamePage = "/NamePage";
         public const string AddHomePage = "/AddHomePage";
-        public const string BirthdayPage = "/BirthdayPage";
-        public const string NumberPage = "/NumberPage";
-        public const string PasswordPage = "/PasswordPage";
-        public const string PhotoPage = "/PhotoPage";
-        public const string EmailPage = "/EmailPage";
+        public const string RequestsListPage = "/RequestsListPage";
         public const string RegisterPage = "/RegisterPage";
 
 

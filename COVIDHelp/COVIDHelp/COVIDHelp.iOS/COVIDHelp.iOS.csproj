@@ -64,12 +64,16 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Renderers\CustomSliderRenderer.cs" />
     <None Include="Entitlements.plist" />
     <BundleResource Include="GoogleService-Info.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <BundleResource Include="Resources\Raleway-Bold.ttf" />
     <BundleResource Include="Resources\Raleway-Regular.ttf" />
+    <BundleResource Include="Resources\Font-Awesome-Brands-Regular.otf" />
+    <BundleResource Include="Resources\Font-Awesome-Free-Solid.otf" />
+    <BundleResource Include="Resources\Font-Awesome-Regular.otf" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -141,10 +145,10 @@
       <Version>7.2.0.1422</Version>
     </PackageReference>
     <PackageReference Include="PropertyChanged.Fody">
-      <Version>3.2.7</Version>
+      <Version>3.2.8</Version>
     </PackageReference>
     <PackageReference Include="Refit">
-      <Version>5.1.54</Version>
+      <Version>5.1.67</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugin.Media">
       <Version>5.0.1</Version>
@@ -155,8 +159,8 @@
     <PackageReference Include="Xamarin.FFImageLoading.Forms">
       <Version>2.4.11.982</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.530" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.5.2" />
+    <PackageReference Include="Xamarin.Forms" Version="4.6.0.726" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.1" />
     <PackageReference Include="Xamarin.Forms.GoogleMaps">
       <Version>3.3.0</Version>
     </PackageReference>

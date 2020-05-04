@@ -5,8 +5,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="COVIDHelp.Views.RequestsListPage"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
              x:Name="requestPage"
+             xmlns:converters="clr-namespace:COVIDHelp.Converters"
              NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <converters:RelativeDateTimeConvertor x:Key="RelativeDateTimeConvertor"/>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Margin="20">
             <Label Text="Mis solicitudes" 
@@ -46,15 +51,20 @@
                                                 <RowDefinition Height="Auto"/>
                                             </Grid.RowDefinitions>
 
-                                            <StackLayout Grid.Column="1">
-                                                <Label Text="{Binding Nombre}"    
+                                            <Label Grid.Column="1" Text="{Binding Needed.Name}"    
                                                    FontFamily="{StaticResource BoldFont}"
-                                                   Margin="0,10,0,0"/>
+                                                   TextColor="Black">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding Needed.Name}"/>
+                                                        <Span Text="{Binding Needed.LastName,StringFormat=' {0}'}"/>
+                                                        <Span Text="{Static system:Environment.NewLine }"/>
+                                                        <Span Text="{Binding Type}" FontFamily="{StaticResource NormalFont}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
 
-                                                <Label Text="{Binding Tipo}"    
-                                                   FontFamily="{StaticResource NormalFont}" />
-                                            </StackLayout>
-
+                                            </Label>
+                                            <Label Text="{Binding Date,Converter={StaticResource RelativeDateTimeConvertor}}" Grid.ColumnSpan="3" Grid.Row="0" VerticalOptions="StartAndExpand" HorizontalOptions="EndAndExpand"/>
                                             <Image Source="defaultUser" 
                                                HeightRequest="40"
                                                Margin="0,0,15,0"/>

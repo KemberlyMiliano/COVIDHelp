@@ -49,7 +49,7 @@ namespace COVIDHelp.ViewModels
         {
             var getresquest = await apiGoogleServices.GetNearbyPlaces(ConfigApi.ApiKeyGoogle, locations, radius, type);
             var places = getresquest.Results;
-            if (places != null && places.Count > 0)
+            if (places != null)
             {
                 PlaceNearbys = new List<Place>(places);
             }

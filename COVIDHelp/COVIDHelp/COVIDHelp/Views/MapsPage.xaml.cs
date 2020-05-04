@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 using Xamarin.Forms.Xaml;
 using COVIDHelp.Helpers;
+using COVIDHelp.Models;
 
 namespace COVIDHelp.Views
 {
@@ -26,11 +27,12 @@ namespace COVIDHelp.Views
             string latitude = null, longitude = null, type = null;
             latitude = latitude.GetPreferences("latitude");
             longitude = longitude.GetPreferences("longitude");
-            type = type.GetPreferences("type");
-            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(double.Parse(latitude), double.Parse(longitude)), Distance.FromMiles(2)));
+            type = type.GetPreferences("status");
+            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(double.Parse(latitude), double.Parse(longitude)), Distance.FromMiles(1)));
             if (BindingContext is MapsPageViewModel viewModel)
             {
-                await viewModel.GetPlace($"{latitude},{longitude}",20000,type);
+                string place = type == $"{ETypeHelp.Alimentos}" ? "supermarket,grocery_or_supermarket" : "pharmacy";
+                await viewModel.GetPlace($"{latitude},{longitude}",2000, place);
                 var list = viewModel.PlaceNearbys;
                 foreach (var item in list)
                 {
@@ -45,11 +47,12 @@ namespace COVIDHelp.Views
             }
         }
         BitmapDescriptor SelectImage(string type) {
-            switch (type)
+           var status =(ETypeHelp) Enum.Parse(typeof(ETypeHelp), type);
+            switch (status)
             {
-                case "pharmacy":
+                case ETypeHelp.Medicamentos:
                     return BitmapDescriptorFactory.FromBundle("pharmacy_cross.png");
-                case "supermarket":
+                case ETypeHelp.Alimentos:
                     return BitmapDescriptorFactory.FromBundle("comestibles.png");
                 default:
                     return BitmapDescriptorFactory.DefaultMarker(Color.Blue);

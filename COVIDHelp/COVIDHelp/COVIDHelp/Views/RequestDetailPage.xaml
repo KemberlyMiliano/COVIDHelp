@@ -6,7 +6,8 @@
              mc:Ignorable="d"
              x:Class="COVIDHelp.Views.HelpersViews.RequestDetailPage"
              BackgroundImageSource="ProfileDai"
-             NavigationPage.HasNavigationBar="False">
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="stlContactBtn" TargetType="Button">
@@ -20,12 +21,11 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        
         <Grid >
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -35,94 +35,93 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <pancakeView:PancakeView CornerRadius="40,40,0,0" BackgroundColor="White" Padding="10" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="5" >
-                <Grid Padding="25,15,25,0" RowSpacing="0">
+            <pancakeView:PancakeView CornerRadius="40,40,0,0"
+                                         BackgroundColor="White"
+                                         Padding="10" 
+                                         Grid.Row="2"
+                                         Grid.RowSpan="3" Grid.ColumnSpan="5" >
+                <ScrollView>
+                    <Grid Padding="25,15,25,0" RowSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
+                         <RowDefinition Height="Auto"/>
+                         <RowDefinition Height="Auto"/>
+                         <RowDefinition Height="Auto"/>
+                          <RowDefinition Height="Auto"/>
 
-                    </Grid.RowDefinitions>
+                        </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Text="{Binding Help.Nombre}"
+                        <Label 
                              FontFamily="{StaticResource BoldFont}"
                                TextColor="Black"
                                VerticalOptions="Start" 
-                               HorizontalOptions="Center" 
-                               HorizontalTextAlignment="Center"
+                               HorizontalOptions="CenterAndExpand" 
                                Grid.Row="0"
                                Grid.ColumnSpan="4"
                                FontSize="25"
                                Padding="5"
-                               FontAttributes="Bold"/>
+                               FontAttributes="Bold">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding Help.Needed.Name}"/>
+                                    <Span Text="{Binding Help.Needed.LastName,StringFormat=' {0}'}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
 
-                    <Label Text="Dirección:"
-                             FontFamily="{StaticResource BoldFont}"
+                        <Label 
+                             
                                    TextColor="Black"                           
                                    VerticalOptions="StartAndExpand" 
                                    HorizontalOptions="StartAndExpand" 
                                      Grid.Row="1"
                                     Grid.ColumnSpan="4"
-                                   FontSize="20"/>
+                                   >    
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Dirección:" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
+                                    <Span Text="{Binding Help.Address ,StringFormat='  {0}'}" FontFamily="{StaticResource NormalFont}" FontSize="18" />
+                                    <Span Text="{Static system:Environment.NewLine}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
 
-                    <Label  Text="{Binding Help.Dirrecion ,StringFormat='{0}'}" 
-                             FontFamily="{StaticResource NormalFont}" 
-                                    VerticalOptions="StartAndExpand"      
-                                    HorizontalOptions="StartAndExpand"    
-                                    TextColor="Black"
-                                                Grid.Row="2"
-                                    Grid.ColumnSpan="4"
-                                    FontSize="18"
-                                Margin="0,0,0,10"/>
 
-                    <Label Text="Descripción:"
-                             FontFamily="{StaticResource BoldFont}"
-                                 Grid.Row="3"
+                    <Label 
+                                 Grid.Row="2"
                                     Grid.ColumnSpan="4"
                                    TextColor="Black"
-                                   VerticalOptions="StartAndExpand" 
-                                   HorizontalOptions="StartAndExpand" 
-                                   FontSize="20"/>
-
-                    <Label Text="{Binding Help.DescripcionProblema}" 
-                            FontFamily="{StaticResource NormalFont}" 
-                            Grid.Row="4"
-                                    Grid.ColumnSpan="4"
-                                   VerticalOptions="StartAndExpand"                           
-                                   HorizontalOptions="StartAndExpand"                                
-                                   TextColor="Black"
-                                   FontSize="18"/>
-
-                    <Label Text="Telefono:"
-                             FontFamily="{StaticResource BoldFont}"
-                                 Grid.Row="5"
-                                    Grid.ColumnSpan="4"
-                                   TextColor="Black"
-                                   VerticalOptions="StartAndExpand" 
-                                   HorizontalOptions="StartAndExpand" 
-                                   FontSize="20"/>
-
-                    <Label Text="{Binding Help.TelefonoVoluntario}" 
-                            FontFamily="{StaticResource NormalFont}" 
-                            Grid.Row="6"
+                                   VerticalOptions="CenterAndExpand" 
+                                  >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Descripción:"  FontFamily="{StaticResource BoldFont}"  FontSize="20" FontAttributes="Bold"/>
+                                <Span Text="{Static system:Environment.NewLine}"/>
+                                <Span Text="{Binding Help.Description,StringFormat='{0}'}" FontFamily="{StaticResource NormalFont}"  FontSize="18"/>
+                                 <Span Text="{Static system:Environment.NewLine}"/>
+                                </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label  Grid.Row="3"
                             Grid.ColumnSpan="4"
-                            VerticalOptions="StartAndExpand"                           
-                            HorizontalOptions="StartAndExpand"                                
                             TextColor="Black"
-                            FontSize="18"
-                            Margin="0,0,0,20"/>
-
+                            VerticalOptions="CenterAndExpand">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Telefono:" FontSize="20" FontAttributes="Bold" FontFamily="{StaticResource BoldFont}"/>
+                                <Span Text="{Binding Help.Needed.Phone,StringFormat=' {0}'}" FontSize="18" FontFamily="{StaticResource NormalFont}" />
+                                    <Span Text="{Static system:Environment.NewLine}"/>
+                                </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
                     <Button Text="Aceptar solicitud" 
                             TextColor="White"  
-                            Grid.Row="6"
+                            Grid.Row="4"
                             VerticalOptions="Center"
                             Margin="15,20,15,0"
                             Grid.ColumnSpan="4"
@@ -132,12 +131,31 @@
                             Command="{Binding GoToHistorial}"
                             CommandParameter="{Binding .}"
                                />
-                </Grid>
 
+                </Grid>
+                </ScrollView>
             </pancakeView:PancakeView>
 
-            <Button Grid.Row="2" Grid.Column="2" VerticalOptions="Start" HorizontalOptions="End" Style="{StaticResource stlContactBtn}" ImageSource="telefono.png"/>
-            <Button Grid.Row="2" Grid.Column="3" VerticalOptions="Start" HorizontalOptions="Start" Style="{StaticResource stlContactBtn}" ImageSource="whatsapp.png"/>
+            <Button Grid.Row="2" 
+                    Grid.Column="2" 
+                    VerticalOptions="Start" 
+                    HorizontalOptions="End"
+                    FontSize="20"
+                    Style="{StaticResource stlContactBtn}"
+                    TextColor="White" 
+                    Text="" 
+                    FontFamily="{StaticResource FontAwesomeSolid}"/>
+
+            <Button Grid.Row="2" 
+                    Grid.Column="3" 
+                    VerticalOptions="Start" 
+                    HorizontalOptions="Start" 
+                    FontSize="28"
+                    Style="{StaticResource stlContactBtn}" 
+                    TextColor="White"
+                    Text="" 
+                    FontFamily="{StaticResource FontAwesomeBrands}"/>
+
 
         </Grid>
     </ContentPage.Content>

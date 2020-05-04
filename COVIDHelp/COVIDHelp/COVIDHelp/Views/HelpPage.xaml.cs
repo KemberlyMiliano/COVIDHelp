@@ -19,24 +19,24 @@ namespace COVIDHelp.Views.HelpersViews
         public HelpPage()
         {
             InitializeComponent();
-            string latitude = null, longitude = null, type = null;
+            string latitude = null, longitude = null;
             latitude = latitude.GetPreferences("latitude");
             longitude = longitude.GetPreferences("longitude");
             map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(double.Parse(latitude), double.Parse(longitude)), Distance.FromMiles(2)));
         }
 
-        private void listPeople_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListPeople_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selectHelp = e.CurrentSelection.FirstOrDefault() as Help;
             if (selectHelp!=null)
             {
-                double lat = double.Parse(selectHelp.Posicion.Split(',')[0]);
-                double lng = double.Parse(selectHelp.Posicion.Split(',')[1]);
+                double lat = double.Parse(selectHelp.Latitude);
+                double lng = double.Parse(selectHelp.Longitude);
                 map.Pins.Add(new Pin
                 {
                     Position = new Position(lat, lng),
-                    Label = selectHelp.Nombre
-                });
+                    Label = selectHelp.Needed.Name
+                }) ;
                 map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(lat, lng), Distance.FromMiles(2)));
             }
            

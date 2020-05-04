@@ -29,18 +29,18 @@ namespace COVIDHelp.ViewModels
 
             GoToMaps = new DelegateCommand(async () =>
             {
-                double lat = double.Parse(Help.Posicion.Split(',')[0]);
-                double lng = double.Parse(Help.Posicion.Split(',')[1]);
+                double lat = Convert.ToDouble( Help.Latitude);
+                double lng = Convert.ToDouble(Help.Longitude);
                 await Map.OpenAsync(lat, lng, new MapLaunchOptions
                 {
-                    Name = Help.Nombre,
+                    Name = Help.Needed.Name,
                     NavigationMode = Xamarin.Essentials.NavigationMode.Driving
                 });
             });
 
             CallNeededCommand = new DelegateCommand(() =>
             {
-                Call(Help.Telefono);
+                Call($"{Help.Needed.Phone}");
             });
         }
         public void Call(string number)
@@ -56,25 +56,18 @@ namespace COVIDHelp.ViewModels
         public async Task DisplayAction()
         {
             bool action = await dialogService.DisplayAlertAsync("", "Estás seguro/a?", "Aceptar", "Cancelar");
-            Int64 cedula = 0;
             string status = "";
-            var id = cedula.GetPreferencesInt("Cedula");
-            var user = await apiCovitServices.FindUser(id);
+            var user = await apiCovitServices.FindUser(Constants.IdKey, Setting.Id, Setting.Token);
             if (action && user != null)
             {
                 Help help = new Help
                 {
                     Id = Help.Id,
-                    NombreVoluntario = $"{user.Nombres} {user.Apellidos}",
-                    CedulaVoluntario = user.Cedula,
-                    TelefonoVoluntario = user.Telefono,
+                    VolunteerID=user.Id,
                     Status = $"{EState.Proceso}",
-                    EmailVoluntario = user.Correo,
-                    PosicionVoluntario = $"{user.Latitude}{user.Longitude}",
-                    FechaEnviado = DateTime.Now
 
                 };
-                await apiCovitServices.PutHelp(help);
+                await apiCovitServices.PutHelp(help,Setting.Token);
                 await navigationService.NavigateAsync(new Uri($"{NavigationConstants.NavigationPage}{NavigationConstants.HelpersMainPage}?selectedTab={NavigationConstants.CommitmentsPage}", UriKind.Absolute));
             }
             else

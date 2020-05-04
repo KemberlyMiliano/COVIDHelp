@@ -7,9 +7,9 @@ namespace COVIDHelp.Models
     public enum ETypeHelp
     {
         Medicamentos,
-        Asistencia,
-        Psicologo,
+        Asistencia_Medica,
+        Psicologica,
         Alimentos,
-        Emergencias
+        Emergencia
     }
 }

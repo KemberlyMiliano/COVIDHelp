@@ -13,6 +13,7 @@ using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms;
 using System.Linq;
+using Prism.Navigation.Xaml;
 
 namespace COVIDHelp.ViewModels
 {
@@ -21,6 +22,7 @@ namespace COVIDHelp.ViewModels
         public User User { get; set; }
         public DelegateCommand EditCommand { get; set; }
         public DelegateCommand LoadProfile { get; set; }
+        public DelegateCommand LogOutCommand { get; set; }
         public ProfilePageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
         {
             LoadProfile = new DelegateCommand(async () => await FindUser());
@@ -30,15 +32,20 @@ namespace COVIDHelp.ViewModels
                 await navigationService.NavigateAsync(new Uri(NavigationConstants.EditProfilePage, UriKind.Relative));
 
             });
-           
+            LogOutCommand = new DelegateCommand(async () =>
+            {
+                Setting.CloseLogged();
+                await navigationService.NavigateAsync(new Uri(NavigationConstants.LoginPage,UriKind.Absolute));
+            });
+
+
 
         }
 
 
         async Task FindUser()
         {
-            Int64 cedula = 0;
-            var user = await apiCovitServices.FindUser(cedula.GetPreferencesInt("Cedula"));
+            var user = await apiCovitServices.FindUser(Constants.IdKey, Setting.Id, Setting.Token);
             if (user != null)
             {
                 User = user;
@@ -47,7 +54,7 @@ namespace COVIDHelp.ViewModels
 
         public void Initialize(INavigationParameters parameters)
         {
-            if (parameters.ContainsKey(Constants.PersonKey))
+            if (parameters.ContainsKey(Constants.PhoneKey))
             {
                 var param = parameters[Constants.PersonKey] as User;
                 User = param;
