@@ -77,11 +77,11 @@
 
                                 <Label Grid.Column="1" 
                                        VerticalOptions="CenterAndExpand"  
-                                       FontFamily="{StaticResource BoldFont}" >
+                                       FontFamily="BoldFont" >
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="{Binding Needed.Name}"  TextColor="Black" FontSize="16" FontFamily="{StaticResource BoldFont}"/>
-                                            <Span Text="{Binding Needed.LastName,StringFormat=' {0}'}"  TextColor="Black" FontSize="16" FontFamily="{StaticResource BoldFont}"/>
+                                            <Span Text="{Binding Needed.Name}"  TextColor="Black" FontSize="16" FontFamily="BoldFont"/>
+                                            <Span Text="{Binding Needed.LastName,StringFormat=' {0}'}"  TextColor="Black" FontSize="16" FontFamily="BoldFont"/>
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
@@ -94,7 +94,7 @@
                                     <Label VerticalOptions="EndAndExpand" 
                                        Text="{Binding Address}" 
                                        FontSize="12"
-                                       FontFamily="{StaticResource NormalFont}"/>
+                                       FontFamily="NormalFont"/>
                                 </StackLayout>
 
                                 <StackLayout Orientation="Horizontal" Grid.Column="2" >
@@ -102,7 +102,7 @@
                                        VerticalOptions="EndAndExpand"
                                        Text="{Binding Date, Converter={StaticResource RelativeDateTimeConvertor}}" 
                                        FontSize="14"
-                                       FontFamily="{StaticResource NormalFont}"/>
+                                       FontFamily="NormalFont"/>
 
                                     <Image Source="ic_action_access_time.png"
                                        HorizontalOptions="EndAndExpand"
@@ -114,7 +114,7 @@
                                         CornerRadius="15"
                                         BackgroundColor="#0272A6"
                                         Opacity="0.8"
-                                        FontFamily="{StaticResource BoldFont}"
+                                        FontFamily="BoldFont"
                                         Command="{Binding Path=BindingContext.GoToDetail, Source={x:Reference helpPage}}"
                                         Grid.Column="2"
                                         CommandParameter="{Binding .}"

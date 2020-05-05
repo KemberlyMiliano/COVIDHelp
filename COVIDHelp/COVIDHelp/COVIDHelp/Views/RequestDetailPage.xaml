@@ -57,7 +57,7 @@
                     </Grid.ColumnDefinitions>
 
                         <Label 
-                             FontFamily="{StaticResource BoldFont}"
+                             FontFamily="BoldFont"
                                TextColor="Black"
                                VerticalOptions="Start" 
                                HorizontalOptions="CenterAndExpand" 
@@ -84,8 +84,8 @@
                                    >    
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span Text="Dirección:" FontFamily="{StaticResource BoldFont}" FontSize="20"/>
-                                    <Span Text="{Binding Help.Address ,StringFormat='  {0}'}" FontFamily="{StaticResource NormalFont}" FontSize="18" />
+                                    <Span Text="Dirección:" FontFamily="BoldFont" FontSize="20"/>
+                                    <Span Text="{Binding Help.Address ,StringFormat='  {0}'}" FontFamily="NormalFont" FontSize="18" />
                                     <Span Text="{Static system:Environment.NewLine}"/>
                                 </FormattedString>
                             </Label.FormattedText>
@@ -100,9 +100,9 @@
                                   >
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="Descripción:"  FontFamily="{StaticResource BoldFont}"  FontSize="20" FontAttributes="Bold"/>
+                                <Span Text="Descripción:"  FontFamily="BoldFont"  FontSize="20" FontAttributes="Bold"/>
                                 <Span Text="{Static system:Environment.NewLine}"/>
-                                <Span Text="{Binding Help.Description,StringFormat='{0}'}" FontFamily="{StaticResource NormalFont}"  FontSize="18"/>
+                                <Span Text="{Binding Help.Description,StringFormat='{0}'}" FontFamily="NormalFont"  FontSize="18"/>
                                  <Span Text="{Static system:Environment.NewLine}"/>
                                 </FormattedString>
                         </Label.FormattedText>
@@ -113,8 +113,8 @@
                             VerticalOptions="CenterAndExpand">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="Telefono:" FontSize="20" FontAttributes="Bold" FontFamily="{StaticResource BoldFont}"/>
-                                <Span Text="{Binding Help.Needed.Phone,StringFormat=' {0}'}" FontSize="18" FontFamily="{StaticResource NormalFont}" />
+                                <Span Text="Telefono:" FontSize="20" FontAttributes="Bold" FontFamily="BoldFon}"/>
+                                <Span Text="{Binding Help.Needed.Phone,StringFormat=' {0}'}" FontSize="18" FontFamily="NormalFont" />
                                     <Span Text="{Static system:Environment.NewLine}"/>
                                 </FormattedString>
                         </Label.FormattedText>
@@ -127,7 +127,7 @@
                             Grid.ColumnSpan="4"
                             BackgroundColor="#0272A6" 
                             CornerRadius="15" 
-                            FontFamily="{StaticResource BoldFont}"
+                            FontFamily="BoldFont"
                             Command="{Binding GoToHistorial}"
                             CommandParameter="{Binding .}"
                                />
@@ -144,7 +144,7 @@
                     Style="{StaticResource stlContactBtn}"
                     TextColor="White" 
                     Text="" 
-                    FontFamily="{StaticResource FontAwesomeSolid}"/>
+                    FontFamily="FontAwesomeSolid"/>
 
             <Button Grid.Row="2" 
                     Grid.Column="3" 
@@ -154,7 +154,7 @@
                     Style="{StaticResource stlContactBtn}" 
                     TextColor="White"
                     Text="" 
-                    FontFamily="{StaticResource FontAwesomeBrands}"/>
+                    FontFamily="FontAwesomeBrands"/>
 
 
         </Grid>

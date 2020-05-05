@@ -12,6 +12,7 @@ namespace COVIDHelp.Helpers
 {
     public static class Setting
     {
+        public static bool IsNotConnected { get; set; }
         static Setting()
         {
             Barrel.ApplicationId = ConfigApi.MonkeyCacheKey;
@@ -34,6 +35,16 @@ namespace COVIDHelp.Helpers
         {
             return Preferences.Get(key, value);
         }
+        public static bool MapsSetting
+        {
+            get
+            {
+                Barrel.ApplicationId = ConfigApi.MonkeyCacheKey;
+                return Barrel.Current.Exists(nameof(MapsSetting));
+
+            }
+        }
+
         public static long PhoneSetting {
             get {
                 try

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             mc:Ignorable="d"
+             x:Class="COVIDHelp.Views.ControlTemplate.ConnectivityView"
+             IsVisible="{Binding IsNotConnected }"
+             BackgroundColor="#CB3234"
+             HeightRequest="40">
+    <pancakeView:PancakeView >
+        <Label 
+               TextColor="White"
+            VerticalOptions="CenterAndExpand"
+               HorizontalOptions="CenterAndExpand">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="" FontFamily="FontAwesomeSolid"/>
+                    <Span Text="  Sin conexion, las opciones estan limitadas!!!"/>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+    </pancakeView:PancakeView>
+</ContentView>

@@ -12,6 +12,7 @@ using Xamarin.Essentials;
 using System.Threading.Tasks;
 using Prism.Services.Dialogs;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace COVIDHelp.ViewModels
 {
@@ -24,6 +25,7 @@ namespace COVIDHelp.ViewModels
         public DelegateCommand GoToIdentification { get; set; }
         public DelegateCommand PermissionsCommand { get; set; }
         public bool IsVoluntary { get; set; }
+        
         public User User { get; set; }
         public HomePageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices, IDialogService dialog) : base(navigationService, dialogService, apiCovitServices)
         {
@@ -33,8 +35,11 @@ namespace COVIDHelp.ViewModels
             {
                 var user = await apiCovitServices.FindUser(Constants.IdKey, Setting.Id, Setting.Token);
                 User = user;
-                await NavigateToPermisson();
-                User = await apiCovitServices.UpdateUser(User, Setting.Token);
+                if (!IsNotConnected)
+                {
+                    await NavigateToPermisson();
+                    User = await apiCovitServices.UpdateUser(User, Setting.Token);
+                }
             });
             PermissionsCommand.Execute();
              GoToMaps = new DelegateCommand<string>(async (filtrar) =>

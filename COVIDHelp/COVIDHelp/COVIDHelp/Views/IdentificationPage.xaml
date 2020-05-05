@@ -13,7 +13,7 @@
                    TextColor="Black"
                    VerticalOptions="Center" 
                    HorizontalTextAlignment="Center"                 
-                   FontFamily="{StaticResource BoldFont}"           
+                   FontFamily="BoldFont"           
                    FontSize="40"
                    Margin="0,60,0,0"/>
 

@@ -5,6 +5,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="COVIDHelp.Views.HelpersViews.MedicalAssistenceRequestPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="NormalFont"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="TextColor" Value="#014666"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
 
         <Grid Padding="20" RowSpacing="40">
@@ -25,13 +37,12 @@
 
 
             <Label Text="Quién te puede ayudar?"                           
-                   FontFamily="{StaticResource BoldFont}"
+                   FontFamily="BoldFont"
                    FontSize="27"                           
                    HorizontalTextAlignment="Center"                          
                    TextColor="Black"                         
                    Grid.RowSpan="2"                          
-                   Grid.ColumnSpan="3"       
-                   HorizontalOptions="CenterAndExpand"       
+                   Grid.ColumnSpan="3"          
                    Margin="0,20,0,20"/>
 
             <ImageButton Source="nurse"
@@ -64,12 +75,7 @@
             <Label Text="Enfermero(a)"
                        Grid.Row="1" 
                        HeightRequest="100" 
-                       BackgroundColor="Transparent" 
-                       TextColor="#014666"
-                       Grid.ColumnSpan="3" 
-                       VerticalOptions="Start"
-                       FontFamily="{StaticResource NormalFont}"
-                       HorizontalOptions="CenterAndExpand"/>
+                       Grid.ColumnSpan="3" />
 
             <ImageButton Source="nurse" 
                              TranslationY="15"
@@ -84,11 +90,7 @@
             <Label Text="Doctor(a)"
                        Grid.Row="2" 
                        HeightRequest="80"
-                       BackgroundColor="Transparent"
-                       TextColor="#014666" 
-                       Grid.ColumnSpan="3" 
-                       FontFamily="{StaticResource NormalFont}"
-                       HorizontalOptions="CenterAndExpand"/>
+                       Grid.ColumnSpan="3" />
 
             <ImageButton Source="doctor1.png"
                          Grid.Row="2" 
@@ -103,11 +105,7 @@
             <Label Text="Psicologo(a)"
                    Grid.Row="3" 
                    HeightRequest="80"
-                   BackgroundColor="Transparent" 
-                   TextColor="#014666"
-                   Grid.ColumnSpan="3" 
-                   FontFamily="{StaticResource NormalFont}"
-                   HorizontalOptions="CenterAndExpand"/>
+                   Grid.ColumnSpan="3" />
 
             <ImageButton Source="woman.png"
                          Grid.Row="3" 

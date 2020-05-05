@@ -96,8 +96,8 @@ namespace COVIDHelp.ViewModels
                 };  
                 var diseases = Diseases.Select(e => e.Name);
                 help.Description = string.Join("\n",diseases.ToArray());
-                var probar = await apiCovitServices.PostHelp(help,Setting.Token);
-                await navigationService.NavigateAsync(new Uri($"{NavigationConstants.NavigationPage}{NavigationConstants.HelpersMainPage}?selectedTab={NavigationConstants.RequestsListPage}", UriKind.Absolute));
+                var probar = !IsNotConnected? await apiCovitServices.PostHelp(help,Setting.Token) : await PostOffline(help);
+                await navigationService.NavigateAsync(new Uri($"{NavigationConstants.HelpersMainPage}?selectedTab={NavigationConstants.RequestsListPage}", UriKind.Absolute));
             }
 
         }

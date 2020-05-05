@@ -50,7 +50,7 @@
                            Grid.ColumnSpan="4"
                            VerticalOptions="Start"
                            HorizontalOptions="Center"
-                           FontFamily="{StaticResource NormalFont}"/>
+                           FontFamily="NormalFont"/>
 
                     <Label Text="-Descripción:" 
                            TextColor="White"
@@ -60,7 +60,7 @@
                            Grid.ColumnSpan="4"
                            VerticalOptions="Start"
                            HorizontalOptions="Start"
-                           FontFamily="{StaticResource NormalFont}"/>
+                           FontFamily="NormalFont"/>
 
                     <Editor Keyboard="Text" 
                             AutoSize="TextChanges" 
@@ -74,7 +74,7 @@
                             Grid.ColumnSpan="4"
                             VerticalOptions="Center" 
                             HorizontalOptions="Start"
-                            FontFamily="{StaticResource NormalFont}"/>
+                            FontFamily="NormalFont"/>
 
                     <Button Text="Editado"
                             TextColor="#0272A6"
@@ -86,7 +86,7 @@
                             CornerRadius="40" 
                             Grid.ColumnSpan="4"
                             BackgroundColor="White"
-                            FontFamily="{StaticResource BoldFont}"/>
+                            FontFamily="BoldFont"/>
 
                 </StackLayout>
             </Frame>

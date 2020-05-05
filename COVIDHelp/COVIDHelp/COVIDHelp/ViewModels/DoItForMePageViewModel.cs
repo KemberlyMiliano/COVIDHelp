@@ -65,10 +65,11 @@ namespace COVIDHelp.ViewModels
                         Latitude = user.Latitude,
                         Address = user.Address
                     };
+
                    var request = Requests.Select(e => e.Text);
                     help.Description = string.Join("\n", request.ToArray());
-                   await apiCovitServices.PostHelp(help,Setting.Token);
-                    await navigationService.GoBackToRootAsync();
+                var probar = !IsNotConnected ? await apiCovitServices.PostHelp(help, Setting.Token) : await PostOffline(help);
+                await navigationService.GoBackToRootAsync();
             }
         }
     }

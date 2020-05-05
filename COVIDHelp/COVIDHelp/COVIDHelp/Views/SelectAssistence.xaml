@@ -11,7 +11,7 @@
                 <CollectionView.Header>
                     <StackLayout>
                         <Label Text="Síntomas :"
-                               FontFamily="{StaticResource BoldFont}" 
+                               FontFamily="BoldFont" 
                                HorizontalOptions="Center"
                                TextColor="White" 
                                FontSize="24"
@@ -26,7 +26,7 @@
                             <CheckBox Grid.Row="1" 
                                       IsChecked="{Binding IsEnable}"/>
                             <Label Text="{Binding Name}"
-                                   FontFamily="{StaticResource NormalFont}"                         
+                                   FontFamily="NormalFont"                         
                                    FontSize="16"                             
                                    TextColor="White"                            
                                    VerticalOptions="CenterAndExpand"             
@@ -45,7 +45,7 @@
                                       HorizontalOptions="Start"/>
 
                             <Label Text="Otros :"
-                                   FontFamily="{StaticResource NormalFont}"
+                                   FontFamily="NormalFont"
                                    FontSize="16"
                                    TextColor="White"
                                    VerticalOptions="CenterAndExpand"

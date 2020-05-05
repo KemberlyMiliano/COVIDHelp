@@ -16,14 +16,14 @@
                         <StackLayout>
                             <Label Text="Haz una lista!" 
                                    FontSize="27" 
-                                   FontFamily="{StaticResource BoldFont}"
+                                   FontFamily="BoldFont"
                                    TextColor="Black"
                                    Margin="0,0,0,20"/>
 
                             <Label Text="Necesidades:" 
                                    TextColor="Gray"
                                    FontSize="17"
-                                   FontFamily="{StaticResource BoldFont}"
+                                   FontFamily="BoldFont"
                                    Margin="0,0,0,20"/>
                         </StackLayout>
                     </ListView.Header>
@@ -41,7 +41,7 @@
                                 <Label Text="{Binding Text}"
                                        TextColor="Black"
                                        FontSize="17" 
-                                       FontFamily="{StaticResource NormalFont}"/>
+                                       FontFamily="NormalFont"/>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -51,17 +51,17 @@
             <StackLayout Padding="20">
                 <Entry Text="{Binding Text}" 
                        Placeholder="Necesidad"
-                       FontFamily="{StaticResource NormalFont}"/>
+                       FontFamily="NormalFont"/>
 
                 <Button Text="Añadir" 
                         CornerRadius="10"
                         BackgroundColor="Green"
                         TextColor="White"
-                        FontFamily="{StaticResource BoldFont}"
+                        FontFamily="BoldFont"
                        Command="{Binding AddToList}"/>
 
                 <Button Text="Listo!" CornerRadius="10"
-                        FontFamily="{StaticResource BoldFont}"
+                        FontFamily="BoldFont"
                         Command="{Binding AddToGlobalRequests}"/>
             </StackLayout>
 

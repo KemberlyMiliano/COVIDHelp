@@ -7,7 +7,7 @@
              x:Class="COVIDHelp.Views.RequestsListPage"
              xmlns:system="clr-namespace:System;assembly=netstandard"
              x:Name="requestPage"
-             xmlns:converters="clr-namespace:COVIDHelp.Converters"
+             xmlns:converters="clr-namespace:COVIDHelp.Converters" xmlns:controltemplate="clr-namespace:COVIDHelp.Views.ControlTemplate"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <converters:RelativeDateTimeConvertor x:Key="RelativeDateTimeConvertor"/>
@@ -16,7 +16,7 @@
         <StackLayout Margin="20">
             <Label Text="Mis solicitudes" 
                    FontSize="28" 
-                   FontFamily="{StaticResource BoldFont}" 
+                   FontFamily="BoldFont" 
                    Margin="0,10,0,20" 
                    TextColor="Black"/>
             <RefreshView IsRefreshing="{Binding IsRefresh}" 
@@ -24,6 +24,9 @@
                 <ListView ItemsSource="{Binding Requests}"  
                           Grid.Row="2"
                           RowHeight="80">
+                    <ListView.Header>
+                        <controltemplate:ConnectivityView VerticalOptions="StartAndExpand"/>
+                    </ListView.Header>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -52,14 +55,14 @@
                                             </Grid.RowDefinitions>
 
                                             <Label Grid.Column="1" Text="{Binding Needed.Name}"    
-                                                   FontFamily="{StaticResource BoldFont}"
+                                                   FontFamily="BoldFont"
                                                    TextColor="Black">
                                                 <Label.FormattedText>
                                                     <FormattedString>
                                                         <Span Text="{Binding Needed.Name}"/>
                                                         <Span Text="{Binding Needed.LastName,StringFormat=' {0}'}"/>
                                                         <Span Text="{Static system:Environment.NewLine }"/>
-                                                        <Span Text="{Binding Type}" FontFamily="{StaticResource NormalFont}" />
+                                                        <Span Text="{Binding Type}" FontFamily="NormalFont" />
                                                     </FormattedString>
                                                 </Label.FormattedText>
 

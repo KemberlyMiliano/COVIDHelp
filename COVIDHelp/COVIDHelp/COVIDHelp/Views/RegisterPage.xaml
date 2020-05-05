@@ -30,7 +30,7 @@
 
                 <Label
                Text="Añadir foto de perfil"
-               FontFamily="{StaticResource BoldFont}"
+               FontFamily="BoldFont"
                FontSize="Large"
                HorizontalOptions="CenterAndExpand"
                VerticalOptions="StartAndExpand"
@@ -71,7 +71,7 @@
                                VerticalOptions="End"
                                TextColor="White"
                                 x:Name="Entry1"
-                               FontFamily="{StaticResource NormalFont}" >
+                               FontFamily="NormalFont" >
                     <Entry.Triggers>
                         <DataTrigger TargetType="Entry" Binding="{Binding StepSelected}" Value="2" >
                             <Setter Property="Placeholder" Value="Contraseña"/>
@@ -92,7 +92,7 @@
                                PlaceholderColor="White"
                                TextColor="White" 
                                x:Name="Entry2"
-                               FontFamily="{StaticResource NormalFont}">
+                               FontFamily="NormalFont">
                     <Entry.Triggers>
                         <DataTrigger TargetType="Entry" Binding="{Binding StepSelected}" Value="2" >
                             <Setter Property="Placeholder" Value="Confirmar contraseña"/>
@@ -111,7 +111,7 @@
                                     Grid.Row="2"
                                     Grid.ColumnSpan="2"
                                     TextColor="White" 
-                                    FontFamily="{StaticResource NormalFont}">
+                                    FontFamily="NormalFont">
                     <DatePicker.Triggers>
                         <DataTrigger TargetType="DatePicker" Binding="{Binding StepSelected}" Value="2">
                             <Setter Property="IsVisible" Value="False"/>
@@ -130,7 +130,7 @@
                                 Grid.ColumnSpan="2" 
                                 TitleColor="White"
                                 TextColor="Black"
-                                FontFamily="{StaticResource NormalFont}">
+                                FontFamily="NormalFont">
                     <Picker.Triggers>
                         <DataTrigger TargetType="Picker" Binding="{Binding StepSelected}" Value="2" >
                             <Setter Property="IsVisible" Value="False"/>
@@ -150,7 +150,7 @@
                                Grid.ColumnSpan="4" 
                                PlaceholderColor="White"
                                 x:Name="Entry3"
-                                FontFamily="{StaticResource NormalFont}">
+                                FontFamily="NormalFont">
                     <Entry.Triggers>
                         <DataTrigger TargetType="Entry" Binding="{Binding StepSelected}" Value="2" >
                             <Setter Property="IsVisible" Value="False"/>
@@ -169,7 +169,7 @@
                                PlaceholderColor="White"
                                TextColor="White"
                                 x:Name="Entry4"
-                               FontFamily="{StaticResource NormalFont}">
+                               FontFamily="NormalFont">
                     <Entry.Triggers>
                         <DataTrigger TargetType="Entry" Binding="{Binding StepSelected}" Value="2" >
                             <Setter Property="IsVisible" Value="False"/>

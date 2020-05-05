@@ -14,7 +14,7 @@
     <StackLayout>
         <Label Text="Ayuda!"
                HorizontalOptions="CenterAndExpand"
-               FontFamily="{StaticResource BoldFont}"
+               FontFamily="BoldFont"
                TextColor="Black"
                FontSize="20"
                Margin="10"/>
@@ -22,14 +22,14 @@
         <Button Text="Salud"
                 Command="{Binding CloseCommand}"
                 TextColor="White"
-                FontFamily="{StaticResource BoldFont}"
+                FontFamily="BoldFont"
                 HorizontalOptions="FillAndExpand"
                 BackgroundColor="#01608C"
                 CornerRadius="5"/>
 
         <Button Text="Policia"
                 Command="{Binding CloseCommand}"
-                FontFamily="{StaticResource BoldFont}"
+                FontFamily="BoldFont"
                 TextColor="White"
                 HorizontalOptions="FillAndExpand"
                 BackgroundColor="#01608C"
@@ -37,7 +37,7 @@
 
         <Button Text="Bomberos"
                 Command="{Binding CloseCommand}"
-                FontFamily="{StaticResource BoldFont}"
+                FontFamily="BoldFont"
                 TextColor="White"
                 HorizontalOptions="FillAndExpand"
                 BackgroundColor="#01608C"

@@ -24,14 +24,14 @@
                    Grid.Row="1" 
                    FontSize="18"
                    HorizontalTextAlignment="Center"
-                   FontFamily="{StaticResource NormalFont}"
+                   FontFamily="NormalFont"
                    VerticalOptions="CenterAndExpand" 
                    HorizontalOptions="CenterAndExpand"
                    TextColor="White"/>
 
             <Button Text="TURN ON" 
                     Command="{Binding ConfirmCommand}"
-                    FontFamily="{StaticResource BoldFont}"
+                    FontFamily="BoldFont"
                     BorderColor="White" 
                     BorderWidth="6" 
                     Padding="20"

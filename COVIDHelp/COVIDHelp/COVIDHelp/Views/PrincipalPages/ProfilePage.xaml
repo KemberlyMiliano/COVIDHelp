@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              mc:Ignorable="d"
-             xmlns:system="clr-namespace:System;assembly=netstandard"
+             xmlns:system="clr-namespace:System;assembly=netstandard" xmlns:customrate="clr-namespace:COVIDHelp.Views.DailogsViews"
              x:Class="COVIDHelp.Views.ProfilePage"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="White">
@@ -62,7 +62,7 @@
                   >
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span  Text="" FontFamily="{StaticResource FontAwesomeSolid}"  FontSize="36"/>
+                            <Span  Text="" FontFamily="FontAwesomeSolid"  FontSize="36"/>
                             <Span  Text="{Static system:Environment.NewLine}"/>
                             <Span  Text="{Static system:Environment.NewLine}"/>
                             <Span  Text="Editar" FontSize="20"/>
@@ -78,7 +78,7 @@
                         TextColor="White" >
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span  Text="" FontFamily="{StaticResource FontAwesomeSolid}"  FontSize="36"/>
+                            <Span  Text="" FontFamily="FontAwesomeSolid"  FontSize="36"/>
                             <Span  Text="{Static system:Environment.NewLine}"/>
                             <Span  Text="{Static system:Environment.NewLine}"/>
                             <Span  Text="Salir" FontSize="20"/>
@@ -109,16 +109,18 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <pancakeView:PancakeView CornerRadius="30,30,30,30" Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="4" BackgroundColor="#0272A6" Padding="15">
+                    <pancakeView:PancakeView CornerRadius="30,30,30,30" Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="4" BackgroundColor="{StaticResource AccentColor}" Padding="15">
                         <Grid >
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="55" />
+                                <RowDefinition Height="1" />
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="2"/>
+                                <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
@@ -127,7 +129,7 @@
                                     FontSize="40"
                                     TextColor="White"
                                         Grid.Row="0"
-                                    FontFamily="{StaticResource FontAwesomeSolid}"
+                                    FontFamily="FontAwesomeSolid"
                                         Grid.Column="0"
                                         HorizontalOptions="Start"
                                         VerticalOptions="StartAndExpand">
@@ -139,31 +141,86 @@
 
                             <Label 
                                         HorizontalOptions="CenterAndExpand"
-                                        FontFamily="{StaticResource BoldFont}"
-                                        FontSize="20"
+                                        FontFamily="BoldFont"
+                                        FontSize="24"
                                         Grid.Row="1"
                                         Grid.ColumnSpan="4"
                                         VerticalOptions="StartAndExpand"
-                                        TextColor="Black">
+                                        TextColor="White">
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text="{Binding User.Names}"  />
+                                        <Span Text="{Binding User.Name}"  />
                                         <Span Text="{Binding User.LastName, StringFormat=' {0}'}"  />
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <Label Text="Volunter" 
-                                        HorizontalOptions="CenterAndExpand"
-                                        FontFamily="{StaticResource BoldFont}"
-                                        FontSize="16"
-                                        Grid.Row="1"
-                                        Grid.ColumnSpan="4"
-                                        VerticalOptions="End"
-                                        TextColor="DarkGray"/>
-                            <Label BackgroundColor="Red"
-                                   Grid.Row="2"
+                            <Label Grid.Row="2" BackgroundColor="White" Grid.ColumnSpan="4"/>
+                            <Label HorizontalTextAlignment="Center"
+                                   Grid.Row="3"
+                                   TextColor="White"
+                                   FontSize="20"
+                                   >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text=""  FontFamily="FontAwesomeSolid" FontSize="24"/>
+                                        <Span Text="{Static system:Environment.NewLine}"/>
+                                        <Span Text="5"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label HorizontalTextAlignment="Center"
+                                   Grid.Row="3"
+                                   Grid.Column="1"
+                                   TextColor="White"
+                                   FontSize="18"
+                                   >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text=""  FontFamily="FontAwesomeSolid" FontSize="24"/>
+                                        <Span Text="{Static system:Environment.NewLine}"/>
+                                        <Span Text="5"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label HorizontalTextAlignment="Center"
+                                   Grid.Row="3"
+                                   TextColor="White"
                                    Grid.Column="2"
-                                   Grid.ColumnSpan="2"/>
+                                   FontSize="20"
+                                   >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text=""  FontFamily="FontAwesomeSolid" FontSize="24"/>
+                                        <Span Text="{Static system:Environment.NewLine}"/>
+                                        <Span Text="5"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label HorizontalTextAlignment="Center"
+                                   Grid.Row="3"
+                                   TextColor="White"
+                                   Grid.Column="3"
+                                   FontSize="20"
+                                   >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text=""  FontFamily="FontAwesomeSolid" FontSize="24"/>
+                                        <Span Text="{Static system:Environment.NewLine}"/>
+                                        <Span Text="5"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <customrate:RatingSlider 
+                                Grid.Row="4"
+                                Grid.Column="1"
+                                TranslationX="30"
+                                TranslationY="20"
+                                Grid.ColumnSpan="3"
+                                HorizontalOptions="StartAndExpand"  
+                                ItemSpacing="20"
+                                 SelectedPosition="4"
+                                 NumberOfItems="5"
+                                />
 
                         </Grid >
                     </pancakeView:PancakeView>
@@ -185,13 +242,13 @@
                                 HorizontalOptions="Center" 
                                 VerticalOptions="Start"
                                 Text="Descripcion"
-                                FontFamily="{StaticResource BoldFont}"/>
+                                FontFamily="BoldFont"/>
 
                     <Label  Grid.Row="3" 
                                  Grid.ColumnSpan="4"
                                 VerticalOptions="CenterAndExpand"
                                  Text="{Binding User.SelfBiography}"
-                                FontFamily="{StaticResource NormalFont}">
+                                FontFamily="NormalFon}">
                     </Label>
 
 

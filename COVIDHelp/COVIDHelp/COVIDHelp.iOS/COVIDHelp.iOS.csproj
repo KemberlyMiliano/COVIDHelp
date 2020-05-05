@@ -69,11 +69,6 @@
     <BundleResource Include="GoogleService-Info.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <BundleResource Include="Resources\Raleway-Bold.ttf" />
-    <BundleResource Include="Resources\Raleway-Regular.ttf" />
-    <BundleResource Include="Resources\Font-Awesome-Brands-Regular.otf" />
-    <BundleResource Include="Resources\Font-Awesome-Free-Solid.otf" />
-    <BundleResource Include="Resources\Font-Awesome-Regular.otf" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />

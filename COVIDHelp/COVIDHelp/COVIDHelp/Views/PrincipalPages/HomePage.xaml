@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:controltemplate="clr-namespace:COVIDHelp.Views.ControlTemplate"
+             mc:Ignorable="d"
+             BackgroundColor="{StaticResource AccentColor}"
+             x:Class="COVIDHelp.Views.NeededViews.HomePage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <Style TargetType="pancakeview:PancakeView" x:Key="PrincipalButton">
+            <Setter Property="BackgroundColor" Value="{StaticResource ThirdAccentColor}"/>
+            <Setter Property="CornerRadius" Value="17"/>
+            <Setter Property="Margin" Value="0,0,2,10"/>
+            <Setter Property="HeightRequest" Value="60"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontFamily" Value="BoldFont"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout Margin="20,40,10,20">
+                <Label Text="¡Bienvenido!"
+                   TextColor="White"
+                   FontSize="30"
+                   VerticalOptions="Center" 
+                   HorizontalOptions="StartAndExpand"
+                   FontFamily="BoldFont"/>
+                <Label Text="¿Necesitas ayuda?"
+                   TextColor="White"
+                   FontSize="28"
+                   VerticalOptions="Center" 
+                   HorizontalOptions="StartAndExpand"
+                   FontFamily="BoldFont" 
+                   Margin="0,0,0,35"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <pancakeview:PancakeView Style="{StaticResource PrincipalButton}">
+                        <pancakeview:PancakeView.GestureRecognizers>
+                            <TapGestureRecognizer  Command="{Binding GoToMaps}"
+                                               CommandParameter="Alimentos"/>
+                        </pancakeview:PancakeView.GestureRecognizers>
+                        <StackLayout Orientation="Horizontal" >
+                            <Image Source="comer.png"
+                               HeightRequest="30"
+                               HorizontalOptions="CenterAndExpand"
+                               BackgroundColor="Transparent" />
+                            <Label Text="Alimentos"
+                               Grid.Row="1"
+                               FontSize="16"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="StartAndExpand" />
+                        </StackLayout>
+                        <pancakeview:PancakeView.Triggers>
+                            <DataTrigger TargetType="pancakeview:PancakeView"
+                             Binding="{Binding IsMapEnable}"
+                             Value="false">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="Opacity" Value="0.7"/>
+                            </DataTrigger>
+                        </pancakeview:PancakeView.Triggers>
+                    </pancakeview:PancakeView>
+                    <pancakeview:PancakeView  Style="{StaticResource PrincipalButton}"
+                                          Grid.Column="1">
+                        <pancakeview:PancakeView.GestureRecognizers>
+                            <TapGestureRecognizer   Command="{Binding GoToMaps}"
+                                                CommandParameter="Medicamentos"/>
+                        </pancakeview:PancakeView.GestureRecognizers>
+
+                        <StackLayout Orientation="Horizontal" >
+                            <Image Source="medicina.png"
+                               HeightRequest="30"
+                               Margin="12"
+                               HorizontalOptions="Start"
+                               BackgroundColor="Transparent"/>
+
+                            <Label Text="Medicina"
+                               Grid.Row="1"
+                               FontSize="16"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="StartAndExpand" />
+
+                        </StackLayout>
+                        <pancakeview:PancakeView.Triggers>
+                            <DataTrigger TargetType="pancakeview:PancakeView"
+                             Binding="{Binding IsMapEnable}"
+                             Value="false">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="Opacity" Value="0.7"/>
+                            </DataTrigger>
+                        </pancakeview:PancakeView.Triggers>
+                    </pancakeview:PancakeView>
+                    <pancakeview:PancakeView Style="{StaticResource PrincipalButton}"
+                                         Grid.Row="1">
+                        <pancakeview:PancakeView.GestureRecognizers>
+                            <TapGestureRecognizer  Command="{Binding GoToMedicalAssintence}"
+                                               CommandParameter="Helpers"/>
+                        </pancakeview:PancakeView.GestureRecognizers>
+                        <StackLayout Orientation="Horizontal" >
+                            <Label Text=""
+                               VerticalOptions="CenterAndExpand"
+                               FontSize="24"
+                               Margin="15"
+                               FontFamily="FontAwesomeSolid"
+                               HorizontalOptions="CenterAndExpand"/>
+
+                            <Label Text="Asistencia Médica"
+                               Grid.Row="1"
+                               FontSize="16" 
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="CenterAndExpand" />
+
+                        </StackLayout>
+                    </pancakeview:PancakeView>
+                    <pancakeview:PancakeView Style="{StaticResource PrincipalButton}"
+                                         Grid.Row="1"
+                                         Grid.Column="1">
+                        <pancakeview:PancakeView.GestureRecognizers>
+                            <TapGestureRecognizer  Command="{Binding GoToIdentification}"
+                                               CommandParameter="Helpers"/>
+
+                        </pancakeview:PancakeView.GestureRecognizers>
+                        <pancakeview:PancakeView.Triggers>
+                            <DataTrigger TargetType="pancakeview:PancakeView"
+                             Binding="{Binding IsNotConnected}"
+                             Value="true">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="Opacity" Value="0.7"/>
+                            </DataTrigger>
+                        </pancakeview:PancakeView.Triggers>
+                        <StackLayout Orientation="Horizontal" >
+                            <Label Text=""
+                               FontSize="24"
+                               FontFamily="FontAwesomeSolid"
+                               Margin="15"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="Start"
+                               BackgroundColor="Transparent"/>
+
+                            <Label Text="Voluntario"
+                               FontFamily="BoldFont"
+                               FontSize="16"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalTextAlignment="Center" />
+                        </StackLayout>
+                    </pancakeview:PancakeView>
+                </Grid>
+
+                <pancakeview:PancakeView BackgroundColor="#CB3234" CornerRadius="25" 
+                                     HeightRequest="95"
+                                     Margin="0,10,0,20">
+
+                    <pancakeview:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer   Command="{Binding ShowDialogCommand}"
+                                            CommandParameter="Helpers"/>
+                    </pancakeview:PancakeView.GestureRecognizers>
+
+                    <StackLayout Orientation="Horizontal" Margin="30">
+                        <Label Text="EMERGENCIA"
+                           Grid.Row="1"
+                           FontSize="22"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="StartAndExpand" />
+
+                        <Label Text=""
+                           FontFamily="FontAwesomeSolid"
+                           FontSize="35"
+                           HorizontalOptions="CenterAndExpand"/>
+                    </StackLayout>
+                </pancakeview:PancakeView>
+
+                <pancakeview:PancakeView BackgroundColor="#0272A6" CornerRadius="23" 
+                                     HeightRequest="130">
+                    <pancakeview:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer   Command="{Binding ShowFormulary}"
+                                            CommandParameter="Helpers"/>
+                    </pancakeview:PancakeView.GestureRecognizers>
+                    <pancakeview:PancakeView.Triggers>
+                        <DataTrigger TargetType="pancakeview:PancakeView"
+                             Binding="{Binding IsMapEnable}"
+                             Value="true">
+                            <Setter Property="IsEnabled" Value="False"/>
+                            <Setter Property="Opacity" Value="0.7"/>
+                        </DataTrigger>
+                    </pancakeview:PancakeView.Triggers>
+                    <Grid Margin="20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="¿Crees que tienes Coronavirus?"
+                           FontSize="23"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center" />
+                        <Image Source="coronavirus"
+                           Grid.Column="1"/>
+                    </Grid>
+                </pancakeview:PancakeView>
+            </StackLayout>
+            <controltemplate:ConnectivityView VerticalOptions="StartAndExpand"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

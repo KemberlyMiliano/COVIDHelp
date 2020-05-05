@@ -48,7 +48,7 @@ namespace COVIDHelp.ViewModels
             PickerGender();
             ButtonConfirmCommand = new DelegateCommand(async () =>
             {
-                if (String.IsNullOrEmpty(UserR.Name) && String.IsNullOrEmpty(UserR.Email) && String.IsNullOrEmpty(UserR.Password) )
+                if (BaseUserValidator.Name.IsMatch(UserR.Name)&&BaseUserValidator.Email.IsMatch(UserR.Email)&& BaseUserValidator.Password.IsMatch(UserR.Password))
                 { await dialogService.DisplayAlertAsync("ALERT!", "THERE ARE EMPTY FIELDS", "Ok"); }
                 else if (String.IsNullOrEmpty(UserR.Email))
                 { await dialogService.DisplayAlertAsync("ALERT!", "THE FIELD EMAIL ADDRESS IS EMPTY", "Ok"); }

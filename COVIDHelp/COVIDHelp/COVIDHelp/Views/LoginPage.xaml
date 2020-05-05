@@ -49,7 +49,7 @@
                        FontSize="35" 
                        FontAttributes="Bold"
                        Grid.Row="1"
-                       FontFamily="{StaticResource BoldFont}"
+                       FontFamily="BoldFont"
                        Grid.ColumnSpan="2"/>
               
                 <Entry Placeholder="Phone"
@@ -59,7 +59,7 @@
                        Grid.ColumnSpan="4"
                        TextColor="White"
                        PlaceholderColor="White" 
-                       FontFamily="{StaticResource NormalFont}"/>
+                       FontFamily="NormalFont"/>
                 <Image Source="{Binding ImageModel}"
                        Grid.Row="3"
                        Grid.ColumnSpan="4"
@@ -81,7 +81,7 @@
                        Grid.ColumnSpan="4"
                        TextColor="White"
                        PlaceholderColor="White"
-                       FontFamily="{StaticResource NormalFont}"/>
+                       FontFamily="NormalFont"/>
 
                 <Label Text="Contraseña/correo incorrectos"
                        HorizontalOptions="Start"
@@ -89,7 +89,7 @@
                        TextColor="IndianRed"
                        Grid.Row="4" 
                        Grid.ColumnSpan="4"
-                       FontFamily="{StaticResource NormalFont}"
+                       FontFamily="NormalFont"
                        IsVisible="{Binding IsAlertVisible}"/>
                 <Label
                        Text="Olvidaste tu contraseña?"
@@ -98,7 +98,7 @@
                        Grid.Row="4" 
                        HorizontalOptions="EndAndExpand"
                        Grid.ColumnSpan="4"
-                       FontFamily="{StaticResource NormalFont}">
+                       FontFamily="NormalFont">
 
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"/>
@@ -111,7 +111,7 @@
                        Grid.ColumnSpan="4"/>
                 <Label Grid.Row="5"
                        Text="Recordar correo"
-                       FontFamily="{StaticResource NormalFont}"
+                       FontFamily="NormalFont"
                        FontSize="16"
                        Grid.ColumnSpan="4"
                        VerticalOptions="CenterAndExpand"

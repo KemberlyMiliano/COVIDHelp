@@ -38,11 +38,7 @@ namespace COVIDHelp.ViewModels
                 await navigationService.NavigateAsync(new Uri(NavigationConstants.LoginPage,UriKind.Absolute));
             });
 
-
-
         }
-
-
         async Task FindUser()
         {
             var user = await apiCovitServices.FindUser(Constants.IdKey, Setting.Id, Setting.Token);

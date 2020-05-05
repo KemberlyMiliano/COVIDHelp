@@ -1,5 +1,7 @@
 ﻿using COVIDHelp.Helpers;
 using COVIDHelp.Models;
+using COVIDHelp.Views.HelpersViews;
+using MonkeyCache.FileStore;
 using Refit;
 using System;
 using System.Collections.Generic;
@@ -14,37 +16,97 @@ namespace COVIDHelp.Services
         public async Task<User> FindUser(string type,long phone, [Header(Constants.Authorization)] string token)
         {
             User user = null;
+            try
+            {
+                if (Setting.IsNotConnected && !Barrel.Current.IsExpired(nameof(FindUser)))
+                {
+                    return Barrel.Current.Get<User>(key: nameof(FindUser));
+                }
                 var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
-                 user = await getRequest.FindUser(type, phone, token);
+                user = await getRequest.FindUser(type, phone, token);
+                 Barrel.Current.Add(key: nameof(FindUser), data: user, expireIn: TimeSpan.FromDays(20));
                 return user;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+
 
         }
         public async Task<List<Help>> GetHelp(string type,string status,[Header(Constants.Authorization)] string token)
         {
-            var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
-            var helps = await getRequest.GetHelp(type,status,token);
-            return helps;
+            try
+            {
+                if (Setting.IsNotConnected&&!Barrel.Current.IsExpired(nameof(GetHelp)))
+                {
+                    return Barrel.Current.Get<List<Help>>(key: nameof(GetHelp));
+                }
+                var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
+                var helps = await getRequest.GetHelp(type, status, token);
+                Barrel.Current.Add(key: nameof(GetHelp), data: helps, expireIn: TimeSpan.FromDays(20));
+                return helps;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
         }
 
        
         public async Task<List<User>> GetUser([Header(Constants.Authorization)] string token)
         {
-            var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
-            var help = await getRequest.GetUser(token);
-            return help;
+            try
+            {
+                if (Setting.IsNotConnected && !Barrel.Current.IsExpired(nameof(GetHelp)))
+                {
+                    return Barrel.Current.Get<List<User>>(key: nameof(GetUser));
+                }
+                var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
+                var user = await getRequest.GetUser(token);
+                Barrel.Current.Add(key: nameof(GetUser), data: user, expireIn: TimeSpan.FromDays(20));
+                return user;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+
         }
 
         public async Task<Help> PostHelp([Body] Help help, [Header(Constants.Authorization)] string token)
         {
-            var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
-            return await getRequest.PostHelp(help,token);
+            try
+            {
+                var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
+                return await getRequest.PostHelp(help, token);
+
+            }
+            catch (Exception)
+            {
+
+                return help;
+            }
+
         }
 
 
         public async Task<Help> PutHelp([Body] Help help, [Header(Constants.Authorization)] string token)
         {
-            var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
-            return await getRequest.PutHelp(help,token);
+            try
+            {
+                var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
+                return await getRequest.PutHelp(help, token);
+            }
+            catch (Exception)
+            {
+
+                return help;
+            }
+
         }
 
         public Task<User> SendCodePhone(int phone, [Header(Constants.Authorization)] string token)
@@ -52,10 +114,19 @@ namespace COVIDHelp.Services
             throw new NotImplementedException();
         }
 
-        public async Task<User> UpdateUser([Body] User user, [Header(Constants.Authorization    )] string token)
+        public async Task<User> UpdateUser([Body] User user, [Header(Constants.Authorization)] string token)
         {
-            var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
-            return await getRequest.UpdateUser(user,token);
+            try
+            {
+                var getRequest = RestService.For<IApiCovitServices>(ConfigApi.UrlApi);
+                return await getRequest.UpdateUser(user, token);
+            }
+            catch (Exception)
+            {
+
+                return user;
+            }
+
         }
 
         public async Task<HttpResponseMessage> LoginUser([Body] User user)

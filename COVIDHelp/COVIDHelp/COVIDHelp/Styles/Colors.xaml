@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary  xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="COVIDHelp.Styles.Colors">
+    <Color x:Key="AccentColor">#00344D</Color>
+    <Color x:Key="SecondaryAccentColor">#FFFFFF</Color>
+    <Color x:Key="ThirdAccentColor">#324b60</Color>
+    <Color x:Key="PrimaryColorText">#FFFFFF</Color>
+    <Color x:Key="SecondaryColorText">#010203</Color> 
+</ResourceDictionary>
