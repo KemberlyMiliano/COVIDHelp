@@ -7,7 +7,14 @@
              xmlns:system="clr-namespace:System;assembly=netstandard" xmlns:customrate="clr-namespace:COVIDHelp.Views.DailogsViews"
              x:Class="COVIDHelp.Views.ProfilePage"
              NavigationPage.HasNavigationBar="False"
-             BackgroundColor="White">
+             BackgroundColor="#0272A6">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
 
         <Grid>
@@ -92,14 +99,16 @@
 
             <!-- PROFILE PAGE -->
 
-            <Frame x:Name="ProfileePage" HasShadow="False" IsClippedToBounds="True" CornerRadius="0">
-                <Grid >
+            <pancakeView:PancakeView BackgroundGradientStartColor="LightGray" BackgroundGradientEndColor="{StaticResource AccentColor}" BackgroundGradientAngle="40">
+                <Grid x:Name="ProfileePage"   Padding="10" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" x:Name="ToolbarSafeAreaRow" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="30" />
+                        <RowDefinition Height="60" />
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+
 
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -109,151 +118,121 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <pancakeView:PancakeView CornerRadius="30,30,30,30" Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="4" BackgroundColor="{StaticResource AccentColor}" Padding="15">
-                        <Grid >
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="55" />
-                                <RowDefinition Height="1" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Label  Text=""
-                                    FontSize="40"
-                                    TextColor="White"
-                                        Grid.Row="0"
+                    <Label  Text="" FontSize="30"
+                       
+                                        Grid.Row="1"
                                     FontFamily="FontAwesomeSolid"
                                         Grid.Column="0"
                                         HorizontalOptions="Start"
-                                        VerticalOptions="StartAndExpand">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer  NumberOfTapsRequired="1" Tapped="OnShowMenu"/>
-                                </Label.GestureRecognizers>
-                            </Label>
+                                        VerticalOptions="Start">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer  NumberOfTapsRequired="1" Tapped="OnShowMenu"/>
+                        </Label.GestureRecognizers>
+                    </Label>
 
-
-                            <Label 
-                                        HorizontalOptions="CenterAndExpand"
-                                        FontFamily="BoldFont"
-                                        FontSize="24"
-                                        Grid.Row="1"
-                                        Grid.ColumnSpan="4"
-                                        VerticalOptions="StartAndExpand"
-                                        TextColor="White">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="{Binding User.Name}"  />
-                                        <Span Text="{Binding User.LastName, StringFormat=' {0}'}"  />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <Label Grid.Row="2" BackgroundColor="White" Grid.ColumnSpan="4"/>
-                            <Label HorizontalTextAlignment="Center"
-                                   Grid.Row="3"
-                                   TextColor="White"
-                                   FontSize="20"
-                                   >
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text=""  FontFamily="FontAwesomeSolid" FontSize="24"/>
-                                        <Span Text="{Static system:Environment.NewLine}"/>
-                                        <Span Text="5"/>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <Label HorizontalTextAlignment="Center"
-                                   Grid.Row="3"
-                                   Grid.Column="1"
-                                   TextColor="White"
-                                   FontSize="18"
-                                   >
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text=""  FontFamily="FontAwesomeSolid" FontSize="24"/>
-                                        <Span Text="{Static system:Environment.NewLine}"/>
-                                        <Span Text="5"/>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <Label HorizontalTextAlignment="Center"
-                                   Grid.Row="3"
-                                   TextColor="White"
-                                   Grid.Column="2"
-                                   FontSize="20"
-                                   >
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text=""  FontFamily="FontAwesomeSolid" FontSize="24"/>
-                                        <Span Text="{Static system:Environment.NewLine}"/>
-                                        <Span Text="5"/>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <Label HorizontalTextAlignment="Center"
-                                   Grid.Row="3"
-                                   TextColor="White"
-                                   Grid.Column="3"
-                                   FontSize="20"
-                                   >
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text=""  FontFamily="FontAwesomeSolid" FontSize="24"/>
-                                        <Span Text="{Static system:Environment.NewLine}"/>
-                                        <Span Text="5"/>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <customrate:RatingSlider 
-                                Grid.Row="4"
-                                Grid.Column="1"
-                                TranslationX="30"
-                                TranslationY="20"
-                                Grid.ColumnSpan="3"
-                                HorizontalOptions="StartAndExpand"  
-                                ItemSpacing="20"
-                                 SelectedPosition="4"
-                                 NumberOfItems="5"
-                                />
-
-                        </Grid >
+                    <pancakeView:PancakeView Grid.ColumnSpan="4"
+                                             Grid.Row="2"
+                                             BorderColor="GhostWhite"
+                                             BorderThickness="12"
+                                         BorderDrawingStyle="Outside"
+                                         BorderGradientStartColor="{StaticResource AccentColor}"
+                                         BorderGradientEndColor="WhiteSmoke"
+                                         BorderGradientAngle="20"
+                                         CornerRadius="100"
+                                         WidthRequest="200"
+                                         HeightRequest="200"
+                                         HasShadow="True"
+                                             HorizontalOptions="CenterAndExpand"
+                                             >
+                        <Image      
+                                Aspect="AspectFill"
+                                Source="ProfileDai"
+                               />
                     </pancakeView:PancakeView>
-
-                    <Image HeightRequest="100"
-                                Source="defaultUser"
-                                Grid.Row="1"
-                                Grid.ColumnSpan="4"
-                                HorizontalOptions="StartAndExpand"
-                                VerticalOptions="EndAndExpand"
-                                WidthRequest="100"
-                                TranslationY="40"
-                                Margin="30,0"/>
-
-                   
 
                     <Label Grid.Row="3"
                                 Grid.ColumnSpan="4"
                                 HorizontalOptions="Center" 
                                 VerticalOptions="Start"
                                 Text="Descripcion"
-                                FontFamily="BoldFont"/>
-
-                    <Label  Grid.Row="3" 
-                                 Grid.ColumnSpan="4"
-                                VerticalOptions="CenterAndExpand"
-                                 Text="{Binding User.SelfBiography}"
-                                FontFamily="NormalFon}">
+                                FontFamily="BoldFont">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding User.Name}" FontSize="30"/>
+                                <Span Text="{Binding User.LastName,StringFormat=' {0}'}" FontSize="30"/>
+                            </FormattedString>
+                        </Label.FormattedText>
                     </Label>
+
+                    <Label Grid.Row="4"
+                       Grid.Column="1"
+                        HorizontalOptions="CenterAndExpand"
+                       >
+                        <Label.FormattedText>
+                            <FormattedString>
+
+                                <Span Text="" FontFamily="FontAwesomeSolid" FontSize="20"/>
+                                <Span Text="{Static system:Environment.NewLine}"/>
+                                <Span Text="20"  FontSize="20"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Label Grid.Row="4"
+                       Grid.Column="2"
+                       HorizontalOptions="CenterAndExpand"
+                       >
+                        <Label.FormattedText>
+                            <FormattedString>
+
+                                <Span Text="" FontFamily="FontAwesomeSolid" FontSize="20"/>
+                                <Span Text="{Static system:Environment.NewLine}"/>
+                                <Span Text="20" FontSize="20"/>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Grid.Row="4"
+                       Grid.ColumnSpan="4"
+                       WidthRequest="2"
+                       BackgroundColor="Black"
+                       HorizontalOptions="CenterAndExpand"
+                       />
+                    <Label Grid.Row="5"
+                                Grid.ColumnSpan="4"
+                                VerticalOptions="Start"
+                                Text="Descripcion"
+                                FontFamily="BoldFont"
+                       >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Static system:Environment.NewLine}"/>
+                                <Span Text="" FontFamily="FontAwesomeSolid"/>
+                                <Span Text="{Binding User.Phone,StringFormat=' {0}'}"/>
+                                <Span Text="{Static system:Environment.NewLine}"/>
+                                <Span Text="" FontFamily="FontAwesomeSolid"/>
+                                <Span Text="{Binding User.Address,StringFormat='  {0}'}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Text="Biografia" 
+                       VerticalOptions="StartAndExpand"
+                       HorizontalOptions="CenterAndExpand"
+                       Grid.Row="6"
+                       FontSize="24"
+                       FontFamily="BoldFont"
+                       Grid.ColumnSpan="4"/>
+                    <Label Text="{Binding User.SelfBiography}" 
+                       Margin="0,30,0,0"
+                       Grid.Row="6"
+                       Grid.ColumnSpan="4"
+                       FontSize="16"/>
 
 
                 </Grid>
-            </Frame>
+            </pancakeView:PancakeView>
         </Grid>
+ 
     </ContentPage.Content>
 </ContentPage>

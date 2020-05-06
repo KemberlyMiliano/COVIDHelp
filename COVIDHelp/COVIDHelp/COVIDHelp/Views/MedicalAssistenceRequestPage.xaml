@@ -21,6 +21,7 @@
 
         <Grid Padding="20" RowSpacing="40">
             <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -35,19 +36,20 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-
+            <Button Text="" FontSize="30" BackgroundColor="Transparent" TranslationX="-15" TextColor="Black" HorizontalOptions="Start" FontFamily="FontAwesomeSolid" VerticalOptions="StartAndExpand" />
             <Label Text="Quién te puede ayudar?"                           
                    FontFamily="BoldFont"
                    FontSize="27"                           
                    HorizontalTextAlignment="Center"                          
                    TextColor="Black"                         
-                   Grid.RowSpan="2"                          
+                   Grid.RowSpan="3"   
+                   Grid.Row="1"
                    Grid.ColumnSpan="3"          
                    Margin="0,20,0,20"/>
 
             <ImageButton Source="nurse"
                          TranslationY="15" 
-                         Grid.Row="3"
+                         Grid.Row="4"
                          HeightRequest="100"
                          BackgroundColor="Transparent"
                          Grid.ColumnSpan="3"
@@ -55,7 +57,7 @@
                          Command="{Binding GoToNurseAssistence}"/>
 
             <ImageButton Source="doctor1.png"
-                         Grid.Row="1"
+                         Grid.Row="2"
                          TranslationY="15"
                          HeightRequest="100"
                          BackgroundColor="Transparent"
@@ -64,7 +66,7 @@
                          Command="{Binding GoToDoctorAssistence}"/>
 
             <ImageButton Source="woman.png"
-                         Grid.Row="3"
+                         Grid.Row="4"
                          TranslationY="20"
                          HeightRequest="80"
                          BackgroundColor="Transparent"
@@ -73,13 +75,13 @@
                          Command="{Binding GoToPsycologyAssistence}"/>
 
             <Label Text="Enfermero(a)"
-                       Grid.Row="1" 
+                       Grid.Row="2" 
                        HeightRequest="100" 
                        Grid.ColumnSpan="3" />
 
             <ImageButton Source="nurse" 
                              TranslationY="15"
-                             Grid.Row="1" 
+                             Grid.Row="2" 
                              HeightRequest="80"
                              BackgroundColor="Transparent" 
                              Grid.ColumnSpan="3"
@@ -88,12 +90,12 @@
                              CommandParameter="Asistencia_Medica"/>
 
             <Label Text="Doctor(a)"
-                       Grid.Row="2" 
+                       Grid.Row="3" 
                        HeightRequest="80"
                        Grid.ColumnSpan="3" />
 
             <ImageButton Source="doctor1.png"
-                         Grid.Row="2" 
+                         Grid.Row="3" 
                          TranslationY="15" 
                          HeightRequest="80" 
                          BackgroundColor="Transparent" 
@@ -103,12 +105,12 @@
                          CommandParameter="Emergencia"/>
 
             <Label Text="Psicologo(a)"
-                   Grid.Row="3" 
+                   Grid.Row="4" 
                    HeightRequest="80"
                    Grid.ColumnSpan="3" />
 
             <ImageButton Source="woman.png"
-                         Grid.Row="3" 
+                         Grid.Row="4" 
                          TranslationY="20" 
                          HeightRequest="80" 
                          BackgroundColor="Transparent"

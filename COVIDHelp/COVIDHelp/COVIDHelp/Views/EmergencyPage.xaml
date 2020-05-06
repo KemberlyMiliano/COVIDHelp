@@ -12,6 +12,7 @@
              HasShadow="false"
              BackgroundColor="White">
     <StackLayout>
+        
         <Label Text="Ayuda!"
                HorizontalOptions="CenterAndExpand"
                FontFamily="BoldFont"

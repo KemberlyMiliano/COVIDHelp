@@ -19,12 +19,11 @@ namespace COVIDHelp.Views.HelpersViews
         public HelpPage()
         {
             InitializeComponent();
-            string latitude = null, longitude = null;
-            latitude = latitude.GetPreferences("latitude");
-            longitude = longitude.GetPreferences("longitude");
-            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(double.Parse(latitude), double.Parse(longitude)), Distance.FromMiles(2)));
         }
-
+        public async void GetLocation()
+        {
+            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(double.Parse(await Setting.Latitude()), double.Parse(await Setting.Longitude())), Distance.FromMiles(2)));
+        }
         private void ListPeople_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selectHelp = e.CurrentSelection.FirstOrDefault() as Help;

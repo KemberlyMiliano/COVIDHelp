@@ -16,27 +16,12 @@
             BarBackgroundColor="#00344D">
     <TabbedPage.Children>
 
-        <NavigationPage IconImageSource="home" Title="Inicio">
-            <x:Arguments>
-                <helper1:HomePage/>
-            </x:Arguments>
-        </NavigationPage>
+            <helper1:HomePage IconImageSource="home" Title="Inicio"/>
 
-        <NavigationPage IconImageSource="request" Title="Solicitudes">
-            <x:Arguments>
-                <local:RequestsListPage/>
-            </x:Arguments>
-        </NavigationPage>
+                <local:RequestsListPage  IconImageSource="request" Title="Solicitudes"/>
 
-        <NavigationPage IconImageSource="commitments" Title="Ayudas">
-            <x:Arguments>
-                <helper:CommitmentsPage/>
-            </x:Arguments>
-        </NavigationPage>
-        <NavigationPage IconImageSource="profile" Title="Perfil">
-            <x:Arguments>
-                <local:ProfilePage/>
-            </x:Arguments>
-        </NavigationPage>
+                <helper:CommitmentsPage IconImageSource="commitments" Title="Ayudas"/>
+
+                <local:ProfilePage IconImageSource="profile" Title="Perfil"/>
     </TabbedPage.Children>
 </TabbedPage>

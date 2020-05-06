@@ -10,6 +10,7 @@
             <CollectionView ItemsSource="{Binding Diseases}">
                 <CollectionView.Header>
                     <StackLayout>
+                        <Button Text="" FontSize="30" BackgroundColor="Transparent" TranslationX="-15" TextColor="White" HorizontalOptions="Start" FontFamily="FontAwesomeSolid" VerticalOptions="StartAndExpand" />
                         <Label Text="Síntomas :"
                                FontFamily="BoldFont" 
                                HorizontalOptions="Center"

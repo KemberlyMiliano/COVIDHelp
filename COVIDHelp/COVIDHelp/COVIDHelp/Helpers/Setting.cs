@@ -130,17 +130,17 @@ namespace COVIDHelp.Helpers
 
             }
         }
-        public async static Task<string> Latitude(this string lat) {
+        public async static Task<string> Latitude() {
 
             var location = await Geolocation.GetLastKnownLocationAsync();
             if (location!=null)
             {
                 return $"{location.Latitude}";
             }
-            return lat;
+            return "0,0";
 
         }
-        public async static Task<string> Longitude(this string lng)
+        public async static Task<string> Longitude()
         {
 
             var location = await Geolocation.GetLastKnownLocationAsync();
@@ -148,13 +148,14 @@ namespace COVIDHelp.Helpers
             {
                 return $"{location.Longitude}";
             }
-            return lng;
+            return "0,0";
         }
         public static void CloseLogged()
         {
             try
             {
                 SecureStorage.RemoveAll();
+                Barrel.Current.EmptyAll();
             }
             catch (Exception)
             {

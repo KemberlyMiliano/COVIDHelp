@@ -9,7 +9,6 @@
              xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:system="clr-namespace:System;assembly=netstandard" 
              xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:converter="clr-namespace:COVIDHelp.Converters"
-             NavigationPage.HasNavigationBar="False"
              x:Name="helpPage"
              >
     <ContentPage.Resources>
@@ -23,6 +22,8 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+            
+            
             <pancakeview:PancakeView CornerRadius="20" 
                                      HeightRequest="300"
                                      WidthRequest="500"
@@ -131,6 +132,7 @@
                                Grid.Row="1"
                                HorizontalOptions="CenterAndExpand"
                                VerticalOptions="CenterAndExpand"/>
+            <Button Text="" FontSize="30" BackgroundColor="Transparent" TranslationX="-15" TextColor="Black" HorizontalOptions="Start" FontFamily="FontAwesomeSolid" VerticalOptions="StartAndExpand" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

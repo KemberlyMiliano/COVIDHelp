@@ -28,8 +28,6 @@ namespace COVIDHelp.Services
                 Barrel.Current.Add(key: nameof(help), data: help, expireIn: TimeSpan.FromDays(30));
             }
         }
-
-
         }
     }
 }

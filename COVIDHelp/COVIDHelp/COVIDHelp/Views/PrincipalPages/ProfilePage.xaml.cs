@@ -88,7 +88,6 @@ namespace COVIDHelp.Views
                     0, SlideAnimationDuration,
                     new Animation(v => ProfileePage.Margin = new Thickness(0, v, 0, 0), 0, _safeInsetsTop)
                 },
-                {0, SlideAnimationDuration, new Animation(v => ProfileePage.CornerRadius = (float) v, 0, 5)}
             };
 
             foreach (var view in _menuItemsView)
@@ -112,7 +111,6 @@ namespace COVIDHelp.Views
                 {0, 1, new Animation(v => ProfileePage.TranslationX = v, Device.Info.ScaledScreenSize.Width * PageTranslation, 0)},
                 {0, 1, new Animation(v => ProfileePage.Scale = v, PageScale, 1)},
                 {0, 1, new Animation(v => ProfileePage.Margin = new Thickness(0, v, 0, 0), _safeInsetsTop, 0)},
-                {0, 1, new Animation(v => ProfileePage.CornerRadius = (float) v, 5, 0)}
             };
 
             foreach (var view in _menuItemsView)

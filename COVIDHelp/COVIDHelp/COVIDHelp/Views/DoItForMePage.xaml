@@ -9,6 +9,7 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout>
+                <Button Text="" FontSize="30" BackgroundColor="Transparent" TranslationX="-15" TextColor="Black" HorizontalOptions="Start" FontFamily="FontAwesomeSolid" VerticalOptions="StartAndExpand" />
                 <ListView ItemsSource="{Binding Requests}"
                           CachingStrategy="RecycleElement"
                           Margin="25">

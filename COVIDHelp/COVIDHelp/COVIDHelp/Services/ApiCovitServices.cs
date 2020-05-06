@@ -8,17 +8,22 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace COVIDHelp.Services
 {
     public class ApiCovitServices : IApiCovitServices
     {
+        public ApiCovitServices()
+        {
+            Barrel.ApplicationId = ConfigApi.MonkeyCacheKey;
+        }
         public async Task<User> FindUser(string type,long phone, [Header(Constants.Authorization)] string token)
         {
             User user = null;
             try
             {
-                if (Setting.IsNotConnected && !Barrel.Current.IsExpired(nameof(FindUser)))
+                if (Connectivity.NetworkAccess != NetworkAccess.Internet && !Barrel.Current.IsExpired(nameof(FindUser)))
                 {
                     return Barrel.Current.Get<User>(key: nameof(FindUser));
                 }
@@ -39,7 +44,7 @@ namespace COVIDHelp.Services
         {
             try
             {
-                if (Setting.IsNotConnected&&!Barrel.Current.IsExpired(nameof(GetHelp)))
+                if (Connectivity.NetworkAccess != NetworkAccess.Internet && !Barrel.Current.IsExpired(nameof(GetHelp)))
                 {
                     return Barrel.Current.Get<List<Help>>(key: nameof(GetHelp));
                 }
@@ -60,7 +65,7 @@ namespace COVIDHelp.Services
         {
             try
             {
-                if (Setting.IsNotConnected && !Barrel.Current.IsExpired(nameof(GetHelp)))
+                if (Connectivity.NetworkAccess != NetworkAccess.Internet && !Barrel.Current.IsExpired(nameof(GetHelp)))
                 {
                     return Barrel.Current.Get<List<User>>(key: nameof(GetUser));
                 }

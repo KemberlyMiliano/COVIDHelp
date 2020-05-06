@@ -24,25 +24,23 @@ namespace COVIDHelp.Views
         protected async override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
-            string latitude = null, longitude = null, type = null;
-            latitude = latitude.GetPreferences("latitude");
-            longitude = longitude.GetPreferences("longitude");
+            string type = null;
+            string latitude = await Setting.Latitude();
+            string longitude = await Setting.Longitude(); 
             type = type.GetPreferences("status");
-            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(double.Parse(latitude), double.Parse(longitude)), Distance.FromMiles(1)));
+            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(double.Parse(latitude), double.Parse(longitude)), Distance.FromMiles(2)));
             if (BindingContext is MapsPageViewModel viewModel)
             {
                 string place = type == $"{ETypeHelp.Alimentos}" ? "supermarket,grocery_or_supermarket" : "pharmacy";
-                await viewModel.GetPlace($"{latitude},{longitude}",2000, place);
+                await viewModel.GetPlace($"{latitude},{longitude}",1000, place);
                 var list = viewModel.PlaceNearbys;
-                foreach (var item in list)
+                list.ForEach(e => map.Pins.Add(new Pin()
                 {
-                    map.Pins.Add(new Pin() {
-                        Icon = SelectImage(type),
-                    Position = item.Geometry.Location.Position,
-                        Label = item.Name,
-                        Address = item.Vicinity
-                    });; ;
-                }
+                    Icon = SelectImage(type),
+                    Position = e.Geometry.Location.Position,
+                    Label = e.Name,
+                    Address = e.Vicinity
+                }));
               
             }
         }

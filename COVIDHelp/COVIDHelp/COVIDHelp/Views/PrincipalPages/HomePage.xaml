@@ -187,7 +187,7 @@
                     </pancakeview:PancakeView.GestureRecognizers>
                     <pancakeview:PancakeView.Triggers>
                         <DataTrigger TargetType="pancakeview:PancakeView"
-                             Binding="{Binding IsMapEnable}"
+                             Binding="{Binding IsNotConnected}"
                              Value="true">
                             <Setter Property="IsEnabled" Value="False"/>
                             <Setter Property="Opacity" Value="0.7"/>

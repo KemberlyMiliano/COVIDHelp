@@ -16,17 +16,15 @@
     <StackLayout Margin="20">
         <Label Text="Historial de ayudas" 
                FontSize="28" 
-               FontFamily=" BoldFont" 
+               FontFamily="BoldFont" 
                Margin="0,10,0,20" 
                TextColor="Black"/>
+        <controltemplate:ConnectivityView VerticalOptions="Start"/>
         <RefreshView IsRefreshing="{Binding IsRefresh}" 
                      Command="{Binding RefreshCommand}">
             <ListView ItemsSource="{Binding Historial}"          
                       Grid.Row="2" 
                       RowHeight="80">
-                <ListView.Header>
-                    <controltemplate:ConnectivityView VerticalOptions="StartAndExpand"/>
-                </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

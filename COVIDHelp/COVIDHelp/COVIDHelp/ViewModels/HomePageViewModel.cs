@@ -30,7 +30,6 @@ namespace COVIDHelp.ViewModels
         public HomePageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices, IDialogService dialog) : base(navigationService, dialogService, apiCovitServices)
         {
             var param = new NavigationParameters();
-
             PermissionsCommand = new DelegateCommand(async () =>
             {
                 var user = await apiCovitServices.FindUser(Constants.IdKey, Setting.Id, Setting.Token);
@@ -46,11 +45,7 @@ namespace COVIDHelp.ViewModels
             {
                 
                 filtrar.SaveString("status");
-                string latitude = $"{User.Latitude}";
-                string longitude = $"{User.Longitude}";
-                latitude.SaveString("latitude");
-                longitude.SaveString("longitude");
-                await navigationService.NavigateAsync(new Uri(NavigationConstants.MapsPage, UriKind.Relative),null,false);
+                await navigationService.NavigateAsync(new Uri(NavigationConstants.MapsPage, UriKind.Relative));
             });
 
             GoToIdentification = new DelegateCommand(async () =>

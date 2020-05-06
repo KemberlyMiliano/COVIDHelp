@@ -24,9 +24,10 @@
         <Grid >
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="20"/>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -34,13 +35,13 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-
+            <Button Text="" FontSize="30" BackgroundColor="Transparent" TranslationX="-15" TextColor="White" HorizontalOptions="Start" FontFamily="FontAwesomeSolid" VerticalOptions="StartAndExpand" />
             <pancakeView:PancakeView CornerRadius="40,40,0,0"
                                          BackgroundColor="White"
                                          Padding="10" 
                                          Grid.Row="2"
                                          Grid.RowSpan="3" Grid.ColumnSpan="5" >
-                <ScrollView>
+                <ScrollView Grid.Row="1">
                     <Grid Padding="25,15,25,0" RowSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -136,7 +137,7 @@
                 </ScrollView>
             </pancakeView:PancakeView>
 
-            <Button Grid.Row="2" 
+            <Button Grid.Row="3" 
                     Grid.Column="2" 
                     VerticalOptions="Start" 
                     HorizontalOptions="End"
@@ -146,7 +147,7 @@
                     Text="" 
                     FontFamily="FontAwesomeSolid"/>
 
-            <Button Grid.Row="2" 
+            <Button Grid.Row="3" 
                     Grid.Column="3" 
                     VerticalOptions="Start" 
                     HorizontalOptions="Start" 

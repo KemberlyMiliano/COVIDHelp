@@ -11,6 +11,7 @@
         <ResourceDictionary>
             <Style TargetType="NavigationPage">
                 <Setter Property="NavigationPage.BarBackgroundColor" Value="Transparent"/>
+                <Setter Property="NavigationPage.HasNavigationBar" Value="False"/>
             </Style>
         </ResourceDictionary>
     </prism:PrismApplication.Resources>

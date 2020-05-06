@@ -11,6 +11,7 @@
              >
     <ContentPage.Content>
         <Grid>
+
             <maps:Map x:Name="map"
                       SelectedPin="{Binding SelectPlace,Mode=TwoWay}"
                       MyLocationEnabled="True"/>
@@ -20,7 +21,7 @@
                                      VerticalOptions="StartAndExpand"
                                      BackgroundColor="White"
                                      CornerRadius="20,0,0,20"
-                                     Margin="15"
+                                     Margin="20,40,20,20"
                                      HeightRequest="100"
                                      Padding="8"
                                      HasShadow="True">
@@ -84,6 +85,7 @@
                     </DataTrigger>
                 </pancakeview:PancakeView.Triggers>
             </pancakeview:PancakeView>
+            <Button Text="" FontSize="30" BackgroundColor="Transparent" TranslationX="-15" TextColor="Black" HorizontalOptions="Start" FontFamily="FontAwesomeSolid" VerticalOptions="StartAndExpand" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

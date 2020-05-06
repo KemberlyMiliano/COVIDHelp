@@ -18,7 +18,7 @@ namespace COVIDHelp.ViewModels
         protected INavigationService navigationService;
         protected IPageDialogService dialogService;
         protected IApiCovitServices apiCovitServices;
-        public bool IsMapEnable { get; set; } 
+        public bool IsMapEnable { get; set; }
         ApiOfflineCovidServices OfflineCovidServices = new ApiOfflineCovidServices();
         public bool IsNotConnected { get; set; }
         public BaseViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices)
@@ -28,13 +28,13 @@ namespace COVIDHelp.ViewModels
             this.apiCovitServices = apiCovitServices;
             Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
             IsNotConnected = Connectivity.NetworkAccess != NetworkAccess.Internet;
-            IsMapEnable = !IsNotConnected && Setting.MapsSetting ? true : false;
+            IsMapEnable = IsNotConnected && !Setting.MapsSetting ? false : true;
         }
         async void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
         {
             IsNotConnected = e.NetworkAccess != NetworkAccess.Internet;
             Setting.IsNotConnected = IsNotConnected;
-            IsMapEnable = !IsNotConnected&&Setting.MapsSetting ? true : false;
+            IsMapEnable = IsNotConnected&&!Setting.MapsSetting ? false : true;
             if (!IsNotConnected)
             {
                    await OfflineCovidServices.PostHelpOffline();
