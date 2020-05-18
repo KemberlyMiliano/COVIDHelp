@@ -57,8 +57,8 @@
                        Grid.Row="2"
                       Keyboard="Numeric"
                        Grid.ColumnSpan="4"
-                       TextColor="White"
-                       PlaceholderColor="White" 
+                       TextColor="Black"
+                       PlaceholderColor="Black" 
                        FontFamily="NormalFont"/>
                 <Image Source="{Binding ImageModel}"
                        Grid.Row="3"
@@ -79,8 +79,8 @@
                        IsPassword="{Binding IsVisible}"
                        Grid.Row="3"
                        Grid.ColumnSpan="4"
-                       TextColor="White"
-                       PlaceholderColor="White"
+                       TextColor="Black"
+                       PlaceholderColor="Black"
                        FontFamily="NormalFont"/>
 
                 <Label Text="Contraseña/correo incorrectos"
