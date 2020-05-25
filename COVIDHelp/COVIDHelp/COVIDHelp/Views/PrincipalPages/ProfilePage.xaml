@@ -43,7 +43,8 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Image Grid.Row="0" Grid.RowSpan="10" Grid.Column="0" Grid.ColumnSpan="3" Source="backgroundProfile.png" Aspect="AspectFill" Opacity="0.5" />
+              
+                <pancakeView:PancakeView Grid.Row="0" Grid.RowSpan="10" Grid.Column="0" Grid.ColumnSpan="3"  BackgroundGradientStartColor="LightGray" BackgroundGradientEndColor="{StaticResource AccentColor}" BackgroundGradientAngle="30" />
 
                 <Frame Grid.Row="2"
                            Grid.Column="1"
@@ -62,9 +63,11 @@
                                HorizontalOptions="Center" />
                 </Frame>
 
-                <Label Grid.Row="8" Grid.Column="1"  x:Name="editar" Opacity="0" TranslationY="-10"
+    
+             
+                  <Label Grid.Row="8" Grid.Column="1" WidthRequest="67.5" x:Name="editar" Opacity="0" TranslationY="-10"
                    HorizontalOptions="CenterAndExpand" VerticalOptions="Center"
-                        TextColor="White"
+                        TextColor="White" 
                        
                   >
                     <Label.FormattedText>
@@ -72,7 +75,7 @@
                             <Span  Text="" FontFamily="FontAwesomeSolid"  FontSize="36"/>
                             <Span  Text="{Static system:Environment.NewLine}"/>
                             <Span  Text="{Static system:Environment.NewLine}"/>
-                            <Span  Text="Editar" FontSize="20"/>
+                            <Span  Text="Editar perfil" FontSize="16"/>
                         </FormattedString>
                     </Label.FormattedText>
                     <Label.GestureRecognizers>
@@ -80,27 +83,29 @@
                     </Label.GestureRecognizers>
                 </Label>
 
-                <Label Grid.Row="10" Grid.Column="1"  x:Name="CerrarSeccion" Opacity="0" TranslationY="-10"
+                <Label Grid.Row="10" Grid.Column="1" WidthRequest="67.5"  x:Name="CerrarSeccion" Opacity="0"  TranslationY="-15"
                    HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
-                        TextColor="White" >
+                        TextColor="White"  >
                     <Label.FormattedText>
                         <FormattedString>
                             <Span  Text="" FontFamily="FontAwesomeSolid"  FontSize="36"/>
                             <Span  Text="{Static system:Environment.NewLine}"/>
                             <Span  Text="{Static system:Environment.NewLine}"/>
-                            <Span  Text="Salir" FontSize="20"/>
+                            <Span  Text="Cerrar seccion" FontSize="16"/>
                         </FormattedString>
                     </Label.FormattedText>
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer    Command="{Binding LogOutCommand}" />
                     </Label.GestureRecognizers>
                 </Label>
+                 
+               
             </Grid>
 
             <!-- PROFILE PAGE -->
 
-            <pancakeView:PancakeView BackgroundGradientStartColor="LightGray" BackgroundGradientEndColor="{StaticResource AccentColor}" BackgroundGradientAngle="40">
-                <Grid x:Name="ProfileePage"   Padding="10" >
+            <pancakeView:PancakeView x:Name="ProfileePage"  BackgroundGradientStartColor="LightGray" BackgroundGradientEndColor="{StaticResource AccentColor}" BackgroundGradientAngle="40">
+                <Grid   Padding="10" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" x:Name="ToolbarSafeAreaRow" />
                         <RowDefinition Height="60" />

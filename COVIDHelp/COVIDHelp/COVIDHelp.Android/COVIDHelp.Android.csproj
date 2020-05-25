@@ -281,9 +281,6 @@
     <AndroidResource Include="Resources\drawable\config.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\CerrarSeccion.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\backgroundProfile.png" />
   </ItemGroup>
   <ItemGroup>

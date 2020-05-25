@@ -2,17 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:COVIDHelp.Helpers"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:COVIDHelp.Helpers" 
              mc:Ignorable="d"
              x:Class="COVIDHelp.Views.RegisterPage">
     <ContentPage.Content>
         <StackLayout Padding="10,40" BackgroundColor="#00344D" >
             <local:StepProgressBarControl  StepColor="White" Steps="3" StepSelected="1" x:Name="stepBar"/>
-          
+
             <Grid  BindingContext="{x:Reference stepBar}"
                HorizontalOptions="Center"
-               VerticalOptions="StartAndExpand" Margin="0,20" Padding="20" >
-                
+               VerticalOptions="StartAndExpand" RowSpacing="15" Margin="0,20" Padding="20" >
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -32,6 +32,7 @@
                Text="Añadir foto de perfil"
                FontFamily="BoldFont"
                FontSize="Large"
+               TextColor="White"
                HorizontalOptions="CenterAndExpand"
                VerticalOptions="StartAndExpand"
                  Grid.Row="0"
@@ -41,7 +42,7 @@
                         <DataTrigger TargetType="Label" Binding="{Binding StepSelected}" Value="3">
                             <Setter Property="IsVisible" Value="True"/>
                         </DataTrigger>
-                       
+
                     </Label.Triggers >
                 </Label>
 
@@ -49,6 +50,7 @@
                 <Image 
                     Source="defaultUser.png"
                     Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="4"
+                    HeightRequest="230" WidthRequest="230"
                     VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
                     IsVisible="False"
                     >
@@ -62,8 +64,22 @@
                     </Image.Triggers>
                 </Image>
 
+                <Frame BackgroundColor="Transparent"
+                        BorderColor="White"
+                         CornerRadius="20"  Grid.Column="0" Grid.ColumnSpan="4">
 
-                <Entry Placeholder="Nombre"
+                    <Frame.Triggers>
+                        <DataTrigger TargetType="Frame"  Binding="{Binding StepSelected}" Value="2">
+                            <Setter Property="Grid.Row" Value="2"/>
+                        </DataTrigger>
+                        <DataTrigger TargetType="Frame"  Binding="{Binding StepSelected}" Value="3">
+                            <Setter Property="IsVisible" Value="False"/>
+
+                        </DataTrigger>
+                    </Frame.Triggers>
+                </Frame>
+
+                    <Entry Placeholder="Nombre"
                                Text="{Binding UserR.Nombres}"
                                Margin="0,15,0,0"
                                Grid.ColumnSpan="4"
@@ -72,18 +88,33 @@
                                TextColor="White"
                                 x:Name="Entry1"
                                FontFamily="NormalFont" >
-                    <Entry.Triggers>
-                        <DataTrigger TargetType="Entry" Binding="{Binding StepSelected}" Value="2" >
-                            <Setter Property="Placeholder" Value="Contraseña"/>
-                            <Setter Property="Keyboard" Value="Default"/>
-                            <Setter Property="Grid.Row"  Value="2"/>
-                            <Setter Property="Text" Value="{Binding UserR.Password}"/>
+                        <Entry.Triggers>
+                            <DataTrigger TargetType="Entry" Binding="{Binding StepSelected}" Value="2" >
+                                <Setter Property="Placeholder" Value="Contraseña"/>
+                                <Setter Property="Keyboard" Value="Default"/>
+                                <Setter Property="Grid.Row"  Value="2"/>
+                                <Setter Property="Text" Value="{Binding UserR.Password}"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Entry" Binding="{Binding StepSelected}" Value="3" >
+                                <Setter Property="IsVisible" Value="False"/>
+                            </DataTrigger>
+                        </Entry.Triggers>
+                    </Entry>
+
+                <Frame BackgroundColor="Transparent"
+                        BorderColor="White"
+                         CornerRadius="20" TranslationY="-5"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4">
+
+                    <Frame.Triggers>
+                        <DataTrigger TargetType="Frame"  Binding="{Binding StepSelected}" Value="2">
+                            <Setter Property="Grid.Row" Value="3"/>
                         </DataTrigger>
-                        <DataTrigger TargetType="Entry" Binding="{Binding StepSelected}" Value="3" >
+                        <DataTrigger TargetType="Frame"  Binding="{Binding StepSelected}" Value="3">
                             <Setter Property="IsVisible" Value="False"/>
+
                         </DataTrigger>
-                    </Entry.Triggers>
-                </Entry>
+                    </Frame.Triggers>
+                </Frame>
 
                 <Entry Placeholder="Apellido"
                                Text="{Binding UserR.Apellidos}"
@@ -99,13 +130,28 @@
                             <Setter Property="Keyboard" Value="Default"/>
                             <Setter Property="Grid.Row"  Value="3"/>
                             <Setter Property="Text" Value="{Binding UserR.Password}"/>
-                           
+
                         </DataTrigger>
                         <DataTrigger TargetType="Entry" Binding="{Binding StepSelected}" Value="3" >
                             <Setter Property="IsVisible" Value="False"/>
                         </DataTrigger>
                     </Entry.Triggers>
                 </Entry>
+
+                <Frame BackgroundColor="Transparent"
+                        BorderColor="White"
+                         CornerRadius="20" TranslationY="-5"  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+
+                    <Frame.Triggers>
+                        <DataTrigger TargetType="Frame"  Binding="{Binding StepSelected}" Value="2">
+                            <Setter Property="IsVisible" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger TargetType="Frame"  Binding="{Binding StepSelected}" Value="3">
+                            <Setter Property="IsVisible" Value="False"/>
+
+                        </DataTrigger>
+                    </Frame.Triggers>
+                </Frame>
                 <DatePicker x:Name="FechaDeNacimiento"
                                     Date="{Binding UserR.FNacimiento}"
                                     Grid.Row="2"
@@ -121,6 +167,22 @@
                         </DataTrigger>
                     </DatePicker.Triggers>
                 </DatePicker>
+                
+                
+                <Frame BackgroundColor="Transparent"
+                        BorderColor="White"
+                         CornerRadius="20" TranslationY="-5"  Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+
+                    <Frame.Triggers>
+                        <DataTrigger TargetType="Frame"  Binding="{Binding StepSelected}" Value="2">
+                            <Setter Property="IsVisible" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger TargetType="Frame"  Binding="{Binding StepSelected}" Value="3">
+                            <Setter Property="IsVisible" Value="False"/>
+
+                        </DataTrigger>
+                    </Frame.Triggers>
+                </Frame>
                 <Picker x:Name="Gender"   
                                 ItemsSource="{Binding Genders}"
                                 SelectedItem="{Binding SelectedGender}"
@@ -142,6 +204,20 @@
 
                 </Picker>
 
+                <Frame BackgroundColor="Transparent"
+                        BorderColor="White"
+                         CornerRadius="20" TranslationY="-5"  Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4">
+
+                    <Frame.Triggers>
+                        <DataTrigger TargetType="Frame"  Binding="{Binding StepSelected}" Value="2">
+                            <Setter Property="IsVisible" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger TargetType="Frame"  Binding="{Binding StepSelected}" Value="3">
+                            <Setter Property="IsVisible" Value="False"/>
+
+                        </DataTrigger>
+                    </Frame.Triggers>
+                </Frame>
                 <Entry Placeholder="Direccion"
                                Keyboard="Default"
                                Text="{Binding UserR.Telefono}"
@@ -160,7 +236,20 @@
                         </DataTrigger>
                     </Entry.Triggers>
                 </Entry>
-                
+                <Frame BackgroundColor="Transparent"
+                        BorderColor="White"
+                         CornerRadius="20" TranslationY="-5"  Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4">
+
+                    <Frame.Triggers>
+                        <DataTrigger TargetType="Frame"  Binding="{Binding StepSelected}" Value="2">
+                            <Setter Property="IsVisible" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger TargetType="Frame"  Binding="{Binding StepSelected}" Value="3">
+                            <Setter Property="IsVisible" Value="False"/>
+
+                        </DataTrigger>
+                    </Frame.Triggers>
+                </Frame>
                 <Entry Placeholder="Correo Electronico"
                                Keyboard="Telephone"
                                Text="{Binding UserR.Password}"
@@ -180,50 +269,17 @@
                     </Entry.Triggers>
                 </Entry>
 
-                <Button Text="Registrarse" BackgroundColor="White" CornerRadius="20" WidthRequest="150" TextColor="#00344D" IsVisible="False" Grid.Row="6" Grid.ColumnSpan="4"
+                <Button Text="Registrarse" BackgroundColor="White" CornerRadius="20" WidthRequest="150" FontAttributes="Bold" TextColor="#00344D" IsVisible="False" Grid.Row="6" Grid.ColumnSpan="4"
                         HorizontalOptions="CenterAndExpand" Command="{Binding ButtonConfirmCommand}">
                     <Button.Triggers>
                         <DataTrigger TargetType="Button" Binding="{Binding StepSelected}" Value="3">
                             <Setter Property="IsVisible" Value="True"/>
-                         
+
                         </DataTrigger>
                     </Button.Triggers>
                 </Button>
 
-                <Image Source="{Binding ImageModel}"
-                               Grid.Row="2"
-                               Grid.ColumnSpan="4"
-                               HorizontalOptions="End"
-                               HeightRequest="30" 
-                               TranslationX="-30"
-                                IsVisible="False">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding ButtonEyeClickedCommand}"/>
-                            </Image.GestureRecognizers>
-                    <Image.Triggers>
-                        <DataTrigger TargetType="Image" Binding="{Binding StepSelected}" Value="2">
-                            <Setter Property="IsVisible" Value="True"/>
-                        </DataTrigger>
-                    </Image.Triggers>
-                        </Image>
-                
-                <Image Source="{Binding ImageModel}"
-                               Grid.Row="3"
-                               Grid.ColumnSpan="4"
-                               HorizontalOptions="End"
-                               HeightRequest="30"
-                               TranslationX="-30"
-                                IsVisible="False">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ButtonEyeClickedCommand}"/>
-                    </Image.GestureRecognizers>
-                    <Image.Triggers>
-                        <DataTrigger TargetType="Image" Binding="{Binding StepSelected}" Value="2">
-                            <Setter Property="IsVisible" Value="True"/>
-                        </DataTrigger>
-                    </Image.Triggers>
-                </Image>
-
+              
 
                 <Grid.Triggers>
                     <DataTrigger TargetType="Grid" Binding="{Binding StepSelected}" Value="2">
@@ -231,10 +287,10 @@
 
                     <DataTrigger TargetType="Grid" Binding="{Binding StepSelected}"  Value="3">
                     </DataTrigger>
-                    
+
                 </Grid.Triggers>
             </Grid>
-           
+
 
         </StackLayout>
     </ContentPage.Content>
