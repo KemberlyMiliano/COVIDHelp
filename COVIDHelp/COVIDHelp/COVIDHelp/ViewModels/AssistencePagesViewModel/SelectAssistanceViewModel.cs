@@ -34,7 +34,7 @@ namespace COVIDHelp.ViewModels
                 this.isEnable = value;
             }
         }
-        public SelectAssistanceViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
+        public SelectAssistanceViewModel(INavigationService navigationService, IPageDialogService dialogService, ICovidUserServices userServices,IHelpServices helpServices) : base(navigationService, dialogService, userServices,helpServices)
         {
             AddDataAndNavigateCommand = new DelegateCommand(async () =>
             {
@@ -80,7 +80,7 @@ namespace COVIDHelp.ViewModels
         }
         public async Task NavigateTo(string filtra)
         {   
-            User user = await apiCovitServices.FindUser(Constants.IdKey, Setting.Id, Setting.Token);
+            User user = await userServices.FindUser(Constants.IdKey, Setting.Id, Setting.Token);
             if (user != null)
             {
                 Help help = new Help
@@ -96,7 +96,7 @@ namespace COVIDHelp.ViewModels
                 };  
                 var diseases = Diseases.Select(e => e.Name);
                 help.Description = string.Join("\n",diseases.ToArray());
-                var probar = !IsNotConnected? await apiCovitServices.PostHelp(help,Setting.Token) : await PostOffline(help);
+                var probar = !IsNotConnected? await helpServices.PostHelp(help,Setting.Token) : await PostOffline(help);
                 await navigationService.NavigateAsync(new Uri($"{NavigationConstants.HelpersMainPage}?selectedTab={NavigationConstants.RequestsListPage}", UriKind.Absolute));
             }
 

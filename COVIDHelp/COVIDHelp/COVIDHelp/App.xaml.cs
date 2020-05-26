@@ -3,7 +3,6 @@ using COVIDHelp.Models;
 using COVIDHelp.Services;
 using COVIDHelp.ViewModels;
 using COVIDHelp.ViewModels.DialogServices;
-using COVIDHelp.ViewModels.LoginAndRegisterViewModels;
 using COVIDHelp.Views;
 using COVIDHelp.Views.DailogsViews;
 using COVIDHelp.Views.HelpersViews;
@@ -49,10 +48,12 @@ namespace COVIDHelp
             containerRegistry.RegisterForNavigation<MapsPage, MapsPageViewModel>();
             containerRegistry.RegisterForNavigation<HelpersMainPage>();
             containerRegistry.RegisterForNavigation<HelpPage, HelpPageViewModel>();
-            containerRegistry.RegisterInstance<IApiCovitServices>(new ApiCovitServices());
+            containerRegistry.RegisterInstance<ICovidUserServices>(new UserServices());
+            containerRegistry.RegisterInstance<IAuthenticationService>(new AuthenticationService());
+            containerRegistry.RegisterInstance<IHelpServices>(new HelpServices());
             containerRegistry.RegisterInstance<IApiGoogleServices>(new ApiGoogleServices());
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
-            containerRegistry.RegisterForNavigation<CommitmentsPage, CommitmentsPageViewModel>();   
+            containerRegistry.RegisterForNavigation<CommitmentsPage, CommitmentsPageViewModel>();
             containerRegistry.RegisterForNavigation<LocationPermitionPage, LocationPermitionPageViewModel>();
             containerRegistry.RegisterForNavigation<RequestDetailPage, RequestDetailPageViewModel>();
             containerRegistry.RegisterForNavigation<MedicalAssistenceRequestPage, MedicalAssistenceRequestPageViewModel>();
@@ -64,7 +65,8 @@ namespace COVIDHelp
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterDialog<EmergencyPage, EmergencyPageViewModel>();
             containerRegistry.RegisterDialog<DialogRateView, DialogRateViewModel>();
-            containerRegistry.RegisterForNavigation<SelectAssistence, SelectAssistanceViewModel>(); 
+            containerRegistry.RegisterDialog<DialogEntry, DialogEntryViewModel>();
+            containerRegistry.RegisterForNavigation<SelectAssistence, SelectAssistanceViewModel>();
 
         }
         

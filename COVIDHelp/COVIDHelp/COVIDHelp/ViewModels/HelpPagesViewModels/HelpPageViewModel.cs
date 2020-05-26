@@ -18,27 +18,22 @@ namespace COVIDHelp.ViewModels
     {
         public ObservableCollection<Help> HelpsPerson { get; set; }
         public List<Pin> Pins { get; set; }
-        public DelegateCommand GoToDetailCommand { get; set; }
+        public DelegateCommand GoToDetailCommand { get=> new DelegateCommand(async () =>
+        {
+            IsReshing = true;
+            await GetPerson();
+            IsReshing = false;
+        }); }
         public DelegateCommand LoadPins { get; set; }
-        public DelegateCommand<Help> GoToDetail { get; set; }
-        public bool IsReshing { get; set; }
+        public DelegateCommand<Help> GoToDetail { get=> new DelegateCommand<Help>(async (param) =>
+        {
+            await NavigateTo(param);
+        }); }
         private string typeHelp;
-        public HelpPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices ) : base(navigationService, dialogService, apiCovitServices)
+        public HelpPageViewModel(INavigationService navigationService, IPageDialogService dialogService, ICovidUserServices userServices,IHelpServices helpServices) : base(navigationService, dialogService, userServices,helpServices)
         {
 
-            GoToDetailCommand = new DelegateCommand(async () =>
-            {
-                IsReshing = true;
-                await GetPerson();
-                IsReshing = false;
-            });
-
             GoToDetailCommand.Execute();
-
-            GoToDetail = new DelegateCommand<Help>(async (param) =>
-            {
-                await NavigateTo(param);
-            });
             LoadPins = new DelegateCommand(async () => await GetPerson());
 
         }
@@ -47,17 +42,17 @@ namespace COVIDHelp.ViewModels
             HelpsPerson = new ObservableCollection<Help>();
             if (typeHelp == $"{ETypeHelp.Medicamentos}")
             {
-                var emergencia = await apiCovitServices.GetHelp($"{ETypeHelp.Emergencia}",$"{EState.Activo}",Setting.Token);
-                var asistencia = await apiCovitServices.GetHelp($"{ETypeHelp.Asistencia_Medica.ToString().Replace('_',' ')}",$"{EState.Activo}", Setting.Token);
-                var psicologica = await apiCovitServices.GetHelp($"{ETypeHelp.Psicologica}",$"{EState.Activo}", Setting.Token);
+                var emergencia = await helpServices.GetHelp($"{ETypeHelp.Emergencia}",$"{EState.Activo}",Setting.Token);
+                var asistencia = await helpServices.GetHelp($"{ETypeHelp.Asistencia_Medica.ToString().Replace('_',' ')}",$"{EState.Activo}", Setting.Token);
+                var psicologica = await helpServices.GetHelp($"{ETypeHelp.Psicologica}",$"{EState.Activo}", Setting.Token);
                 emergencia.AddRange(asistencia);
                 emergencia.AddRange(psicologica);
                 HelpsPerson = new ObservableCollection<Help>(emergencia);
             }
             else
             {
-                var alimentos = await apiCovitServices.GetHelp($"{ETypeHelp.Alimentos}", $"{EState.Activo}", Setting.Token);
-                var medicamentos = await apiCovitServices.GetHelp($"{ETypeHelp.Medicamentos}", $"{EState.Activo}", Setting.Token);
+                var alimentos = await helpServices.GetHelp($"{ETypeHelp.Alimentos}", $"{EState.Activo}", Setting.Token);
+                var medicamentos = await helpServices.GetHelp($"{ETypeHelp.Medicamentos}", $"{EState.Activo}", Setting.Token);
                 medicamentos.AddRange(alimentos);
                 HelpsPerson = new ObservableCollection<Help>(medicamentos);
             }

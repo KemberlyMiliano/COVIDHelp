@@ -10,8 +10,6 @@ namespace COVIDHelp.Services
         public const string MonkeyCacheKey = "COVIDHelp";
         public const string ApiKeyGoogle = "AIzaSyBvYUEfTGHvXCXaPeMRqwIZHxt3e8EjpAk";
         public const string UrlApiGoogle = "https://maps.googleapis.com/maps";
-
-
     }
 }
     

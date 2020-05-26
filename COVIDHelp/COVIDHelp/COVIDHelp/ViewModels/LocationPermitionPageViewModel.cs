@@ -18,7 +18,7 @@ namespace COVIDHelp.ViewModels
         public DelegateCommand ConfirmCommand { get; set; }
         public Locations GetLocation { get; set; } = new Locations();
         public User User { get; set; }
-        public LocationPermitionPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
+        public LocationPermitionPageViewModel(INavigationService navigationService, IPageDialogService dialogService, ICovidUserServices  userServices, IHelpServices helpServices) : base(navigationService, dialogService, userServices,helpServices)
         {
             ConfirmCommand = new DelegateCommand(async () =>
             {
@@ -41,7 +41,7 @@ namespace COVIDHelp.ViewModels
         }
         async Task GetPermisson()
         {
-            User = await apiCovitServices.FindUser("phone", Setting.PhoneSetting, Setting.Token);
+            User = await userServices.FindUser("phone", Setting.PhoneSetting, Setting.Token);
             var request = new GeolocationRequest(GeolocationAccuracy.Default);
             var location = await Geolocation.GetLocationAsync(request);
             if (location != null)

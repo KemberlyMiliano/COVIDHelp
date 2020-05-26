@@ -15,11 +15,11 @@ namespace COVIDHelp.ViewModels.DialogServices
     {
         public User User { get; set; }
         public DelegateCommand RateCommand { get; set; }
-        public DialogRateViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
+        public DialogRateViewModel(INavigationService navigationService, IPageDialogService dialogService, ICovidUserServices userServices,IHelpServices helpServices) : base(navigationService, dialogService, userServices,helpServices)
         {
             RateCommand = new DelegateCommand(async () =>
             {
-                await apiCovitServices.EvaluateVoluntary(User, Setting.Token);
+                await userServices.EvaluateVoluntary(User, Setting.Token);
                 RequestClose(null);
             });
         }

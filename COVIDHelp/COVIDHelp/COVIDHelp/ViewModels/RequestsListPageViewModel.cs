@@ -23,7 +23,7 @@ namespace COVIDHelp.ViewModels
         public User User { get; set; }
         public bool IsRefresh { get; set; }
         public ObservableCollection<Help> Requests { get; set; }
-        public RequestsListPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
+        public RequestsListPageViewModel(INavigationService navigationService, IPageDialogService dialogService, ICovidUserServices userServices, IHelpServices helpServices) : base(navigationService, dialogService, userServices,helpServices)
         {
 
             LoadHisotiral = new DelegateCommand(async () =>
@@ -60,10 +60,10 @@ namespace COVIDHelp.ViewModels
         }
         async Task GetHistorialHelper()
         {
-            var request = await apiCovitServices.GetHelp("All","All",Setting.Token);
+            var request = await helpServices.GetHelp("All","All",Setting.Token);
             if (request != null)
             {
-                Requests = new ObservableCollection<Help>(request.Where(e => e.UserID == Setting.Id));
+                Requests = new ObservableCollection<Help>(request.Where(e => e.VolunteerID == Setting.Id));
             }
         }
         private async Task OpenWhatsApp(string number, string text)

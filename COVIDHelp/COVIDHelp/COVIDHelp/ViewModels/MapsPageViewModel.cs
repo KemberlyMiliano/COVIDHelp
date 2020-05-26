@@ -31,13 +31,20 @@ namespace COVIDHelp.ViewModels
             }
         }
         public bool IsVisible { get; set; } = false;
-        public List<Place> PlaceNearbys { get; set; }
         private string status;
-        public DelegateCommand LoadPins { get; set; }
-        IApiGoogleServices apiGoogleServices;
-        public MapsPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices, IApiGoogleServices apiGoogleServices) : base(navigationService, dialogService, apiCovitServices)
+        public DelegateCommand GoToDoItForMe { get; set; }
+        public List<Place> PlaceNearbys { get; set; }
+        public DelegateCommand LoadPins { get=> new DelegateCommand(async () =>
+        {
+            var param = new NavigationParameters();
+            await navigationService.NavigateAsync(new Uri(NavigationConstants.DoItForMePage, UriKind.Relative), param);
+        }); }
+
+        readonly IApiGoogleServices apiGoogleServices;
+        public MapsPageViewModel(INavigationService navigationService, IPageDialogService dialogService, ICovidUserServices userServices,IHelpServices helpServices, IApiGoogleServices apiGoogleServices) : base(navigationService, dialogService, userServices,helpServices)
         {
             this.apiGoogleServices = apiGoogleServices;
+     
 
             GoToDoItForMe = new DelegateCommand(async () =>
             {
@@ -45,6 +52,7 @@ namespace COVIDHelp.ViewModels
                 await navigationService.NavigateAsync(new Uri(NavigationConstants.DoItForMePage, UriKind.Relative), param);
             });
         }
+
         public async Task GetPlace(string locations, int radius, string type)
         {
             var getresquest = await apiGoogleServices.GetNearbyPlaces(ConfigApi.ApiKeyGoogle, locations, radius, type);
@@ -54,11 +62,12 @@ namespace COVIDHelp.ViewModels
                 PlaceNearbys = new List<Place>(places);
             }
         }
-        public DelegateCommand GoToDoItForMe { get; set; }
+       
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
 
         }
+
         public void OnNavigatedTo(INavigationParameters parameters)
         {
 

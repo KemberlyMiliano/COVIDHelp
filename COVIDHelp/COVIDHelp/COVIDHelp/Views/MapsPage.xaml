@@ -85,7 +85,14 @@
                     </DataTrigger>
                 </pancakeview:PancakeView.Triggers>
             </pancakeview:PancakeView>
-            <Button Text="" FontSize="30" BackgroundColor="Transparent" TranslationX="-15" TextColor="Black" HorizontalOptions="Start" FontFamily="FontAwesomeSolid" VerticalOptions="StartAndExpand" />
+            <Button Text="" FontSize="30" 
+                    BackgroundColor="Transparent" 
+                    TranslationX="-15"
+                    TextColor="Black"
+                    HorizontalOptions="Start"
+                    Command="{Binding BackCommand}"
+                    FontFamily="FontAwesomeSolid" 
+                    VerticalOptions="StartAndExpand" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

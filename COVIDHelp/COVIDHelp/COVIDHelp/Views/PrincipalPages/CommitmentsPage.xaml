@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="COVIDHelp.Views.HelpersViews.CommitmentsPage"
-             xmlns:system="clr-namespace:System;assembly=netstandard" xmlns:converter="clr-namespace:COVIDHelp.Converters" xmlns:controltemplate="clr-namespace:COVIDHelp.Views.ControlTemplate"
+             xmlns:system="clr-namespace:System;assembly=netstandard" xmlns:converter="clr-namespace:COVIDHelp.Converters" xmlns:controltemplate="clr-namespace:COVIDHelp.Views.ControlTemplate" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:fftrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              NavigationPage.HasNavigationBar="False"
              x:Name="HistorialPage">
     <ContentPage.Resources>
@@ -69,9 +69,16 @@
                                                HorizontalOptions="EndAndExpand"
                                                Text="{Binding FechaEnviado, Converter={StaticResource RelativeDateTimeConvertor}}" />
 
-                                        <Image Source="defaultUser.png"                                      
-                                               WidthRequest="50"                                          
-                                               Margin="0,0,15,0"/>
+                                        <ff:CachedImage  Source="{Binding Needed.ProfilePhoto}" 
+                                                         WidthRequest="50" 
+                                                         VerticalOptions="Center" 
+                                                         HorizontalOptions="Center" 
+                                                         Margin="0,0,15,0">
+                                            <ff:CachedImage.Transformations>
+                                                <fftrans:CircleTransformation/>
+                                            </ff:CachedImage.Transformations>
+                                        </ff:CachedImage>
+
 
                                         <ProgressBar  Progress="{Binding State}"
                                                       ProgressColor="Green"

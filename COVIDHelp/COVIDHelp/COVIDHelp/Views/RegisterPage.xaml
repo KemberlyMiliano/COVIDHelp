@@ -5,6 +5,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:COVIDHelp.Helpers" 
              mc:Ignorable="d"
              x:Class="COVIDHelp.Views.RegisterPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Entry" x:Key="EntrySignUp">
+                <Setter Property="PlaceholderColor" Value="White"/>
+                <Setter Property="FontFamily" Value="NormalFont"/>
+                <Setter  Property="TextColor" Value="White"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Padding="10,40" BackgroundColor="#00344D" >
             <local:StepProgressBarControl  StepColor="White" Steps="3" StepSelected="1" x:Name="stepBar"/>
@@ -79,27 +88,25 @@
                     </Frame.Triggers>
                 </Frame>
 
-                    <Entry Placeholder="Nombre"
+                <Entry Placeholder="Nombre"
                                Text="{Binding UserR.Nombres}"
                                Margin="0,15,0,0"
                                Grid.ColumnSpan="4"
-                               PlaceholderColor="White"
                                VerticalOptions="End"
-                               TextColor="White"
-                                x:Name="Entry1"
-                               FontFamily="NormalFont" >
-                        <Entry.Triggers>
-                            <DataTrigger TargetType="Entry" Binding="{Binding StepSelected}" Value="2" >
-                                <Setter Property="Placeholder" Value="Contraseña"/>
-                                <Setter Property="Keyboard" Value="Default"/>
-                                <Setter Property="Grid.Row"  Value="2"/>
-                                <Setter Property="Text" Value="{Binding UserR.Password}"/>
-                            </DataTrigger>
-                            <DataTrigger TargetType="Entry" Binding="{Binding StepSelected}" Value="3" >
-                                <Setter Property="IsVisible" Value="False"/>
-                            </DataTrigger>
-                        </Entry.Triggers>
-                    </Entry>
+                           Style="{StaticResource EntrySignUp}"
+                                x:Name="Entry1">
+                    <Entry.Triggers>
+                        <DataTrigger TargetType="Entry" Binding="{Binding StepSelected}" Value="2" >
+                            <Setter Property="Placeholder" Value="Contraseña"/>
+                            <Setter Property="Keyboard" Value="Default"/>
+                            <Setter Property="Grid.Row"  Value="2"/>
+                            <Setter Property="Text" Value="{Binding UserR.Password}"/>
+                        </DataTrigger>
+                        <DataTrigger TargetType="Entry" Binding="{Binding StepSelected}" Value="3" >
+                            <Setter Property="IsVisible" Value="False"/>
+                        </DataTrigger>
+                    </Entry.Triggers>
+                </Entry>
 
                 <Frame BackgroundColor="Transparent"
                         BorderColor="White"
@@ -120,10 +127,8 @@
                                Text="{Binding UserR.Apellidos}"
                                Grid.Row="1"
                                Grid.ColumnSpan="4"
-                               PlaceholderColor="White"
-                               TextColor="White" 
                                x:Name="Entry2"
-                               FontFamily="NormalFont">
+                       Style="{StaticResource EntrySignUp}">
                     <Entry.Triggers>
                         <DataTrigger TargetType="Entry" Binding="{Binding StepSelected}" Value="2" >
                             <Setter Property="Placeholder" Value="Confirmar contraseña"/>
@@ -167,8 +172,8 @@
                         </DataTrigger>
                     </DatePicker.Triggers>
                 </DatePicker>
-                
-                
+
+
                 <Frame BackgroundColor="Transparent"
                         BorderColor="White"
                          CornerRadius="20" TranslationY="-5"  Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
@@ -205,9 +210,12 @@
                 </Picker>
 
                 <Frame BackgroundColor="Transparent"
-                        BorderColor="White"
-                         CornerRadius="20" TranslationY="-5"  Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4">
-
+                       BorderColor="White"
+                       CornerRadius="20"
+                       TranslationY="-5" 
+                       Grid.Row="4" 
+                       Grid.Column="0"
+                       Grid.ColumnSpan="4">
                     <Frame.Triggers>
                         <DataTrigger TargetType="Frame"  Binding="{Binding StepSelected}" Value="2">
                             <Setter Property="IsVisible" Value="False"/>
@@ -222,11 +230,9 @@
                                Keyboard="Default"
                                Text="{Binding UserR.Telefono}"
                                Grid.Row="4"
-                               TextColor="White"
                                Grid.ColumnSpan="4" 
-                               PlaceholderColor="White"
                                 x:Name="Entry3"
-                                FontFamily="NormalFont">
+                       Style="{StaticResource EntrySignUp}">
                     <Entry.Triggers>
                         <DataTrigger TargetType="Entry" Binding="{Binding StepSelected}" Value="2" >
                             <Setter Property="IsVisible" Value="False"/>
@@ -255,10 +261,8 @@
                                Text="{Binding UserR.Password}"
                                Grid.Row="5"
                                Grid.ColumnSpan="4"
-                               PlaceholderColor="White"
-                               TextColor="White"
-                                x:Name="Entry4"
-                               FontFamily="NormalFont">
+                       Style="{StaticResource EntrySignUp}"
+                                x:Name="Entry4">
                     <Entry.Triggers>
                         <DataTrigger TargetType="Entry" Binding="{Binding StepSelected}" Value="2" >
                             <Setter Property="IsVisible" Value="False"/>
@@ -278,9 +282,6 @@
                         </DataTrigger>
                     </Button.Triggers>
                 </Button>
-
-              
-
                 <Grid.Triggers>
                     <DataTrigger TargetType="Grid" Binding="{Binding StepSelected}" Value="2">
                     </DataTrigger>
@@ -290,8 +291,6 @@
 
                 </Grid.Triggers>
             </Grid>
-
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -13,7 +13,7 @@ using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms;
 using System.Linq;
-using Prism.Navigation.Xaml;
+using Prism.Services.Dialogs;
 
 namespace COVIDHelp.ViewModels
 {
@@ -23,13 +23,14 @@ namespace COVIDHelp.ViewModels
         public DelegateCommand EditCommand { get; set; }
         public DelegateCommand LoadProfile { get; set; }
         public DelegateCommand LogOutCommand { get; set; }
-        public ProfilePageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
+        public ProfilePageViewModel(INavigationService navigationService, IPageDialogService dialogService, ICovidUserServices userServices, IHelpServices helpServices, IDialogService dialog) : base(navigationService, dialogService, userServices,helpServices)
         {
             LoadProfile = new DelegateCommand(async () => await FindUser());
             LoadProfile.Execute();
-            EditCommand = new DelegateCommand(async () =>
+            EditCommand = new DelegateCommand(() =>
             {
-                await navigationService.NavigateAsync(new Uri(NavigationConstants.EditProfilePage, UriKind.Relative));
+                var param = new DialogParameters { { Constants.PasswordKey,"Password"}, { Constants.PersonKey, User } };
+                dialog.ShowDialog("DialogEntry", param, CloseDialogCallback);
 
             });
             LogOutCommand = new DelegateCommand(async () =>
@@ -39,9 +40,21 @@ namespace COVIDHelp.ViewModels
             });
 
         }
+       async void CloseDialogCallback(IDialogResult dialogResult)
+        {
+            if (dialogResult.Parameters.ContainsKey(Constants.PersonKey))
+            {
+                User = dialogResult.Parameters.GetValue<User>(Constants.PersonKey);
+                var param = new NavigationParameters
+                {
+                    { Constants.PersonKey, User }
+                };
+                await navigationService.NavigateAsync(new Uri(NavigationConstants.EditProfilePage, UriKind.Relative), param);
+            }
+        }
         async Task FindUser()
         {
-            var user = await apiCovitServices.FindUser(Constants.IdKey, Setting.Id, Setting.Token);
+            var user = await userServices.FindUser(Constants.IdKey, Setting.Id, Setting.Token);
             if (user != null)
             {
                 User = user;

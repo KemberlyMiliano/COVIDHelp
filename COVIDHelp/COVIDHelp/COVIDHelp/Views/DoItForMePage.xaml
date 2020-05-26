@@ -5,8 +5,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="COVIDHelp.Views.DoItForMePage"
-             x:Name="doPage">
-    <ContentPage.Content>
+             x:Name="doPage"
+             Visual="Material">
+    <ContentPage.Content >
         <StackLayout>
             <StackLayout>
                 <Button Text="" FontSize="30" BackgroundColor="Transparent" TranslationX="-15" TextColor="Black" HorizontalOptions="Start" FontFamily="FontAwesomeSolid" VerticalOptions="StartAndExpand" />

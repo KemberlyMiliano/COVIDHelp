@@ -9,15 +9,6 @@ using Xamarin.Forms;
 using System.Threading.Tasks;
 using COVIDHelp.Services;
 using COVIDHelp.Helpers;
-using Xamarin.Essentials;
-using Xamarin.Auth;
-using System.Net.Http;
-using Newtonsoft.Json;
-using Plugin.GoogleClient;
-using Plugin.GoogleClient.Shared;
-using System.Diagnostics;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
 
 namespace COVIDHelp.ViewModels
 {
@@ -49,10 +40,10 @@ namespace COVIDHelp.ViewModels
                 isEnable = value;
             }
         }
-
-        public LoginPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
+       readonly IAuthenticationService authenticationService;
+        public LoginPageViewModel(INavigationService navigationService, IPageDialogService dialogService, ICovidUserServices userServices, IHelpServices helpServices,IAuthenticationService authenticationService) : base(navigationService, dialogService, userServices,helpServices)
         {
-
+            this.authenticationService = authenticationService;
 
             LogInCommand = new DelegateCommand(async () =>
             {
@@ -71,11 +62,6 @@ namespace COVIDHelp.ViewModels
             ForgotPasswordCommand = new DelegateCommand(() =>
             {
             });
-
-            //LoginWithGoogleCommand = new DelegateCommand(async () =>
-            //{
-            //    await LoginGoogleAsync(AuthNetwork);
-            //});
         }
         async Task NavigateToRegister()
         {
@@ -86,10 +72,10 @@ namespace COVIDHelp.ViewModels
         {
             try
             {
-               var succes =  await apiCovitServices.LoginUser(User);
+               var succes =  await authenticationService.LoginUser(User);
                 if (succes.IsSuccessStatusCode)
                 {
-                    var user = await apiCovitServices.FindUser("phone", User.Phone, Setting.Token);
+                    var user = await userServices.FindUser("phone", User.Phone, Setting.Token);
                     User = user;
                     Setting.PhoneSetting = User.Phone;
                     Setting.Id = user.Id;

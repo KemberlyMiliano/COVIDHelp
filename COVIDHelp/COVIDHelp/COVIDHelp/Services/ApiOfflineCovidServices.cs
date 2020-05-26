@@ -10,9 +10,9 @@ namespace COVIDHelp.Services
 {
     public class ApiOfflineCovidServices
     {
-        IApiCovitServices apiCovitServices = new ApiCovitServices();
+        IHelpServices apiCovitServices = new HelpServices();
 
-        public async Task PostHelpOffline(Help help = null)
+        public async Task PostHelpOffline(Help help=null)
         {
             if (!Setting.IsNotConnected && !Barrel.Current.IsExpired(nameof(help)))
             {

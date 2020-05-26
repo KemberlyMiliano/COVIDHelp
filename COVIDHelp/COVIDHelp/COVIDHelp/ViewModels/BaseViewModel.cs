@@ -1,6 +1,7 @@
 ﻿using COVIDHelp.Helpers;
 using COVIDHelp.Models;
 using COVIDHelp.Services;
+using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using System;
@@ -17,15 +18,19 @@ namespace COVIDHelp.ViewModels
     {
         protected INavigationService navigationService;
         protected IPageDialogService dialogService;
-        protected IApiCovitServices apiCovitServices;
+        protected ICovidUserServices userServices;
+        protected IHelpServices helpServices;
+        public bool IsReshing { get; set; }
         public bool IsMapEnable { get; set; }
         ApiOfflineCovidServices OfflineCovidServices = new ApiOfflineCovidServices();
         public bool IsNotConnected { get; set; }
-        public BaseViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices)
+        public DelegateCommand BackCommand { get => new DelegateCommand(async () => await navigationService.GoBackAsync());}
+        public BaseViewModel(INavigationService navigationService, IPageDialogService dialogService, ICovidUserServices userServices,IHelpServices helpServices)
         {
             this.navigationService = navigationService;
             this.dialogService = dialogService;
-            this.apiCovitServices = apiCovitServices;
+            this.userServices = userServices;
+            this.helpServices = helpServices;
             Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
             IsNotConnected = Connectivity.NetworkAccess != NetworkAccess.Internet;
             IsMapEnable = IsNotConnected && !Setting.MapsSetting ? false : true;

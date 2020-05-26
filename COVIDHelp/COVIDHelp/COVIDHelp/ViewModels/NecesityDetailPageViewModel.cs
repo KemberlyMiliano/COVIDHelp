@@ -13,13 +13,8 @@ namespace COVIDHelp.ViewModels
     public class NecesityDetailPageViewModel : BaseViewModel, INavigatedAware
     {
         public Help Help { get; set; }
-        public DelegateCommand GoBackCommand { get; set; }
-        public NecesityDetailPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
+        public NecesityDetailPageViewModel(INavigationService navigationService, IPageDialogService dialogService, ICovidUserServices userServices,IHelpServices helpServices) : base(navigationService, dialogService, userServices,helpServices)
         {
-            GoBackCommand = new DelegateCommand(async () =>
-            {
-                await navigationService.GoBackAsync();
-            });
         }
         public void OnNavigatedFrom(INavigationParameters parameters)
         {

@@ -132,7 +132,12 @@
                                Grid.Row="1"
                                HorizontalOptions="CenterAndExpand"
                                VerticalOptions="CenterAndExpand"/>
-            <Button Text="" FontSize="30" BackgroundColor="Transparent" TranslationX="-15" TextColor="Black" HorizontalOptions="Start" FontFamily="FontAwesomeSolid" VerticalOptions="StartAndExpand" />
+            <Button Text="" FontSize="30"
+                    BackgroundColor="Transparent"
+                    TranslationX="-15" 
+                    TextColor="Black" 
+                    HorizontalOptions="Start" 
+                    Command="{Binding BackCommand}"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

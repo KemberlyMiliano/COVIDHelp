@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using COVIDHelp.Helpers;
 using Xamarin.Essentials;
+using Xamarin.Forms.OpenWhatsApp;
 
 namespace COVIDHelp.ViewModels
 {
@@ -18,13 +19,21 @@ namespace COVIDHelp.ViewModels
         public DelegateCommand GoToHistorial { get; set; }
         public DelegateCommand GoToMaps { get; set; }
         public DelegateCommand CallNeededCommand { get; set; }
-        public RequestDetailPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
+        public DelegateCommand ContactCommand { get; set; }
+        public RequestDetailPageViewModel(INavigationService navigationService, IPageDialogService dialogService, ICovidUserServices userServices,IHelpServices helpServices) : base(navigationService, dialogService, userServices,helpServices)
         {
             var param = new NavigationParameters();
 
             GoToHistorial = new DelegateCommand(async () =>
             {
                 await DisplayAction();
+            });
+
+            ContactCommand = new DelegateCommand(async () =>
+            {
+                var user = await userServices.FindUser("Id", Help.UserID, Setting.Token);
+                await OpenWhatsApp($"{user.Phone}", "Hola! Estoy aquí para ayudarte");
+
             });
 
             GoToMaps = new DelegateCommand(async () =>
@@ -43,6 +52,7 @@ namespace COVIDHelp.ViewModels
                 Call($"{Help.Needed.Phone}");
             });
         }
+
         public void Call(string number)
         {
             try
@@ -53,11 +63,23 @@ namespace COVIDHelp.ViewModels
             {
             }
         }
+
+        async Task OpenWhatsApp(string number, string text)
+        {
+            try
+            {
+                Chat.Open($"+1{number}", text);
+            }
+            catch (Exception ex)
+            {
+                await dialogService.DisplayAlertAsync("Error", ex.Message, "OK");
+            }
+        }
         public async Task DisplayAction()
         {
             bool action = await dialogService.DisplayAlertAsync("", "Estás seguro/a?", "Aceptar", "Cancelar");
             string status = "";
-            var user = await apiCovitServices.FindUser(Constants.IdKey, Setting.Id, Setting.Token);
+            var user = await userServices.FindUser(Constants.IdKey, Setting.Id, Setting.Token);
             if (action && user != null)
             {
                 Help help = new Help
@@ -67,7 +89,7 @@ namespace COVIDHelp.ViewModels
                     Status = $"{EState.Proceso}",
 
                 };
-                await apiCovitServices.PutHelp(help,Setting.Token);
+                await helpServices.PutHelp(help,Setting.Token);
                 await navigationService.NavigateAsync(new Uri($"{NavigationConstants.NavigationPage}{NavigationConstants.HelpersMainPage}?selectedTab={NavigationConstants.CommitmentsPage}", UriKind.Absolute));
             }
             else

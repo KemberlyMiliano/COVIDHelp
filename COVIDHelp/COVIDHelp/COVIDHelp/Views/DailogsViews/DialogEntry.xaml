@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Frame xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="COVIDHelp.Views.DailogsViews.DialogEntry"
+       xmlns:prism="http://prismlibrary.com"
+                    prism:ViewModelLocator.AutowireViewModel="True"
+            prism:DialogLayout.RelativeWidthRequest="{OnIdiom Default=0.75, Desktop=0.5}"
+             CornerRadius="20">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button Text=""
+                HorizontalOptions="StartAndExpand"
+                VerticalOptions="StartAndExpand"
+                WidthRequest="60"
+                FontSize="30"
+                Command="{Binding CloseCommad}"
+                FontFamily="FontAwesomeSolid"
+                TextColor="Red"
+                BackgroundColor="Transparent"
+                />
+        <Label Text="{Binding Title}"
+               TextColor="black "
+               HorizontalOptions="CenterAndExpand"
+               FontSize="30"
+               VerticalOptions="CenterAndExpand"
+               FontFamily ="NormalFont"/>
+        <Entry Placeholder="Password"
+               Grid.Row="1"
+               Text="{Binding Value}"
+               FontFamily ="NormalFont"
+               Keyboard="Numeric"
+               VerticalOptions="StartAndExpand">
+            <Entry.Triggers>
+                <DataTrigger Binding="{Binding Title}"
+                             TargetType="Entry"
+                             Value="Password">
+                    <Setter Property="Placeholder" Value="{Binding Title}"/>
+                    <Setter Property="IsPassword" Value="True"/>
+                    <Setter Property="Keyboard" Value="Text"/>
+                </DataTrigger>
+            </Entry.Triggers>
+        </Entry>
+        <Button Grid.Row="2"
+                CornerRadius="20"
+                BackgroundColor="{StaticResource AccentColor}"
+                Text="Aceptar"
+                TextColor="White"
+                Visual="Material"
+                FontFamily="NormalFont"
+                Command="{Binding SaveCommand}"/>
+    </Grid>
+</Frame>

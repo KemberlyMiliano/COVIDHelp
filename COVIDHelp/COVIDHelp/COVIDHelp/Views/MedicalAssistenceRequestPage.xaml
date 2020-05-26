@@ -36,7 +36,16 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Text="" FontSize="30" BackgroundColor="Transparent" TranslationX="-15" TextColor="Black" HorizontalOptions="Start" FontFamily="FontAwesomeSolid" VerticalOptions="StartAndExpand" />
+            <Button Text=""
+                    FontSize="30"
+                    BackgroundColor="Transparent"
+                    TranslationX="-15"
+                    TextColor="Black"
+                    HorizontalOptions="Start"
+                    FontFamily="FontAwesomeSolid"
+                    VerticalOptions="StartAndExpand"
+                    Command="{Binding BackCommand}"/>
+
             <Label Text="Quién te puede ayudar?"                           
                    FontFamily="BoldFont"
                    FontSize="27"                           
@@ -118,7 +127,6 @@
                          HorizontalOptions="CenterAndExpand" 
                          Command="{Binding GoToAssistence}"
                          CommandParameter="Psicologica"/>
-
         </Grid>
     </ContentPage.Content>
 </ContentPage>

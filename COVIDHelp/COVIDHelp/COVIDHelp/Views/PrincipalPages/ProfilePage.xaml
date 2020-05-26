@@ -7,7 +7,10 @@
              xmlns:system="clr-namespace:System;assembly=netstandard" xmlns:customrate="clr-namespace:COVIDHelp.Views.DailogsViews"
              x:Class="COVIDHelp.Views.ProfilePage"
              NavigationPage.HasNavigationBar="False"
-             BackgroundColor="#0272A6">
+             BackgroundColor="#0272A6"
+            xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             Visual="Material">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label">
@@ -43,29 +46,30 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-              
-                <pancakeView:PancakeView Grid.Row="0" Grid.RowSpan="10" Grid.Column="0" Grid.ColumnSpan="3"  BackgroundGradientStartColor="LightGray" BackgroundGradientEndColor="{StaticResource AccentColor}" BackgroundGradientAngle="30" />
 
-                <Frame Grid.Row="2"
+                <pancakeView:PancakeView Grid.Row="0" 
+                                         Grid.RowSpan="10"
+                                         Grid.Column="0" 
+                                         Grid.ColumnSpan="3" 
+                                         Visual="Material"
+                                         BackgroundGradientStartColor="LightGray" BackgroundGradientEndColor="{StaticResource AccentColor}" BackgroundGradientAngle="30" />
+                <ff:CachedImage Margin="-20"
+                                Grid.Row="2"
                            Grid.Column="1"
-                           WidthRequest="67.5"
-                           x:Name="User"
-                           Opacity="0"
-                           TranslationY="-10"
-                            HorizontalOptions="Center" VerticalOptions="Center"
-                            BackgroundColor="White" HasShadow="False" 
-                            HeightRequest="67.5" CornerRadius="33.75" IsClippedToBounds="True">
-                    <Image Margin="-20"
-                               Source="defaultUser.png"
+                                 x:Name="User"
+                                TranslationY="-10"
+                               Source="{Binding User.ProfilePhoto}"
                                HeightRequest="67.5"
                                WidthRequest="67.5"
                                VerticalOptions="Center"
-                               HorizontalOptions="Center" />
-                </Frame>
+                               HorizontalOptions="Center" >
+                    <ff:CachedImage.Transformations>
+                        <fftrans:CircleTransformation/>
+                    </ff:CachedImage.Transformations>
+                </ff:CachedImage>
 
-    
-             
-                  <Label Grid.Row="8" Grid.Column="1" WidthRequest="67.5" x:Name="editar" Opacity="0" TranslationY="-10"
+
+                <Label Grid.Row="8" Grid.Column="1" WidthRequest="67.5" x:Name="editar" Opacity="0" TranslationY="-10"
                    HorizontalOptions="CenterAndExpand" VerticalOptions="Center"
                         TextColor="White" 
                        
@@ -104,7 +108,9 @@
 
             <!-- PROFILE PAGE -->
 
-            <pancakeView:PancakeView x:Name="ProfileePage"  BackgroundGradientStartColor="LightGray" BackgroundGradientEndColor="{StaticResource AccentColor}" BackgroundGradientAngle="40">
+            <pancakeView:PancakeView x:Name="ProfileePage" 
+                                     Visual="Material"
+                                     BackgroundGradientStartColor="LightGray" BackgroundGradientEndColor="{StaticResource AccentColor}" BackgroundGradientAngle="40">
                 <Grid   Padding="10" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" x:Name="ToolbarSafeAreaRow" />
@@ -138,6 +144,7 @@
                     <pancakeView:PancakeView Grid.ColumnSpan="4"
                                              Grid.Row="2"
                                              BorderColor="GhostWhite"
+                                             Visual="Material"
                                              BorderThickness="12"
                                          BorderDrawingStyle="Outside"
                                          BorderGradientStartColor="{StaticResource AccentColor}"
@@ -151,7 +158,7 @@
                                              >
                         <Image      
                                 Aspect="AspectFill"
-                                Source="ProfileDai"
+                                Source="{Binding User.ProfilePhoto}"
                                />
                     </pancakeView:PancakeView>
 

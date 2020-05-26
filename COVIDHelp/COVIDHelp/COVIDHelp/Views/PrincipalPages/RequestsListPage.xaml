@@ -7,7 +7,7 @@
              x:Class="COVIDHelp.Views.RequestsListPage"
              xmlns:system="clr-namespace:System;assembly=netstandard"
              x:Name="requestPage"
-             xmlns:converters="clr-namespace:COVIDHelp.Converters" xmlns:controltemplate="clr-namespace:COVIDHelp.Views.ControlTemplate"
+             xmlns:converters="clr-namespace:COVIDHelp.Converters" xmlns:controltemplate="clr-namespace:COVIDHelp.Views.ControlTemplate" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:fftrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <converters:RelativeDateTimeConvertor x:Key="RelativeDateTimeConvertor"/>
@@ -57,8 +57,8 @@
                                                    TextColor="Black">
                                                 <Label.FormattedText>
                                                     <FormattedString>
-                                                        <Span Text="{Binding Needed.Name}"/>
-                                                        <Span Text="{Binding Needed.LastName,StringFormat=' {0}'}"/>
+                                                        <Span Text="{Binding Volunteer.Name}"/>
+                                                        <Span Text="{Binding Volunteer.LastName,StringFormat=' {0}'}"/>
                                                         <Span Text="{Static system:Environment.NewLine }"/>
                                                         <Span Text="{Binding Type}" FontFamily="NormalFont" />
                                                     </FormattedString>
@@ -66,9 +66,16 @@
 
                                             </Label>
                                             <Label Text="{Binding Date,Converter={StaticResource RelativeDateTimeConvertor}}" Grid.ColumnSpan="3" Grid.Row="0" VerticalOptions="StartAndExpand" HorizontalOptions="EndAndExpand"/>
-                                            <Image Source="defaultUser" 
-                                               HeightRequest="40"
-                                               Margin="0,0,15,0"/>
+
+                                            <ff:CachedImage  Source="{Binding Volunteer.ProfilePhoto}" 
+                                                         WidthRequest="40" 
+                                                         VerticalOptions="Center" 
+                                                         HorizontalOptions="Center" 
+                                                         Margin="0,0,15,0">
+                                                <ff:CachedImage.Transformations>
+                                                    <fftrans:CircleTransformation/>
+                                                </ff:CachedImage.Transformations>
+                                            </ff:CachedImage>
 
                                             <ProgressBar Progress="{Binding State}"
                                                      ProgressColor="Green"

@@ -18,61 +18,51 @@ namespace COVIDHelp.ViewModels
 {
     public class HomePageViewModel : BaseViewModel, IInitialize
     {
-        public DelegateCommand ShowDialogCommand { get; set; }
-        public DelegateCommand ShowFormulary { get; set; }
-        public DelegateCommand<string> GoToMaps { get; set; }
-        public DelegateCommand GoToMedicalAssintence { get; set; }
-        public DelegateCommand GoToIdentification { get; set; }
-        public DelegateCommand PermissionsCommand { get; set; }
+        public DelegateCommand ShowDialogCommand { get=>new DelegateCommand(() =>
+        {
+            dialog.ShowDialog("EmergencyPage", CloseDialogCallback);
+        });}
+        public DelegateCommand ShowFormulary { get => new DelegateCommand(async () =>
+        {
+            await OpenRideShareAsync();
+        });
+        }
+        public DelegateCommand<string> GoToMaps { get => new DelegateCommand<string>(async (filtrar) =>
+        {
+
+            filtrar.SaveString("status");
+            await navigationService.NavigateAsync(new Uri(NavigationConstants.MapsPage, UriKind.Relative));
+        });}
+        public DelegateCommand GoToMedicalAssintence { get =>  new DelegateCommand(async () =>
+        {
+            await navigationService.NavigateAsync(new Uri(NavigationConstants.MedicalAssistenceRequestPage, UriKind.Relative));
+        });  }
+        public DelegateCommand GoToIdentification { get =>new DelegateCommand(async () =>
+            {
+                await navigationService.NavigateAsync(new Uri(NavigationConstants.IdentificationPage, UriKind.Relative));
+            }); }
+        public DelegateCommand PermissionsCommand { get;set;}
         public bool IsVoluntary { get; set; }
         
         public User User { get; set; }
-        public HomePageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices, IDialogService dialog) : base(navigationService, dialogService, apiCovitServices)
+       private readonly IDialogService dialog;
+        
+        public HomePageViewModel(INavigationService navigationService, IPageDialogService dialogService, ICovidUserServices userServices,IHelpServices helpServices, IDialogService dialog) : base(navigationService, dialogService, userServices,helpServices)
         {
-            var param = new NavigationParameters();
+            this.dialog = dialog;
             PermissionsCommand = new DelegateCommand(async () =>
             {
-                var user = await apiCovitServices.FindUser(Constants.IdKey, Setting.Id, Setting.Token);
+                var user = await userServices.FindUser(Constants.IdKey, Setting.Id, Setting.Token);
                 User = user;
                 if (!IsNotConnected)
                 {
                     await NavigateToPermisson();
-                    User = await apiCovitServices.UpdateUser(User, Setting.Token);
+                    User = await userServices.UpdateUser(User, Setting.Token);
                 }
             });
             PermissionsCommand.Execute();
-             GoToMaps = new DelegateCommand<string>(async (filtrar) =>
-            {
-                
-                filtrar.SaveString("status");
-                await navigationService.NavigateAsync(new Uri(NavigationConstants.MapsPage, UriKind.Relative));
-            });
 
-            GoToIdentification = new DelegateCommand(async () =>
-            {
-                await navigationService.NavigateAsync(new Uri(NavigationConstants.IdentificationPage, UriKind.Relative));
-            });
-
-            GoToMedicalAssintence = new DelegateCommand(async () =>
-            {
-                await navigationService.NavigateAsync(new Uri(NavigationConstants.MedicalAssistenceRequestPage, UriKind.Relative), param);
-            });
-
-            GoToMedicalAssintence = new DelegateCommand(async () =>
-            {
-                await navigationService.NavigateAsync(new Uri(NavigationConstants.MedicalAssistenceRequestPage, UriKind.Relative), param);
-            });
-
-            ShowDialogCommand = new DelegateCommand(() =>
-            {
-                dialog.ShowDialog("EmergencyPage", CloseDialogCallback);
-            });
-
-            ShowFormulary = new DelegateCommand(async () =>
-            {
-                await OpenRideShareAsync();
-            });
-           }
+         }
 
         public async Task<bool> OpenRideShareAsync()
         {

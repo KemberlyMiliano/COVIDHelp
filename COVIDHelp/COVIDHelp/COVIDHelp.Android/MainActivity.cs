@@ -7,7 +7,6 @@ using Android.Widget;
 using Android.OS;
 using Prism;
 using Prism.Ioc;
-using Plugin.GoogleClient;
 
 namespace COVIDHelp.Droid
 {
@@ -20,13 +19,12 @@ namespace COVIDHelp.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
-            GoogleClientManager.Initialize(this);
             global::Xamarin.Forms.Forms.SetFlags("CarouselView_Experimental");
             global::Xamarin.Forms.Forms.SetFlags("SwipeView_Experimental");
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            Xamarin.Auth.Presenters.XamarinAndroid.AuthenticationConfiguration.Init(this, savedInstanceState);
             Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
             LoadApplication(new App(new AndroidInitializer()));
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -39,7 +37,6 @@ namespace COVIDHelp.Droid
         protected override void OnActivityResult(int requestCode, Result resultCode, Android.Content.Intent data)
         {
             base.OnActivityResult(requestCode, resultCode, data);
-            GoogleClientManager.OnAuthCompleted(requestCode, resultCode, data);
         }
     }
 

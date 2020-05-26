@@ -29,19 +29,19 @@
   <ItemGroup>
     <PackageReference Include="MonkeyCache.FileStore" Version="1.3.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="Plugin.GoogleClient" Version="1.1.1" />
     <PackageReference Include="Plugin.Permissions" Version="6.0.1" />
     <PackageReference Include="Prism.Unity.Forms" Version="7.2.0.1422" />
     <PackageReference Include="PropertyChanged.Fody" Version="3.2.8" />
     <PackageReference Include="Refit" Version="5.1.67" />
     <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
-    <PackageReference Include="Xamarin.Auth" Version="1.7.0" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.Forms" Version="4.6.0.726" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.1" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Forms" Version="4.6.0.800" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
     <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="3.3.0" />
     <PackageReference Include="Xamarin.Forms.OpenWhatsApp" Version="1.0.1" />
-    <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.3.7" />
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.4.2" />
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.6.0.800" />
   </ItemGroup>
 
   <ItemGroup>
@@ -51,52 +51,49 @@
     <EmbeddedResource Update="Views\ControlTemplate\ConnectivityView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\DailogsViews\DialogEntry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\DailogsViews\DialogRateView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\DoItForMePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\EditProfilePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\EmergencyPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\HelpersMainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\HelpPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\IdentificationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\LocationPermitionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\LoginPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MapsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MedicalAssistenceRequestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\NecesityDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\PrincipalPages\CommitmentsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\HelpersMainPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\HelpPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\IdentificationPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\MedicalAssistenceRequestPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\RegisterPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\RequestDetailPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\EditProfilePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\LocationPermitionPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\LoginPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\MapsPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\PrincipalPages\ProfilePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\NecesityDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\PrincipalPages\HomePage.xaml">
@@ -105,8 +102,14 @@
     <EmbeddedResource Update="Views\PrincipalPages\RequestsListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\RegisterPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\RequestDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\SelectAssistence.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\TemplateViews\MedicView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms.OpenWhatsApp;
 using COVIDHelp.Helpers;
 
-namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
+namespace COVIDHelp.ViewModels
 {
     public class CommitmentsPageViewModel : BaseViewModel
     {
@@ -22,7 +22,7 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
         public ObservableCollection<Help> Historial { get; set; }
         public DelegateCommand RefreshCommand { get; set; }
         public bool IsRefresh { get; set; }
-        public CommitmentsPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
+        public CommitmentsPageViewModel(INavigationService navigationService, IPageDialogService dialogService,ICovidUserServices userServices ,IHelpServices helpServices) : base(navigationService, dialogService, userServices, helpServices)
         {
             LoadHisotiral = new DelegateCommand(async () =>
             {
@@ -31,7 +31,7 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
             LoadHisotiral.Execute();
             ContactCommand = new DelegateCommand<Help>(async (help) =>
             {
-                var user  = await apiCovitServices.FindUser("Id", help.UserID, Setting.Token);
+                var user  = await userServices.FindUser("Id", help.UserID, Setting.Token);
                 await OpenWhatsApp($"{user.Phone}", "Hola! Estoy aquí para ayudarte");
 
             });
@@ -57,10 +57,10 @@ namespace COVIDHelp.ViewModels.LoginAndRegisterViewModels
         }
         async Task GetHistorialHelper()
         {
-            var request = await apiCovitServices.GetHelp("All","All",Setting.Token);
+            var request = await helpServices.GetHelp("All","All",Setting.Token);
             if (request != null)
             {
-                Historial = new ObservableCollection<Help>(request.Where(e => e.VolunteerID == Setting.Id));
+                Historial = new ObservableCollection<Help>(request.Where(e => e.UserID == Setting.Id));
             }
 
         }

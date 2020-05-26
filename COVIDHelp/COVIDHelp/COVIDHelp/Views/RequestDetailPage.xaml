@@ -35,7 +35,15 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Text="" FontSize="30" BackgroundColor="Transparent" TranslationX="-15" TextColor="White" HorizontalOptions="Start" FontFamily="FontAwesomeSolid" VerticalOptions="StartAndExpand" />
+            <Button Text=""
+                    Command="{Binding BackCommand}"
+                    FontSize="30"
+                    BackgroundColor="Transparent"
+                    TranslationX="-15"
+                    TextColor="White"
+                    HorizontalOptions="Start"
+                    FontFamily="FontAwesomeSolid"
+                    VerticalOptions="StartAndExpand" />
             <pancakeView:PancakeView CornerRadius="40,40,0,0"
                                          BackgroundColor="White"
                                          Padding="10" 
@@ -145,7 +153,8 @@
                     Style="{StaticResource stlContactBtn}"
                     TextColor="White" 
                     Text="" 
-                    FontFamily="FontAwesomeSolid"/>
+                    FontFamily="FontAwesomeSolid"
+                    Command="{Binding CallNeededCommand}"/>
 
             <Button Grid.Row="3" 
                     Grid.Column="3" 
@@ -155,7 +164,9 @@
                     Style="{StaticResource stlContactBtn}" 
                     TextColor="White"
                     Text="" 
-                    FontFamily="FontAwesomeBrands"/>
+                    FontFamily="FontAwesomeBrands"
+                    Command="{Binding ContactCommand}"
+                    CommandParameter="{Binding .}"/>
 
 
         </Grid>

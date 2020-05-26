@@ -1,12 +1,13 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using Xamarin.Forms.GoogleMaps;
 
 namespace COVIDHelp.Models
 {
-    public class User
+    public class User: INotifyPropertyChanged
     {
         [JsonProperty("id")]
         public int Id { get; set; }
@@ -64,6 +65,8 @@ namespace COVIDHelp.Models
 
         [JsonProperty("activationCodes")]
         public ActivationCode ActivationCodes { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 
 }

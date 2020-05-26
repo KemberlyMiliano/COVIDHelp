@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
-using Plugin.GoogleClient;
 using Prism;
 using Prism.Ioc;
 using UIKit;
@@ -27,16 +26,11 @@ namespace COVIDHelp.iOS
         {
             global::Xamarin.Forms.Forms.SetFlags("SwipeView_Experimental");
             global::Xamarin.Forms.Forms.SetFlags("CarouselView_Experimental");
-            GoogleClientManager.Initialize();
             global::Xamarin.Forms.Forms.Init();
             Xamarin.FormsGoogleMaps.Init("AIzaSyBvYUEfTGHvXCXaPeMRqwIZHxt3e8EjpAk");
-            Xamarin.Auth.Presenters.XamarinIOS.AuthenticationConfiguration.Init();
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             LoadApplication(new App(new iOSInitializer()));
             return base.FinishedLaunching(app, options);
-        }
-        public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options)
-        {
-            return GoogleClientManager.OnOpenUrl(app, url, options);
         }
     }
 

@@ -13,7 +13,7 @@ namespace COVIDHelp.ViewModels
     public class IdentificationPageViewModel : BaseViewModel
     {
         public DelegateCommand<string> GoToVolunteer { get; set; }
-        public IdentificationPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
+        public IdentificationPageViewModel(INavigationService navigationService, IPageDialogService dialogService, ICovidUserServices userServices, IHelpServices helpServices) : base(navigationService, dialogService, userServices,helpServices)
         {
             GoToVolunteer = new DelegateCommand<string>(async (filter) =>
             {

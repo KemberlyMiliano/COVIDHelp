@@ -12,7 +12,7 @@ namespace COVIDHelp.ViewModels
     public class EmergencyPageViewModel : BaseViewModel, IDialogAware
     {
         public DelegateCommand CloseCommand { get; }
-        public EmergencyPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiCovitServices apiCovitServices) : base(navigationService, dialogService, apiCovitServices)
+        public EmergencyPageViewModel(INavigationService navigationService, IPageDialogService dialogService, ICovidUserServices userServices,IHelpServices helpServices) : base(navigationService, dialogService, userServices,helpServices)
         {
             CloseCommand = new DelegateCommand(async () =>
             {

@@ -8,88 +8,75 @@
              NavigationPage.HasBackButton="True"
              x:Class="COVIDHelp.Views.LoginAndRegisterView.EditProfilePage">
     <ContentPage.Content>
-        <Grid Padding="20">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid Padding="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <ImageButton BackgroundColor="Transparent" 
+                                 Source="{Binding User.ProfilePhoto,TargetNullValue='defaultUser.png'}"                       
+                                 HeightRequest="200"                    
+                                 WidthRequest="200"   
 
-            <Frame CornerRadius="30" 
-                   Padding="10" 
-                   Grid.ColumnSpan="4" 
-                   Grid.RowSpan="8" 
-                   BackgroundColor="#0272A6">
-
-                <StackLayout Padding="20">
-
-                    <ImageButton BackgroundColor="Transparent" 
-                                 Source="defaultUser.png"                       
-                                 Grid.Row="1"
-                                 Grid.ColumnSpan="4"                       
-                                 HeightRequest="100"                    
-                                 WidthRequest="100"                      
+                                 Aspect="AspectFill"
+                                 CornerRadius="100"
                                  VerticalOptions="Center" 
-                                 HorizontalOptions="CenterAndExpand" />
-
-                    <Label Text="Cambiar foto de perfil"
-                           TextColor="White"
-                           FontSize="20"
+                                 HorizontalOptions="CenterAndExpand"
+                                 Command="{Binding PictureCommand}"
+                                 />
+                <Label Text=""
                            Grid.Row="1"
-                           Grid.ColumnSpan="4"
-                           VerticalOptions="Start"
-                           HorizontalOptions="Center"
-                           FontFamily="NormalFont"/>
+                               VerticalOptions="StartAndExpand"
+                           FontFamily="FontAwesomeSolid" 
+                               HorizontalOptions="Center"
+                               FontSize="50"
+                               TextColor="{StaticResource AccentColor}"
+                               />
 
-                    <Label Text="-Descripción:" 
-                           TextColor="White"
+                <Label Text="Descripción:" 
+                           TextColor="Black"
                            FontSize="20"
                            Grid.Row="2"
                            Padding="30"
-                           Grid.ColumnSpan="4"
                            VerticalOptions="Start"
                            HorizontalOptions="Start"
                            FontFamily="NormalFont"/>
 
-                    <Editor Keyboard="Text" 
+                <Editor Keyboard="Text" 
                             AutoSize="TextChanges" 
                             IsTextPredictionEnabled="True" 
                             Margin="50,0"   
                             Placeholder="Añadir descripción... "
-                            PlaceholderColor="White"
+                            PlaceholderColor="Black"
                             Text="{Binding User.SelfBiography}"
-                            TextColor="White"
-                            Grid.Row="2"
-                            Grid.ColumnSpan="4"
-                            VerticalOptions="Center" 
-                            HorizontalOptions="Start"
+                            TextColor="Black"
+                            Grid.Row="3"
                             FontFamily="NormalFont"/>
 
-                    <Button Text="Editado"
+                <Button Text="Editado"
                             TextColor="#0272A6"
                             HeightRequest="50" 
                             WidthRequest="100" 
-                            Grid.Row="3"
+                            Grid.Row="4"
                             Command="{Binding EditCommand}"
                             VerticalOptions="EndAndExpand"
                             CornerRadius="40" 
-                            Grid.ColumnSpan="4"
                             BackgroundColor="White"
                             FontFamily="BoldFont"/>
 
-                </StackLayout>
-            </Frame>
+            </Grid>
+            <Button Text="" FontSize="30" 
+                    BackgroundColor="Transparent" 
+                    TranslationX="-15"
+                    TextColor="Black"
+                    HorizontalOptions="Start"
+                    Command="{Binding BackCommand}"
+                    FontFamily="FontAwesomeSolid" 
+                    VerticalOptions="StartAndExpand" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>
